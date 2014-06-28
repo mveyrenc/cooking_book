@@ -1,33 +1,43 @@
-<%= form_for(@recipe) do |f| %>
+<%= form_for(@recipe, :html => { :class => "form-horizontal" }) do |f| %>
   <% if @recipe.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+    <div class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h4><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h4>
 
       <ul>
-      <% @recipe.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% @recipe.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="form-group">
+    <%= f.label :name, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :name, :class => "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :ingredients %><br>
-    <%= f.text_area :ingredients %>
+  <div class="form-group">
+    <%= f.label :ingredients, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_area :ingredients, :class => "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :directions %><br>
-    <%= f.text_area :directions %>
+  <div class="form-group">
+    <%= f.label :directions, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_area :directions, :class => "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :source %><br>
-    <%= f.text_field :source %>
+  <div class="form-group">
+    <%= f.label :source, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :source, :class => "form-control" %>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit :class => "btn btn-primary" %>
+    </div>
   </div>
 <% end %>
