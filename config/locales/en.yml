@@ -24,3 +24,19 @@ en:
       name: "CookingBook"
       home: "Home"
       recipes: "Recipes"
+      show: "Show"
+      edit: "Edit"
+      destroy: "Destroy"
+      destroy_confirmation: "Are you sure?"
+      no_entry: "No entry"
+  homepage:
+      welcome: "Welcome!"
+  recipes:
+      index_page_title: "Listing recipes"
+      new_button: "New recipe"
+      attr:
+          name: "Name"
+          ingredients: "Ingredients"
+          directions: "Directions"
+          source: "Source"
+  

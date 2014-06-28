@@ -1,31 +1,38 @@
-<h1>Listing recipes</h1>
+<div class="page-header">
+  <%= link_to new_recipe_path, :class => 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    <%=  I18n.t( 'recipes.new_button' ) %>
+  <% end %>
+  <h1><%= I18n.t( 'recipes.index_page_title' ) %></h1>
+</div>
+<% if @recipes.blank? %>
+  <%= I18n.t( 'application.no_entry' ) %>
+<% else %>
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+        <tr>
+          <th><%= I18n.t( 'recipes.attr.name' ) %></th>
+          <th><%= I18n.t( 'recipes.attr.ingredients' ) %></th>
+          <th><%= I18n.t( 'recipes.attr.directions' ) %></th>
+          <th><%= I18n.t( 'recipes.attr.source' ) %></th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Ingredients</th>
-      <th>Directions</th>
-      <th>Source</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @recipes.each do |recipe| %>
-      <tr>
-        <td><%= recipe.name %></td>
-        <td><%= recipe.ingredients %></td>
-        <td><%= recipe.directions %></td>
-        <td><%= recipe.source %></td>
-        <td><%= link_to 'Show', recipe %></td>
-        <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
-        <td><%= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Recipe', new_recipe_path %>
+      <tbody>
+        <% @recipes.each do |recipe| %>
+          <tr>
+            <td><%= recipe.name %></td>
+            <td><%= recipe.ingredients %></td>
+            <td><%= recipe.directions %></td>
+            <td><%= recipe.source %></td>
+            <td><%= link_to I18n.t( 'application.show' ), recipe %></td>
+            <td><%= link_to I18n.t( 'application.edit' ), edit_recipe_path(recipe) %></td>
+            <td><%= link_to I18n.t( 'application.destroy' ), recipe, method: :delete, data: { confirm: I18n.t( 'application.destroy_confirmation' ) } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
