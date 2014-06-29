@@ -42,3 +42,6 @@ gem 'spring',        group: :development
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'sass-rails', '~> 4.0.3'
 gem 'bootstrap-generators', '~> 3.1.1', group: :development
+
+# TinyMCE
+gem 'tinymce-rails'

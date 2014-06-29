@@ -24,8 +24,8 @@
         <% @recipes.each do |recipe| %>
           <tr>
             <td><%= recipe.name %></td>
-            <td><%= recipe.ingredients %></td>
-            <td><%= recipe.directions %></td>
+            <td><%= raw( recipe.ingredients ) %></td>
+            <td><%= raw( recipe.directions ) %></td>
             <td><%= recipe.source %></td>
             <td><%= link_to I18n.t( 'application.show' ), recipe %></td>
             <td><%= link_to I18n.t( 'application.edit' ), edit_recipe_path(recipe) %></td>

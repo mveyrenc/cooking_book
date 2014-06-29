@@ -1,0 +1,7 @@
+menubar: false
+toolbar:
+    - bold italic underline | cut copy paste | bullist numlist outdent indent | hr | undo redo removeformat | table | fullscreen
+plugins:
+    - hr
+    - table
+    - fullscreen
