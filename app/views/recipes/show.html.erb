@@ -1,24 +1,24 @@
+<div class="page-header">
+  <%= link_to recipes_path, :class => 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    <%= I18n.t( 'application.back' ) %>
+  <% end %>
+  <%= link_to edit_recipe_path(@recipe), :class => 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    <%= I18n.t( 'application.edit' ) %>
+  <% end %>
+  <h1><%= @recipe %></h1>
+</div>
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @recipe.name %>
-</p>
-
-<p>
-  <strong>Ingredients:</strong>
-  <%= @recipe.ingredients %>
-</p>
-
-<p>
-  <strong>Directions:</strong>
-  <%= @recipe.directions %>
-</p>
-
-<p>
-  <strong>Source:</strong>
-  <%= @recipe.source %>
-</p>
-
-<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
-<%= link_to 'Back', recipes_path %>
+<dl class="dl-horizontal">
+  <dt><%= Recipe.human_attribute_name( 'quantity' ) %></dt>
+  <dd><%= @recipe.quantity %></dd>
+  <dt><%= Recipe.human_attribute_name( 'ingredients' ) %></dt>
+  <dd><%= raw( @recipe.ingredients ) %></dd>
+  <dt><%= Recipe.human_attribute_name( 'directions' ) %></dt>
+  <dd><%= raw( @recipe.directions ) %></dd>
+  <dt><%= Recipe.human_attribute_name( 'source' ) %></dt>
+  <dd><%= @recipe.source %></dd>
+</dl>
