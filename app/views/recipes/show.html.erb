@@ -1,9 +1,9 @@
 <div class="page-header">
-  <%= link_to recipes_path, :class => 'btn btn-default' do %>
+  <%= link_to recipes_path, :class => 'btn btn-default no-print' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
     <%= I18n.t( 'application.back' ) %>
   <% end %>
-  <%= link_to edit_recipe_path(@recipe), :class => 'btn btn-primary' do %>
+  <%= link_to edit_recipe_path(@recipe), :class => 'btn btn-primary no-print' do %>
     <span class="glyphicon glyphicon-pencil"></span>
     <%= I18n.t( 'application.edit' ) %>
   <% end %>
