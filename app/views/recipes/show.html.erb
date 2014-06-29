@@ -11,12 +11,16 @@
 </div>
 
 <dl class="dl-horizontal">
-  <dt><%= Recipe.human_attribute_name( 'quantity' ) %></dt>
-  <dd><%= @recipe.quantity %></dd>
+  <% if !@recipe.quantity.blank? %>
+    <dt><%= Recipe.human_attribute_name( 'quantity' ) %></dt>
+    <dd><%= @recipe.quantity %></dd>
+  <% end %>
   <dt><%= Recipe.human_attribute_name( 'ingredients' ) %></dt>
   <dd><%= raw( @recipe.ingredients ) %></dd>
   <dt><%= Recipe.human_attribute_name( 'directions' ) %></dt>
   <dd><%= raw( @recipe.directions ) %></dd>
-  <dt><%= Recipe.human_attribute_name( 'source' ) %></dt>
-  <dd><%= @recipe.source %></dd>
+  <% if !@recipe.source.blank? %>
+    <dt><%= Recipe.human_attribute_name( 'source' ) %></dt>
+    <dd><%= @recipe.source %></dd>
+  <% end %>
 </dl>
