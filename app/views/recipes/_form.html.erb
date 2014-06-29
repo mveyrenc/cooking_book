@@ -2,8 +2,7 @@
   <% if @recipe.errors.any? %>
     <div class="alert alert-danger alert-dismissable">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <h4><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h4>
-
+      <h4><%= pluralize(@recipe.errors.count, I18n.t( 'application.error' )) %> <%= I18n.t( 'application.error_message' ) %></h4>
       <ul>
         <% @recipe.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>

@@ -30,6 +30,8 @@ en:
         destroy_confirmation: "Are you sure?"
         no_entry: "No entry"
         back: "Back"
+        error: "error"
+        error_message: "detected:"
     homepage:
         welcome: "Welcome!"
     recipes:
