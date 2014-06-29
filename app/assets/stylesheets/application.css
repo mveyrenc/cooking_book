@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+/* add required field asterisk */
+label.required:after {
+    content: " *";
+}
