@@ -37,6 +37,7 @@ en:
     recipes:
         index_page_title: "Listing recipes"
         new_page_title: "New recipe"
+        edit_page_title: "Edit recipe"
         new_button: "New recipe"
     activerecord:
         models:
@@ -50,4 +51,5 @@ en:
     helpers:
         submit:
             create: "Validate"
+            edit: "Validate"
   
