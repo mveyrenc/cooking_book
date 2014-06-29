@@ -1,26 +1,28 @@
-<div class="page-header">
-  <%= link_to recipes_path, :class => 'btn btn-default no-print' do %>
-    <span class="glyphicon glyphicon-list-alt"></span>
-    <%= I18n.t( 'application.back' ) %>
-  <% end %>
-  <%= link_to edit_recipe_path(@recipe), :class => 'btn btn-primary no-print' do %>
-    <span class="glyphicon glyphicon-pencil"></span>
-    <%= I18n.t( 'application.edit' ) %>
-  <% end %>
-  <h1><%= @recipe %></h1>
-</div>
+<div class="recipe-page show-page">
+  <div class="page-header">
+    <%= link_to recipes_path, :class => 'btn btn-default no-print' do %>
+      <span class="glyphicon glyphicon-list-alt"></span>
+      <%= I18n.t( 'application.back' ) %>
+    <% end %>
+    <%= link_to edit_recipe_path(@recipe), :class => 'btn btn-primary no-print' do %>
+      <span class="glyphicon glyphicon-pencil"></span>
+      <%= I18n.t( 'application.edit' ) %>
+    <% end %>
+    <h1><%= @recipe %></h1>
+  </div>
 
-<dl class="dl-horizontal">
-  <% if !@recipe.quantity.blank? %>
-    <dt><%= Recipe.human_attribute_name( 'quantity' ) %></dt>
-    <dd><%= @recipe.quantity %></dd>
-  <% end %>
-  <dt><%= Recipe.human_attribute_name( 'ingredients' ) %></dt>
-  <dd><%= raw( @recipe.ingredients ) %></dd>
-  <dt><%= Recipe.human_attribute_name( 'directions' ) %></dt>
-  <dd><%= raw( @recipe.directions ) %></dd>
-  <% if !@recipe.source.blank? %>
-    <dt><%= Recipe.human_attribute_name( 'source' ) %></dt>
-    <dd><%= @recipe.source %></dd>
-  <% end %>
-</dl>
+  <dl class="dl-horizontal">
+    <% if !@recipe.quantity.blank? %>
+      <dt><%= Recipe.human_attribute_name( 'quantity' ) %></dt>
+      <dd><%= @recipe.quantity %></dd>
+    <% end %>
+    <dt><%= Recipe.human_attribute_name( 'ingredients' ) %></dt>
+    <dd><%= raw( @recipe.ingredients ) %></dd>
+    <dt><%= Recipe.human_attribute_name( 'directions' ) %></dt>
+    <dd><%= raw( @recipe.directions ) %></dd>
+    <% if !@recipe.source.blank? %>
+      <dt><%= Recipe.human_attribute_name( 'source' ) %></dt>
+      <dd><%= @recipe.source %></dd>
+    <% end %>
+  </dl>
+</div>

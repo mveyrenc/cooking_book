@@ -1,38 +1,38 @@
-<div class="page-header">
-  <%= link_to new_recipe_path, :class => 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-plus"></span>
-    <%=  I18n.t( 'recipes.new_button' ) %>
-  <% end %>
-  <h1><%= I18n.t( 'recipes.index_page_title' ) %></h1>
-</div>
-<% if @recipes.blank? %>
-  <%= I18n.t( 'application.no_entry' ) %>
-<% else %>
-  <div class="table-responsive">
-    <table class="table table-striped table-bordered table-hover">
-      <thead>
-        <tr>
-          <th><%= Recipe.human_attribute_name( 'name' ) %></th>
-          <th><%= Recipe.human_attribute_name( 'ingredients' ) %></th>
-          <th><%= Recipe.human_attribute_name( 'directions' ) %></th>
-          <th><%= Recipe.human_attribute_name( 'source' ) %></th>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @recipes.each do |recipe| %>
-          <tr>
-            <td><%= recipe.name %></td>
-            <td><%= raw( recipe.ingredients ) %></td>
-            <td><%= raw( recipe.directions ) %></td>
-            <td><%= recipe.source %></td>
-            <td><%= link_to I18n.t( 'application.show' ), recipe %></td>
-            <td><%= link_to I18n.t( 'application.edit' ), edit_recipe_path(recipe) %></td>
-            <td><%= link_to I18n.t( 'application.destroy' ), recipe, method: :delete, data: { confirm: I18n.t( 'application.destroy_confirmation' ) } %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+<div class="recipe-page index-page">
+  <div class="page-header">
+    <%= link_to new_recipe_path, :class => 'btn btn-success' do %>
+      <span class="glyphicon glyphicon-plus"></span>
+      <%=  I18n.t( 'recipes.new_button' ) %>
+    <% end %>
+    <h1><%= I18n.t( 'recipes.index_page_title' ) %></h1>
   </div>
-<% end %>
+  <% if @recipes.blank? %>
+    <%= I18n.t( 'application.no_entry' ) %>
+  <% else %>
+    <div class="container">
+      <% @recipes.each do |recipe| %>
+        <div class="col-md-6">
+          <article>
+            <h2><%= link_to recipe %></h2>
+            <div  class="row">
+              <div class="ingredients pull-left">
+                <%= raw( recipe.ingredients ) %>
+              </div>
+              <div class="btn-group pull-right">
+                <%= link_to recipe, :class => 'btn btn-primary', :title => I18n.t( 'application.show' ) do %>
+                  <span class="glyphicon glyphicon-info-sign"></span>
+                <% end %>
+                <%= link_to edit_recipe_path(recipe), :class => 'btn btn-primary no-print', :title => I18n.t( 'application.edit' ) do %>
+                  <span class="glyphicon glyphicon-pencil"></span>
+                <% end %>
+                <%= link_to recipe, :class => 'btn btn-danger no-print', :title => I18n.t( 'application.destroy' ), :method => :delete, :data => { confirm: I18n.t( 'application.destroy_confirmation' ) } do %>
+                  <span class="glyphicon glyphicon-trash"></span>
+                <% end %>
+              </div>
+            </div>
+          </article>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

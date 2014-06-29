@@ -1,9 +1,11 @@
-<div class="page-header">
-  <%= link_to recipes_path, :class => 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-list-alt"></span>
-    <%= I18n.t( 'application.back' ) %>
-  <% end %>
-  <h1><%= I18n.t( 'recipes.new_page_title' ) %></h1>
-</div>
+<div class="recipe-page new-page form-page">
+  <div class="page-header">
+    <%= link_to recipes_path, :class => 'btn btn-default' do %>
+      <span class="glyphicon glyphicon-list-alt"></span>
+      <%= I18n.t( 'application.back' ) %>
+    <% end %>
+    <h1><%= I18n.t( 'recipes.new_page_title' ) %></h1>
+  </div>
 
-<%= render 'form' %>
+  <%= render 'form' %>
+</div>
