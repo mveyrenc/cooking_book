@@ -13,7 +13,11 @@
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
+/log/*.lck
 /tmp
 
 # Ignore database configuration file
 /config/database.yml
+
+# Ignore Solr folder
+/solr
