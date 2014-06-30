@@ -3,12 +3,13 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 %>
+<h1><%= I18n.t( 'homepage.welcome' ) %></h1>
 
-<%= I18n.t( 'homepage.welcome' ) %>
-<% if @repices %>
+<h2><%= I18n.t( 'homepage.lastest_10_recipes' ) %></h2>
+<% if !@recipes.blank? %>
   <ul>
-    <% for recipe in @repices %>
-      <li><%= recipe.name %></li>
+    <% @recipes.each do |recipe| %>
+      <li><%= link_to recipe, recipe %></li>
     <%  end %>
   </ul>
 <% end %>
