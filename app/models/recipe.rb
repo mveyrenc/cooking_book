@@ -6,7 +6,10 @@ class Recipe < ActiveRecord::Base
   after_save :index_in_solr
   
   searchable do
-    text :name, :ingredients, :source
+    text :name, :source
+    text :ingredients, :stored => true do
+      HTMLEntities.new.decode( Sanitize.clean( ingredients ) )
+    end
   end
   
   def index_in_solr
