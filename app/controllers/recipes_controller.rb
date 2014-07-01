@@ -51,6 +51,15 @@ class RecipesController < ApplicationController
     end
   end
 
+  # GET /recipes/search
+  # GET /recipes/search.json
+  def search
+    @query = params[:query]
+    @search_result = Recipe.search do
+      fulltext params[:query]
+    end
+  end
+
   # DELETE /recipes/1
   # DELETE /recipes/1.json
   def destroy
@@ -62,13 +71,13 @@ class RecipesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_recipe
-      @recipe = Recipe.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_recipe
+    @recipe = Recipe.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def recipe_params
-      params.require(:recipe).permit(:name, :quantity, :ingredients, :directions, :source)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def recipe_params
+    params.require(:recipe).permit(:name, :quantity, :ingredients, :directions, :source)
+  end
 end

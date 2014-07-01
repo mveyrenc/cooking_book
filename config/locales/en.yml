@@ -24,6 +24,7 @@ en:
         name: "CookingBook"
         home: "Home"
         recipes: "Recipes"
+        search: "Search"
         show: "Show"
         edit: "Edit"
         destroy: "Destroy"
@@ -40,6 +41,7 @@ en:
         new_page_title: "New recipe"
         edit_page_title: "Edit recipe"
         new_button: "New recipe"
+        search_page_title: "Search"
     activerecord:
         models:
             recipe: "Recipe"

@@ -1,0 +1,44 @@
+<div class="recipe-page index-page">
+  <div class="page-header">
+    <%= link_to new_recipe_path, :class => 'btn btn-success' do %>
+      <span class="glyphicon glyphicon-plus"></span>
+      <%=  I18n.t( 'recipes.new_button' ) %>
+    <% end %>
+    <h1><%= I18n.t( 'recipes.search_page_title' ) %></h1>
+  </div>
+  <form class="row" role="search" action="<%=  url_for :controller => 'recipes', :action => 'search' %>">
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="<%= I18n.t( 'application.search' ) %>" name="query" value="<%= @query %>">
+    </div>
+    <button type="submit" class="pull-right btn btn-default"><%= I18n.t( 'application.search' ) %></button>
+  </form>
+  <% if @search_result.total == 0 %>
+    <%= I18n.t( 'application.no_entry' ) %>
+  <% else %>
+    <div class="container">
+      <% @search_result.results.each do |recipe| %>
+        <div class="col-md-6">
+          <article>
+            <h2><%= link_to recipe, recipe %></h2>
+            <div  class="row">
+              <div class="ingredients pull-left">
+                <%= raw( recipe.ingredients ) %>
+              </div>
+              <div class="btn-group pull-right">
+                <%= link_to recipe, :class => 'btn btn-primary', :title => I18n.t( 'application.show' ) do %>
+                  <span class="glyphicon glyphicon-info-sign"></span>
+                <% end %>
+                <%= link_to edit_recipe_path(recipe), :class => 'btn btn-primary no-print', :title => I18n.t( 'application.edit' ) do %>
+                  <span class="glyphicon glyphicon-pencil"></span>
+                <% end %>
+                <%= link_to recipe, :class => 'btn btn-danger no-print', :title => I18n.t( 'application.destroy' ), :method => :delete, :data => { confirm: I18n.t( 'application.destroy_confirmation' ) } do %>
+                  <span class="glyphicon glyphicon-trash"></span>
+                <% end %>
+              </div>
+            </div>
+          </article>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
