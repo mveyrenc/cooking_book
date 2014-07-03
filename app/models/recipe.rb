@@ -13,8 +13,12 @@ class Recipe < ActiveRecord::Base
   end
   
   def index_in_solr
-    Recipe.reindex
-    Sunspot.commit
+    begin
+      Recipe.reindex
+      Sunspot.commit
+    rescue Errno::ECONNREFUSED, Timeout::Error => e
+      logger.error e.message
+    end
   end
   
   def to_s

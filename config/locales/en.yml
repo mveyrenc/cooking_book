@@ -48,6 +48,8 @@ en:
         attributes:
             recipe:
                 name: "Name"
+                description: "Description"
+                quantity: "Quantity"
                 ingredients: "Ingredients"
                 directions: "Directions"
                 source: "Source"

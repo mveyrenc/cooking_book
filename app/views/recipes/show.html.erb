@@ -16,6 +16,10 @@
       <dt><%= Recipe.human_attribute_name( 'quantity' ) %></dt>
       <dd><%= @recipe.quantity %></dd>
     <% end %>
+    <% if !@recipe.description.blank? %>
+      <dt><%= Recipe.human_attribute_name( 'description' ) %></dt>
+      <dd><%= raw( @recipe.description ) %></dd>
+    <% end %>
     <dt><%= Recipe.human_attribute_name( 'ingredients' ) %></dt>
     <dd><%= raw( @recipe.ingredients ) %></dd>
     <dt><%= Recipe.human_attribute_name( 'directions' ) %></dt>
