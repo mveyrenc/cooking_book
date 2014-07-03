@@ -49,6 +49,7 @@ en:
             recipe:
                 name: "Name"
                 description: "Description"
+                times: "Times"
                 quantity: "Quantity"
                 ingredients: "Ingredients"
                 directions: "Directions"
