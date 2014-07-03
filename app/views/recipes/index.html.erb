@@ -11,13 +11,19 @@
   <% else %>
     <div class="container">
       <% @recipes.each do |recipe| %>
-        <div class="col-md-6">
-          <article>
+          <article class="row">
             <h2><%= link_to recipe, recipe %></h2>
-            <div  class="row">
-              <div class="ingredients pull-left">
+            <div class="col-md-5">
+              <div class="ingredients">
                 <%= raw( recipe.ingredients ) %>
               </div>
+            </div>
+            <div class="col-md-5">
+              <div class="times">
+                <%= simple_format( recipe.times ) %>
+              </div>
+            </div>
+            <div class="col-md-2">
               <div class="btn-group pull-right">
                 <%= link_to recipe, :class => 'btn btn-primary', :title => I18n.t( 'application.show' ) do %>
                   <span class="glyphicon glyphicon-info-sign"></span>
@@ -31,7 +37,6 @@
               </div>
             </div>
           </article>
-        </div>
       <% end %>
     </div>
   <% end %>
