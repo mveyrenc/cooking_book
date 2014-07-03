@@ -54,6 +54,7 @@ en:
                 ingredients: "Ingredients"
                 directions: "Directions"
                 source: "Source"
+                wine: "Wine"
     helpers:
         submit:
             create: "Validate"

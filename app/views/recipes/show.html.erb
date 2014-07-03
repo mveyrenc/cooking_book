@@ -32,5 +32,9 @@
       <dt><%= Recipe.human_attribute_name( 'source' ) %></dt>
       <dd><%= @recipe.source %></dd>
     <% end %>
+    <% if !@recipe.wine.blank? %>
+      <dt><%= Recipe.human_attribute_name( 'wine' ) %></dt>
+      <dd><%= @recipe.wine %></dd>
+    <% end %>
   </dl>
 </div>
