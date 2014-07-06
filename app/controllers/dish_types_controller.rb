@@ -4,7 +4,7 @@ class DishTypesController < ApplicationController
   # GET /dish_types
   # GET /dish_types.json
   def index
-    @dish_types = DishType.all
+    @dish_types = DishType.all.order( :id )
   end
 
   # GET /dish_types/1
@@ -28,7 +28,7 @@ class DishTypesController < ApplicationController
 
     respond_to do |format|
       if @dish_type.save
-        format.html { redirect_to @dish_type, notice: 'Dish type was successfully created.' }
+        format.html { redirect_to dish_types_path, notice: 'Dish type was successfully created.' }
         format.json { render :show, status: :created, location: @dish_type }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class DishTypesController < ApplicationController
   def update
     respond_to do |format|
       if @dish_type.update(dish_type_params)
-        format.html { redirect_to @dish_type, notice: 'Dish type was successfully updated.' }
+        format.html { redirect_to dish_types_path, notice: 'Dish type was successfully updated.' }
         format.json { render :show, status: :ok, location: @dish_type }
       else
         format.html { render :edit }
@@ -69,6 +69,6 @@ class DishTypesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dish_type_params
-      params.require(:dish_type).permit(:name, :plurial_name)
+      params.require(:dish_type).permit(:name, :plurial_name, :picture)
     end
 end

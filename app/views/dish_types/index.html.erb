@@ -11,25 +11,31 @@
   <% else %>
     <div class="container">
       <% @dish_types.each do |dish_type| %>
-        <article class="row">
-          <h2><%= dish_type %></h2>
-          <div class="col-md-10">
-            <dl class="dl-horizontal">
-              <%  if !dish_type.plurial_name.blank? %>
-                <dt class="plurial_name"><%= DishType.human_attribute_name( 'plurial_name' ) %></dt>
-                <dd class="plurial_name"><%= dish_type.plurial_name %></dd>
-              <% end %>
-            </dl>
+        <article class="media row">
+          <div class="pull-left">
+            <%= image_tag dish_type.picture.url(:thumb), :class => "media-object" %>
           </div>
-          <div class="col-md-2">
-            <div class="btn-group pull-right">
-              <%= link_to edit_dish_type_path(dish_type), :class => 'btn btn-primary no-print', :title => I18n.t( 'application.edit' ) do %>
-                <span class="glyphicon glyphicon-pencil"></span>
-              <% end %>
-              <%= link_to dish_type, :class => 'btn btn-danger no-print', :title => I18n.t( 'application.destroy' ), :method => :delete, :data => { confirm: I18n.t( 'application.destroy_confirmation' ) } do %>
-                <span class="glyphicon glyphicon-trash"></span>
-              <% end %>
+          <div class="media-body">
+            <h2><%= dish_type %></h2>
+            <div class="col-md-10">
+              <dl class="dl-horizontal">
+                <%  if !dish_type.plurial_name.blank? %>
+                  <dt class="plurial_name"><%= DishType.human_attribute_name( 'plurial_name' ) %></dt>
+                  <dd class="plurial_name"><%= dish_type.plurial_name %></dd>
+                <% end %>
+              </dl>
             </div>
+            <div class="col-md-2">
+              <div class="btn-group pull-right">
+                <%= link_to edit_dish_type_path(dish_type), :class => 'btn btn-primary no-print', :title => I18n.t( 'application.edit' ) do %>
+                  <span class="glyphicon glyphicon-pencil"></span>
+                <% end %>
+                <%= link_to dish_type, :class => 'btn btn-danger no-print', :title => I18n.t( 'application.destroy' ), :method => :delete, :data => { confirm: I18n.t( 'application.destroy_confirmation' ) } do %>
+                  <span class="glyphicon glyphicon-trash"></span>
+                <% end %>
+              </div>
+            </div>
+          </div>
         </article>
       <% end %>
     </div>

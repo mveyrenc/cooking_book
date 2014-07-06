@@ -54,3 +54,6 @@ gem 'sunspot_solr', group: :development
 
 # Navigation
 gem 'simple-navigation'
+
+# Attachement
+gem "paperclip", "~> 4.1"
