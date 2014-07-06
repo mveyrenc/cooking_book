@@ -12,7 +12,7 @@
     <div class="container">
       <% @dish_types.each do |dish_type| %>
         <article class="row">
-          <h2><%= link_to dish_type, dish_type %></h2>
+          <h2><%= dish_type %></h2>
           <div class="col-md-10">
             <dl class="dl-horizontal">
               <%  if !dish_type.plurial_name.blank? %>
@@ -23,9 +23,6 @@
           </div>
           <div class="col-md-2">
             <div class="btn-group pull-right">
-              <%= link_to dish_type, :class => 'btn btn-primary', :title => I18n.t( 'application.show' ) do %>
-                <span class="glyphicon glyphicon-info-sign"></span>
-              <% end %>
               <%= link_to edit_dish_type_path(dish_type), :class => 'btn btn-primary no-print', :title => I18n.t( 'application.edit' ) do %>
                 <span class="glyphicon glyphicon-pencil"></span>
               <% end %>
