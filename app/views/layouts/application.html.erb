@@ -18,36 +18,30 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <div class="navbar navbar-inverse navbar-fixed-top no-print">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <%= link_to I18n.t( 'application.name' ), root_path, :class => "navbar-brand" %>
-        </div>
-        <div class="collapse navbar-collapse">
-          <!--ul class="nav navbar-nav">
-            <li class="active">
-              <%= link_to I18n.t( 'application.home' ), "/" %>
-            </li>
-            <li>
-              <%= link_to I18n.t( 'application.recipes' ), recipes_path %>
-            </li>
-          </ul-->
+    <header>
+      <div class="navbar navbar-inverse navbar-fixed-top no-print">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <%= link_to I18n.t( 'application.name' ), root_path, :class => "navbar-brand" %>
+          </div>
+          <div class="collapse navbar-collapse">
             <%= render_navigation renderer: :bootstrap_topbar_list %>
-          <form class="navbar-form navbar-right" role="search" action="<%=  search_recipes_path %>">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="<%= I18n.t( 'application.search' ) %>" name="query">
-            </div>
-            <button type="submit" class="btn btn-default"><%= I18n.t( 'application.search' ) %></button>
-          </form>
+            <form class="navbar-form navbar-right" role="search" action="<%=  search_recipes_path %>">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="<%= I18n.t( 'application.search' ) %>" name="query">
+              </div>
+              <button type="submit" class="btn btn-default"><%= I18n.t( 'application.search' ) %></button>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+    </header>
     <div class="container">
       <% flash.each do |name, msg| %>
         <%= content_tag :div, :class => "alert alert-#{ name == :error ? "danger" : "success" } alert-dismissable" do %>
@@ -58,5 +52,10 @@
 
       <%= yield %>
     </div>
+    <footer>
+      <div class="container">
+        <p class="text-muted"><%= I18n.t( 'application.name' ) %> </p>
+      </div>
+    </footer>
   </body>
 </html>

@@ -14,8 +14,3 @@
  *= require_self
  *= stub print
  */
-
-/* add required field asterisk */
-label.required:after {
-    content: " *";
-}
