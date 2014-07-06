@@ -8,6 +8,7 @@ SimpleNavigation::Configuration.run do |navigation|
 
   # Specify the class that will be applied to active navigation items.
   # Defaults to 'selected' navigation.selected_class = 'your_selected_class'
+  navigation.selected_class = 'active'
 
   # Specify the class that will be applied to the current leaf of
   # active navigation items. Defaults to 'simple-navigation-active-leaf'
@@ -53,19 +54,8 @@ SimpleNavigation::Configuration.run do |navigation|
     #                            when the item should be highlighted, you can set a regexp which is matched
     #                            against the current URI.  You may also use a proc, or the symbol <tt>:subpath</tt>.
     #
-    primary.item :key_1, 'name', url, options
-
-    # Add an item which has a sub navigation (same params, but with block)
-    primary.item :key_2, 'name', url, options do |sub_nav|
-      # Add an item to the sub navigation (same params again)
-      sub_nav.item :key_2_1, 'name', url, options
-    end
-
-    # You can also specify a condition-proc that needs to be fullfilled to display an item.
-    # Conditions are part of the options. They are evaluated in the context of the views,
-    # thus you can use all the methods and vars you have available in the views.
-    primary.item :key_3, 'Admin', url, class: 'special', if: -> { current_user.admin? }
-    primary.item :key_4, 'Account', url, unless: -> { logged_in? }
+    primary.item :home, 'Home', root_path
+    primary.item :recipes, 'Recipe', recipes_path
 
     # you can also specify html attributes to attach to this particular level
     # works for all levels of the menu

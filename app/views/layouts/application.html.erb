@@ -30,14 +30,15 @@
           <%= link_to I18n.t( 'application.name' ), root_path, :class => "navbar-brand" %>
         </div>
         <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
+          <!--ul class="nav navbar-nav">
             <li class="active">
               <%= link_to I18n.t( 'application.home' ), "/" %>
             </li>
             <li>
               <%= link_to I18n.t( 'application.recipes' ), recipes_path %>
             </li>
-          </ul>
+          </ul-->
+            <%= render_navigation renderer: :bootstrap_topbar_list %>
           <form class="navbar-form navbar-right" role="search" action="<%=  url_for :controller => 'recipes', :action => 'search' %>">
             <div class="form-group">
               <input type="text" class="form-control" placeholder="<%= I18n.t( 'application.search' ) %>" name="query">
