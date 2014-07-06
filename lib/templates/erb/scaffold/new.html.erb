@@ -1,9 +1,11 @@
-<div class="page-header">
-  <%%= link_to <%= index_helper %>_path, :class => 'btn btn-default' do %>
+<div class="<%= singular_table_name %>-page new-page form-page">
+  <div class="page-header">
+    <%%= link_to <%= index_helper %>_path, :class => 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
-    Back
-  <%% end %>
-  <h1>New <%= singular_table_name %></h1>
-</div>
+    <%%= I18n.t( 'application.back' ) %>
+    <%% end %>
+    <h1><%%= I18n.t( '<%= plural_table_name %>.new_page_title' ) %></h1>
+  </div>
 
-<%%= render 'form' %>
+  <%%= render 'form' %>
+</div>

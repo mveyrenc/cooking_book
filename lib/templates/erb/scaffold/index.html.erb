@@ -1,33 +1,40 @@
-<div class="page-header">
-  <%%= link_to new_<%= singular_table_name %>_path, :class => 'btn btn-primary' do %>
+<div class="<%= singular_table_name %>-page index-page">
+  <div class="page-header">
+    <%%= link_to new_<%= singular_table_name %>_path, :class => 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-plus"></span>
-    New <%= human_name %>
+    <%%=  I18n.t( '<%= plural_table_name %>.new_button' ) %>
+    <%% end %>
+    <h1><%%= I18n.t( '<%= plural_table_name %>.index_page_title' ) %></h1>
+  </div>
+  <%% if @<%= plural_table_name %>.blank? %>
+  <%= I18n.t( 'application.no_entry' ) %>
+  <%% else %>
+  <div class="container">
+    <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+    <article class="row">
+      <h2><%%= link_to <%= singular_table_name %>, <%= singular_table_name %> %></h2>
+      <div class="col-md-10">
+        <dl class="dl-horizontal">
+          <%- attributes.each do |attribute| -%>
+            <dt class="<%= attribute.name %>"><%%= <%= class_name %>.human_attribute_name( '<%= attribute.name %>' ) %></dt>
+            <dd class="<%= attribute.name %>"><%%= <%= singular_table_name %>.<%= attribute.name %> %></dd>
+          <%- end -%>
+        </dl>
+      </div>
+      <div class="col-md-2">
+        <div class="btn-group pull-right">
+          <%%= link_to <%= singular_table_name %>, :class => 'btn btn-primary', :title => I18n.t( 'application.show' ) do %>
+            <span class="glyphicon glyphicon-info-sign"></span>
+          <%% end %>
+          <%%= link_to edit_<%= singular_table_name %>_path(<%= singular_table_name %>), :class => 'btn btn-primary no-print', :title => I18n.t( 'application.edit' ) do %>
+            <span class="glyphicon glyphicon-pencil"></span>
+          <%% end %>
+          <%%= link_to <%= singular_table_name %>, :class => 'btn btn-danger no-print', :title => I18n.t( 'application.destroy' ), :method => :delete, :data => { confirm: I18n.t( 'application.destroy_confirmation' ) } do %>
+            <span class="glyphicon glyphicon-trash"></span>
+          <%% end %>
+        </div>
+    </article>
+    <%% end %>
+  </div>
   <%% end %>
-  <h1>Listing <%= plural_table_name %></h1>
-</div>
-
-<div class="table-responsive">
-  <table class="table table-striped table-bordered table-hover">
-    <thead>
-      <tr>
-    <% attributes.each do |attribute| -%>
-        <th><%= attribute.human_name %></th>
-    <% end -%>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <%%= content_tag_for(:tr, @<%= plural_table_name %>) do |<%= singular_table_name %>| %>
-    <% attributes.each do |attribute| -%>
-        <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
-    <% end -%>
-        <td><%%= link_to 'Show', <%= singular_table_name %> %></td>
-        <td><%%= link_to 'Edit', edit_<%= singular_table_name %>_path(<%= singular_table_name %>) %></td>
-        <td><%%= link_to 'Destroy', <%= singular_table_name %>, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <%% end %>
-    </tbody>
-  </table>
 </div>
