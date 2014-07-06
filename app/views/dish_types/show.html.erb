@@ -1,0 +1,20 @@
+<div class="dish_type-page show-page">
+  <div class="page-header">
+    <%= link_to dish_types_path, :class => 'btn btn-default' do %>
+      <span class="glyphicon glyphicon-list-alt"></span>
+      <%= I18n.t( 'application.back' ) %>
+    <% end %>
+    <%= link_to edit_dish_type_path(@dish_type), :class => 'btn btn-primary' do %>
+      <span class="glyphicon glyphicon-pencil"></span>
+      <%= I18n.t( 'application.edit' ) %>
+    <% end %>
+    <h1><%= @dish_type %></h1>
+  </div>
+
+  <dl class="dl-horizontal">
+    <%  if !@dish_type.plurial_name.blank? %>
+      <dt class="plurial_name"><%= DishType.human_attribute_name( 'plurial_name' ) %></dt>
+      <dd class="plurial_name"><%= @dish_type.plurial_name %></dd>
+    <% end %>
+  </dl>
+</div>

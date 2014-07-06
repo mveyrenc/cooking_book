@@ -42,6 +42,11 @@ en:
         edit_page_title: "Edit recipe"
         new_button: "New recipe"
         search_page_title: "Search"
+    dish_types:
+        index_page_title: "Listing dish types"
+        new_page_title: "New dish type"
+        edit_page_title: "Edit dish type"
+        new_button: "New dish type"
     activerecord:
         models:
             recipe: "Recipe"

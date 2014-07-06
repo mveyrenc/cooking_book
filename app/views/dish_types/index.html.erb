@@ -1,0 +1,40 @@
+<div class="dish_type-page index-page">
+  <div class="page-header">
+    <%= link_to new_dish_type_path, :class => 'btn btn-primary' do %>
+      <span class="glyphicon glyphicon-plus"></span>
+      <%=  I18n.t( 'dish_types.new_button' ) %>
+    <% end %>
+    <h1><%= I18n.t( 'dish_types.index_page_title' ) %></h1>
+  </div>
+  <% if @dish_types.blank? %>
+    No entry
+  <% else %>
+    <div class="container">
+      <% @dish_types.each do |dish_type| %>
+        <article class="row">
+          <h2><%= link_to dish_type, dish_type %></h2>
+          <div class="col-md-10">
+            <dl class="dl-horizontal">
+              <%  if !dish_type.plurial_name.blank? %>
+                <dt class="plurial_name"><%= DishType.human_attribute_name( 'plurial_name' ) %></dt>
+                <dd class="plurial_name"><%= dish_type.plurial_name %></dd>
+              <% end %>
+            </dl>
+          </div>
+          <div class="col-md-2">
+            <div class="btn-group pull-right">
+              <%= link_to dish_type, :class => 'btn btn-primary', :title => I18n.t( 'application.show' ) do %>
+                <span class="glyphicon glyphicon-info-sign"></span>
+              <% end %>
+              <%= link_to edit_dish_type_path(dish_type), :class => 'btn btn-primary no-print', :title => I18n.t( 'application.edit' ) do %>
+                <span class="glyphicon glyphicon-pencil"></span>
+              <% end %>
+              <%= link_to dish_type, :class => 'btn btn-danger no-print', :title => I18n.t( 'application.destroy' ), :method => :delete, :data => { confirm: I18n.t( 'application.destroy_confirmation' ) } do %>
+                <span class="glyphicon glyphicon-trash"></span>
+              <% end %>
+            </div>
+        </article>
+      <% end %>
+    </div>
+  <% end %>
+</div>
