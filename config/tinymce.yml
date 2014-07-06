@@ -1,8 +1,12 @@
 menubar: false
 toolbar:
-    - bold italic underline | cut copy paste | bullist numlist outdent indent | hr | undo redo removeformat | table | fullscreen
+    - bold italic underline | cut copy paste | link unlink | bullist numlist outdent indent | hr | undo redo removeformat | table | spellchecker | emoticons | fullscreen
 plugins:
     - hr
     - table
     - fullscreen
     - autoresize
+    - link
+    - spellchecker
+    - emoticons
+spellchecker_language: 'fr_FR'
