@@ -51,3 +51,6 @@ gem 'htmlentities'
 gem 'sanitize'
 gem 'sunspot_rails'
 gem 'sunspot_solr', group: :development
+
+# Navigation
+gem 'simple-navigation'
