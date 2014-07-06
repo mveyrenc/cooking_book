@@ -2,6 +2,9 @@ class Recipe < ActiveRecord::Base
   validates :name, presence: true
   validates :ingredients, presence: true
   validates :directions, presence: true
+  validates :dish_type_id, presence: true
+  
+  belongs_to :dish_type
   
   after_save :index_in_solr
   

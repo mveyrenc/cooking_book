@@ -25,7 +25,7 @@
                 <%= raw( recipe.ingredients ) %>
               </div>
               <div class="btn-group pull-right">
-                <%= link_to recipe, :class => 'btn btn-primary', :title => I18n.t( 'application.show' ) do %>
+                <%= link_to recipe, :class => 'btn btn-default', :title => I18n.t( 'application.show' ) do %>
                   <span class="glyphicon glyphicon-info-sign"></span>
                 <% end %>
                 <%= link_to edit_recipe_path(recipe), :class => 'btn btn-primary no-print', :title => I18n.t( 'application.edit' ) do %>

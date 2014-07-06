@@ -11,32 +11,28 @@
   <% else %>
     <div class="container">
       <% @recipes.each do |recipe| %>
-          <article class="row">
-            <h2><%= link_to recipe, recipe %></h2>
-            <div class="col-md-5">
-              <div class="ingredients">
-                <%= raw( recipe.ingredients ) %>
-              </div>
-            </div>
-            <div class="col-md-5">
-              <div class="times">
-                <%= simple_format( recipe.times ) %>
-              </div>
-            </div>
-            <div class="col-md-2">
-              <div class="btn-group pull-right">
-                <%= link_to recipe, :class => 'btn btn-primary', :title => I18n.t( 'application.show' ) do %>
-                  <span class="glyphicon glyphicon-info-sign"></span>
-                <% end %>
-                <%= link_to edit_recipe_path(recipe), :class => 'btn btn-primary no-print', :title => I18n.t( 'application.edit' ) do %>
-                  <span class="glyphicon glyphicon-pencil"></span>
-                <% end %>
-                <%= link_to recipe, :class => 'btn btn-danger no-print', :title => I18n.t( 'application.destroy' ), :method => :delete, :data => { confirm: I18n.t( 'application.destroy_confirmation' ) } do %>
-                  <span class="glyphicon glyphicon-trash"></span>
-                <% end %>
-              </div>
-            </div>
-          </article>
+        <article class="row">
+          <div class="row">
+            <h2><span class="badge"><%= recipe.dish_type %></span> <%= link_to recipe, recipe %></h2>
+          </div>
+          <div class="times">
+            <%= simple_format( recipe.times ) %>
+          </div>
+          <div class="ingredients">
+            <%= raw( recipe.ingredients ) %>
+          </div>
+          <div class="pull-right">
+            <%= link_to recipe, :class => 'btn btn-xs btn-default no-print', :title => I18n.t( 'application.show' ) do %>
+              <span class="glyphicon glyphicon-info-sign"></span>
+              <%= I18n.t( 'application.show' ) %>
+            <% end %>
+            <%= link_to edit_recipe_path(recipe), :class => 'btn btn-xs btn-primary no-print', :title => I18n.t( 'application.edit' ) do %>
+              <span class="glyphicon glyphicon-pencil"></span>
+              <%= I18n.t( 'application.edit' ) %>
+            <% end %>
+          </div>
+        </article>
+        <hr />
       <% end %>
     </div>
   <% end %>

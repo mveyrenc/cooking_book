@@ -23,7 +23,7 @@
       </div>
       <div class="col-md-2">
         <div class="btn-group pull-right">
-          <%%= link_to <%= singular_table_name %>, :class => 'btn btn-primary', :title => I18n.t( 'application.show' ) do %>
+          <%%= link_to <%= singular_table_name %>, :class => 'btn btn-default', :title => I18n.t( 'application.show' ) do %>
             <span class="glyphicon glyphicon-info-sign"></span>
           <%% end %>
           <%%= link_to edit_<%= singular_table_name %>_path(<%= singular_table_name %>), :class => 'btn btn-primary no-print', :title => I18n.t( 'application.edit' ) do %>
