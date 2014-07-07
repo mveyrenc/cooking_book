@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root 'welcome#index'
   
   resources :recipes do
@@ -11,6 +12,9 @@ Rails.application.routes.draw do
   
   resources :dish_types, path: '/admin/dish_types', :except => [:show]
   resources :dish_types, path: '/admin/dish_types', :only => [:show], :defaults => { :format => 'json' }
+  
+  resources :categories, path: '/admin/categories', :except => [:show]
+  resources :categories, path: '/admin/categories', :only => [:show], :defaults => { :format => 'json' }
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

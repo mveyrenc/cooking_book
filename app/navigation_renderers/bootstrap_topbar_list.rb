@@ -51,12 +51,21 @@ class BootstrapTopbarList < SimpleNavigation::Renderer::Base
     link_options = item.html_options[:link] || {}
     opts = special_options.merge(link_options)
     opts[:class] = [link_options[:class], item.selected_class, dropdown_link_class(item)].flatten.compact.join(' ')
+    if is_dropdown item
+      opts['data-toggle']="dropdown"
+    end
     opts.delete(:class) if opts[:class].nil? || opts[:class] == ''
     opts
   end
+  
+  def is_dropdown( item )
+    if include_sub_navigation?(item) && !options[:is_subnavigation]
+      true
+    end
+  end
 
   def dropdown_link_class(item)
-    if include_sub_navigation?(item) && !options[:is_subnavigation]
+    if is_dropdown item
       "dropdown-toggle"
     end
   end

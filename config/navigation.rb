@@ -72,6 +72,7 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :recipes, 'Recipe', recipes_path
     primary.item :admin, 'Admin', admin_path do |sub_nav|
       sub_nav.item :dish_types, 'Dish types', dish_types_path
+      sub_nav.item :categories, 'Categories', categories_path
     end
 
     # you can also specify html attributes to attach to this particular level
