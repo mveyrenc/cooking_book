@@ -5,6 +5,7 @@ class Recipe < ActiveRecord::Base
   validates :dish_type_id, presence: true
   
   belongs_to :dish_type
+  has_and_belongs_to_many :categories
   
   after_save :index_in_solr
   

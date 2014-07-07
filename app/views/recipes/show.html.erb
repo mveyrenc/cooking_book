@@ -14,6 +14,9 @@
     <% end %>
     <h1><%= @recipe %></h1>
     <span class="label label-primary"><%= @recipe.dish_type %></span>
+    <% @recipe.categories.each do |category| %>
+      <span class="label label-default"><%= category %></span>
+    <% end %>
   </div>
 
   <dl class="dl-horizontal">
