@@ -1,9 +1,6 @@
 <div class="recipe-page index-page">
   <div class="page-header">
-    <%= link_to new_recipe_path, :class => 'btn btn-success' do %>
-      <span class="glyphicon glyphicon-plus"></span>
-      <%=  I18n.t( 'recipes.new_button' ) %>
-    <% end %>
+    <%= new_button new_recipe_path, I18n.t( 'recipes.new_button' ) %>
     <h1><%= I18n.t( 'recipes.index_page_title' ) %></h1>
   </div>
   <% if @recipes.blank? %>
@@ -13,7 +10,13 @@
       <% @recipes.each do |recipe| %>
         <article class="row">
           <div class="row">
-            <h2><span class="badge"><%= recipe.dish_type %></span> <%= link_to recipe, recipe %></h2>
+            <h2><%= link_to recipe, recipe %></h2>
+          </div>
+          <div class="categorization">
+            <%= dish_type_label recipe.dish_type %>
+            <% recipe.categories.each do |category| %>
+              <%= category_label category %>
+            <% end %>
           </div>
           <div class="times">
             <%= simple_format( recipe.times ) %>
@@ -22,14 +25,8 @@
             <%= raw( recipe.ingredients ) %>
           </div>
           <div class="pull-right">
-            <%= link_to recipe, :class => 'btn btn-xs btn-default no-print', :title => I18n.t( 'application.show' ) do %>
-              <span class="glyphicon glyphicon-info-sign"></span>
-              <%= I18n.t( 'application.show' ) %>
-            <% end %>
-            <%= link_to edit_recipe_path(recipe), :class => 'btn btn-xs btn-primary no-print', :title => I18n.t( 'application.edit' ) do %>
-              <span class="glyphicon glyphicon-pencil"></span>
-              <%= I18n.t( 'application.edit' ) %>
-            <% end %>
+            <%= show_button recipe %>
+            <%= edit_button edit_recipe_path(recipe) %>
           </div>
         </article>
         <hr />
