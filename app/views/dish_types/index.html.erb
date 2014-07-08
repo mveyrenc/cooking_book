@@ -1,9 +1,6 @@
 <div class="dish_type-page index-page">
   <div class="page-header">
-    <%= link_to new_dish_type_path, :class => 'btn btn-primary' do %>
-      <span class="glyphicon glyphicon-plus"></span>
-      <%=  I18n.t( 'dish_types.new_button' ) %>
-    <% end %>
+    <%= new_button new_dish_type_path, I18n.t( 'dish_types.new_button' ) %>
     <h1><%= I18n.t( 'dish_types.index_page_title' ) %></h1>
   </div>
   <% if @dish_types.blank? %>
@@ -26,13 +23,9 @@
               </dl>
             </div>
             <div class="col-md-2">
-              <div class="btn-group pull-right">
-                <%= link_to edit_dish_type_path(dish_type), :class => 'btn btn-primary no-print', :title => I18n.t( 'application.edit' ) do %>
-                  <span class="glyphicon glyphicon-pencil"></span>
-                <% end %>
-                <%= link_to dish_type, :class => 'btn btn-danger no-print', :title => I18n.t( 'application.destroy' ), :method => :delete, :data => { confirm: I18n.t( 'application.destroy_confirmation' ) } do %>
-                  <span class="glyphicon glyphicon-trash"></span>
-                <% end %>
+              <div class="pull-right">
+                <%= edit_button edit_dish_type_path(dish_type) %>
+                <%= destroy_button dish_type %>
               </div>
             </div>
           </div>
