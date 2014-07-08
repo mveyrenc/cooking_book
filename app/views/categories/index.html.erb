@@ -1,29 +1,23 @@
 <div class="category-page index-page">
   <div class="page-header">
-    <%= link_to new_category_path, :class => 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-plus"></span>
-    <%=  I18n.t( 'categories.new_button' ) %>
-    <% end %>
+    <%= new_button new_category_path, I18n.t( 'categories.new_button' ) %>
     <h1><%= I18n.t( 'categories.index_page_title' ) %></h1>
   </div>
   <% if @categories.blank? %>
-  No entry
+    <%= I18n.t( 'application.no_entry' ) %>
   <% else %>
-  <div class="container">
-    <% @categories.each do |category| %>
-    <article class="col-md-6 row">
-      <p class="col-md-9"><%= link_to category, category %></p>
-      <div class="col-md-3">
-        <div class="btn-group pull-right">
-          <%= link_to edit_category_path(category), :class => 'btn btn-xs  btn-primary no-print', :title => I18n.t( 'application.edit' ) do %>
-            <span class="glyphicon glyphicon-pencil"></span>
-          <% end %>
-          <%= link_to category, :class => 'btn btn-xs  btn-danger no-print', :title => I18n.t( 'application.destroy' ), :method => :delete, :data => { confirm: I18n.t( 'application.destroy_confirmation' ) } do %>
-            <span class="glyphicon glyphicon-trash"></span>
-          <% end %>
-        </div>
-    </article>
-    <% end %>
-  </div>
+    <div class="container">
+      <% @categories.each do |category| %>
+        <article class="col-md-6 row">
+          <p class="col-md-6"><%= link_to category, category %></p>
+          <div class="col-md-6">
+            <div class="pull-right">
+              <%= edit_button edit_category_path(category) %>
+              <%= destroy_button category %>
+            </div>
+          </div>
+        </article>
+      <% end %>
+    </div>
   <% end %>
 </div>
