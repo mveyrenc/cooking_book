@@ -2,11 +2,7 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
   
-  resources :recipes do
-    collection do 
-      get 'search', :action => 'search', :as => 'search'
-    end
-  end
+  resources :recipes
 
   get '/admin' => 'dish_types#index'
   

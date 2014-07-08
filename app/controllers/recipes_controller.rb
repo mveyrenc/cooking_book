@@ -4,7 +4,10 @@ class RecipesController < ApplicationController
   # GET /recipes
   # GET /recipes.json
   def index
-    @recipes = Recipe.all
+    @query = params[:query]
+    @search_result = Recipe.search do
+      fulltext params[:query]
+    end
   end
 
   # GET /recipes/1
@@ -49,15 +52,6 @@ class RecipesController < ApplicationController
         format.html { render :edit }
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # GET /recipes/search
-  # GET /recipes/search.json
-  def search
-    @query = params[:query]
-    @search_result = Recipe.search do
-      fulltext params[:query]
     end
   end
 

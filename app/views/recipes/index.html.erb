@@ -3,11 +3,11 @@
     <%= new_button new_recipe_path, I18n.t( 'recipes.new_button' ) %>
     <h1><%= I18n.t( 'recipes.index_page_title' ) %></h1>
   </div>
-  <% if @recipes.blank? %>
+  <% if @search_result.total == 0 %>
     <%= I18n.t( 'application.no_entry' ) %>
   <% else %>
     <div class="container">
-      <% @recipes.each do |recipe| %>
+      <% @search_result.results.each do |recipe| %>
         <article class="row media">
           <div class="pull-left">
             <%= image_tag recipe.dish_type.picture.url(:thumb_gray), :class => "media-object" %>

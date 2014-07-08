@@ -32,7 +32,7 @@
           </div>
           <div class="collapse navbar-collapse">
             <%= render_navigation renderer: :bootstrap_topbar_list %>
-            <form class="navbar-form navbar-right" role="search" action="<%=  search_recipes_path %>">
+            <form class="navbar-form navbar-right" role="search" action="<%= recipes_path %>">
               <div class="form-group">
                 <input type="text" class="form-control" placeholder="<%= I18n.t( 'application.search' ) %>" name="query">
               </div>
