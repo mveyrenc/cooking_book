@@ -21,3 +21,6 @@
 
 # Ignore Solr folder
 /solr
+
+# Ignore PaperClip upload folder
+/public/system
