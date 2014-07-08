@@ -8,25 +8,28 @@
   <% else %>
     <div class="container">
       <% @recipes.each do |recipe| %>
-        <article class="row">
-          <div class="row">
+        <article class="row media">
+          <div class="pull-left">
+            <%= image_tag recipe.dish_type.picture.url(:thumb_gray), :class => "media-object" %>
+          </div>
+          <div class="media-body">
             <h2><%= link_to recipe, recipe %></h2>
-          </div>
-          <div class="categorization">
-            <%= dish_type_label recipe.dish_type %>
-            <% recipe.categories.each do |category| %>
-              <%= category_label category %>
-            <% end %>
-          </div>
-          <div class="times">
-            <%= simple_format( recipe.times ) %>
-          </div>
-          <div class="ingredients">
-            <%= raw( recipe.ingredients ) %>
-          </div>
-          <div class="pull-right">
-            <%= show_button recipe %>
-            <%= edit_button edit_recipe_path(recipe) %>
+            <div class="categorization">
+              <%= dish_type_label recipe.dish_type %>
+              <% recipe.categories.each do |category| %>
+                <%= category_label category %>
+              <% end %>
+            </div>
+            <div class="times">
+              <%= simple_format( recipe.times ) %>
+            </div>
+            <div class="ingredients">
+              <%= raw( recipe.ingredients ) %>
+            </div>
+            <div class="pull-right">
+              <%= show_button recipe %>
+              <%= edit_button edit_recipe_path(recipe) %>
+            </div>
           </div>
         </article>
         <hr />
