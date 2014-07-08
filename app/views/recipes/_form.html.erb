@@ -25,7 +25,22 @@
   <div class="form-group">
     <%= f.label :category_ids, :class => "col-sm-2 control-label required" %>
     <div class="col-sm-10">
-      <%=  collection_check_boxes :recipe, :category_ids, Category.all.order( :name ), :id, :name, { :prompt => true }, { :class => "form-control" }  %>
+      <div class="col-sm-4">
+        <% category_list = Category.all.order( :name )
+        category_col_count = ( category_list.count / 3 ).next
+        i = 1 %>
+        <%=  collection_check_boxes :recipe, :category_ids, category_list, :id, :name do |b| %>
+          <div class="checkbox">
+            <%= b.label do %>
+              <%= b.check_box(:class => "checkbox") %><%= b.object.name %>
+            <% end  %>
+          </div>
+          <% if i.modulo( category_col_count ) == 0 %>
+          </div><div class="col-sm-4">
+          <% end %>
+          <% i = i.next %>
+        <% end %>
+      </div>
     </div>
   </div>
   <div class="form-group">

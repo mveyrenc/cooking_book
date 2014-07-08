@@ -59,6 +59,8 @@ en:
             recipe:
                 name: "Name"
                 description: "Description"
+                dish_type: "Dish type"
+                category_ids: "Categories"
                 times: "Times"
                 quantity: "Quantity"
                 ingredients: "Ingredients"
