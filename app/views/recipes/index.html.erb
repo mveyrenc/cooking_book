@@ -22,8 +22,8 @@
         <%= link_to "x #{DishType.find( params[:dish_type_id] )}", recipes_path( params.except( :dish_type_id ) ) if params[:dish_type_id].present? %>
         <% if @search_result.facet(:dish_type_id) %>
           <ul>
-            <% @search_result.facet(:dish_type_id).rows.each do |facet| %>
-              <li><%= link_to "#{DishType.find( facet.value )} (#{facet.count})", recipes_path( params.merge({ :dish_type_id => facet.value }) )%></li>
+            <% @search_result.facet(:dish_type_id).rows.sort { |left,right| left.instance.id <=> right.instance.id }.each do |facet| %>
+              <li><%= link_to "#{facet.instance.name} (#{facet.count})", recipes_path( params.merge({ :dish_type_id => facet.value }) )%></li>
             <% end %>
           </ul>
         <% end %>
@@ -32,7 +32,7 @@
         <% if @search_result.facet(:category_ids) %>
           <ul>
             <% @search_result.facet(:category_ids).rows.each do |facet| %>
-              <li><%= link_to "#{Category.find( facet.value )} (#{facet.count})", recipes_path( params.merge({ :category_ids => facet.value }) )%></li>
+              <li><%= link_to "#{facet.instance.name} (#{facet.count})", recipes_path( params.merge({ :category_ids => facet.value }) )%></li>
             <% end %>
           </ul>
         <% end %>
