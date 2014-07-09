@@ -5,35 +5,49 @@
   </div>
   <% if @search_result.total == 0 %>
     <%= I18n.t( 'application.no_entry' ) %>
+    <form class="form-horizontal" role="search" action="<%= recipes_path %>">
+      <div class="form-group col-md-11">
+        <input type="text" class="form-control" placeholder="<%= I18n.t( 'application.search' ) %>" name="query" value="<%= @query %>">
+      </div>
+      <button type="submit" class="btn btn-default col-md-1"><%= I18n.t( 'application.search' ) %></button>
+    </form>
   <% else %>
     <div class="container">
-      <% @search_result.results.each do |recipe| %>
-        <article class="row media">
-          <div class="pull-left">
-            <%= image_tag recipe.dish_type.picture.url(:thumb_gray), :class => "media-object" %>
-          </div>
-          <div class="media-body">
-            <h2><%= link_to recipe, recipe %></h2>
-            <div class="categorization">
-              <%= dish_type_label recipe.dish_type %>
-              <% recipe.categories.each do |category| %>
-                <%= category_label category %>
-              <% end %>
+      <div class="left-col-container col-md-3">
+        <form class="form-horizontal" role="search" action="<%= recipes_path %>">
+          <input type="text" class="form-control" placeholder="<%= I18n.t( 'application.search' ) %>" name="query" value="<%= @query %>">
+          <button type="submit" class="btn btn-default pull-right"><%= I18n.t( 'application.search' ) %></button>
+        </form>
+      </div>
+      <div class="col-md-9">
+        <% @search_result.results.each do |recipe| %>
+          <article class="row media">
+            <div class="pull-left">
+              <%= image_tag recipe.dish_type.picture.url(:thumb_gray), :class => "media-object" %>
             </div>
-            <div class="times">
-              <%= simple_format( recipe.times ) %>
+            <div class="media-body">
+              <h2><%= link_to recipe, recipe %></h2>
+              <div class="categorization">
+                <%= dish_type_label recipe.dish_type %>
+                <% recipe.categories.each do |category| %>
+                  <%= category_label category %>
+                <% end %>
+              </div>
+              <div class="times">
+                <%= simple_format( recipe.times ) %>
+              </div>
+              <div class="ingredients">
+                <%= raw( recipe.ingredients ) %>
+              </div>
+              <div class="pull-right">
+                <%= show_button recipe %>
+                <%= edit_button edit_recipe_path(recipe) %>
+              </div>
             </div>
-            <div class="ingredients">
-              <%= raw( recipe.ingredients ) %>
-            </div>
-            <div class="pull-right">
-              <%= show_button recipe %>
-              <%= edit_button edit_recipe_path(recipe) %>
-            </div>
-          </div>
-        </article>
-        <hr />
-      <% end %>
+          </article>
+          <hr />
+        <% end %>
+      </div>
     </div>
   <% end %>
 </div>

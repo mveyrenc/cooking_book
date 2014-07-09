@@ -1,4 +1,11 @@
 .recipe-page.index-page {
+    .left-col-container {
+        background-color: #EEE;
+        padding: 15px;
+        input {
+            margin-bottom: 10px
+        }
+    }
     h2 {
         margin-top: 0;
     }
