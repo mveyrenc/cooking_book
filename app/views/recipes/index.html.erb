@@ -65,6 +65,23 @@
           </article>
           <hr />
         <% end %>
+        <% if @search_result.results.total_pages > 1 %>
+          <div class="text-center">
+            <ul class="pagination">
+              <li <% if @search_result.results.first_page? %>class="disabled"<% end %>>
+                <%= link_to "&laquo;".html_safe, recipes_path( params.merge({ :page => @search_result.results.previous_page }) ) %>
+              </li>
+              <% for page in 1..(@search_result.results.total_pages) %>
+                <li <% if page == ( params[:page].to_i || 1 ) %>class="active"<% end %>>
+                  <%= link_to page, recipes_path( params.merge({ :page => page }) ) %>
+                </li>
+              <% end %>
+              <li <% if @search_result.results.last_page? %>class="disabled"<% end %>>
+                <%= link_to "&raquo;".html_safe, recipes_path( params.merge({ :page => @search_result.results.next_page }) ) %>
+              </li>
+            </ul>
+          </div>
+        <% end %>
       </div>
     </div>
   <% end %>
