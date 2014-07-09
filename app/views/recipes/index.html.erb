@@ -18,6 +18,24 @@
           <input type="text" class="form-control" placeholder="<%= I18n.t( 'application.search' ) %>" name="query" value="<%= @query %>">
           <button type="submit" class="btn btn-default pull-right"><%= I18n.t( 'application.search' ) %></button>
         </form>
+        <h3><%= Recipe.human_attribute_name( 'dish_type' ) %></h3>
+        <%= link_to "x #{DishType.find( params[:dish_type_id] )}", recipes_path( params.except( :dish_type_id ) ) if params[:dish_type_id].present? %>
+        <% if @search_result.facet(:dish_type_id) %>
+          <ul>
+            <% @search_result.facet(:dish_type_id).rows.each do |facet| %>
+              <li><%= link_to "#{DishType.find( facet.value )} (#{facet.count})", recipes_path( params.merge({ :dish_type_id => facet.value }) )%></li>
+            <% end %>
+          </ul>
+        <% end %>
+        <h3><%= Recipe.human_attribute_name( 'category_ids' ) %></h3>
+        <%= link_to "x #{Category.find( params[:category_ids] )}", recipes_path( params.except( :category_ids ) ) if params[:category_ids].present? %>
+        <% if @search_result.facet(:category_ids) %>
+          <ul>
+            <% @search_result.facet(:category_ids).rows.each do |facet| %>
+              <li><%= link_to "#{Category.find( facet.value )} (#{facet.count})", recipes_path( params.merge({ :category_ids => facet.value }) )%></li>
+            <% end %>
+          </ul>
+        <% end %>
       </div>
       <div class="col-md-9">
         <% @search_result.results.each do |recipe| %>

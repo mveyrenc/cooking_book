@@ -7,6 +7,10 @@ class RecipesController < ApplicationController
     @query = params[:query]
     @search_result = Recipe.search do
       fulltext params[:query]
+      with(:category_ids, params[:category_ids]) if params[:category_ids].present?
+      with(:dish_type_id, params[:dish_type_id]) if params[:dish_type_id].present?
+      facet :category_ids unless params[:category_ids].present?
+      facet :dish_type_id unless params[:dish_type_id].present?
     end
   end
 

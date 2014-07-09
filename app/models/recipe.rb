@@ -14,6 +14,8 @@ class Recipe < ActiveRecord::Base
     text :ingredients, :stored => true do
       HTMLEntities.new.decode( Sanitize.clean( ingredients ) )
     end
+    integer :dish_type_id
+    integer :category_ids, :multiple => true
   end
   
   def index_in_solr
