@@ -40,7 +40,11 @@ gem 'spring',        group: :development
 
 # Bootstrap
 gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
 gem 'bootstrap-generators', '~> 3.1.1', group: :development
+
+# Font-Awesome
+gem 'font-awesome-sass'
 
 # TinyMCE
 gem 'tinymce-rails'

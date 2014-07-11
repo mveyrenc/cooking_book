@@ -1,3 +1,5 @@
+@import "bootstrap-variables";
+
 .recipe-page.index-page {
     .left-col-container {
         background-color: #EEE;
@@ -21,6 +23,38 @@
         }
         li:before {
             content: " - ";
+        }
+    }
+}
+.recipe-page.show-page {
+    .row {
+        margin-bottom: 20px;
+    }
+    .icon {
+        padding-right: 15px;
+        float: left;
+        width: 10%;
+        i {
+            font-size: 400%;
+        }
+    }
+    .content {
+        float: left;
+        width: 90%
+    }
+    .source {
+        color: $gray-light;
+        float: right !important;
+        font-style: italic;
+    }
+    .quantity {
+        font-size: 150%;
+        font-weight: bold;
+        font-style: italic;
+    }
+    .ingredients-list {
+        ul {
+            padding-left: 15px;
         }
     }
 }

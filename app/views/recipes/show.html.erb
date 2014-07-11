@@ -4,36 +4,59 @@
     <%= edit_button edit_recipe_path( @recipe ) %>
     <%= back_button recipes_path %>
     <h1><%= @recipe %></h1>
+    <% if !@recipe.source.blank? %>
+      <div class="source"><%= @recipe.source %></div>
+    <% end %>
     <%= dish_type_label @recipe.dish_type %>
     <% @recipe.categories.each do |category| %>
       <%= category_label category %>
     <% end %>
   </div>
-
-  <dl class="dl-horizontal">
-    <% if !@recipe.description.blank? %>
-      <dt class="description"><%= Recipe.human_attribute_name( 'description' ) %></dt>
-      <dd class="description"><%= raw( @recipe.description ) %></dd>
-    <% end %>
-    <% if !@recipe.times.blank? %>
-      <dt class="times"><%= Recipe.human_attribute_name( 'times' ) %></dt>
-      <dd class="times"><%= simple_format( @recipe.times ) %></dd>
-    <% end %>
-    <% if !@recipe.quantity.blank? %>
-      <dt class="quantity"><%= Recipe.human_attribute_name( 'quantity' ) %></dt>
-      <dd class="quantity"><%= @recipe.quantity %></dd>
-    <% end %>
-    <dt class="ingredients"><%= Recipe.human_attribute_name( 'ingredients' ) %></dt>
-    <dd class="ingredients"><%= raw( @recipe.ingredients ) %></dd>
-    <dt class="directions"><%= Recipe.human_attribute_name( 'directions' ) %></dt>
-    <dd class="directions"><%= raw( @recipe.directions ) %></dd>
-    <% if !@recipe.source.blank? %>
-      <dt class="source"><%= Recipe.human_attribute_name( 'source' ) %></dt>
-      <dd class="source"><%= @recipe.source %></dd>
-    <% end %>
-    <% if !@recipe.wine.blank? %>
-      <dt class="wine"><%= Recipe.human_attribute_name( 'wine' ) %></dt>
-      <dd class="wine"><%= @recipe.wine %></dd>
-    <% end %>
-  </dl>
+  <% if !@recipe.description.blank? %>
+    <div class="description">
+      <%= raw( @recipe.description ) %>
+    </div>
+  <% end %>
+  <% if !@recipe.times.blank? %>
+    <div class="times row bgc rounded">
+      <div class="icon">
+        <%= icon('clock-o') %>
+      </div>
+      <div class="content">
+        <%= simple_format( @recipe.times ) %>
+      </div>
+    </div>
+  <% end %>
+  <div class="ingredients row bgc rounded">
+    <div class="icon">
+      <%= icon('cutlery') %>
+    </div>
+    <div class="content">
+      <% if !@recipe.quantity.blank? %>
+        <div class="quantity">
+          <%= @recipe.quantity %>
+        </div>
+      <% end %>
+      <div class="ingredients-list">
+        <%= raw( @recipe.ingredients ) %>
+      </div>
+    </div>
+  </div>
+  <div class="directions row bgc rounded">
+    <div class="icon">
+      <%= icon('book') %>
+    </div>
+    <div class="content">
+      <%= raw( @recipe.directions ) %>
+    </div>
+  </div>
+  <% if !@recipe.wine.blank? %>
+    <div class="wine row bgc rounded">
+      <div class="icon">
+        <%= icon('glass') %>
+      </div>
+      <div class="content">
+        <%= @recipe.wine %></div>
+    </div>
+  <% end %>
 </div>
