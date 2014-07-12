@@ -44,6 +44,10 @@
               <%= image_tag recipe.dish_type.picture.url(:thumb_gray), :class => "media-object" %>
             </div>
             <div class="media-body">
+              <div class="pull-right">
+                <%= show_button recipe %>
+                <%= edit_button edit_recipe_path(recipe) %>
+              </div>
               <h2><%= link_to recipe, recipe %></h2>
               <div class="categorization">
                 <%= dish_type_label recipe.dish_type %>
@@ -51,15 +55,18 @@
                   <%= category_label category %>
                 <% end %>
               </div>
-              <div class="times">
-                <%= simple_format( recipe.times ) %>
-              </div>
-              <div class="ingredients">
-                <%= raw( recipe.ingredients ) %>
-              </div>
-              <div class="pull-right">
-                <%= show_button recipe %>
-                <%= edit_button edit_recipe_path(recipe) %>
+              <% if !recipe.description.blank? %>
+                <div class="description">
+                  <%= raw( recipe.description ) %>
+                </div>
+              <% end %>
+              <div class="row">
+                <div class="ingredients">
+                  <%= raw( recipe.ingredients ) %>
+                </div>
+                <div class="times">
+                  <%= simple_format( recipe.times ) %>
+                </div>
               </div>
             </div>
           </article>

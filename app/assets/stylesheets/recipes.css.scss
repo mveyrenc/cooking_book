@@ -11,7 +11,13 @@
     h2 {
         margin-top: 0;
     }
+    .description {
+        margin-top: 15px;
+    }
     .ingredients {
+        float: left;
+        width: 75%;
+        padding: 15px;
         > ul {
             padding: 0;
         }
@@ -24,6 +30,10 @@
         li:before {
             content: " - ";
         }
+    }
+    .times {
+        float: left;
+        width: 25%;
     }
 }
 .recipe-page.show-page {
