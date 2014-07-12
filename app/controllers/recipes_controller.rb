@@ -9,8 +9,10 @@ class RecipesController < ApplicationController
       fulltext params[:query]
       with(:category_ids, params[:category_ids]) if params[:category_ids].present?
       with(:dish_type_id, params[:dish_type_id]) if params[:dish_type_id].present?
+      with(:source, params[:source]) if params[:source].present?
       facet :category_ids unless params[:category_ids].present?
       facet :dish_type_id unless params[:dish_type_id].present?
+      facet :source unless params[:source].present?
       paginate :page => params[:page] || 1, :per_page => 10
     end
   end

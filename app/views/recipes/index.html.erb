@@ -36,6 +36,15 @@
             <% end %>
           </ul>
         <% end %>
+        <h3><%= Recipe.human_attribute_name( 'source' ) %></h3>
+        <%= link_to "x #{params[:source]}", recipes_path( params.except( :source ).except( :page ) ) if params[:source].present? %>
+        <% if @search_result.facet(:source) %>
+          <ul>
+            <% @search_result.facet(:source).rows.each do |facet| %>
+              <li><%= link_to "#{facet.value} (#{facet.count})", recipes_path( params.merge({ :source => facet.value }).except( :page ) )%></li>
+            <% end %>
+          </ul>
+        <% end %>
       </div>
       <div class="col-md-9">
         <% @search_result.results.each do |recipe| %>
