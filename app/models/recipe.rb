@@ -13,9 +13,16 @@ class Recipe < ActiveRecord::Base
     text :name
     text :source
     text :wine
-    text :ingredients, :description, :directions do
+    text :ingredients do
       HTMLEntities.new.decode( Sanitize.clean( ingredients ) )
     end
+    text :description do
+      HTMLEntities.new.decode( Sanitize.clean( ingredients ) )
+    end
+    text :directions do
+      HTMLEntities.new.decode( Sanitize.clean( ingredients ) )
+    end
+    time :created_at
     integer :dish_type_id, :references => DishType
     integer :category_ids, :multiple => true, :references => Category
     string :source

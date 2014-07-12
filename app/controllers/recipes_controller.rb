@@ -14,6 +14,8 @@ class RecipesController < ApplicationController
       facet :dish_type_id unless params[:dish_type_id].present?
       facet :source unless params[:source].present?
       paginate :page => params[:page] || 1, :per_page => 10
+      order_by(:score, :desc)
+      order_by(:created_at, :desc)
     end
   end
 
