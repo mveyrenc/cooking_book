@@ -3,38 +3,42 @@
 <h2><%= I18n.t( 'homepage.lastest_10_recipes' ) %></h2>
 <% if !@recipes.blank? %>
   <div class="recipe-page index-page">
-    <% @recipes.each do |recipe| %>
-      <article class="row media">
-        <div class="pull-left">
-          <%= image_tag recipe.dish_type.picture.url(:thumb_gray), :class => "media-object" %>
-        </div>
-        <div class="media-body">
-          <div class="pull-right">
-            <%= show_button recipe %>
-            <%= edit_button edit_recipe_path(recipe) %>
-          </div>
-          <h2><%= link_to recipe, recipe %></h2>
-          <div class="categorization">
-            <%= dish_type_label recipe.dish_type %>
-            <% recipe.categories.each do |category| %>
-              <%= category_label category %>
-            <% end %>
-          </div>
-          <% if !recipe.description.blank? %>
-            <div class="description">
-              <%= raw( recipe.description ) %>
+      <% @recipes.each do |recipe| %>
+        <article class="row media">
+            <div class="pull-left">
+                <%  if !recipe.picture.blank?  %>
+                  <%= image_tag recipe.picture.url(:thumb), :class => "media-object" %>
+                <% else %>
+                  <%= image_tag recipe.dish_type.picture.url(:thumb_gray), :class => "media-object" %>
+                <% end %>
             </div>
-          <% end %>
-          <div class="row">
-            <div class="ingredients">
-              <%= raw( recipe.ingredients ) %>
+            <div class="media-body">
+                <div class="pull-right">
+                    <%= show_button recipe %>
+                    <%= edit_button edit_recipe_path(recipe) %>
+                </div>
+                <h2><%= link_to recipe, recipe %></h2>
+                <div class="categorization">
+                    <%= dish_type_label recipe.dish_type %>
+                    <% recipe.categories.each do |category| %>
+                      <%= category_label category %>
+                    <% end %>
+                </div>
+                <% if !recipe.description.blank? %>
+                  <div class="description">
+                      <%= raw( recipe.description ) %>
+                  </div>
+                <% end %>
+                <div class="row">
+                    <div class="ingredients">
+                        <%= raw( recipe.ingredients ) %>
+                    </div>
+                    <div class="times">
+                        <%= simple_format( recipe.times ) %>
+                    </div>
+                </div>
             </div>
-            <div class="times">
-              <%= simple_format( recipe.times ) %>
-            </div>
-          </div>
-        </div>
-      </article>
-    <%  end %>
+        </article>
+      <%  end %>
   </div>
 <% end %>
