@@ -50,7 +50,11 @@
         <% @search_result.results.each do |recipe| %>
           <article class="row media">
             <div class="pull-left">
-              <%= image_tag recipe.dish_type.picture.url(:thumb_gray), :class => "media-object" %>
+              <%  if !recipe.picture.blank?  %>
+                <%= image_tag recipe.picture.url(:thumb), :class => "media-object" %>
+              <% else %>
+                <%= image_tag recipe.dish_type.picture.url(:thumb_gray), :class => "media-object" %>
+              <% end %>
             </div>
             <div class="media-body">
               <div class="pull-right">

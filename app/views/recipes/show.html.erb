@@ -1,62 +1,71 @@
 <div class="recipe-page show-page">
-  <div class="page-header">
-    <%= destroy_button @recipe %>
-    <%= edit_button edit_recipe_path( @recipe ) %>
-    <%= back_button recipes_path %>
-    <h1><%= @recipe %></h1>
-    <% if !@recipe.source.blank? %>
-      <div class="source"><%= @recipe.source %></div>
-    <% end %>
-    <%= dish_type_label @recipe.dish_type %>
-    <% @recipe.categories.each do |category| %>
-      <%= category_label category %>
-    <% end %>
-  </div>
-  <% if !@recipe.description.blank? %>
-    <div class="description">
-      <%= raw( @recipe.description ) %>
-    </div>
-  <% end %>
-  <% if !@recipe.times.blank? %>
-    <div class="times row bgc rounded">
-      <div class="icon">
-        <%= icon('clock-o') %>
-      </div>
-      <div class="content">
-        <%= simple_format( @recipe.times ) %>
-      </div>
-    </div>
-  <% end %>
-  <div class="ingredients row bgc rounded">
-    <div class="icon">
-      <%= icon('cutlery') %>
-    </div>
-    <div class="content">
-      <% if !@recipe.quantity.blank? %>
-        <div class="quantity">
-          <%= @recipe.quantity %>
+    <div class="page-header row">
+        <div class="col-md-3">
+            <%  if !@recipe.picture.blank?  %>
+              <%= image_tag @recipe.picture.url(:medium), :class => "media-object" %>
+            <% else %>
+              <%= image_tag @recipe.dish_type.picture.url(:medium_gray), :class => "media-object" %>
+            <% end %>
         </div>
-      <% end %>
-      <div class="ingredients-list">
-        <%= raw( @recipe.ingredients ) %>
+        <div class="col-md-9">
+            <%= destroy_button @recipe %>
+            <%= edit_button edit_recipe_path( @recipe ) %>
+            <%= back_button recipes_path %>
+            <h1><%= @recipe %></h1>
+            <% if !@recipe.source.blank? %>
+              <div class="source"><%= @recipe.source %></div>
+            <% end %>
+            <%= dish_type_label @recipe.dish_type %>
+            <% @recipe.categories.each do |category| %>
+              <%= category_label category %>
+            <% end %>
+            <% if !@recipe.description.blank? %>
+              <div class="description">
+                  <%= raw( @recipe.description ) %>
+              </div>
+            <% end %>
+        </div>
+    </div>
+    <% if !@recipe.times.blank? %>
+      <div class="times row bgc rounded">
+          <div class="icon">
+              <%= icon('clock-o') %>
+          </div>
+          <div class="content">
+              <%= simple_format( @recipe.times ) %>
+          </div>
       </div>
+    <% end %>
+    <div class="ingredients row bgc rounded">
+        <div class="icon">
+            <%= icon('cutlery') %>
+        </div>
+        <div class="content">
+            <% if !@recipe.quantity.blank? %>
+              <div class="quantity">
+                  <%= @recipe.quantity %>
+              </div>
+            <% end %>
+            <div class="ingredients-list">
+                <%= raw( @recipe.ingredients ) %>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="directions row bgc rounded">
-    <div class="icon">
-      <%= icon('book') %>
+    <div class="directions row bgc rounded">
+        <div class="icon">
+            <%= icon('book') %>
+        </div>
+        <div class="content">
+            <%= raw( @recipe.directions ) %>
+        </div>
     </div>
-    <div class="content">
-      <%= raw( @recipe.directions ) %>
-    </div>
-  </div>
-  <% if !@recipe.wine.blank? %>
-    <div class="wine row bgc rounded">
-      <div class="icon">
-        <%= icon('glass') %>
+    <% if !@recipe.wine.blank? %>
+      <div class="wine row bgc rounded">
+          <div class="icon">
+              <%= icon('glass') %>
+          </div>
+          <div class="content">
+              <%= @recipe.wine %></div>
       </div>
-      <div class="content">
-        <%= @recipe.wine %></div>
-    </div>
-  <% end %>
+    <% end %>
 </div>

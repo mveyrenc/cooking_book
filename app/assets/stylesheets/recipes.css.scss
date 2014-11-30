@@ -1,5 +1,10 @@
 @import "bootstrap-variables";
 
+.recipe-page {
+    .description {
+        margin-top: 15px;
+    }
+}
 .recipe-page.index-page {
     .left-col-container {
         background-color: #EEE;
@@ -10,9 +15,6 @@
     }
     h2 {
         margin-top: 0;
-    }
-    .description {
-        margin-top: 15px;
     }
     .ingredients {
         float: left;
@@ -67,5 +69,6 @@
             padding-left: 15px;
         }
     }
-}
+}   
+
 

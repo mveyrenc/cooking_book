@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140707194651) do
+ActiveRecord::Schema.define(version: 20141130145104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,9 +39,9 @@ ActiveRecord::Schema.define(version: 20140707194651) do
   end
 
   create_table "recipes", force: true do |t|
-    t.string   "name",         null: false
-    t.text     "ingredients",  null: false
-    t.text     "directions",   null: false
+    t.string   "name",                 null: false
+    t.text     "ingredients",          null: false
+    t.text     "directions",           null: false
     t.string   "source"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -50,6 +50,10 @@ ActiveRecord::Schema.define(version: 20140707194651) do
     t.text     "times"
     t.string   "wine"
     t.integer  "dish_type_id"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
   end
 
 end
