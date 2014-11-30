@@ -10,3 +10,4 @@ plugins:
     - spellchecker
     - emoticons
 spellchecker_language: 'fr_FR'
+browser_spellcheck : true
