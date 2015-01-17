@@ -64,3 +64,8 @@ gem "paperclip", "~> 4.1"
 
 # Sniffer
 gem "nokogiri"
+
+# Solr delay indexing
+gem "sunspot-queue"
+gem "delayed_job"
+gem "delayed_job_active_record"
