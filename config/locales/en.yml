@@ -71,4 +71,22 @@ en:
         submit:
             create: "Validate"
             update: "Validate"
+    devise:
+        label:
+            sign_in: "Sign in"
+            log_in: "Log in"
+            sign_up: "Sign up"
+            forgot_your_password: "Forgot your password?"
+            receive_confirmation_instructions: "Didn't receive confirmation instructions?"
+            receive_unlock_instructions: "Didn't receive unlock instructions?"
+            sign_up_with: "Sign up with %{provider}"
+            logged_in_as: "Logged in as"
+            edit_profile: "Edit profile"
+            logout: "Logout"
+            login: "Login"
+            currently_waiting_confirmation: Currently waiting confirmation for #{email}
+            save: "Save"
+        form:
+            change_password_help: "Leave these fields blank if you don't want to change your password."
+            current_password_help: "You must enter your current password to make changes."
   

@@ -69,3 +69,10 @@ gem "nokogiri"
 gem "sunspot-queue"
 gem "delayed_job"
 gem "delayed_job_active_record"
+
+
+# Rating
+gem 'letsrate'
+
+# Authentification
+gem 'devise'

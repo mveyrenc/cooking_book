@@ -1,0 +1,51 @@
+<div class="user-page edit-profile-page form-page">
+    <div class="page-header">
+        <h1><%= t('devise.label.edit_profile') %></h1>
+    </div>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "form-horizontal" }) do |f| %>
+        <%= devise_error_messages! %>
+        <div class="form-group">
+            <%= f.label :email, :class => "col-sm-2 control-label required" %>
+            <div class="col-sm-10">
+                <%= f.email_field :email, autofocus: true %>
+            </div>
+        </div>
+
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>
+              <%= t('devise.label.currently_waiting_confirmation', email: resource.unconfirmed_email ) %>
+          </div>
+        <% end %>
+        <fieldset>
+            <p id="password-help" class="help-block"><%= t('devise.form.change_password_help') %></p>
+            <div class="form-group">
+                <%= f.label :password, :class => "col-sm-2 control-label required" %>
+                <div class="col-sm-10">
+                    <%= f.password_field :password, autocomplete: "off" %>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <%= f.label :password_confirmation, :class => "col-sm-2 control-label required" %>
+                <div class="col-sm-10">
+                    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+                    <span id="password-confirmation-help" class="help-block"><%= t('devise.form.password_confirmation_help') %></span>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <p id="password-help" class="help-block"><%= t('devise.form.current_password_help') %></p>
+            <div class="form-group">
+                <%= f.label :current_password, :class => "col-sm-2 control-label required" %>
+                <div class="col-sm-10">
+                    <%= f.password_field :current_password, autocomplete: "off" %>
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <%= f.submit t('devise.label.save'), :class => "btn btn-primary" %>
+            </div>
+        </div>
+      <% end %>
+  </div>

@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
-  root 'welcome#index'
+  root :to => "welcome#index"
   
+  devise_for :users
+  post '/rate' => 'rater#create', :as => 'rate'
+  resources :users
   resources :recipes
 
   get '/admin' => 'dish_types#index'
