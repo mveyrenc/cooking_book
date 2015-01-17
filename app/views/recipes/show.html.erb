@@ -19,6 +19,26 @@
             <% @recipe.categories.each do |category| %>
               <%= category_label category %>
             <% end %>
+            <div class="rating row">
+                <div class="col-md-1">
+                    <label><%= Recipe.human_attribute_name('note')  %></label>
+                </div>
+                <div class="col-md-3">
+                    <%= rating_for @recipe, "note" %>
+                </div>
+                <div class="col-md-1">
+                    <label><%= Recipe.human_attribute_name('difficulty') %></label>
+                </div>
+                <div class="col-md-3">
+                    <%= rating_for @recipe, "difficulty" %>
+                </div>
+                <div class="col-md-1">
+                    <label><%= Recipe.human_attribute_name('cost') %></label>
+                </div>
+                <div class="col-md-3">
+                    <%= rating_for @recipe, "cost" %>
+                </div>
+            </div>
             <% if !@recipe.description.blank? %>
               <div class="description">
                   <%= raw( @recipe.description ) %>
@@ -26,6 +46,7 @@
             <% end %>
         </div>
     </div>
+
     <% if !@recipe.times.blank? %>
       <div class="times row bgc rounded">
           <div class="icon">

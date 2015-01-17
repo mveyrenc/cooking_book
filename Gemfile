@@ -72,7 +72,7 @@ gem "delayed_job_active_record"
 
 
 # Rating
-gem 'letsrate'
+gem 'ratyrate'
 
 # Authentification
 gem 'devise'

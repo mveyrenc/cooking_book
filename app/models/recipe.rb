@@ -10,6 +10,8 @@ class Recipe < ActiveRecord::Base
   belongs_to :dish_type
   has_and_belongs_to_many :categories
   
+  ratyrate_rateable "note", "difficulty", "cost"
+  
   after_save :index_in_solr
   
   searchable do

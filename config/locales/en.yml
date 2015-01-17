@@ -67,6 +67,9 @@ en:
                 directions: "Directions"
                 source: "Source"
                 wine: "Wine"
+                note: "Note"
+                difficulty: "Difficulty"
+                cost: "Cost"
     helpers:
         submit:
             create: "Validate"
