@@ -169,6 +169,7 @@ DEPENDENCIES
   htmlentities
   jbuilder (~> 2.0)
   jquery-rails
+  nokogiri
   paperclip (~> 4.1)
   pg
   progress_bar

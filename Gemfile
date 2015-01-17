@@ -61,3 +61,6 @@ gem 'simple-navigation'
 
 # Attachement
 gem "paperclip", "~> 4.1"
+
+# Sniffer
+gem "nokogiri"
