@@ -12,7 +12,7 @@ class Recipe < ActiveRecord::Base
   
   ratyrate_rateable "note", "difficulty", "cost"
   
-  after_save :index_in_solr
+#  after_save :index_in_solr
   
   searchable do
     text :name
