@@ -7,7 +7,10 @@ Rails.application.routes.draw do
 
   get '/admin' => 'dish_types#index'
   
-  resources :dish_types, path: '/admin/dish_types', :except => [:show]
+  resources :dish_types, path: '/admin/dish_types', :except => [:show] do
+    get 'move_higher', on: :member
+    get 'move_lower', on: :member
+  end
   resources :dish_types, path: '/admin/dish_types', :only => [:show], :defaults => { :format => 'json' }
   
   resources :categories, path: '/admin/categories', :except => [:show]

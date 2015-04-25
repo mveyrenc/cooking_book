@@ -22,7 +22,7 @@
               <%= link_to "x #{DishType.find( params[:dish_type_id] )}", recipes_path( params.except( :dish_type_id ).except( :page ) ) if params[:dish_type_id].present? %>
               <% if @search_result.facet(:dish_type_id) %>
                 <ul>
-                    <% @search_result.facet(:dish_type_id).rows.sort { |left,right| left.instance.id <=> right.instance.id }.each do |facet| %>
+                    <% @search_result.facet(:dish_type_id).rows.sort { |left,right| left.instance.position <=> right.instance.position }.each do |facet| %>
                       <li><%= link_to "#{facet.instance.name} (#{facet.count})", recipes_path( params.merge({ :dish_type_id => facet.value }).except( :page ) )%></li>
                     <% end %>
                 </ul>

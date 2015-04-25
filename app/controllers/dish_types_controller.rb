@@ -1,10 +1,11 @@
 class DishTypesController < ApplicationController
-  before_action :set_dish_type, only: [:show, :edit, :update, :destroy]
+  before_action :set_dish_type
+  skip_before_action :set_dish_type, only: [:index, :new, :create]
 
   # GET /dish_types
   # GET /dish_types.json
   def index
-    @dish_types = DishType.all.order( :id )
+    @dish_types = DishType.ordered
   end
 
   # GET /dish_types/1
@@ -50,6 +51,28 @@ class DishTypesController < ApplicationController
       end
     end
   end
+  
+  # GET /dish_types/1/move_lower
+  # GET /dish_types/1/move_lower.json
+  def move_lower
+    @dish_type.move_lower
+    @dish_type.save
+    respond_to do |format|
+      format.html { redirect_to dish_types_url }
+      format.json { head :no_content }
+    end
+  end
+  
+  # GET /dish_types/1/move_higher
+  # GET /dish_types/1/move_higher.json
+  def move_higher
+    @dish_type.move_higher
+    @dish_type.save
+    respond_to do |format|
+      format.html { redirect_to dish_types_url }
+      format.json { head :no_content }
+    end
+  end
 
   # DELETE /dish_types/1
   # DELETE /dish_types/1.json
@@ -62,13 +85,13 @@ class DishTypesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_dish_type
-      @dish_type = DishType.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_dish_type
+    @dish_type = DishType.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def dish_type_params
-      params.require(:dish_type).permit(:name, :plurial_name, :picture)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def dish_type_params
+    params.require(:dish_type).permit(:name, :plurial_name, :picture)
+  end
 end

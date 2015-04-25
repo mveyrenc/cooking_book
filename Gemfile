@@ -76,3 +76,6 @@ gem 'ratyrate'
 
 # Authentification
 gem 'devise'
+
+# Sorting
+gem 'acts_as_list'

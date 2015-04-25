@@ -27,6 +27,8 @@ en:
         search: "Search"
         show: "Show"
         edit: "Edit"
+        move_lower: "Move lower"
+        move_higher: "Move higher"
         destroy: "Destroy"
         destroy_confirmation: "Are you sure?"
         no_entry: "No entry"

@@ -32,6 +32,18 @@ module ApplicationHelper
     end
   end
   
+  def move_lower_button url
+    link_to url, :class => 'btn btn-xs btn-default no-print', :title => I18n.t( 'application.move_lower' ) do
+      content_tag( :span, "", { :class => "glyphicon glyphicon-arrow-down"} )# + " " + I18n.t( 'application.move_lower' )
+    end
+  end
+  
+  def move_higher_button url
+    link_to url, :class => 'btn btn-xs btn-default no-print', :title => I18n.t( 'application.move_higher' ) do
+      content_tag( :span, "", { :class => "glyphicon glyphicon-arrow-up"} )# + " " + I18n.t( 'application.move_higher' )
+    end
+  end
+  
   def destroy_button url
     link_to url, :class => 'btn btn-xs btn-danger no-print', :title => I18n.t( 'application.destroy' ), :method => :delete, :data => { confirm: I18n.t( 'application.destroy_confirmation' ) } do
       content_tag( :span, "", { :class => "glyphicon glyphicon-trash"} ) + " " + I18n.t( 'application.destroy' )
