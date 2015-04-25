@@ -33,6 +33,13 @@ en:
         back: "Back"
         error: "error"
         error_message: "detected:"
+    menu:
+        home: "Home"
+        recipes: "Recipes"
+        admin: "Admin"
+        dish_types: "Dish types"
+        categories: "Categories"
+        profile: "Profile"
     homepage:
         welcome: "Welcome!"
         lastest_10_recipes: "The last 10 recipes"

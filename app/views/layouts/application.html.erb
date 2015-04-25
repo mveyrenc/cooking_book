@@ -14,13 +14,19 @@
 
         <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
         <%= stylesheet_link_tag    'print', media: 'print', 'data-turbolinks-track' => true %>
-        <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
         <%= csrf_meta_tags %>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<%= asset_path('img/favicon.ico')%>">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<%= asset_path('img/favicon.ico')%>">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<%= asset_path('img/favicon.ico')%>">
+        <link rel="apple-touch-icon-precomposed" href="<%= asset_path('img/favicon.ico')%>">
     </head>
     <body>
         <header>
-            <div class="navbar navbar-inverse navbar-fixed-top no-print">
-                <div class="container">
+            <nav class="navbar navbar-inverse navbar-fixed-top no-print">
+                <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                             <span class="sr-only">Toggle navigation</span>
@@ -30,28 +36,43 @@
                         </button>
                         <%= link_to I18n.t( 'application.name' ), root_path, :class => "navbar-brand" %>
                     </div>
-                    <div class="collapse navbar-collapse">
-                        <%= render_navigation renderer: :bootstrap_topbar_list %>
+                    <div class="collapse navbar-collapse" id="main-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><%= link_to t('menu.home'), root_path %></li>
+                            <li><%= link_to t('menu.recipes'), recipes_path %></li>
+                            <% if user_signed_in? %>
+                              <li class="dropdown">
+                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= t('menu.admin') %><span class="caret"></span></a>
+                                  <ul class="dropdown-menu" role="menu">
+                                      <li><%= link_to t('menu.dish_types'), dish_types_path %></li>
+                                      <li><%= link_to t('menu.categories'), categories_path %></li>
+                                  </ul>
+                              </li>
+                            <% end %>
+                        </ul>
                         <form class="navbar-form navbar-right" role="search" action="<%= recipes_path %>">
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="<%= I18n.t( 'application.search' ) %>" name="query">
                             </div>
                             <button type="submit" class="btn btn-default"><%= I18n.t( 'application.search' ) %></button>
                         </form>
-                        <div class="navbar-text navbar-right">
+                        <ul class="nav navbar-nav navbar-right">
                             <% if user_signed_in? %>
-                              
-                              <%= t('devise.label.logged_in_as') %> <strong><%= current_user.email %></strong>.
-                              <%= link_to t('devise.label.edit_profile'), edit_user_registration_path, :class => 'navbar-link' %> |
-                              <%= link_to t('devise.label.logout'), destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+                              <li class="dropdown">
+                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= t('devise.label.logged_in_as') %> <strong><%= current_user.email %></strong><span class="caret"></span></a>
+                                  <ul class="dropdown-menu" role="menu">
+                                      <li><%= link_to t('devise.label.edit_profile'), edit_user_registration_path %></li>
+                                      <li><%= link_to t('devise.label.logout'), destroy_user_session_path, method: :delete  %></li>
+                                  </ul>
+                              </li>
                             <% else %>
-                              <%= link_to t('devise.label.sign_up'), new_user_registration_path, :class => 'navbar-link'  %> |
-                              <%= link_to t('devise.label.login'), new_user_session_path, :class => 'navbar-link'  %>
+                              <li><%= link_to t('devise.label.sign_up'), new_user_registration_path  %></li>
+                              <li><%= link_to t('devise.label.login'), new_user_session_path  %></li>
                             <% end %>
-                        </div>
+                        </ul>
                     </div>
                 </div>
-            </div>
+            </nav>
         </header>
         <div class="container">
             <% flash.each do |name, msg| %>
@@ -67,5 +88,16 @@
                 <p class="text-muted"><%= I18n.t( 'application.name' ) %> </p>
             </div>
         </footer>
+        <script>
+          $(document).ready(function () {
+              $(".js-video").fitVids();
+              $("#totop").click(function () {
+                  $("body, html").animate({
+                      scrollTop: 0
+                  }, 300);
+                  return false;
+              });
+          });
+        </script>
     </body>
 </html>

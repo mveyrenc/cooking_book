@@ -11,7 +11,11 @@
  * file per style scope.
  *
  *= require font-awesome
- *= require_tree .
+ *= require bootstrap-generators
+ *= require bootstrap-variables
+ *= require base
  *= require_self
+ *= require blue
+ *= require_tree .
  *= stub print
  */
