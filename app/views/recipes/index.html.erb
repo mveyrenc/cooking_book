@@ -12,111 +12,117 @@
           <button type="submit" class="btn btn-default col-md-1"><%= I18n.t( 'application.search' ) %></button>
       </form>
     <% else %>
-      <div class="container">
-          <div class="left-col-container col-md-3">
-              <form class="form-horizontal" role="search" action="<%= recipes_path %>">
-                  <input type="text" class="form-control" placeholder="<%= I18n.t( 'application.search' ) %>" name="query" value="<%= @query %>">
-                  <button type="submit" class="btn btn-default pull-right"><%= I18n.t( 'application.search' ) %></button>
-              </form>
-              <h3><%= Recipe.human_attribute_name( 'dish_type' ) %></h3>
-              <%= link_to "x #{DishType.find( params[:dish_type_id] )}", recipes_path( params.except( :dish_type_id ).except( :page ) ) if params[:dish_type_id].present? %>
-              <% if @search_result.facet(:dish_type_id) %>
-                <ul>
-                    <% @search_result.facet(:dish_type_id).rows.sort { |left,right| left.instance.position <=> right.instance.position }.each do |facet| %>
-                        <li>
-                            <%= link_to "#{facet.instance.name}", recipes_path( params.merge({ :dish_type_id => facet.value }).except( :page ) )%>
-                            <span class="badge"><%= facet.count %></span>
-                        </li>
-                    <% end %>
-                </ul>
-              <% end %>
-              <h3><%= Recipe.human_attribute_name( 'category_ids' ) %></h3>
-              <%= link_to "x #{Category.find( params[:category_ids] )}", recipes_path( params.except( :category_ids ).except( :page ) ) if params[:category_ids].present? %>
-              <% if @search_result.facet(:category_ids) %>
-                <ul>
-                    <% @search_result.facet(:category_ids).rows.each do |facet| %>
-                        <li>
-                            <%= link_to "#{facet.instance.name}", recipes_path( params.merge({ :category_ids => facet.value }).except( :page ) )%>
-                            <span class="badge"><%= facet.count %></span>
-                        </li>
-                    <% end %>
-                </ul>
-              <% end %>
-              <h3><%= Recipe.human_attribute_name( 'source' ) %></h3>
-              <%= link_to "x #{params[:source]}", recipes_path( params.except( :source ).except( :page ) ) if params[:source].present? %>
-              <% if @search_result.facet(:source) %>
-                <ul>
-                    <% @search_result.facet(:source).rows.each do |facet| %>
-                        <li>
-                            <%= link_to "#{facet.value}", recipes_path( params.merge({ :source => facet.value }).except( :page ) )%>
-                            <span class="badge"><%= facet.count %></span>
-                        </li>
-                    <% end %>
-                </ul>
-              <% end %>
-          </div>
-          <div class="col-md-9">
-              <% @search_result.results.each do |recipe| %>
-                <article class="row media">
-                    <div class="pull-left">
-                        <%  if !recipe.picture.blank?  %>
-                          <%= image_tag recipe.picture.url(:thumb), :class => "media-object" %>
-                        <% else %>
-                          <%= image_tag recipe.dish_type.picture.url(:thumb_gray), :class => "media-object" %>
+        <div class="container">
+            <div class="left-col-container col-md-3">
+                <form class="form-horizontal" role="search" action="<%= recipes_path %>">
+                    <input type="text" class="form-control" placeholder="<%= I18n.t( 'application.search' ) %>" name="query" value="<%= @query %>">
+                    <button type="submit" class="btn btn-default pull-right"><%= I18n.t( 'application.search' ) %></button>
+                </form>
+                <h3><%= Recipe.human_attribute_name( 'dish_type' ) %></h3>
+                <%= link_to( recipes_path( params.except( :dish_type_id ).except( :page ) ), {class: 'btn btn-success btn-xs' } ) do %>
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> <%= DishType.find( params[:dish_type_id] ) %>
+                <% end if params[:dish_type_id].present? %>
+                <% if @search_result.facet(:dish_type_id) %>
+                    <ul>
+                        <% @search_result.facet(:dish_type_id).rows.sort { |left,right| left.instance.id <=> right.instance.id }.each do |facet| %>
+                            <li>
+                                <%= link_to "#{facet.instance.name}", recipes_path( params.merge({ :dish_type_id => facet.value }).except( :page ) )%>
+                                <span class="badge"><%= facet.count %></span>
+                            </li>
                         <% end %>
-                    </div>
-                    <div class="media-body">
-                        <div class="pull-right">
-                            <%= show_button recipe %>
-                            <%= edit_button edit_recipe_path(recipe) %>
-                        </div>
-                        <h2><%= link_to recipe, recipe %></h2>
-                        <div class="row">
-                            <div class="categorization">
-                                <%= dish_type_label recipe.dish_type %>
-                                <% recipe.categories.each do |category| %>
-                                  <%= category_label category %>
-                                <% end %>
-                            </div>
-                            <div class="note">
-                                <%= rating_for recipe, "note" %>
-                            </div>
-                        </div>
-                        <% if !recipe.description.blank? %>
-                          <div class="description">
-                              <%= raw( recipe.description ) %>
-                          </div>
-                        <% end %>
-                        <div class="row">
-                            <div class="ingredients">
-                                <%= raw( recipe.ingredients ) %>
-                            </div>
-                            <div class="times">
-                                <%= simple_format( recipe.times ) %>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-                <hr />
-              <% end %>
-              <% if @search_result.results.total_pages > 1 %>
-                <div class="text-center">
-                    <ul class="pagination">
-                        <li <% if @search_result.results.first_page? %>class="disabled"<% end %>>
-                            <%= link_to "&laquo;".html_safe, recipes_path( params.merge({ :page => @search_result.results.previous_page }) ) %>
-                        </li>
-                        <% for page in 1..(@search_result.results.total_pages) %>
-                          <li <% if page == ( params[:page].to_i || 1 ) %>class="active"<% end %>>
-                              <%= link_to page, recipes_path( params.merge({ :page => page }) ) %>
-                          </li>
-                        <% end %>
-                        <li <% if @search_result.results.last_page? %>class="disabled"<% end %>>
-                            <%= link_to "&raquo;".html_safe, recipes_path( params.merge({ :page => @search_result.results.next_page }) ) %>
-                        </li>
                     </ul>
-                </div>
-              <% end %>
-          </div>
-      </div>
+                <% end %>
+                <h3><%= Recipe.human_attribute_name( 'category_ids' ) %></h3>
+                <%= link_to( recipes_path( params.except( :category_ids ).except( :page ) ), {class: 'btn btn-success btn-xs' } ) do %>
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> <%= Category.find( params[:category_ids] ) %>
+                <% end if params[:category_ids].present? %>
+                <% if @search_result.facet(:category_ids) %>
+                    <ul>
+                        <% @search_result.facet(:category_ids).rows.each do |facet| %>
+                            <li>
+                                <%= link_to "#{facet.instance.name}", recipes_path( params.merge({ :category_ids => facet.value }).except( :page ) )%>
+                                <span class="badge"><%= facet.count %></span>
+                            </li>
+                        <% end %>
+                    </ul>
+                <% end %>
+                <h3><%= Recipe.human_attribute_name( 'source' ) %></h3>
+                <%= link_to( recipes_path( params.except( :source ).except( :page ) ), {class: 'btn btn-success btn-xs' } ) do %>
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> <%= params[:source] %>
+                <% end if params[:source].present? %>
+                <% if @search_result.facet(:source) %>
+                    <ul>
+                        <% @search_result.facet(:source).rows.each do |facet| %>
+                            <li>
+                                <%= link_to "#{facet.value}", recipes_path( params.merge({ :source => facet.value }).except( :page ) )%>
+                                <span class="badge"><%= facet.count %></span>
+                            </li>
+                        <% end %>
+                    </ul>
+                <% end %>
+            </div>
+            <div class="col-md-9">
+                <% @search_result.results.each do |recipe| %>
+                    <article class="row media">
+                        <div class="pull-left">
+                            <%  if !recipe.picture.blank?  %>
+                                <%= image_tag recipe.picture.url(:thumb), :class => "media-object" %>
+                            <% else %>
+                                <%= image_tag recipe.dish_type.picture.url(:thumb_gray), :class => "media-object" %>
+                            <% end %>
+                        </div>
+                        <div class="media-body">
+                            <div class="pull-right">
+                                <%= show_button recipe %>
+                                <%= edit_button edit_recipe_path(recipe) %>
+                            </div>
+                            <h2><%= link_to recipe, recipe %></h2>
+                            <div class="row">
+                                <div class="categorization">
+                                    <%= dish_type_label recipe.dish_type %>
+                                    <% recipe.categories.each do |category| %>
+                                      <%= category_label category %>
+                                    <% end %>
+                                </div>
+                                <div class="note">
+                                    <%= rating_for recipe, "note" %>
+                                </div>
+                            </div>
+                            <% if !recipe.description.blank? %>
+                              <div class="description">
+                                  <%= raw( recipe.description ) %>
+                              </div>
+                            <% end %>
+                            <div class="row">
+                                <div class="ingredients">
+                                    <%= raw( recipe.ingredients ) %>
+                                </div>
+                                <div class="times">
+                                    <%= simple_format( recipe.times ) %>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <hr />
+                <% end %>
+                <% if @search_result.results.total_pages > 1 %>
+                    <div class="text-center">
+                        <ul class="pagination">
+                            <li <% if @search_result.results.first_page? %>class="disabled"<% end %>>
+                                <%= link_to "&laquo;".html_safe, recipes_path( params.merge({ :page => @search_result.results.previous_page }) ) %>
+                            </li>
+                            <% for page in 1..(@search_result.results.total_pages) %>
+                              <li <% if page == ( params[:page].to_i || 1 ) %>class="active"<% end %>>
+                                  <%= link_to page, recipes_path( params.merge({ :page => page }) ) %>
+                              </li>
+                            <% end %>
+                            <li <% if @search_result.results.last_page? %>class="disabled"<% end %>>
+                                <%= link_to "&raquo;".html_safe, recipes_path( params.merge({ :page => @search_result.results.next_page }) ) %>
+                            </li>
+                        </ul>
+                    </div>
+                <% end %>
+            </div>
+        </div>
     <% end %>
 </div>
