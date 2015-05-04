@@ -23,7 +23,10 @@
               <% if @search_result.facet(:dish_type_id) %>
                 <ul>
                     <% @search_result.facet(:dish_type_id).rows.sort { |left,right| left.instance.position <=> right.instance.position }.each do |facet| %>
-                      <li><%= link_to "#{facet.instance.name} (#{facet.count})", recipes_path( params.merge({ :dish_type_id => facet.value }).except( :page ) )%></li>
+                        <li>
+                            <%= link_to "#{facet.instance.name}", recipes_path( params.merge({ :dish_type_id => facet.value }).except( :page ) )%>
+                            <span class="badge"><%= facet.count %></span>
+                        </li>
                     <% end %>
                 </ul>
               <% end %>
@@ -32,7 +35,10 @@
               <% if @search_result.facet(:category_ids) %>
                 <ul>
                     <% @search_result.facet(:category_ids).rows.each do |facet| %>
-                      <li><%= link_to "#{facet.instance.name} (#{facet.count})", recipes_path( params.merge({ :category_ids => facet.value }).except( :page ) )%></li>
+                        <li>
+                            <%= link_to "#{facet.instance.name}", recipes_path( params.merge({ :category_ids => facet.value }).except( :page ) )%>
+                            <span class="badge"><%= facet.count %></span>
+                        </li>
                     <% end %>
                 </ul>
               <% end %>
@@ -41,7 +47,10 @@
               <% if @search_result.facet(:source) %>
                 <ul>
                     <% @search_result.facet(:source).rows.each do |facet| %>
-                      <li><%= link_to "#{facet.value} (#{facet.count})", recipes_path( params.merge({ :source => facet.value }).except( :page ) )%></li>
+                        <li>
+                            <%= link_to "#{facet.value}", recipes_path( params.merge({ :source => facet.value }).except( :page ) )%>
+                            <span class="badge"><%= facet.count %></span>
+                        </li>
                     <% end %>
                 </ul>
               <% end %>
