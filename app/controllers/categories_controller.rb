@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.all.order( :name )
+    @categories = Category.includes(:related_categories, :suggested_categories).all.order( :name )
   end
 
   # GET /categories/1
@@ -28,7 +28,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to categories_url, notice: 'Category was successfully created.' }
+        format.html { redirect_to categories_url + '#' + @category.slug, notice: 'Category was successfully created.' }
         format.json { render :show, status: :created, location: @category }
       else
         format.html { render :new }
@@ -40,9 +40,10 @@ class CategoriesController < ApplicationController
   # PATCH/PUT /categories/1
   # PATCH/PUT /categories/1.json
   def update
+    logger.debug @category
     respond_to do |format|
       if @category.update(category_params)
-        format.html { redirect_to categories_url, notice: 'Category was successfully updated.' }
+        format.html { redirect_to categories_url + '#' + @category.slug, notice: 'Category was successfully updated.' }
         format.json { render :show, status: :ok, location: @category }
       else
         format.html { render :edit }
@@ -62,13 +63,18 @@ class CategoriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_category
-      @category = Category.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_category
+    @category = Category.friendly.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def category_params
-      params.require(:category).permit(:name)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def category_params
+    params[:category][:related_category_ids].reject! { |c| c.empty? } if params[:category][:related_category_ids]
+    params[:category][:related_by_category_ids].reject! { |c| c.empty? } if params[:category][:related_by_category_ids]
+    params[:category][:suggested_category_ids].reject! { |c| c.empty? } if params[:category][:suggested_category_ids]
+    params[:category][:suggested_by_category_ids].reject! { |c| c.empty? } if params[:category][:suggested_by_category_ids]
+    
+    params.require(:category).permit(:name, :related_category_ids => [], :related_by_category_ids => [], :suggested_category_ids => [], :suggested_by_category_ids => [])
+  end
 end

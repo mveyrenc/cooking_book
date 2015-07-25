@@ -13,9 +13,22 @@
  *= require font-awesome
  *= require bootstrap-generators
  *= require bootstrap-variables
+ *! require bootstrap.css.map
  *= require base
+ *= require_tree ./jquery_plugins
  *= require_self
  *= require blue
- *= require_tree .
+ *= require categories
+ *= require font
+ *= require recipes
+ *= require scaffolds
+ *= require welcome
  *= stub print
  */
+
+div.Tokenize {
+    width: 100%;
+}
+div.Tokenize ul.TokensContainer {
+    height: auto;
+}

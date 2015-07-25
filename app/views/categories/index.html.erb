@@ -1,23 +1,65 @@
 <div class="category-page index-page">
-  <div class="page-header">
-    <%= new_button new_category_path, I18n.t( 'categories.new_button' ) %>
-    <h1><%= I18n.t( 'categories.index_page_title' ) %></h1>
-  </div>
-  <% if @categories.blank? %>
-    <%= I18n.t( 'application.no_entry' ) %>
-  <% else %>
-    <div class="container">
-      <% @categories.each do |category| %>
-        <article class="col-md-6 row">
-          <p class="col-md-6"><%= link_to category, category %></p>
-          <div class="col-md-6">
-            <div class="pull-right">
-              <%= edit_button edit_category_path(category) %>
-              <%= destroy_button category %>
-            </div>
-          </div>
-        </article>
-      <% end %>
+    <div class="page-header">
+        <%= new_button new_category_path, I18n.t( 'categories.new_button' ) %>
+        <h1><%= I18n.t( 'categories.index_page_title' ) %></h1>
     </div>
-  <% end %>
+    <% if @categories.blank? %>
+      <%= I18n.t( 'application.no_entry' ) %>
+    <% else %>
+      <div class="container">
+          <% @categories.each do |category| %>
+            <article id="<%=  category.slug %>" class="row">
+                <div class="col-md-10">
+                    <p><%= link_to category, category %></p>
+                    <% if category.related_categories.any? %>
+                      <div class="row col-md-6">
+                          <div class="col-md-5">
+                              <label><%= Recipe.human_attribute_name('related_categories')  %></label>
+                          </div>
+                          <div class="col-md-7">
+                              <%= category.related_categories.to_a.join(', ') %>
+                          </div>
+                      </div>
+                    <% end %>
+                    <% if category.related_by_categories.any? %>
+                      <div class="row col-md-6">
+                          <div class="col-md-5">
+                              <label><%= Recipe.human_attribute_name('related_by_categories')  %></label>
+                          </div>
+                          <div class="col-md-7">
+                              <%= category.related_by_categories.to_a.join(', ') %>
+                          </div>
+                      </div>
+                    <% end %>
+                    <% if category.suggested_categories.any? %>
+                      <div class="row col-md-6">
+                          <div class="col-md-5">
+                              <label><%= Recipe.human_attribute_name('suggested_categories')  %></label>
+                          </div>
+                          <div class="col-md-7">
+                              <%= category.suggested_categories.to_a.join(', ') %>
+                          </div>
+                      </div>
+                    <% end %>
+                    <% if category.suggested_by_categories.any? %>
+                      <div class="row col-md-6">
+                          <div class="col-md-5">
+                              <label><%= Recipe.human_attribute_name('suggested_by_categories')  %></label>
+                          </div>
+                          <div class="col-md-7">
+                              <%= category.suggested_by_categories.to_a.join(', ') %>
+                          </div>
+                      </div>
+                    <% end %>
+                </div>
+                <div class="col-md-2">
+                    <div class="pull-right">
+                        <%= edit_button edit_category_path(category) %>
+                        <%= destroy_button category %>
+                    </div>
+                </div>
+            </article>
+          <% end %>
+      </div>
+    <% end %>
 </div>

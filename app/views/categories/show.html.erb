@@ -13,6 +13,10 @@
 
   <dl class="dl-horizontal">
       <dt class="name"><%= Category.human_attribute_name( 'name' ) %></dt>
-      <dd class="name"><%= @category.name %></dd>
+      <dd class="name">
+          <h2><%= @category.name %></h2>
+          <p><%= @category.related_categories.join(', ') %></p>
+          <p><%= @category.suggested_categories.join(', ') %></p>
+      </dd>
   </dl>
 </div>
