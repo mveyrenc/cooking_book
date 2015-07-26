@@ -4,7 +4,11 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.includes(:related_categories, :suggested_categories).all.order( :name )
+    if params[:search] 
+      @categories = Category.includes(:related_categories, :suggested_categories).where("name LIKE :search",{search: "%#{params[:search]}%"}).order( :name )
+    else
+      @categories = Category.includes(:related_categories, :suggested_categories).all.order( :name )
+    end
   end
 
   # GET /categories/1

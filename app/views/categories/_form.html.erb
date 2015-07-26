@@ -21,25 +21,25 @@
   <div class="form-group">
       <%= f.label :related_categories, :class => "col-sm-2 control-label" %>
       <div class="col-sm-10">
-          <%= f.collection_select :related_category_ids, Category.ordered, :id, :name, {}, {:multiple => true, :class => "tokenize-category-categories", :data_add_url => categories_path} %>
+          <%= f.collection_select :related_category_ids, @category.related_categories, :id, :name, {}, {:multiple => true, :class => "tokenize-category-categories", :data_add_url => categories_path, :data_list_url => categories_path(format: :json)} %>
       </div>
   </div>
   <div class="form-group">
       <%= f.label :related_by_categories, :class => "col-sm-2 control-label" %>
       <div class="col-sm-10">
-          <%= f.collection_select :related_by_category_ids, Category.ordered, :id, :name, {}, {:multiple => true, :class => "tokenize-category-categories", :data_add_url => categories_path} %>
+          <%= f.collection_select :related_by_category_ids, @category.related_by_categories, :id, :name, {}, {:multiple => true, :class => "tokenize-category-categories", :data_add_url => categories_path, :data_list_url => categories_path(format: :json)} %>
       </div>
   </div>
   <div class="form-group">
       <%= f.label :suggested_categories, :class => "col-sm-2 control-label" %>
       <div class="col-sm-10">
-          <%= f.collection_select :suggested_category_ids, Category.ordered, :id, :name, {}, {:multiple => true, :class => "tokenize-category-categories", :data_add_url => categories_path} %>
+          <%= f.collection_select :suggested_category_ids, @category.suggested_categories, :id, :name, {}, {:multiple => true, :class => "tokenize-category-categories", :data_add_url => categories_path, :data_list_url => categories_path(format: :json)} %>
       </div>
   </div>
   <div class="form-group">
       <%= f.label :suggested_by_categories, :class => "col-sm-2 control-label" %>
       <div class="col-sm-10">
-          <%= f.collection_select :suggested_by_category_ids, Category.ordered, :id, :name, {}, {:multiple => true, :class => "tokenize-category-categories", :data_add_url => categories_path} %>
+          <%= f.collection_select :suggested_by_category_ids, @category.suggested_by_categories, :id, :name, {}, {:multiple => true, :class => "tokenize-category-categories", :data_add_url => categories_path, :data_list_url => categories_path(format: :json)} %>
       </div>
   </div>
   <div class="form-group">

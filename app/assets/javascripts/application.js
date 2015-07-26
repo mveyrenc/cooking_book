@@ -22,8 +22,10 @@
 $(document).ready(function () {
     $('.tokenize-category-categories').each(function (index) {
         var object = $(this);
+        var data_url = object.attr("data_list_url");
         var url = object.attr("data_add_url");
         object.tokenize({
+            datas: data_url,
             onAddToken: function (value, text, e) {
                 if (value === text) {
                     var object_data = {
@@ -47,8 +49,10 @@ $(document).ready(function () {
 
     $('.tokenize-recipe-categories').each(function (index) {
         var object = $(this);
+        var data_url = object.attr("data_list_url");
         var url = object.attr("data_add_url");
         object.tokenize({
+            datas: data_url,
             onAddToken: function (value, text, e) {
                 if (value === text) {
                     var object_data = {
@@ -84,7 +88,7 @@ $(document).ready(function () {
                 }
                 $.ajax({
                     type: "GET",
-                    url: url + '/' + value,
+                    url: url + '/' + value
                 }).success(function (json_data) {
                     $('.suggested-categories').html('');
                     for (i = 0; i < json_data.suggested_categories_for_recipes.length; i++) {
