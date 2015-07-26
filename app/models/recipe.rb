@@ -1,4 +1,7 @@
 class Recipe < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+  
   has_attached_file :picture, :styles => { :medium => "240", :thumb => "100", :medium_gray => "240", :thumb_gray => "100" }, :convert_options => { :thumb_gray => '-colorspace Gray', :medium_gray => '-colorspace Gray' }, :default_url => "/images/:style/missing.png"
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
   
@@ -50,6 +53,10 @@ class Recipe < ActiveRecord::Base
       additional_categories |= category.related_categories_for_recipes
     end
     additional_categories - categories
+  end
+  
+  def should_generate_new_friendly_id?
+    new_record? || slug.blank?
   end
   
   def to_s
