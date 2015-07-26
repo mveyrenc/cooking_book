@@ -32,11 +32,43 @@ class Category < ActiveRecord::Base
   
   scope :ordered, ->{ order(name: :asc) }
   
-  def to_s
-    name
+  def related_categories_for_recipes
+    related_categories_for_recipes = [self]
+    related_categories.each do |category|
+      related_categories_for_recipes |= category.related_categories_for_recipes
+    end
+    related_categories_for_recipes
+  end
+  
+  def suggested_categories_for_recipes
+    suggested_categories_for_recipes = []
+    parsed_categories = [self]
+    suggested_categories.each do |category|
+      if( !parsed_categories.include?(category)) 
+        suggested_categories_for_recipes |= [category]
+        suggested_categories_for_recipes |= category.suggested_categories_for_recipes
+        parsed_categories << category
+      end
+    end
+    categories = related_categories_for_recipes
+    categories.each do |category|
+      if( !parsed_categories.include?(category)) 
+        suggested_categories_for_recipes |= category.suggested_categories
+        parsed_categories << category
+      end
+    end
+    suggested_categories_for_recipes - related_categories_for_recipes - [self]
   end
   
   def should_generate_new_friendly_id?
     new_record? || slug.blank?
+  end
+  
+  def to_s
+    name
+  end
+  
+  def to_i
+    id
   end
 end

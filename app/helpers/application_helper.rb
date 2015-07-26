@@ -1,10 +1,14 @@
 module ApplicationHelper
   
   def dish_type_label item
-    content_tag :span, item, { :class => "label label-primary" }
+    content_tag :span, item, { :class => "label label-danger" }
   end
   
   def category_label item
+    content_tag :span, item, { :class => "label label-primary" }
+  end
+  
+  def additional_category_label item
     content_tag :span, item, { :class => "label label-default" }
   end
   

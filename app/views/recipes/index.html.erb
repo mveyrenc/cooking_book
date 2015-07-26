@@ -87,6 +87,9 @@
                                       <% recipe.categories.each do |category| %>
                                         <%= category_label category %>
                                       <% end %>
+                                      <% recipe.additional_categories.each do |category| %>
+                                        <%= additional_category_label category %>
+                                      <% end %>
                                   </div>
                                   <div class="note">
                                       <%= rating_for recipe, "note" %>

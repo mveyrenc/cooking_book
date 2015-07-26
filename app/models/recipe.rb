@@ -12,7 +12,7 @@ class Recipe < ActiveRecord::Base
   
   ratyrate_rateable "note", "difficulty", "cost"
   
-#  after_save :index_in_solr
+  #  after_save :index_in_solr
   
   searchable do
     text :name
@@ -29,7 +29,9 @@ class Recipe < ActiveRecord::Base
     end
     time :created_at
     integer :dish_type_id, :references => DishType
-    integer :category_ids, :multiple => true, :references => Category
+    integer :category_ids, :multiple => true, :references => Category do
+      additional_categories | categories
+    end
     string :source
   end
   
@@ -42,7 +44,19 @@ class Recipe < ActiveRecord::Base
     end
   end
   
+  def additional_categories
+    additional_categories = []
+    categories.each do |category|
+      additional_categories |= category.related_categories_for_recipes
+    end
+    additional_categories - categories
+  end
+  
   def to_s
     name
+  end
+  
+  def to_i
+    id
   end
 end
