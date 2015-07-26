@@ -44,7 +44,6 @@ class CategoriesController < ApplicationController
   # PATCH/PUT /categories/1
   # PATCH/PUT /categories/1.json
   def update
-    logger.debug @category
     respond_to do |format|
       if @category.update(category_params)
         format.html { redirect_to categories_url + '#' + @category.slug, notice: 'Category was successfully updated.' }

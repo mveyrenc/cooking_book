@@ -41,6 +41,7 @@ en:
         admin: "Admin"
         dish_types: "Dish types"
         categories: "Categories"
+        ingredients: "Ingredients"
         profile: "Profile"
     homepage:
         welcome: "Welcome!"
@@ -61,6 +62,11 @@ en:
         new_page_title: "New category"
         edit_page_title: "Edit category"
         new_button: "New category"
+    ingredients:
+        index_page_title: "Listing ingredients"
+        new_page_title: "New ingredient"
+        edit_page_title: "Edit ingredient"
+        new_button: "New ingredient"
     activerecord:
         models:
             recipe: "Recipe"

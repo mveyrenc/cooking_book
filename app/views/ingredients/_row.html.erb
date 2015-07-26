@@ -1,0 +1,21 @@
+<article class="row">
+    <div class="col-md-<%= 10 - ingredient.depth %> col-md-offset-<%= ingredient.depth %>">
+        <p><%= link_to ingredient, ingredient %></p>
+    </div>
+    <div class="pull-right">
+        <div class="btn-group">
+            <%= link_to new_ingredient_path(parent_id: ingredient.id), :class => 'btn btn-success btn-xs no-print', :title => I18n.t( 'application.add' ) do %>
+              <span class="glyphicon glyphicon-plus"></span>
+            <% end %>
+            <%= link_to edit_ingredient_path(ingredient), :class => 'btn btn-primary btn-xs no-print', :title => I18n.t( 'application.edit' ) do %>
+              <span class="glyphicon glyphicon-pencil"></span>
+            <% end %>
+            <%= link_to ingredient, :class => 'btn btn-danger btn-xs no-print', :title => I18n.t( 'application.destroy' ), :method => :delete, :data => { confirm: I18n.t( 'application.destroy_confirmation' ) } do %>
+              <span class="glyphicon glyphicon-trash"></span>
+            <% end %>
+        </div>
+    </div>
+</article>
+<% ingredient.children.each do |children| %>
+  <%= render 'row', ingredient: children %>
+<% end %>

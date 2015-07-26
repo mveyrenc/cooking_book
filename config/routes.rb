@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   
   resources :categories, path: '/admin/categories', :except => [:show]
   resources :categories, path: '/admin/categories', :only => [:show], :defaults => { :format => 'json' }
+  
+  resources :ingredients, path: '/admin/ingredients', :except => [:show]
+  resources :ingredients, path: '/admin/ingredients', :only => [:show], :defaults => { :format => 'json' }
 
   root :to => "welcome#index"
   

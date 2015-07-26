@@ -82,3 +82,6 @@ gem 'acts_as_list'
 
 # Slug
 gem 'friendly_id', '~> 5.1.0'
+
+# Tree
+gem 'ancestry'

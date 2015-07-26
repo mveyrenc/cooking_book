@@ -1,0 +1,20 @@
+<div class="ingredient-page show-page">
+  <div class="page-header">
+    <%= link_to ingredients_path, :class => 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    <%= I18n.t( 'application.back' ) %>
+    <% end %>
+    <%= link_to edit_ingredient_path(@ingredient), :class => 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    <%= I18n.t( 'application.edit' ) %>
+    <% end %>
+    <h1><%= @ingredient %></h1>
+  </div>
+
+  <dl class="dl-horizontal">
+      <dt class="name"><%= Ingredient.human_attribute_name( 'name' ) %></dt>
+      <dd class="name"><%= @ingredient.name %></dd>
+      <dt class="slug"><%= Ingredient.human_attribute_name( 'slug' ) %></dt>
+      <dd class="slug"><%= @ingredient.slug %></dd>
+  </dl>
+</div>
