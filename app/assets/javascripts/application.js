@@ -104,12 +104,51 @@ $(document).ready(function () {
         var span = $(this);
         var value = span.attr('data_category_id');
         var text = span.html();
-//        var option = $('.tokenize-recipe-categories').find('option[value="' + span.attr('data_category_id') + '"]');
-//        option.attr('selected', 'selected');
-//        $('.tokenize-recipe-categories').data('tokenize').remap();
-//        span.hide();
         $('.tokenize-recipe-categories').data('tokenize').tokenAdd(value, text, true);
         span.remove();
+    });
+
+    $('.tokenize-recipe-ingredients').each(function (index) {
+        var object = $(this);
+        var data_url = object.attr("data_list_url");
+        var url = object.attr("data_add_url");
+        object.tokenize({
+            datas: data_url,
+            onAddToken: function (value, text, e) {
+                if (value === text) {
+                    var object_data = {
+                        ingredient: {
+                            name: value
+                        }
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: object_data,
+                        dataType: "json"
+                    }).success(function (json_data) {
+                        var new_object_id = json_data.id;
+                        var option = object.find('option[value="' + value + '"]');
+                        option.attr('value', new_object_id);
+                        value = new_object_id;
+
+                        width = 1200;
+                        height = 400;
+                        if (window.innerWidth)
+                        {
+                            var left = (window.innerWidth - width) / 2;
+                            var top = (window.innerHeight - height) / 2;
+                        }
+                        else
+                        {
+                            var left = (document.body.clientWidth - width) / 2;
+                            var top = (document.body.clientHeight - height) / 2;
+                        }
+                        window.open(url + '/' + new_object_id + '/edit', 'ingredient_edit', 'menubar=no, scrollbars=no, top=' + top + ', left=' + left + ', width=' + width + ', height=' + height + '');
+                    });
+                }
+            }
+        });
     });
 });
 

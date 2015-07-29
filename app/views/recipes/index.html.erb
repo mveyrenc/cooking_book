@@ -18,32 +18,38 @@
                   <input type="text" class="form-control" placeholder="<%= I18n.t( 'application.search' ) %>" name="query" value="<%= @query %>">
                   <button type="submit" class="btn btn-default pull-right"><%= I18n.t( 'application.search' ) %></button>
               </form>
-              <h3><%= Recipe.human_attribute_name( 'dish_type' ) %></h3>
-              <%= link_to( recipes_path( params.except( :dish_type_id ).except( :page ) ), {class: 'btn btn-success btn-xs' } ) do %>
-                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> <%= DishType.find( params[:dish_type_id] ) %>
-                <% end if params[:dish_type_id].present? %>
-                <% if @search_result.facet(:dish_type_id) %>
+              <h3><%= Recipe.human_attribute_name( 'category_ids' ) %></h3>
+              <%  if params[:category_ids].present? %>
+                <% params[:category_ids].each do |filter| %>
+                  <%= link_to( recipes_path( params.except( :category_ids ).except( :page ) ), {class: 'btn btn-success btn-xs' } ) do %>
+                      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> <%= Category.find( filter ) %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+                <% if @search_result.facet(:category_ids) %>
                   <ul>
-                      <% @search_result.facet(:dish_type_id).rows.sort { |left,right| left.instance.id <=> right.instance.id }.each do |facet| %>
-                        <% if facet.instance %>
+                      <% @search_result.facet(:category_ids).rows.each do |facet| %>
+                        <% if facet.instance and( !params[:category_ids].present? or !params[:category_ids].include?( facet.value )) %>
                           <li>
-                              <%= link_to "#{facet.instance.name}", recipes_path( params.merge({ :dish_type_id => facet.value }).except( :page ) )%>
+                              <%= link_to "#{facet.instance.name}", recipes_path( params.merge({ :category_ids => [facet.value] }){|key, oldval, newval| newval + oldval}.except( :page ) )%>
                               <span class="badge"><%= facet.count %></span>
                           </li>
-                        <%  end %>
+                        <% end %>
                       <% end %>
                   </ul>
                 <% end %>
-                <h3><%= Recipe.human_attribute_name( 'category_ids' ) %></h3>
-                <%= link_to( recipes_path( params.except( :category_ids ).except( :page ) ), {class: 'btn btn-success btn-xs' } ) do %>
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> <%= Category.find( params[:category_ids] ) %>
-                  <% end if params[:category_ids].present? %>
-                  <% if @search_result.facet(:category_ids) %>
+                <h3><%= Recipe.human_attribute_name( 'main_ingredient_ids' ) %></h3>
+                <% if params[:main_ingredient_ids].present? %>
+                  <%= link_to( recipes_path( params.except( :main_ingredient_ids ).except( :page ) ), {class: 'btn btn-success btn-xs' } ) do %>
+                      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> <%= Ingredient.find( params[:main_ingredient_ids] ) %>
+                    <% end %>
+                  <% end %>
+                  <% if @search_result.facet(:main_ingredient_ids) %>
                     <ul>
-                        <% @search_result.facet(:category_ids).rows.each do |facet| %>
+                        <% @search_result.facet(:main_ingredient_ids).rows.each do |facet| %>
                           <% if facet.instance %>
                             <li>
-                                <%= link_to "#{facet.instance.name}", recipes_path( params.merge({ :category_ids => facet.value }).except( :page ) )%>
+                                <%= link_to "#{facet.instance.name}", recipes_path( params.merge({ :main_ingredient_ids => facet.value }).except( :page ) )%>
                                 <span class="badge"><%= facet.count %></span>
                             </li>
                           <% end %>
@@ -65,6 +71,7 @@
                       </ul>
                     <% end %>
                 </div>
+
                 <div class="col-md-9">
                     <% @search_result.results.each do |recipe| %>
                       <article class="row media">
@@ -90,6 +97,11 @@
                                       <% recipe.additional_categories.each do |category| %>
                                         <%= additional_category_label category %>
                                       <% end %>
+                                      <div class="main_ingredients">
+                                          <% recipe.main_ingredients.each do |ingredient| %>
+                                            <%= main_ingredient_label ingredient %>
+                                          <% end %>
+                                      </div>
                                   </div>
                                   <div class="note">
                                       <%= rating_for recipe, "note" %>

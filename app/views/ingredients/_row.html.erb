@@ -1,6 +1,9 @@
-<article class="row">
+<article class="row" id="<%= ingredient.slug %>">
     <div class="col-md-<%= 10 - ingredient.depth %> col-md-offset-<%= ingredient.depth %>">
-        <p><%= link_to ingredient, ingredient %></p>
+        <p>
+            <%= ingredient %>
+            <% if ingredient.recipes.count > 0 %><span class="badge"><%= ingredient.recipes.count %></span><% end%>
+        </p>
     </div>
     <div class="pull-right">
         <div class="btn-group">

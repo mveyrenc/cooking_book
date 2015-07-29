@@ -1,9 +1,13 @@
 class IngredientsController < ApplicationController
   before_action :set_ingredient, only: [:show, :edit, :update, :destroy]
 
-
   def index
-    @ingredients = Ingredient.roots #.arrange(:order => :name)
+    if params[:search] 
+      @ingredients = Ingredient.where("lower(name) LIKE :search",{search: "%#{params[:search].downcase}%"}).order( :name )
+    else
+      #@ingredients = Ingredient.roots.sort { |left,right| left.slug <=> right.slug }
+      @ingredients = Ingredient.roots
+    end
   end
 
   def show
@@ -22,7 +26,8 @@ class IngredientsController < ApplicationController
     
     respond_to do |format|
       if @ingredient.save
-        format.html { redirect_to ingredients_url + '#' + @ingredient.slug, notice: 'Ingredient was successfully created.' }
+        anchor = @ingredient.is_root? ? @ingredient.slug : @ingredient.parent.slug
+        format.html { redirect_to ingredients_url + '#' + anchor, notice: 'Ingredient was successfully created.' }
         format.json { render :show, status: :created, location: @ingredient }
       else
         format.html { render :new }
@@ -46,7 +51,8 @@ class IngredientsController < ApplicationController
   def destroy
     @ingredient.destroy
     respond_to do |format|
-      format.html { redirect_to ingredients_url, notice: 'Category was successfully destroyed.' }
+      anchor = @ingredient.is_root? ? '' : '#' + @ingredient.parent.slug
+      format.html { redirect_to ingredients_url + anchor, notice: 'Category was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

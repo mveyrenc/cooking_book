@@ -71,6 +71,12 @@
               </div>
             <% end %>
             <div class="ingredients-list">
+                <% @recipe.main_ingredients.each do |ingredient| %>
+                  <%= main_ingredient_label ingredient %>
+                <% end %>
+                <% @recipe.additional_main_ingredients.each do |ingredient| %>
+                  <%= additional_main_ingredient_label ingredient %>
+                <% end %>
                 <%= raw( @recipe.ingredients ) %>
             </div>
         </div>

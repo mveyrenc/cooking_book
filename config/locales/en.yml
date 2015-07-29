@@ -76,6 +76,7 @@ en:
                 description: "Description"
                 dish_type: "Dish type"
                 category_ids: "Categories"
+                main_ingredient_ids: "Main ingredients"
                 times: "Times"
                 quantity: "Quantity"
                 ingredients: "Ingredients"

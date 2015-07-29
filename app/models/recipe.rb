@@ -12,6 +12,9 @@ class Recipe < ActiveRecord::Base
   
   belongs_to :dish_type
   has_and_belongs_to_many :categories
+ 
+  has_and_belongs_to_many(:main_ingredients,
+    :class_name => "Ingredient")
   
   ratyrate_rateable "note", "difficulty", "cost"
   
@@ -35,6 +38,9 @@ class Recipe < ActiveRecord::Base
     integer :category_ids, :multiple => true, :references => Category do
       additional_categories | categories
     end
+    integer :main_ingredient_ids, :multiple => true, :references => Ingredient do
+      additional_main_ingredients | main_ingredients
+    end
     string :source
   end
   
@@ -55,8 +61,17 @@ class Recipe < ActiveRecord::Base
     additional_categories - categories
   end
   
+  def additional_main_ingredients
+    additional_ingredients = []
+    main_ingredients.each do |ingredient|
+      additional_ingredients |= ingredient.ancestors
+    end
+    additional_ingredients - main_ingredients
+  end
+  
   def should_generate_new_friendly_id?
-    new_record? || slug.blank?
+    name_changed?
+    true
   end
   
   def to_s

@@ -12,6 +12,14 @@ module ApplicationHelper
     content_tag :span, item, { :class => "label label-default" }
   end
   
+  def main_ingredient_label item
+    content_tag :span, item, { :class => "label label-primary" }
+  end
+  
+  def additional_main_ingredient_label item
+    content_tag :span, item, { :class => "label label-default" }
+  end
+  
   def back_button url
     link_to url, :class => 'btn btn-xs btn-default no-print', :title => I18n.t( 'application.back' ) do
       content_tag( :span, "", { :class => "glyphicon glyphicon-list-alt"} ) + " " + I18n.t( 'application.back' )

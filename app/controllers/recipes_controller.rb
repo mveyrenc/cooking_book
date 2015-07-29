@@ -7,15 +7,35 @@ class RecipesController < ApplicationController
     @query = params[:query]
     @search_result = Recipe.search do
       fulltext params[:query]
-      with(:category_ids, params[:category_ids]) if params[:category_ids].present?
-      with(:dish_type_id, params[:dish_type_id]) if params[:dish_type_id].present?
+      if params[:category_ids].present?
+        all_of do
+          params[:category_ids].each do |filter|
+            with(:category_ids, filter)
+          end
+        end
+      end
+      if params[:main_ingredient_ids].present?
+        all_of do
+          params[:main_ingredient_ids].each do |filter|
+            with(:main_ingredient_ids, filter)
+          end
+        end
+      end
       with(:source, params[:source]) if params[:source].present?
-      facet :category_ids unless params[:category_ids].present?
-      facet :dish_type_id unless params[:dish_type_id].present?
-      facet :source unless params[:source].present?
+      facet :category_ids #unless params[:category_ids].present?
+      facet :main_ingredient_ids #unless params[:main_ingredient_ids].present?
+      facet :source #unless params[:source].present?
       paginate :page => params[:page] || 1, :per_page => 10
       order_by(:score, :desc)
       order_by(:created_at, :desc)
+    end
+    @query_params = params.except( :page )
+    
+    filters = [:category_ids, :main_ingredient_ids]
+    filters.each do |filter|
+      if params[filter].present?
+        params[filter].map!{ |x| x.to_i }
+      end
     end
   end
 
@@ -52,7 +72,6 @@ class RecipesController < ApplicationController
   # PATCH/PUT /recipes/1
   # PATCH/PUT /recipes/1.json
   def update
-    logger.debug recipe_params
     respond_to do |format|
       if @recipe.update(recipe_params)
         format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
@@ -82,6 +101,6 @@ class RecipesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def recipe_params
-    params.require(:recipe).permit(:name, :dish_type_id, {:category_ids => []}, :description, :picture, :times, :quantity, :ingredients, :directions, :source, :wine)
+    params.require(:recipe).permit(:name, :dish_type_id, {:category_ids => []}, :description, :picture, :times, :quantity, :ingredients, {:main_ingredient_ids => []}, :directions, :source, :wine)
   end
 end
