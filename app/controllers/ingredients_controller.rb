@@ -2,10 +2,10 @@ class IngredientsController < ApplicationController
   before_action :set_ingredient, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params[:search] 
-      @ingredients = Ingredient.where("lower(name) LIKE :search",{search: "%#{params[:search].downcase}%"}).order( :name )
+    if params[:search]
+      search = params[:search].downcase
+      @ingredients = Ingredient.where("lower(name) LIKE :search",{search: "#{search}%"}).order( :name ) + Ingredient.where("lower(name) LIKE :search_like AND lower(name) NOT LIKE :search_not_like",{search_like: "%#{search}%", search_not_like: "#{search}%"}).order( :name )
     else
-      #@ingredients = Ingredient.roots.sort { |left,right| left.slug <=> right.slug }
       @ingredients = Ingredient.roots
     end
   end
@@ -22,6 +22,7 @@ class IngredientsController < ApplicationController
   end
 
   def create
+    logger.debug ingredient_params
     @ingredient = Ingredient.new(ingredient_params)
     
     respond_to do |format|
@@ -63,6 +64,12 @@ class IngredientsController < ApplicationController
   end
 
   def ingredient_params
-    params.require(:ingredient).permit(:name, :parent_id)
+    if params[:best_months].present?
+      params[:best_months].map!{ |m| m.to_i }
+    end
+    if params[:worse_months].present?
+      params[:worse_months].map!{ |m| m.to_i }
+    end
+    params.require(:ingredient).permit(:name, :parent_id, {:best_months => []}, {:worse_months => []})
   end
 end

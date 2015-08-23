@@ -1,8 +1,9 @@
 <article class="row" id="<%= ingredient.slug %>">
-    <div class="col-md-<%= 10 - ingredient.depth %> col-md-offset-<%= ingredient.depth %>">
+    <% col = ingredient.months ? 6 : 10 %>
+    <div class="col-md-<%= col - ingredient.depth %> col-md-offset-<%= ingredient.depth %>">
         <p>
             <%= ingredient %>
-            <% if ingredient.recipes.count > 0 %><span class="badge"><%= ingredient.recipes.count %></span><% end%>
+            <% if ingredient.recipes.size > 0 %><span class="badge"><%= ingredient.recipes.size %></span><% end%>
         </p>
     </div>
     <div class="pull-right">
@@ -18,6 +19,13 @@
             <% end %>
         </div>
     </div>
+    <% if ingredient.months %>
+      <div class="pull-right">
+          <% I18n.t( 'date.abbr_month_names' ).reject{ |m| m.nil? }.to_enum.with_index(1).each do |m, mnum| %>
+            <span class="label label-<% if ingredient.months[mnum] == 'w' %>default<% elsif ingredient.months[mnum] == 'b' %>success<% else %>warning<% end %>"><%= m[0,1] %></span>
+          <% end %>
+      </div>
+    <% end %>
 </article>
 <% ingredient.children.each do |children| %>
   <%= render 'row', ingredient: children %>

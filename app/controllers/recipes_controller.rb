@@ -14,6 +14,13 @@ class RecipesController < ApplicationController
           end
         end
       end
+      if params[:exclu_category_ids].present?
+        all_of do
+          params[:exclu_category_ids].each do |filter|
+            without(:category_ids, filter)
+          end
+        end
+      end
       if params[:main_ingredient_ids].present?
         all_of do
           params[:main_ingredient_ids].each do |filter|
@@ -21,17 +28,38 @@ class RecipesController < ApplicationController
           end
         end
       end
-      with(:source, params[:source]) if params[:source].present?
+      if params[:exclu_main_ingredient_ids].present?
+        all_of do
+          params[:exclu_main_ingredient_ids].each do |filter|
+            without(:main_ingredient_ids, filter)
+          end
+        end
+      end
+      if params[:sources].present?
+        all_of do
+          params[:sources].each do |filter|
+            with(:sources, filter)
+          end
+        end
+      end
+      if params[:exclu_sources].present?
+        all_of do
+          params[:exclu_sources].each do |filter|
+            without(:sources, filter)
+          end
+        end
+      end
+      facet :dish_type_id unless params[:dish_type_id].present?
       facet :category_ids #unless params[:category_ids].present?
       facet :main_ingredient_ids #unless params[:main_ingredient_ids].present?
-      facet :source #unless params[:source].present?
+      facet :sources #unless params[:source].present?
       paginate :page => params[:page] || 1, :per_page => 10
       order_by(:score, :desc)
       order_by(:created_at, :desc)
     end
     @query_params = params.except( :page )
     
-    filters = [:category_ids, :main_ingredient_ids]
+    filters = [:category_ids, :main_ingredient_ids, :exclu_category_ids, :exclu_main_ingredient_ids]
     filters.each do |filter|
       if params[filter].present?
         params[filter].map!{ |x| x.to_i }

@@ -9,27 +9,35 @@
  * compiled file so the styles you add here take precedence over styles defined in any styles
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
- *
- *= require font-awesome
- *= require bootstrap-generators
- *= require bootstrap-variables
- *! require bootstrap.css.map
- *= require base
- *= require_tree ./jquery_plugins
  *= require_self
- *= require blue
- *= require categories
- *= require font
- *= require recipes
- *= require ingredients
- *= require scaffolds
- *= require welcome
  *= stub print
- */
+*/
+@import "variables";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome/font-awesome";
+@import "fonts";
+@import "jquery_plugins/jquery.tokenize";
 
+.navbar-inverse .navbar-nav > li > a.btn-success {
+    color: white;
+    &:hover {
+        background-color: #449d44;
+        border-color: #398439;
+    }
+}
+.page {
+    margin-top: 25px;
+}
 div.Tokenize {
     width: 100%;
 }
 div.Tokenize ul.TokensContainer {
     height: auto;
 }
+
+@import "categories";
+@import "recipes";
+@import "ingredients";
+@import "welcome";
+@import "scaffolds";

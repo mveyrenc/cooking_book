@@ -1,4 +1,4 @@
-@import "bootstrap-variables";
+@import "bootstrap/variables";
 
 .recipe-page {
     .description, .rating {
@@ -45,6 +45,12 @@
     .times {
         float: left;
         width: 25%;
+    }
+    .recipe-filters .btn {
+        margin-right: 5px;
+    }
+    .active-filters {
+        margin-bottom: 5px;
     }
 }
 .recipe-page.show-page {

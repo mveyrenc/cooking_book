@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150726164415) do
+ActiveRecord::Schema.define(version: 20150729173737) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,9 @@ ActiveRecord::Schema.define(version: 20150726164415) do
     t.string   "ancestry"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "best_months",   default: [], array: true
+    t.text     "worse_months",  default: [], array: true
+    t.integer  "recipes_count", default: 0
   end
 
   add_index "ingredients", ["ancestry"], name: "index_ingredients_on_ancestry", using: :btree
