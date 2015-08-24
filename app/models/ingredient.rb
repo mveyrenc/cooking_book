@@ -12,6 +12,8 @@ class Ingredient < ActiveRecord::Base
   
   scope :ordered, ->{ order(name: :asc) }
   
+  before_save :update_counters
+  
   def months
     months = {}
     empty_count = 0
@@ -42,8 +44,14 @@ class Ingredient < ActiveRecord::Base
   def to_s
     name
   end
-  
+   
   def to_i
     id
   end
+  
+  private
+  def update_counters
+    Ingredient.update_counters id, :recipes_count => recipes.length
+  end
+  
 end
