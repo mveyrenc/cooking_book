@@ -24,3 +24,6 @@
 
 # Ignore PaperClip upload folder
 /public/system
+
+# Ignore database dump
+*.sql
