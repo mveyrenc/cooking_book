@@ -65,6 +65,10 @@ class RecipesController < ApplicationController
         params[filter].map!{ |x| x.to_i }
       end
     end
+    
+    @search_result.facet(:main_ingredient_ids).rows.sort!{|a,b| (a.count <=> b.count) == 0 ? (a.instance.name <=> b.instance.name) : (a.count <=> b.count)*(-1) }
+    @search_result.facet(:category_ids).rows.sort!{|a,b| (a.count <=> b.count) == 0 ? (a.instance.name <=> b.instance.name) : (a.count <=> b.count)*(-1) }
+    @search_result.facet(:sources).rows.sort!{|a,b| (a.count <=> b.count) == 0 ? (a.value <=> b.value) : (a.count <=> b.count)*(-1) }
   end
 
   # GET /recipes/1
