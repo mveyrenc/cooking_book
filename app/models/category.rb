@@ -31,6 +31,8 @@ class Category < ActiveRecord::Base
     :association_foreign_key => "category_id")
   
   scope :ordered, ->{ order(name: :asc) }
+  scope :course_type, -> { where(is_course_type: true) }
+  scope :categories, -> { where(is_course_type: false) }
   
   def related_categories_for_recipes
     related_categories_for_recipes = [self]

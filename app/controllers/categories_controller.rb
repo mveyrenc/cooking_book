@@ -78,6 +78,6 @@ class CategoriesController < ApplicationController
     params[:category][:suggested_category_ids].reject! { |c| c.empty? } if params[:category][:suggested_category_ids]
     params[:category][:suggested_by_category_ids].reject! { |c| c.empty? } if params[:category][:suggested_by_category_ids]
     
-    params.require(:category).permit(:name, :related_category_ids => [], :related_by_category_ids => [], :suggested_category_ids => [], :suggested_by_category_ids => [])
+    params.require(:category).permit(:name, :is_course_type, :related_category_ids => [], :related_by_category_ids => [], :suggested_category_ids => [], :suggested_by_category_ids => [])
   end
 end

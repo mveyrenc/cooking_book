@@ -73,7 +73,7 @@ $(document).ready(function () {
                         value = new_object_id;
 
                         width = 1200;
-                        height = 400;
+                        height = 600;
                         if (window.innerWidth)
                         {
                             var left = (window.innerWidth - width) / 2;

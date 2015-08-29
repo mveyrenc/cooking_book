@@ -17,6 +17,11 @@
                   <input type="text" class="form-control" placeholder="<%= I18n.t( 'application.search' ) %>" name="query" value="<%= @query %>">
                   <button type="submit" class="btn btn-default pull-right"><%= I18n.t( 'application.search' ) %></button>
               </form>
+              <h3><%= Recipe.human_attribute_name( 'course_type_ids' ) %></h3>
+              <%= remove_recipe_course_type_include_filter params %>
+              <%= remove_recipe_course_type_exclude_filter params %>
+              <%= recipe_course_type_filter params, @search_result.facet(:course_type_ids) %>
+              
               <h3><%= Recipe.human_attribute_name( 'category_ids' ) %></h3>
               <%= remove_recipe_category_include_filter params %>
               <%= remove_recipe_category_exclude_filter params %>
@@ -26,6 +31,7 @@
               <%= remove_recipe_main_ingredient_include_filter params %>
               <%= remove_recipe_main_ingredient_exclude_filter params %>
               <%= recipe_main_ingredient_filter params, @search_result.facet(:main_ingredient_ids) %>
+              
               <h3><%= Recipe.human_attribute_name( 'source' ) %></h3>
               <%= remove_recipe_sources_include_filter params %>
               <%= remove_recipe_sources_exclude_filter params %>

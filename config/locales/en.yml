@@ -76,6 +76,7 @@ en:
                 name: "Name"
                 description: "Description"
                 dish_type: "Dish type"
+                course_type_ids: "Course type"
                 category_ids: "Categories"
                 main_ingredient_ids: "Main ingredients"
                 times: "Times"

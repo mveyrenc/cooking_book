@@ -8,9 +8,7 @@ class Recipe < ActiveRecord::Base
   validates :name, presence: true
   validates :ingredients, presence: true
   validates :directions, presence: true
-  validates :dish_type_id, presence: true
   
-  belongs_to :dish_type
   has_and_belongs_to_many :categories
  
   has_and_belongs_to_many(:main_ingredients,
@@ -18,7 +16,7 @@ class Recipe < ActiveRecord::Base
   
   ratyrate_rateable "note", "difficulty", "cost"
   
-  #  after_save :index_in_solr
+  before_save :update_counters
   
   searchable do
     text :name
@@ -28,15 +26,17 @@ class Recipe < ActiveRecord::Base
       HTMLEntities.new.decode( Sanitize.clean( ingredients ) )
     end
     text :description do
-      HTMLEntities.new.decode( Sanitize.clean( ingredients ) )
+      HTMLEntities.new.decode( Sanitize.clean( description ) )
     end
     text :directions do
-      HTMLEntities.new.decode( Sanitize.clean( ingredients ) )
+      HTMLEntities.new.decode( Sanitize.clean( directions ) )
     end
     time :created_at
-    integer :dish_type_id, :references => DishType
+    integer :course_type_ids, :multiple => true, :references => Category do
+      (additional_categories | categories).select{ |c| c.is_course_type }
+    end
     integer :category_ids, :multiple => true, :references => Category do
-      additional_categories | categories
+      (additional_categories | categories).reject{ |c| c.is_course_type }
     end
     integer :main_ingredient_ids, :multiple => true, :references => Ingredient do
       additional_main_ingredients | main_ingredients
@@ -85,5 +85,12 @@ class Recipe < ActiveRecord::Base
   
   def to_i
     id
+  end
+  
+  private
+  def update_counters
+    for i in main_ingredients do
+      i.save
+    end
   end
 end

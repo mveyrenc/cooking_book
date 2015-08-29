@@ -10,7 +10,12 @@
           <% @categories.each do |category| %>
             <article id="<%=  category.slug %>" class="row">
                 <div class="col-md-10">
-                    <p><%= link_to category, category %></p>
+                    <p>
+                        <%= link_to category, category %>
+                        <% if category.is_course_type %>
+                          <span class="glyphicon glyphicon-star text-success"></span>
+                        <% end %>
+                    </p>
                     <% if category.related_categories.any? %>
                       <div class="row col-md-6">
                           <div class="col-md-5">

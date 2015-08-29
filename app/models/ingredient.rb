@@ -51,7 +51,7 @@ class Ingredient < ActiveRecord::Base
   
   private
   def update_counters
-    Ingredient.update_counters id, :recipes_count => recipes.length
+    self.recipes_count = recipes.length
   end
   
 end

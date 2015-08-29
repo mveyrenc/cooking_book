@@ -3,8 +3,6 @@
     <div class="pull-left">
         <%  if !recipe.picture.blank?  %>
           <%= image_tag recipe.picture.url(:thumb), :class => "media-object" %>
-        <% else %>
-          <%= image_tag recipe.dish_type.picture.url(:thumb_gray), :class => "media-object" %>
         <% end %>
     </div>
     <div class="media-body">
@@ -15,7 +13,6 @@
         <h2><%= link_to recipe, recipe %></h2>
         <div class="row">
             <div class="categorization">
-                <%= dish_type_label recipe.dish_type %>
                 <% recipe.categories.each do |category| %>
                   <%= category_label category %>
                 <% end %>

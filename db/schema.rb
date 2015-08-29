@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150729173737) do
+ActiveRecord::Schema.define(version: 20150829130001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20150729173737) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "slug"
+    t.boolean  "is_course_type", default: false, null: false
   end
 
   add_index "categories", ["name"], name: "index_categories_on_name", unique: true, using: :btree
@@ -154,7 +155,6 @@ ActiveRecord::Schema.define(version: 20150729173737) do
     t.text     "description"
     t.text     "times"
     t.string   "wine"
-    t.integer  "dish_type_id"
     t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.integer  "picture_file_size"

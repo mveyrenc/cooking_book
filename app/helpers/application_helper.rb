@@ -1,11 +1,11 @@
 module ApplicationHelper
   
-  def dish_type_label item
-    content_tag :span, item, { :class => "label label-danger" }
-  end
-  
   def category_label item
-    content_tag :span, item, { :class => "label label-primary" }
+    if item.is_course_type
+      content_tag :span, item, { :class => "label label-success" }
+    else
+      content_tag :span, item, { :class => "label label-primary" }
+    end
   end
   
   def additional_category_label item
@@ -59,6 +59,50 @@ module ApplicationHelper
   def destroy_button url
     link_to url, :class => 'btn btn-xs btn-danger no-print', :title => I18n.t( 'application.destroy' ), :method => :delete, :data => { confirm: I18n.t( 'application.destroy_confirmation' ) } do
       content_tag( :span, "", { :class => "glyphicon glyphicon-trash"} ) + " " + I18n.t( 'application.destroy' )
+    end
+  end
+  
+  def recipe_course_type_filter params, facet
+    if facet
+      content_tag :ul, :class => "list-unstyled" do
+        facet.rows.collect do |facet_item| 
+          if facet_item.instance and ( !params[:course_type_ids].present? or !params[:course_type_ids].include? facet_item.value )
+            concat( link_to_filter params, :course_type_ids, facet_item )
+          end
+        end
+      end
+    end
+  end
+  
+  def remove_recipe_course_type_include_filter params
+    if params[:course_type_ids].present?
+      params.except( :page )
+      content_tag :div, :class => "active-filters" do
+        params[:course_type_ids].each do |filter|
+          filter_params = params.dup
+          if filter_params[:course_type_ids].present? and filter_params[:course_type_ids].kind_of?(Array)
+            filter_params[:course_type_ids].delete(filter)
+          end
+          filter_params.reject!{ |k,v| v.empty? }
+          concat( link_to_remove_include_filter filter_params,  Category.find( filter )  )
+        end 
+      end
+    end
+  end
+  
+  def remove_recipe_course_type_exclude_filter params
+    if params[:exclu_course_type_ids].present?
+      params.except( :page )
+      content_tag :div, :class => "active-filters" do
+        params[:exclu_course_type_ids].each do |filter|
+          filter_params = params.dup
+          if filter_params[:exclu_course_type_ids].present? and filter_params[:exclu_course_type_ids].kind_of?(Array)
+            filter_params[:exclu_course_type_ids].delete(filter)
+          end
+          filter_params.reject!{ |k,v| v.empty? }
+          concat( link_to_remove_exclude_filter filter_params,  Category.find( filter ) )
+        end 
+      end
     end
   end
   
