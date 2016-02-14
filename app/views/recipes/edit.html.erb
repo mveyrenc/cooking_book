@@ -1,8 +1,12 @@
 <div class="recipe-page edit-page form-page">
-  <div class="page-header">
-    <%= back_button recipes_path %>
-    <%= show_button @recipe %>
-    <h1><%= I18n.t( 'recipes.edit_page_title' ) %></h1>
-  </div>
-  <%= render 'form' %>
+    <div class="page-header row">
+        <div class="buttons">
+            <%= back_button recipes_path %>
+        </div>
+        <header class="with-shadow">
+            <h1><%= I18n.t( 'recipes.edit_page_title' ) %></h1>
+        </header>
+    </div>
+    <%= render 'form' %>
 </div>
+

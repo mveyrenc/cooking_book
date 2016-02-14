@@ -1,18 +1,19 @@
 <div class="ingredient-page index-page">
-    <div class="page-header">
-        <%= link_to new_ingredient_path, :class => 'btn btn-primary' do %>
-          <span class="glyphicon glyphicon-plus"></span>
-          <%=  I18n.t( 'ingredients.new_button' ) %>
-        <% end %>
-        <h1><%= I18n.t( 'ingredients.index_page_title' ) %></h1>
+    <div class="page-header row">
+        <header class="with-shadow">
+            <h1><%= I18n.t( 'ingredients.index_page_title' ) %></h1>
+        </header>
     </div>
-    <% if @ingredients.blank? %>
-      No entry
-    <% else %>
-      <div class="container">
+    <div class="buttons">
+        <%= new_button new_ingredient_path, I18n.t( 'ingredients.new_button' ) %>
+    </div>
+    <div class="with-shadow">
+        <% if @ingredients.blank? %>
+          No entry
+        <% else %>
           <% @ingredients.each do |ingredient| %>
             <%= render 'row', ingredient: ingredient %>
           <% end %>
-      </div>
-    <% end %>
+        <% end %>
+    </div>
 </div>

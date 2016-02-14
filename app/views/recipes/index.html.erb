@@ -5,62 +5,82 @@
     <% if @search_result.total == 0 %>
       <%= I18n.t( 'application.no_entry' ) %>
       <form class="form-horizontal" role="search" action="<%= recipes_path %>">
-          <div class="form-group col-md-11">
+          <div class="input-group">
               <input type="text" class="form-control" placeholder="<%= I18n.t( 'application.search' ) %>" name="query" value="<%= @query %>">
+              <span class="input-group-btn">
+                  <button type="submit" class="btn btn-default"><%= I18n.t( 'application.search' ) %></button>
+              </span>
           </div>
-          <button type="submit" class="btn btn-default col-md-1"><%= I18n.t( 'application.search' ) %></button>
       </form>
     <% else %>
-      <div class="container">
-          <div class="recipe-filters left-col-container col-md-4 hidden-sm hidden-xs">
+      <aside class="left-col-container col-md-4 hidden-sm hidden-xs">
+          <div class="recipe-filters with-shadow">
               <form class="form-horizontal" role="search" action="<%= recipes_path %>">
-                  <input type="text" class="form-control" placeholder="<%= I18n.t( 'application.search' ) %>" name="query" value="<%= @query %>">
-                  <button type="submit" class="btn btn-default pull-right"><%= I18n.t( 'application.search' ) %></button>
+                  <div class="input-group">
+                      <input type="text" class="form-control" placeholder="<%= I18n.t( 'application.search' ) %>" name="query" value="<%= @query %>">
+                      <span class="input-group-btn">
+                          <button type="submit" class="btn btn-default" alt="<%= I18n.t( 'application.search' ) %>"><i class="fa fa-search"></i></button>
+                      </span>
+                  </div>
               </form>
-              <h3><%= Recipe.human_attribute_name( 'course_type_ids' ) %></h3>
-              <%= remove_recipe_course_type_include_filter params %>
-              <%= remove_recipe_course_type_exclude_filter params %>
-              <%= recipe_course_type_filter params, @search_result.facet(:course_type_ids) %>
-              
-              <h3><%= Recipe.human_attribute_name( 'category_ids' ) %></h3>
-              <%= remove_recipe_category_include_filter params %>
-              <%= remove_recipe_category_exclude_filter params %>
-              <%= recipe_category_filter params, @search_result.facet(:category_ids) %>
+              <fieldset class="filter">
+                  <legend><span class="glyphicon glyphicon-menu-right"></span> <%= Recipe.human_attribute_name( 'course_type_ids' ) %></legend>
+                  <div class="form-group">
+                      <%= remove_recipe_course_type_include_filter params %>
+                      <%= remove_recipe_course_type_exclude_filter params %>
+                      <%= recipe_course_type_filter params, @search_result.facet(:course_type_ids) %>
+                  </div>
+              </fieldset>
 
-              <h3><%= Recipe.human_attribute_name( 'main_ingredient_ids' ) %></h3>
-              <%= remove_recipe_main_ingredient_include_filter params %>
-              <%= remove_recipe_main_ingredient_exclude_filter params %>
-              <%= recipe_main_ingredient_filter params, @search_result.facet(:main_ingredient_ids) %>
-              
-              <h3><%= Recipe.human_attribute_name( 'source_ids' ) %></h3>
-              <%= remove_recipe_sources_include_filter params %>
-              <%= remove_recipe_sources_exclude_filter params %>
-              <%= recipe_sources_filter params, @search_result.facet(:source_ids) %>
-          </div>
+              <fieldset class="filter">
+                  <legend><span class="glyphicon glyphicon-menu-right"></span> <%= Recipe.human_attribute_name( 'category_ids' ) %></legend>
+                  <div class="form-group">
+                      <%= remove_recipe_category_include_filter params %>
+                      <%= remove_recipe_category_exclude_filter params %>
+                      <%= recipe_category_filter params, @search_result.facet(:category_ids) %>
+                  </div>
+              </fieldset>
 
-          <div class="recipe-list col-md-8">
-              <% @search_result.results.each do |recipe| %>
-                <%= render 'row', recipe: recipe %>
-                <hr />
-              <% end %>
-              <% if @search_result.results.total_pages > 1 %>
-                <div class="text-center">
-                    <ul class="pagination">
-                        <li <% if @search_result.results.first_page? %>class="disabled"<% end %>>
-                            <%= link_to "&laquo;".html_safe, recipes_path( params.merge({ :page => @search_result.results.previous_page }) ) %>
-                        </li>
-                        <% for page in 1..(@search_result.results.total_pages) %>
-                          <li <% if page == ( params[:page].to_i || 1 ) %>class="active"<% end %>>
-                              <%= link_to page, recipes_path( params.merge({ :page => page }) ) %>
-                          </li>
-                        <% end %>
-                        <li <% if @search_result.results.last_page? %>class="disabled"<% end %>>
-                            <%= link_to "&raquo;".html_safe, recipes_path( params.merge({ :page => @search_result.results.next_page }) ) %>
-                        </li>
-                    </ul>
-                </div>
-              <% end %>
+              <fieldset class="filter">
+                  <legend><span class="glyphicon glyphicon-menu-right"></span> <%= Recipe.human_attribute_name( 'main_ingredient_ids' ) %></legend>
+                  <div class="form-group">
+                      <%= remove_recipe_main_ingredient_include_filter params %>
+                      <%= remove_recipe_main_ingredient_exclude_filter params %>
+                      <%= recipe_main_ingredient_filter params, @search_result.facet(:main_ingredient_ids) %>
+                  </div>
+              </fieldset>
+
+              <fieldset class="filter">
+                  <legend><span class="glyphicon glyphicon-menu-right"></span> <%= Recipe.human_attribute_name( 'source_ids' ) %></legend>
+                  <div class="form-group">
+                      <%= remove_recipe_sources_include_filter params %>
+                      <%= remove_recipe_sources_exclude_filter params %>
+                      <%= recipe_sources_filter params, @search_result.facet(:source_ids) %>
+                  </div>
+              </fieldset>
           </div>
+      </aside>
+      <div class="recipe-list col-md-8">
+          <% @search_result.results.each do |recipe| %>
+            <%= render 'row', recipe: recipe %>
+          <% end %>
+          <% if @search_result.results.total_pages > 1 %>
+            <div class="text-center">
+                <ul class="pagination">
+                    <li <% if @search_result.results.first_page? %>class="disabled"<% end %>>
+                        <%= link_to "&laquo;".html_safe, recipes_path( params.merge({ :page => @search_result.results.previous_page }) ) %>
+                    </li>
+                    <% for page in 1..(@search_result.results.total_pages) %>
+                      <li <% if page == ( params[:page].to_i || 1 ) %>class="active"<% end %>>
+                          <%= link_to page, recipes_path( params.merge({ :page => page }) ) %>
+                      </li>
+                    <% end %>
+                    <li <% if @search_result.results.last_page? %>class="disabled"<% end %>>
+                        <%= link_to "&raquo;".html_safe, recipes_path( params.merge({ :page => @search_result.results.next_page }) ) %>
+                    </li>
+                </ul>
+            </div>
+          <% end %>
       </div>
     <% end %>
 </div>

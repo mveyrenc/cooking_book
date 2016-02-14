@@ -1,4 +1,4 @@
-<%= form_for(@category, :html => { :class => "form-horizontal" }) do |f| %>
+<%= form_for(@category, :html => { :class => "with-shadow form-horizontal" }) do |f| %>
   <% if @category.errors.any? %>
     <div class="alert alert-danger alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -49,9 +49,8 @@
           <%= f.collection_select :suggested_by_category_ids, @category.suggested_by_categories, :id, :name, {}, {:multiple => true, :class => "tokenize-category-categories", :data_add_url => categories_path, :data_list_url => categories_path(format: :json)} %>
       </div>
   </div>
-  <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-          <%= f.submit :class => "btn btn-primary" %>
-      </div>
+  <hr />
+  <div class="form-group text-center">
+      <%= f.submit :class => "btn btn-primary" %>
   </div>
 <% end %>

@@ -1,15 +1,12 @@
 <div class="source-page edit-page form-page">
-  <div class="page-header">
-    <%= link_to sources_path, :class => 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-list-alt"></span>
-    <%= I18n.t( 'application.back' ) %>
-    <% end %>
-    <%= link_to @source, :class => 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-info-sign"></span>
-    <%= I18n.t( 'application.show' ) %>
-    <% end %>
-    <h1><%= I18n.t( 'sources.edit_page_title' ) %></h1>
-  </div>
-
-  <%= render 'form' %>
+    <div class="page-header row">
+        <div class="buttons">
+            <%= back_button sources_path %>
+        </div>
+        <header class="with-shadow">
+            <h1><%= I18n.t( 'sources.edit_page_title' ) %></h1>
+        </header>
+    </div>
+    <%= render 'form' %>
 </div>
+

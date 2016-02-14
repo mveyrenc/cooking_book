@@ -1,8 +1,12 @@
 <div class="recipe-page new-page form-page">
-  <div class="page-header">
-    <%= back_button recipes_path %>
-    <h1><%= I18n.t( 'recipes.new_page_title' ) %></h1>
-  </div>
-
-  <%= render 'form' %>
+    <div class="page-header row">
+        <div class="buttons">
+            <%= back_button recipes_path %>
+        </div>
+        <header class="with-shadow">
+            <h1><%= I18n.t( 'recipes.new_page_title' ) %></h1>
+        </header>
+    </div>
+    <%= render 'form' %>
 </div>
+

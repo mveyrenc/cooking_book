@@ -6,13 +6,13 @@
     }
 }
 .recipe-page.index-page {
-    .left-col-container {
-        background-color: #EEE;
-        padding: 15px;
-        input {
-            margin-bottom: 10px
-        }
-    }
+    /*    .left-col-container {
+            background-color: #EEE;
+            padding: 15px;
+            input {
+                margin-bottom: 10px
+            }
+        }*/
     h2 {
         margin-top: 0;
     }
@@ -46,8 +46,25 @@
         float: left;
         width: 25%;
     }
-    .recipe-filters .btn {
-        margin-right: 5px;
+    .recipe-filters {
+        margin-bottom: 20px;
+        h3 {
+            font-family: 'Sansation-Bold', Arial, sans-serif;
+            font-weight: normal;
+            font-size: 1em;
+            text-transform: uppercase;
+            margin: 0 0 10px 0;
+            background: #df0018;
+            padding: 10px 5px;
+            color: #FFF;
+            text-align: center;
+        }
+        form {
+            margin-bottom: 10px;
+        }
+        .btn {
+            margin-right: 5px;
+        }
     }
     .active-filters {
         margin-bottom: 5px;

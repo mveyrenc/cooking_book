@@ -19,29 +19,8 @@
 @import "fonts";
 @import "jquery_plugins/jquery.tokenize";
 
-.mce-fullscreen nav.navbar {
-  display: none;
-}
-
-.navbar-inverse .navbar-nav > li > a.btn-success {
-    color: white;
-    &:hover {
-        background-color: #449d44;
-        border-color: #398439;
-    }
-}
-.page {
-    margin-top: 55px;
-}
-div.Tokenize {
-    width: 100%;
-}
-div.Tokenize ul.TokensContainer {
-    height: auto;
-}
-
+@import "scaffolds";
 @import "categories";
 @import "recipes";
 @import "ingredients";
 @import "welcome";
-@import "scaffolds";

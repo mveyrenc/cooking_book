@@ -1,5 +1,4 @@
-
-<article class="row media">
+<article class="row media with-shadow">
     <div class="pull-left">
         <%  if !recipe.picture.blank?  %>
           <%= image_tag recipe.picture.url(:thumb), :class => "media-object" %>
@@ -34,13 +33,5 @@
               <%= raw( recipe.description ) %>
           </div>
         <% end %>
-        <div class="row">
-<%#*<div class="ingredients">%>
-<%#= raw( recipe.ingredients ) %>
-<%#*</div>%>
-<%#*<div class="times">%>
-<%#= simple_format( recipe.times ) %>
-<%#*</div>%>
-        </div>
     </div>
 </article>

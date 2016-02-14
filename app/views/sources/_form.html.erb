@@ -1,10 +1,4 @@
-<%#*<style>%>
-    <%#*.source-page.form-page .btn-group input {%>
-      <%#*visibility: hidden%>
-    <%#*}%>
-<%#*</style>%>
-
-<%= form_for(@source, :html => { :class => "form-horizontal" }) do |f| %>
+<%= form_for(@source, :html => { :class => "with-shadow form-horizontal" }) do |f| %>
   <% if @source.errors.any? %>
     <div class="alert alert-danger alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -30,9 +24,8 @@
           <%=  collection_select :source, :parent_id, Source.ordered, :id, :name, { :prompt => true }, { :class => "form-control" }  %>
       </div>
   </div>
-  <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-          <%= f.submit :class => "btn btn-primary" %>
-      </div>
+  <hr />
+  <div class="form-group text-center">
+      <%= f.submit :class => "btn btn-primary" %>
   </div>
 <% end %>

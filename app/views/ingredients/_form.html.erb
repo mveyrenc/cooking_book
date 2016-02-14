@@ -1,10 +1,4 @@
-<%#*<style>%>
-    <%#*.ingredient-page.form-page .btn-group input {%>
-      <%#*visibility: hidden%>
-    <%#*}%>
-<%#*</style>%>
-
-<%= form_for(@ingredient, :html => { :class => "form-horizontal" }) do |f| %>
+<%= form_for(@ingredient, :html => { :class => "with-shadow form-horizontal" }) do |f| %>
   <% if @ingredient.errors.any? %>
     <div class="alert alert-danger alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -36,13 +30,13 @@
           <div class="btn-group" data-toggle="buttons">
               <input id="ingredient_best_months_0" name="ingredient[best_months][]" type="hidden">
               <% I18n.t( 'date.abbr_month_names' ).reject{ |m| m.nil? }.to_enum.with_index(1).each do |m, mnum| %>
-              <label class="btn btn-success <% if @ingredient.best_months.include?( mnum.to_s ) %>active<% end %>">
-                  <input id="ingredient_best_months_<%= mnum %>" 
-                         name="ingredient[best_months][]" 
-                         type="checkbox" 
-                         <% if @ingredient.best_months.include?( mnum.to_s ) %>checked="checked="<% end %>
-                         value="<%= mnum %>"> <%= m %>
-              </label>
+                <label class="btn btn-success <% if @ingredient.best_months.include?( mnum.to_s ) %>active<% end %>">
+                    <input id="ingredient_best_months_<%= mnum %>" 
+                           name="ingredient[best_months][]" 
+                           type="checkbox" 
+                           <% if @ingredient.best_months.include?( mnum.to_s ) %>checked="checked="<% end %>
+                           value="<%= mnum %>"> <%= m %>
+                </label>
               <% end %>
           </div>
       </div>
@@ -53,20 +47,19 @@
           <div class="btn-group" data-toggle="buttons">
               <input id="ingredient_worse_months_0" name="ingredient[worse_months][]" type="hidden">
               <% I18n.t( 'date.abbr_month_names' ).reject{ |m| m.nil? }.to_enum.with_index(1).each do |m, mnum| %>
-              <label class="btn btn-danger <% if @ingredient.worse_months.include?( mnum.to_s ) %>active<% end %>">
-                  <input id="ingredient_worse_months_<%= mnum %>" 
-                         name="ingredient[worse_months][]" 
-                         type="checkbox" 
-                         <% if @ingredient.worse_months.include?( mnum.to_s ) %>checked="checked="<% end %>
-                         value="<%= mnum %>"> <%= m %>
-              </label>
+                <label class="btn btn-danger <% if @ingredient.worse_months.include?( mnum.to_s ) %>active<% end %>">
+                    <input id="ingredient_worse_months_<%= mnum %>" 
+                           name="ingredient[worse_months][]" 
+                           type="checkbox" 
+                           <% if @ingredient.worse_months.include?( mnum.to_s ) %>checked="checked="<% end %>
+                           value="<%= mnum %>"> <%= m %>
+                </label>
               <% end %>
           </div>
       </div>
   </div>
-  <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-          <%= f.submit :class => "btn btn-primary" %>
-      </div>
+  <hr />
+  <div class="form-group text-center">
+      <%= f.submit :class => "btn btn-primary" %>
   </div>
 <% end %>
