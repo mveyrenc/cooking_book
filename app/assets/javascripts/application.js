@@ -151,5 +151,48 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('.tokenize-recipe-sources').each(function (index) {
+        var object = $(this);
+        var data_url = object.attr("data_list_url");
+        var url = object.attr("data_add_url");
+        object.tokenize({
+            datas: data_url,
+            onAddToken: function (value, text, e) {
+                if (value === text) {
+                    var object_data = {
+                        source: {
+                            name: value
+                        }
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: object_data,
+                        dataType: "json"
+                    }).success(function (json_data) {
+                        var new_object_id = json_data.id;
+                        var option = object.find('option[value="' + value + '"]');
+                        option.attr('value', new_object_id);
+                        value = new_object_id;
+
+                        width = 1200;
+                        height = 600;
+                        if (window.innerWidth)
+                        {
+                            var left = (window.innerWidth - width) / 2;
+                            var top = (window.innerHeight - height) / 2;
+                        }
+                        else
+                        {
+                            var left = (document.body.clientWidth - width) / 2;
+                            var top = (document.body.clientHeight - height) / 2;
+                        }
+                        window.open(url + '/' + new_object_id + '/edit', 'source_edit', 'menubar=no, scrollbars=no, top=' + top + ', left=' + left + ', width=' + width + ', height=' + height + '');
+                    });
+                }
+            }
+        });
+    });
 });
 

@@ -2,6 +2,10 @@ body {
     padding-top: 0;
 }
 
+.page {
+    margin-top: 0px;
+}
+
 .no-print {
     display: none;
 }

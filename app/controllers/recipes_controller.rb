@@ -49,31 +49,31 @@ class RecipesController < ApplicationController
           end
         end
       end
-      if params[:sources].present?
+      if params[:source_ids].present?
         all_of do
-          params[:sources].each do |filter|
-            with(:sources, filter)
+          params[:source_ids].each do |filter|
+            with(:source_ids, filter)
           end
         end
       end
-      if params[:exclu_sources].present?
+      if params[:exclu_source_ids].present?
         all_of do
-          params[:exclu_sources].each do |filter|
-            without(:sources, filter)
+          params[:exclu_source_ids].each do |filter|
+            without(:source_ids, filter)
           end
         end
       end
       facet :course_type_ids
       facet :category_ids
       facet :main_ingredient_ids
-      facet :sources
+      facet :source_ids
       paginate :page => params[:page] || 1, :per_page => 10
       order_by(:score, :desc)
       order_by(:created_at, :desc)
     end
     @query_params = params.except( :page )
     
-    filters = [:course_type_ids, :category_ids, :main_ingredient_ids, :exclu_course_type_ids, :exclu_category_ids, :exclu_main_ingredient_ids]
+    filters = [:course_type_ids, :category_ids, :main_ingredient_ids, :source_ids, :exclu_course_type_ids, :exclu_category_ids, :exclu_main_ingredient_ids, :exclu_source_ids]
     filters.each do |filter|
       if params[filter].present?
         params[filter].map!{ |x| x.to_i }
@@ -83,7 +83,7 @@ class RecipesController < ApplicationController
     @search_result.facet(:main_ingredient_ids).rows.sort!{|a,b| (a.count <=> b.count) == 0 ? (a.instance.name <=> b.instance.name) : (a.count <=> b.count)*(-1) }
     @search_result.facet(:course_type_ids).rows.sort!{|a,b| (a.count <=> b.count) == 0 ? (a.instance.name <=> b.instance.name) : (a.count <=> b.count)*(-1) }
     @search_result.facet(:category_ids).rows.sort!{|a,b| (a.count <=> b.count) == 0 ? (a.instance.name <=> b.instance.name) : (a.count <=> b.count)*(-1) }
-    @search_result.facet(:sources).rows.sort!{|a,b| (a.count <=> b.count) == 0 ? (a.value <=> b.value) : (a.count <=> b.count)*(-1) }
+    @search_result.facet(:source_ids).rows.sort!{|a,b| (a.count <=> b.count) == 0 ? (a.instance.name <=> b.instance.name) : (a.count <=> b.count)*(-1) }
   end
 
   # GET /recipes/1
@@ -152,6 +152,6 @@ class RecipesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def recipe_params
-    params.require(:recipe).permit(:name, {:category_ids => []}, :description, :picture, :times, :quantity, :ingredients, {:main_ingredient_ids => []}, :directions, :source, :wine)
+    params.require(:recipe).permit(:name, {:category_ids => []}, :description, :picture, :times, :quantity, :ingredients, {:main_ingredient_ids => []}, :directions, {:source_ids => []}, :wine)
   end
 end

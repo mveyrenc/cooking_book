@@ -1,17 +1,17 @@
 <div class="recipe-page show-page">
     <div class="page-header row">
-        <div class="col-md-3 no-print">
-            <%  if !@recipe.picture.blank?  %>
-              <%= image_tag @recipe.picture.url(:medium), :class => "media-object" %>
-            <% end %>
-        </div>
-        <div class="col-md-9">
+        <% if !@recipe.picture.blank? %>
+          <%= image_tag @recipe.picture.url(:medium), :class => "media-object col-sm-3" %>
+        <% end %>
+        <div class="col-sm-<%= !@recipe.picture.blank? ? 9 : 12 %>">
             <%= destroy_button @recipe %>
             <%= edit_button edit_recipe_path( @recipe ) %>
             <%= back_button recipes_path %>
             <h1><%= @recipe %></h1>
-            <% if !@recipe.source.blank? %>
-              <div class="source"><%= @recipe.source %></div>
+            <% if @recipe.sources_list.any? %>
+              <div class="sources-list">
+                <%= @recipe.sources_list.join(' ; ') %>
+              </div>
             <% end %>
             <% @recipe.categories.each do |category| %>
               <%= category_label category %>
@@ -20,22 +20,22 @@
               <%= additional_category_label category %>
             <% end %>
             <div class="rating row no-print">
-                <div class="col-md-1">
+                <div class="col-sm-1">
                     <label><%= Recipe.human_attribute_name('note')  %></label>
                 </div>
-                <div class="col-md-3">
+                <div class="col-sm-3">
                     <%= rating_for @recipe, "note" %>
                 </div>
-                <div class="col-md-1">
+                <div class="col-sm-1">
                     <label><%= Recipe.human_attribute_name('difficulty') %></label>
                 </div>
-                <div class="col-md-3">
+                <div class="col-sm-3">
                     <%= rating_for @recipe, "difficulty" %>
                 </div>
-                <div class="col-md-1">
+                <div class="col-sm-1">
                     <label><%= Recipe.human_attribute_name('cost') %></label>
                 </div>
-                <div class="col-md-3">
+                <div class="col-sm-3">
                     <%= rating_for @recipe, "cost" %>
                 </div>
             </div>
@@ -57,27 +57,29 @@
           </div>
       </div>
     <% end %>
-    <div class="ingredients row bgc rounded">
-        <div class="icon">
-            <%= icon('cutlery') %>
-        </div>
-        <div class="content">
-            <% if !@recipe.quantity.blank? %>
-              <div class="quantity">
-                  <%= @recipe.quantity %>
+    <%  if @recipe.main_ingredients.any? or !@recipe.ingredients.blank? or !@recipe.quantity.blank? %>
+      <div class="ingredients row bgc rounded">
+          <div class="icon">
+              <%= icon('cutlery') %>
+          </div>
+          <div class="content">
+              <% if !@recipe.quantity.blank? %>
+                <div class="quantity">
+                    <%= @recipe.quantity %>
+                </div>
+              <% end %>
+              <div class="ingredients-list"> 
+                  <% @recipe.main_ingredients.each do |ingredient| %>
+                    <%= main_ingredient_label ingredient %>
+                  <% end %>
+                  <% @recipe.additional_main_ingredients.each do |ingredient| %>
+                    <%= additional_main_ingredient_label ingredient %>
+                  <% end %>
+                  <%= raw( @recipe.ingredients ) %>
               </div>
-            <% end %>
-            <div class="ingredients-list">
-                <% @recipe.main_ingredients.each do |ingredient| %>
-                  <%= main_ingredient_label ingredient %>
-                <% end %>
-                <% @recipe.additional_main_ingredients.each do |ingredient| %>
-                  <%= additional_main_ingredient_label ingredient %>
-                <% end %>
-                <%= raw( @recipe.ingredients ) %>
-            </div>
-        </div>
-    </div>
+          </div>
+      </div>
+    <% end %>
     <div class="directions row bgc rounded">
         <div class="icon">
             <%= icon('book') %>

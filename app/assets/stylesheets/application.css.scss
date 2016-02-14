@@ -19,6 +19,10 @@
 @import "fonts";
 @import "jquery_plugins/jquery.tokenize";
 
+.mce-fullscreen nav.navbar {
+  display: none;
+}
+
 .navbar-inverse .navbar-nav > li > a.btn-success {
     color: white;
     &:hover {

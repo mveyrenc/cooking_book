@@ -32,10 +32,10 @@
               <%= remove_recipe_main_ingredient_exclude_filter params %>
               <%= recipe_main_ingredient_filter params, @search_result.facet(:main_ingredient_ids) %>
               
-              <h3><%= Recipe.human_attribute_name( 'source' ) %></h3>
+              <h3><%= Recipe.human_attribute_name( 'source_ids' ) %></h3>
               <%= remove_recipe_sources_include_filter params %>
               <%= remove_recipe_sources_exclude_filter params %>
-              <%= recipe_sources_filter params, @search_result.facet(:sources) %>
+              <%= recipe_sources_filter params, @search_result.facet(:source_ids) %>
           </div>
 
           <div class="recipe-list col-md-8">

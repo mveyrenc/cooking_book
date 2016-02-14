@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   
   resources :ingredients, path: '/admin/ingredients', :except => [:show]
   resources :ingredients, path: '/admin/ingredients', :only => [:show], :defaults => { :format => 'json' }
+  
+  resources :sources, path: '/admin/sources', :except => [:show]
+  resources :sources, path: '/admin/sources', :only => [:show], :defaults => { :format => 'json' }
 
   root :to => "welcome#index"
   

@@ -1,0 +1,20 @@
+<div class="source-page show-page">
+  <div class="page-header">
+    <%= link_to sources_path, :class => 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    <%= I18n.t( 'application.back' ) %>
+    <% end %>
+    <%= link_to edit_source_path(@source), :class => 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    <%= I18n.t( 'application.edit' ) %>
+    <% end %>
+    <h1><%= @source %></h1>
+  </div>
+
+  <dl class="dl-horizontal">
+      <dt class="name"><%= Source.human_attribute_name( 'name' ) %></dt>
+      <dd class="name"><%= @source.name %></dd>
+      <dt class="slug"><%= Source.human_attribute_name( 'slug' ) %></dt>
+      <dd class="slug"><%= @source.slug %></dd>
+  </dl>
+</div>

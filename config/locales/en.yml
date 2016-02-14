@@ -43,6 +43,7 @@ en:
         dish_types: "Dish types"
         categories: "Categories"
         ingredients: "Ingredients"
+        sources: "Sources"
         profile: "Profile"
     homepage:
         welcome: "Welcome!"
@@ -68,6 +69,11 @@ en:
         new_page_title: "New ingredient"
         edit_page_title: "Edit ingredient"
         new_button: "New ingredient"
+    sources:
+        index_page_title: "Listing sources"
+        new_page_title: "New source"
+        edit_page_title: "Edit source"
+        new_button: "New source"
     activerecord:
         models:
             recipe: "Recipe"

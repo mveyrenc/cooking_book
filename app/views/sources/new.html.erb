@@ -1,0 +1,11 @@
+<div class="source-page new-page form-page">
+  <div class="page-header">
+    <%= link_to sources_path, :class => 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    <%= I18n.t( 'application.back' ) %>
+    <% end %>
+    <h1><%= I18n.t( 'sources.new_page_title' ) %></h1>
+  </div>
+
+  <%= render 'form' %>
+</div>

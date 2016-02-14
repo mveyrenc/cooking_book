@@ -1,0 +1,24 @@
+<article class="row" id="<%= source.slug %>">
+    <div class="col-md-<%= 10 - source.depth %> col-md-offset-<%= source.depth %>">
+        <p>
+            <%= source %>
+            <% if source.recipes.size > 0 %><span class="badge"><%= source.recipes.size %></span><% end%>
+        </p>
+    </div>
+    <div class="pull-right">
+        <div class="btn-group">
+            <%= link_to new_source_path(parent_id: source.id), :class => 'btn btn-success btn-xs no-print', :title => I18n.t( 'application.add' ) do %>
+              <span class="glyphicon glyphicon-plus"></span>
+            <% end %>
+            <%= link_to edit_source_path(source), :class => 'btn btn-primary btn-xs no-print', :title => I18n.t( 'application.edit' ) do %>
+              <span class="glyphicon glyphicon-pencil"></span>
+            <% end %>
+            <%= link_to source, :class => 'btn btn-danger btn-xs no-print', :title => I18n.t( 'application.destroy' ), :method => :delete, :data => { confirm: I18n.t( 'application.destroy_confirmation' ) } do %>
+              <span class="glyphicon glyphicon-trash"></span>
+            <% end %>
+        </div>
+    </div>
+</article>
+<% source.children.each do |children| %>
+  <%= render 'row', source: children %>
+<% end %>

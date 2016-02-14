@@ -198,8 +198,8 @@ module ApplicationHelper
     if facet
       content_tag :ul, :class => "list-unstyled" do
         facet.rows.collect do |facet_item| 
-          if !params[:sources].present? or !params[:sources].include? facet_item.value 
-            concat( link_to_filter params, :sources, facet_item )
+          if !params[:source_ids].present? or !params[:source_ids].include? facet_item.value 
+            concat( link_to_filter params, :source_ids, facet_item )
           end
         end
       end
@@ -207,32 +207,32 @@ module ApplicationHelper
   end
   
   def remove_recipe_sources_include_filter params
-    if params[:sources].present?
+    if params[:source_ids].present?
       params.except( :page )
       content_tag :div, :class => "active-filters" do
-        params[:sources].each do |filter|
+        params[:source_ids].each do |filter|
           filter_params = params.dup.except( :page )
-          if filter_params[:sources].present? and filter_params[:sources].kind_of?(Array)
-            filter_params[:sources].reject!{ |c| c == filter }
+          if filter_params[:source_ids].present? and filter_params[:source_ids].kind_of?(Array)
+            filter_params[:source_ids].delete(filter)
           end
           filter_params.reject!{ |k,v| v.empty? }
-          concat( link_to_remove_include_filter( filter_params, filter ))
+          concat( link_to_remove_include_filter( filter_params, Source.find( filter ) ))
         end 
       end
     end
   end
   
   def remove_recipe_sources_exclude_filter params
-    if params[:exclu_sources].present?
+    if params[:exclu_source_ids].present?
       params.except( :page )
       content_tag :div, :class => "active-filters" do
-        params[:exclu_sources].each do |filter|
+        params[:exclu_source_ids].each do |filter|
           filter_params = params.dup.except( :page )
-          if filter_params[:exclu_sources].present? and filter_params[:exclu_sources].kind_of?(Array)
-            filter_params[:exclu_sources].reject!{ |c| c == filter }
+          if filter_params[:exclu_source_ids].present? and filter_params[:exclu_source_ids].kind_of?(Array)
+            filter_params[:exclu_source_ids].delete(filter)
           end
           filter_params.reject!{ |k,v| v.empty? }
-          concat( link_to_remove_exclude_filter( filter_params, filter ))
+          concat( link_to_remove_exclude_filter( filter_params, Source.find( filter ) ))
         end 
       end
     end

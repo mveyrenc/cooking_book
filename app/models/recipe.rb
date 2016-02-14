@@ -6,10 +6,11 @@ class Recipe < ActiveRecord::Base
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
   
   validates :name, presence: true
-  validates :ingredients, presence: true
+#  validates :ingredients, presence: true
   validates :directions, presence: true
   
   has_and_belongs_to_many :categories
+  has_and_belongs_to_many :sources
  
   has_and_belongs_to_many(:main_ingredients,
     :class_name => "Ingredient")
@@ -20,7 +21,6 @@ class Recipe < ActiveRecord::Base
   
   searchable do
     text :name
-    text :source
     text :wine
     text :ingredients do
       HTMLEntities.new.decode( Sanitize.clean( ingredients ) )
@@ -41,8 +41,8 @@ class Recipe < ActiveRecord::Base
     integer :main_ingredient_ids, :multiple => true, :references => Ingredient do
       additional_main_ingredients | main_ingredients
     end
-    string :sources, :multiple => true do
-      source.split(';').map{|s| s.strip }.reject{ |s| s.empty? }
+    integer :source_ids, :multiple => true, :references => Source do
+      sources_list
     end
   end
   
@@ -69,6 +69,14 @@ class Recipe < ActiveRecord::Base
       additional_ingredients |= ingredient.ancestors
     end
     additional_ingredients - main_ingredients
+  end
+  
+  def sources_list
+    sources_list = []
+    sources.each do |source|
+      sources_list |= source.path
+    end
+    sources_list.uniq
   end
   
   def id_and_name
