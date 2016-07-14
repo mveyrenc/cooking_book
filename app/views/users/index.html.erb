@@ -13,14 +13,19 @@
         <% else %>
           <% @users.each do |user| %>
             <article class="row" id="user-<%= user.id %>">
-                <div class="col-sm-5">
+                <div class="col-sm-4">
                     <p>
                         <%= user.name %>
                     </p>
                 </div>
-                <div class="col-sm-5">
+                <div class="col-sm-4">
                     <p>
                         <%= user.email %>
+                    </p>
+                </div>
+                <div class="col-sm-2">
+                    <p>
+                        <%= user.role.humanize %>
                     </p>
                 </div>
                 <div class="pull-right">
