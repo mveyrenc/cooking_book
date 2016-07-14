@@ -1,9 +1,13 @@
 class RecipesController < ApplicationController
+  
+  authorize_resource
+  
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
 
   # GET /recipes
   # GET /recipes.json
   def index
+    authorize! :read, Recipe
     @query = params[:query]
     @search_result = Recipe.search do
       fulltext params[:query]
@@ -89,10 +93,12 @@ class RecipesController < ApplicationController
   # GET /recipes/1
   # GET /recipes/1.json
   def show
+    authorize! :read, Recipe
   end
 
   # GET /recipes/new
   def new
+    authorize! :create, Recipe
     @recipe = Recipe.new
     @course_types = Category.course_type.ordered
     @categories = Category.categories.ordered
@@ -100,6 +106,7 @@ class RecipesController < ApplicationController
 
   # GET /recipes/1/edit
   def edit
+    authorize! :update, @recipe
     @course_types = Category.course_type.ordered
     @categories = Category.categories.ordered
   end
@@ -107,6 +114,7 @@ class RecipesController < ApplicationController
   # POST /recipes
   # POST /recipes.json
   def create
+    authorize! :create, Recipe
     @recipe = Recipe.new(recipe_params)
     logger.debug recipe_params
     respond_to do |format|
@@ -123,6 +131,7 @@ class RecipesController < ApplicationController
   # PATCH/PUT /recipes/1
   # PATCH/PUT /recipes/1.json
   def update
+    authorize! :update, @recipe
     respond_to do |format|
       if @recipe.update(recipe_params)
         format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
@@ -137,6 +146,7 @@ class RecipesController < ApplicationController
   # DELETE /recipes/1
   # DELETE /recipes/1.json
   def destroy
+    authorize! :destroy, @recipe
     @recipe.destroy
     respond_to do |format|
       format.html { redirect_to recipes_url, notice: 'Recipe was successfully destroyed.' }

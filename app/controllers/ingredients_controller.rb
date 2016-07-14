@@ -2,6 +2,7 @@ class IngredientsController < ApplicationController
   before_action :set_ingredient, only: [:show, :edit, :update, :destroy]
 
   def index
+    authorize! :read, Ingredient
     if params[:search]
       search = params[:search].downcase
       @ingredients = Ingredient.where("lower(name) LIKE :search",{search: "#{search}%"}).order( :name ) + Ingredient.where("lower(name) LIKE :search_like AND lower(name) NOT LIKE :search_not_like",{search_like: "%#{search}%", search_not_like: "#{search}%"}).order( :name )
@@ -11,18 +12,21 @@ class IngredientsController < ApplicationController
   end
 
   def show
+    authorize! :read, Ingredient
   end
 
   def new
+    authorize! :create, User
     @ingredient = Ingredient.new
     @ingredient.parent_id = params[:parent_id] if params[:parent_id]
   end
 
   def edit
+    authorize! :update, @user
   end
 
   def create
-    logger.debug ingredient_params
+    authorize! :create, User
     @ingredient = Ingredient.new(ingredient_params)
     
     respond_to do |format|
@@ -38,6 +42,7 @@ class IngredientsController < ApplicationController
   end
 
   def update
+    authorize! :update, @user
     respond_to do |format|
       if @ingredient.update(ingredient_params)
         format.html { redirect_to ingredients_url + '#' + @ingredient.slug, notice: 'Ingredient was successfully updated.' }
@@ -50,6 +55,7 @@ class IngredientsController < ApplicationController
   end
 
   def destroy
+    authorize! :destroy, @user
     @ingredient.destroy
     respond_to do |format|
       anchor = @ingredient.is_root? ? '' : '#' + @ingredient.parent.slug

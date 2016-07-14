@@ -1,11 +1,6 @@
 body {
     background: #EEE;
     color: #555555;
-    margin: 20px 5px;
-
-    > .container {
-        min-height: 900px;
-    }
 }
 
 footer {
@@ -35,6 +30,10 @@ h1 {
     font-weight: normal;
 }
 
+.page {
+    margin-top: 60px;
+}
+    
 .mce-fullscreen nav.navbar {
     display: none;
 }

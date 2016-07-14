@@ -25,16 +25,20 @@
                 </div>
                 <div class="col-sm-2">
                     <p>
-                        <%= user.role.humanize %>
+                        <%= user.role ? user.role.humanize : User::DEFAULT_ROLE.humanize %>
                     </p>
                 </div>
                 <div class="pull-right">
                     <div class="btn-group">
-                        <%= link_to edit_user_path(user), :class => 'btn btn-primary btn-xs no-print', :title => I18n.t( 'application.edit' ) do %>
-                          <span class="glyphicon glyphicon-pencil"></span>
+                        <% if can? :update, user %>
+                          <%= link_to edit_user_path(user), :class => 'btn btn-primary btn-xs no-print', :title => I18n.t( 'application.edit' ) do %>
+                            <span class="glyphicon glyphicon-pencil"></span>
+                          <% end %>
                         <% end %>
-                        <%= link_to user, :class => 'btn btn-danger btn-xs no-print', :title => I18n.t( 'application.destroy' ), :method => :delete, :data => { confirm: I18n.t( 'application.destroy_confirmation' ) } do %>
-                          <span class="glyphicon glyphicon-trash"></span>
+                        <% if can? :destroy, user %>
+                          <%= link_to user, :class => 'btn btn-danger btn-xs no-print', :title => I18n.t( 'application.destroy' ), :method => :delete, :data => { confirm: I18n.t( 'application.destroy_confirmation' ) } do %>
+                            <span class="glyphicon glyphicon-trash"></span>
+                          <% end %>
                         <% end %>
                     </div>
                 </div>

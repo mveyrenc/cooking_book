@@ -10,11 +10,15 @@
             <%= link_to new_source_path(parent_id: source.id), :class => 'btn btn-success btn-xs no-print', :title => I18n.t( 'application.add' ) do %>
               <span class="glyphicon glyphicon-plus"></span>
             <% end %>
-            <%= link_to edit_source_path(source), :class => 'btn btn-primary btn-xs no-print', :title => I18n.t( 'application.edit' ) do %>
-              <span class="glyphicon glyphicon-pencil"></span>
+            <% if can? :update, source %>
+              <%= link_to edit_source_path(source), :class => 'btn btn-primary btn-xs no-print', :title => I18n.t( 'application.edit' ) do %>
+                <span class="glyphicon glyphicon-pencil"></span>
+              <% end %>
             <% end %>
-            <%= link_to source, :class => 'btn btn-danger btn-xs no-print', :title => I18n.t( 'application.destroy' ), :method => :delete, :data => { confirm: I18n.t( 'application.destroy_confirmation' ) } do %>
-              <span class="glyphicon glyphicon-trash"></span>
+            <% if can? :destroy, source %>
+              <%= link_to source, :class => 'btn btn-danger btn-xs no-print', :title => I18n.t( 'application.destroy' ), :method => :delete, :data => { confirm: I18n.t( 'application.destroy_confirmation' ) } do %>
+                <span class="glyphicon glyphicon-trash"></span>
+              <% end %>
             <% end %>
         </div>
     </div>

@@ -2,6 +2,7 @@ class SourcesController < ApplicationController
   before_action :set_source, only: [:show, :edit, :update, :destroy]
 
   def index
+    authorize! :read, Source
     if params[:search]
       search = params[:search].downcase
       @sources = Source.where("lower(name) LIKE :search",{search: "#{search}%"}).order( :name ) + Source.where("lower(name) LIKE :search_like AND lower(name) NOT LIKE :search_not_like",{search_like: "%#{search}%", search_not_like: "#{search}%"}).order( :name )
@@ -11,17 +12,21 @@ class SourcesController < ApplicationController
   end
 
   def show
+    authorize! :read, Source
   end
 
   def new
+    authorize! :create, Source
     @source = Source.new
     @source.parent_id = params[:parent_id] if params[:parent_id]
   end
 
   def edit
+    authorize! :update, @source
   end
 
   def create
+    authorize! :create, Source
     @source = Source.new(source_params)
     
     respond_to do |format|
@@ -37,6 +42,7 @@ class SourcesController < ApplicationController
   end
 
   def update
+    authorize! :update, @source
     respond_to do |format|
       if @source.update(source_params)
         format.html { redirect_to sources_url + '#' + @source.slug, notice: 'Source was successfully updated.' }
@@ -49,6 +55,7 @@ class SourcesController < ApplicationController
   end
 
   def destroy
+    authorize! :destroy, @source
     @source.destroy
     respond_to do |format|
       anchor = @source.is_root? ? '' : '#' + @source.parent.slug

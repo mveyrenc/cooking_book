@@ -4,6 +4,7 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
+    authorize! :read, Category
     if params[:search] 
       @categories = Category.includes(:related_categories, :suggested_categories).where("lower(name) LIKE :search",{search: "%#{params[:search].downcase}%"}).order( :name )
     else
@@ -14,10 +15,12 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
+    authorize! :read, @category
   end
 
   # GET /categories/new
   def new
+    authorize! :create, Category
     @category = Category.new
   end
 
@@ -28,6 +31,7 @@ class CategoriesController < ApplicationController
   # POST /categories
   # POST /categories.json
   def create
+    authorize! :create, Category
     @category = Category.new(category_params)
 
     respond_to do |format|
@@ -44,6 +48,7 @@ class CategoriesController < ApplicationController
   # PATCH/PUT /categories/1
   # PATCH/PUT /categories/1.json
   def update
+    authorize! :update, @category
     respond_to do |format|
       if @category.update(category_params)
         format.html { redirect_to categories_url + '#' + @category.slug, notice: 'Category was successfully updated.' }
@@ -58,6 +63,7 @@ class CategoriesController < ApplicationController
   # DELETE /categories/1
   # DELETE /categories/1.json
   def destroy
+    authorize! :destroy, @category
     @category.destroy
     respond_to do |format|
       format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }

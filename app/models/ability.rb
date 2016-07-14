@@ -33,18 +33,21 @@ class Ability
  
     if user.role? :admin
       can :manage, :all
-    elsif user.role? :manager
-      can :create, [Category, Recipe, Ingredient, Source]
-      can :update, [Category, Recipe, Ingredient, Source]
-    elsif user.role? :moderator
-      can :create, [Recipe, Ingredient, Source]
+    end
+    if user.role? :manager
+      can :create, Category
+      can :update, Category
+    end
+    if user.role? :moderator
       can :update, [Recipe, Ingredient, Source]
-    elsif user.role? :contributor
+    end
+    if user.role? :contributor
       can :create, [Recipe, Ingredient, Source]
       can :update, Recipe do |recipe|
         recipe.try(:owner) == user
       end
-    elsif user.role? :reader
+    end
+    if user.role? :reader
       can :read, [Recipe, Ingredient, Source, Category]
     end
     

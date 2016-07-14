@@ -8,14 +8,20 @@
     </div>
     <div class="pull-right">
         <div class="btn-group">
-            <%= link_to new_ingredient_path(parent_id: ingredient.id), :class => 'btn btn-success btn-xs no-print', :title => I18n.t( 'application.add' ) do %>
-              <span class="glyphicon glyphicon-plus"></span>
+            <% if can? :create, Ingredient %>
+              <%= link_to new_ingredient_path(parent_id: ingredient.id), :class => 'btn btn-success btn-xs no-print', :title => I18n.t( 'application.add' ) do %>
+                <span class="glyphicon glyphicon-plus"></span>
+              <% end %>
             <% end %>
-            <%= link_to edit_ingredient_path(ingredient), :class => 'btn btn-primary btn-xs no-print', :title => I18n.t( 'application.edit' ) do %>
-              <span class="glyphicon glyphicon-pencil"></span>
+            <% if can? :update, ingredient %>
+              <%= link_to edit_ingredient_path(ingredient), :class => 'btn btn-primary btn-xs no-print', :title => I18n.t( 'application.edit' ) do %>
+                <span class="glyphicon glyphicon-pencil"></span>
+              <% end %>
             <% end %>
-            <%= link_to ingredient, :class => 'btn btn-danger btn-xs no-print', :title => I18n.t( 'application.destroy' ), :method => :delete, :data => { confirm: I18n.t( 'application.destroy_confirmation' ) } do %>
-              <span class="glyphicon glyphicon-trash"></span>
+            <% if can? :destroy, ingredient %>
+              <%= link_to ingredient, :class => 'btn btn-danger btn-xs no-print', :title => I18n.t( 'application.destroy' ), :method => :delete, :data => { confirm: I18n.t( 'application.destroy_confirmation' ) } do %>
+                <span class="glyphicon glyphicon-trash"></span>
+              <% end %>
             <% end %>
         </div>
     </div>

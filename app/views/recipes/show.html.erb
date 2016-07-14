@@ -5,8 +5,12 @@
                 <%= back_button recipes_path %>
             </div>
             <div class="pull-right">
-                <%= edit_button edit_recipe_path( @recipe ) %>
-                <%= destroy_button @recipe %>
+                <% if can? :update, @recipe %>
+                  <%= edit_button edit_recipe_path( @recipe ) %>
+                <% end %>
+                <% if can? :destroy, @recipe %>
+                  <%= destroy_button @recipe %>
+                <% end %>
             </div>
             <div class="clearfix"></div>
         </div>
@@ -55,8 +59,6 @@
             </div>
         </header>
     </div>
-
-
 
     <% if !@recipe.times.blank? %>
       <div class="times with-shadow">

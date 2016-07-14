@@ -7,7 +7,9 @@
     <div class="media-body">
         <div class="pull-right">
             <%= show_button recipe %>
-            <%= edit_button edit_recipe_path(recipe) %>
+            <% if can? :update, recipe %>
+              <%= edit_button edit_recipe_path(recipe) %>
+            <%  end %>
         </div>
         <h2><%= link_to recipe, recipe %></h2>
         <div class="row">
