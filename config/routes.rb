@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   post '/rate' => 'rater#create', :as => 'rate'
-  resources :users
+  resources :users, path: '/admin/users'
   resources :recipes
 
   get '/admin' => 'dish_types#index'

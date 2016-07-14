@@ -45,6 +45,7 @@ en:
         ingredients: "Ingredients"
         sources: "Sources"
         profile: "Profile"
+        users: "Users"
     homepage:
         welcome: "Welcome!"
         lastest_10_recipes: "The last 10 recipes"
@@ -74,6 +75,11 @@ en:
         new_page_title: "New source"
         edit_page_title: "Edit source"
         new_button: "New source"
+    users:
+        index_page_title: "Listing users"
+        new_page_title: "New user"
+        edit_page_title: "Edit user"
+        new_button: "New user"
     activerecord:
         models:
             recipe: "Recipe"

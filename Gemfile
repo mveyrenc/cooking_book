@@ -76,6 +76,8 @@ gem 'ratyrate'
 
 # Authentification
 gem 'devise'
+gem 'cancan'
+gem 'role_model'
 
 # Sorting
 gem 'acts_as_list'

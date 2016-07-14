@@ -40,6 +40,7 @@ GEM
     bootstrap-sass (3.2.0.0)
       sass (~> 3.2)
     builder (3.2.2)
+    cancan (1.6.10)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.4)
@@ -129,6 +130,7 @@ GEM
       json (~> 1.4)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
+    role_model (0.8.2)
     rsolr (1.0.10)
       builder (>= 2.1.2)
     sanitize (3.0.0)
@@ -193,6 +195,7 @@ DEPENDENCIES
   autoprefixer-rails
   bootstrap-generators (~> 3.1.1)
   bootstrap-sass (~> 3.2.0)
+  cancan
   coffee-rails (~> 4.0.0)
   delayed_job
   delayed_job_active_record
@@ -208,6 +211,7 @@ DEPENDENCIES
   progress_bar
   rails (= 4.1.1)
   ratyrate
+  role_model
   sanitize
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
