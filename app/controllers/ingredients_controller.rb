@@ -35,7 +35,7 @@ class IngredientsController < ApplicationController
     respond_to do |format|
       if @ingredient.save
         anchor = @ingredient.is_root? ? @ingredient.slug : @ingredient.parent.slug
-        format.html { redirect_to ingredients_url + '#' + anchor, notice: 'Ingredient was successfully created.' }
+        format.html { redirect_to ingredients_url + '#' + anchor, notice: t('.success') }
         format.json { render :show, status: :created, location: @ingredient }
       else
         format.html { render :new }
@@ -51,7 +51,7 @@ class IngredientsController < ApplicationController
     
     respond_to do |format|
       if @ingredient.update(ingredient_params)
-        format.html { redirect_to ingredients_url + '#' + @ingredient.slug, notice: 'Ingredient was successfully updated.' }
+        format.html { redirect_to ingredients_url + '#' + @ingredient.slug, notice: t('.success') }
         format.json { render :show, status: :ok, location: @ingredient }
       else
         format.html { render :edit }
@@ -65,7 +65,7 @@ class IngredientsController < ApplicationController
     @ingredient.destroy
     respond_to do |format|
       anchor = @ingredient.is_root? ? '' : '#' + @ingredient.parent.slug
-      format.html { redirect_to ingredients_url + anchor, notice: 'Category was successfully destroyed.' }
+      format.html { redirect_to ingredients_url + anchor, notice: t('.success') }
       format.json { head :no_content }
     end
   end

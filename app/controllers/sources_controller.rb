@@ -35,7 +35,7 @@ class SourcesController < ApplicationController
     respond_to do |format|
       if @source.save
         anchor = @source.is_root? ? @source.slug : @source.parent.slug
-        format.html { redirect_to sources_url + '#' + anchor, notice: 'Source was successfully created.' }
+        format.html { redirect_to sources_url + '#' + anchor, notice: t('.success') }
         format.json { render :show, status: :created, location: @source }
       else
         format.html { render :new }
@@ -51,7 +51,7 @@ class SourcesController < ApplicationController
     
     respond_to do |format|
       if @source.update(source_params)
-        format.html { redirect_to sources_url + '#' + @source.slug, notice: 'Source was successfully updated.' }
+        format.html { redirect_to sources_url + '#' + @source.slug, notice: t('.success') }
         format.json { render :show, status: :ok, location: @source }
       else
         format.html { render :edit }
@@ -65,7 +65,7 @@ class SourcesController < ApplicationController
     @source.destroy
     respond_to do |format|
       anchor = @source.is_root? ? '' : '#' + @source.parent.slug
-      format.html { redirect_to sources_url + anchor, notice: 'Category was successfully destroyed.' }
+      format.html { redirect_to sources_url + anchor, notice: t('.success') }
       format.json { head :no_content }
     end
   end

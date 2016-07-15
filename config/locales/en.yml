@@ -100,6 +100,41 @@ en:
                 note: "Note"
                 difficulty: "Difficulty"
                 cost: "Cost"
+    recipes:
+        create:
+            success: Recipe was successfully created.
+        update:
+            success: Recipe was successfully updated.
+        destroy:
+            success: Recipe was successfully destroyed.
+    categories:
+        create:
+            success: Category was successfully created.
+        update:
+            success: Category was successfully updated.
+        destroy:
+            success: Category was successfully destroyed.
+    ingredients:
+        create:
+            success: Ingredient was successfully created.
+        update:
+            success: Ingredient was successfully updated.
+        destroy:
+            success: Ingredient was successfully destroyed.
+    sources:
+        create:
+            success: Source was successfully created.
+        update:
+            success: Source was successfully updated.
+        destroy:
+            success: Source was successfully destroyed.
+    users:
+        create:
+            success: User was successfully created.
+        update:
+            success: User was successfully updated.
+        destroy:
+            success: User was successfully destroyed.
     helpers:
         submit:
             create: "Validate"
