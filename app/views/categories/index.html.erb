@@ -18,9 +18,11 @@
         <article id="<%=  category.slug %>" class="row with-shadow">
             <div class="col-md-10">
                 <h2>
-                    <%= category %>
                     <% if category.is_course_type %>
+                      <%= link_to category, recipes_path( {:course_type_ids => [category.id]} ) %>
                       <span class="glyphicon glyphicon-star text-success"></span>
+                    <% else  %>
+                      <%= link_to category, recipes_path( {:category_ids => [category.id]} ) %>
                     <% end %>
                 </h2>
                 <% if category.related_categories.any? %>

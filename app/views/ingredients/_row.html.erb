@@ -2,7 +2,7 @@
     <% col = ingredient.months ? 6 : 10 %>
     <div class="col-md-<%= col - ingredient.depth %> col-md-offset-<%= ingredient.depth %>">
         <p>
-            <%= ingredient %>
+            <%= link_to ingredient, recipes_path( {:main_ingredient_ids => [ingredient.id]} ) %>
             <% if ingredient.recipes.size > 0 %><span class="badge"><%= ingredient.recipes.size %></span><% end%>
         </p>
     </div>

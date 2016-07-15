@@ -1,7 +1,7 @@
 <article class="row" id="<%= source.slug %>">
     <div class="col-md-<%= 10 - source.depth %> col-md-offset-<%= source.depth %>">
         <p>
-            <%= source %>
+            <%= link_to source, recipes_path( {:source_ids => [source.id]} ) %>
             <% if source.recipes.size > 0 %><span class="badge"><%= source.recipes.size %></span><% end%>
         </p>
     </div>
