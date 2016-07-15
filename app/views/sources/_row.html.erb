@@ -2,7 +2,7 @@
     <div class="col-md-<%= 10 - source.depth %> col-md-offset-<%= source.depth %>">
         <p>
             <%= link_to source, recipes_path( {:source_ids => [source.id]} ) %>
-            <% if source.recipes.size > 0 %><span class="badge"><%= source.recipes.size %></span><% end%>
+            <% if source.recipes.count %><span class="badge"><%= source.recipes.count %></span><% end%>
         </p>
     </div>
     <div class="pull-right">

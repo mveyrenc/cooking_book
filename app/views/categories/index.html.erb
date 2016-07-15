@@ -25,7 +25,7 @@
                       <%= link_to category, recipes_path( {:category_ids => [category.id]} ) %>
                     <% end %>
                 </h2>
-                <% if category.related_categories.any? %>
+                <% if category.related_categories.count %>
                   <div class="row col-md-6">
                       <div class="col-md-5">
                           <label><%= Category.human_attribute_name('related_categories')  %></label>
@@ -35,7 +35,7 @@
                       </div>
                   </div>
                 <% end %>
-                <% if category.related_by_categories.any? %>
+                <% if category.related_by_categories.count %>
                   <div class="row col-md-6">
                       <div class="col-md-5">
                           <label><%= Category.human_attribute_name('related_by_categories')  %></label>
@@ -45,7 +45,7 @@
                       </div>
                   </div>
                 <% end %>
-                <% if category.suggested_categories.any? %>
+                <% if category.suggested_categories.count %>
                   <div class="row col-md-6">
                       <div class="col-md-5">
                           <label><%= Category.human_attribute_name('suggested_categories')  %></label>
@@ -55,7 +55,7 @@
                       </div>
                   </div>
                 <% end %>
-                <% if category.suggested_by_categories.any? %>
+                <% if category.suggested_by_categories.count %>
                   <div class="row col-md-6">
                       <div class="col-md-5">
                           <label><%= Category.human_attribute_name('suggested_by_categories')  %></label>

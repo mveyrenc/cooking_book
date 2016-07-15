@@ -3,7 +3,7 @@
     <div class="col-md-<%= col - ingredient.depth %> col-md-offset-<%= ingredient.depth %>">
         <p>
             <%= link_to ingredient, recipes_path( {:main_ingredient_ids => [ingredient.id]} ) %>
-            <% if ingredient.recipes.size > 0 %><span class="badge"><%= ingredient.recipes.size %></span><% end%>
+            <% if ingredient.recipes.count %><span class="badge"><%= ingredient.recipes.count %></span><% end %>
         </p>
     </div>
     <div class="pull-right">
