@@ -52,6 +52,9 @@
                           <% if can? :read, Source %>
                             <li><%= link_to t('menu.sources'), sources_path %></li>
                           <% end %>
+                          <% if can? :manage, User %>
+                            <li><%= link_to t('menu.users'), users_path %></li>
+                          <% end %>
                         <% end %>
                     </ul>
                     <% if user_signed_in? %>

@@ -99,6 +99,12 @@ fr:
             source:
                 name: "Nom"
                 parent: "Parente"
+            user:
+                name: "Nom"
+                email: "Email"
+                role: "Rôle"
+                password: "Mot de passe"
+                password_confirmation: "Confirmation du mot de passe"
     helpers:
         submit:
             create: "Valider"
