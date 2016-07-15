@@ -4,9 +4,13 @@ class Ingredient < ActiveRecord::Base
   
   has_ancestry
   
-  validates :name, presence: true, :uniqueness => true 
-  
   has_and_belongs_to_many :recipes, :counter_cache => true
+  belongs_to :author, class_name: "User"
+  belongs_to :modifier, class_name: "User"
+  
+  validates :name, presence: true, :uniqueness => true
+  validates :author, presence: true
+  validates :modifier, presence: true
 
   default_scope { order('name') } 
   

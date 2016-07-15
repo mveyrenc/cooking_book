@@ -87,3 +87,6 @@ gem 'friendly_id', '~> 5.1.0'
 
 # Tree
 gem 'ancestry'
+
+# ActiveRecord
+gem "schema_plus"

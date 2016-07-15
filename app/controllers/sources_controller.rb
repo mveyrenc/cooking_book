@@ -29,6 +29,9 @@ class SourcesController < ApplicationController
     authorize! :create, Source
     @source = Source.new(source_params)
     
+    @source.author = current_user
+    @source.modifier = current_user
+    
     respond_to do |format|
       if @source.save
         anchor = @source.is_root? ? @source.slug : @source.parent.slug
@@ -43,6 +46,9 @@ class SourcesController < ApplicationController
 
   def update
     authorize! :update, @source
+    
+    @source.modifier = current_user
+    
     respond_to do |format|
       if @source.update(source_params)
         format.html { redirect_to sources_url + '#' + @source.slug, notice: 'Source was successfully updated.' }

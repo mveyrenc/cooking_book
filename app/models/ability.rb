@@ -44,12 +44,11 @@ class Ability
     if user.role? :contributor
       can :create, [Recipe, Ingredient, Source]
       can :update, Recipe do |recipe|
-        recipe.try(:owner) == user
+        recipe.try(:author) == user
       end
     end
     if user.role? :reader
       can :read, [Recipe, Ingredient, Source, Category]
     end
-    
   end
 end

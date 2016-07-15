@@ -115,8 +115,11 @@ class RecipesController < ApplicationController
   # POST /recipes.json
   def create
     authorize! :create, Recipe
+    
     @recipe = Recipe.new(recipe_params)
-    logger.debug recipe_params
+    @recipe.author = current_user
+    @recipe.modifier = current_user
+    
     respond_to do |format|
       if @recipe.save
         format.html { redirect_to @recipe, notice: 'Recipe was successfully created.' }
@@ -132,6 +135,9 @@ class RecipesController < ApplicationController
   # PATCH/PUT /recipes/1.json
   def update
     authorize! :update, @recipe
+    
+    @recipe.modifier = current_user
+    
     respond_to do |format|
       if @recipe.update(recipe_params)
         format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }

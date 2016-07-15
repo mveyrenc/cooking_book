@@ -33,6 +33,9 @@ class CategoriesController < ApplicationController
   def create
     authorize! :create, Category
     @category = Category.new(category_params)
+    
+    @category.author = current_user
+    @category.modifier = current_user
 
     respond_to do |format|
       if @category.save
@@ -49,6 +52,9 @@ class CategoriesController < ApplicationController
   # PATCH/PUT /categories/1.json
   def update
     authorize! :update, @category
+    
+    @category.modifier = current_user
+    
     respond_to do |format|
       if @category.update(category_params)
         format.html { redirect_to categories_url + '#' + @category.slug, notice: 'Category was successfully updated.' }

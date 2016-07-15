@@ -29,6 +29,9 @@ class IngredientsController < ApplicationController
     authorize! :create, User
     @ingredient = Ingredient.new(ingredient_params)
     
+    @ingredient.author = current_user
+    @ingredient.modifier = current_user
+    
     respond_to do |format|
       if @ingredient.save
         anchor = @ingredient.is_root? ? @ingredient.slug : @ingredient.parent.slug
@@ -43,6 +46,9 @@ class IngredientsController < ApplicationController
 
   def update
     authorize! :update, @user
+    
+    @ingredient.modifier = current_user
+    
     respond_to do |format|
       if @ingredient.update(ingredient_params)
         format.html { redirect_to ingredients_url + '#' + @ingredient.slug, notice: 'Ingredient was successfully updated.' }

@@ -117,4 +117,15 @@
           </fieldset>
       </div>
     <% end %>
+
+    <div class="creator with-shadow">
+        <fieldset>
+            <div class="content">
+                <p><b><%= Recipe.human_attribute_name('author') %></b> <%= @recipe.author.name %></p>
+                <p><b><%= Recipe.human_attribute_name('created_at') %></b> <%= @recipe.created_at.strftime("%d/%m/%Y %H:%M") %></p>
+                <p><b><%= Recipe.human_attribute_name('modifier') %></b> <%= @recipe.modifier.name %></p>
+                <p><b><%= Recipe.human_attribute_name('updated_at') %></b> <%= @recipe.updated_at.strftime("%d/%m/%Y %H:%M") %></p>
+            </div>
+        </fieldset>
+    </div>
 </div>

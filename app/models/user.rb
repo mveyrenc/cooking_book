@@ -17,7 +17,12 @@ class User < ActiveRecord::Base
   ratyrate_rater
   
   def role?(base_role)
-    ROLES.index(base_role.to_s) >= ROLES.index(role)
+    logger.debug self.inspect
+    if self.role.nil? || self.role.blank?
+      false
+    else
+      ROLES.index(base_role.to_s) >= ROLES.index(self.role)
+    end
   end
 
   def default_role

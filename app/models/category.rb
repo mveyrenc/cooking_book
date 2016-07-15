@@ -2,8 +2,6 @@ class Category < ActiveRecord::Base
   extend FriendlyId
   friendly_id :id_and_name, use: :slugged
   
-  validates :name, presence: true, :uniqueness => true 
-  
   has_and_belongs_to_many :recipes
   
   has_and_belongs_to_many(:related_categories,
@@ -29,6 +27,14 @@ class Category < ActiveRecord::Base
     :join_table => "categories_suggested",
     :foreign_key => "suggested_category_id",
     :association_foreign_key => "category_id")
+  
+  belongs_to :author, class_name: "User"
+  
+  belongs_to :modifier, class_name: "User"
+  
+  validates :name, presence: true, :uniqueness => true
+  validates :author, presence: true
+  validates :modifier, presence: true
   
   scope :ordered, ->{ order(name: :asc) }
   scope :course_type, -> { where(is_course_type: true) }

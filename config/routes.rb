@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users
+  
   post '/rate' => 'rater#create', :as => 'rate'
   resources :users, path: '/admin/users'
   resources :recipes
@@ -23,7 +24,6 @@ Rails.application.routes.draw do
   resources :sources, path: '/admin/sources', :only => [:show], :defaults => { :format => 'json' }
 
   root :to => "welcome#index"
-  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
