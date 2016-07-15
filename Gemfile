@@ -51,7 +51,7 @@ gem 'tinymce-rails'
 
 # SolR
 gem 'progress_bar'
-gem 'htmlentities'
+gem 'htmlentities', '~> 4.3.4'
 gem 'sanitize'
 gem 'sunspot_rails'
 gem 'sunspot_solr', group: :development
