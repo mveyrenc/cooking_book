@@ -28,7 +28,7 @@
                 <% if category.related_categories.any? %>
                   <div class="row col-md-6">
                       <div class="col-md-5">
-                          <label><%= Recipe.human_attribute_name('related_categories')  %></label>
+                          <label><%= Category.human_attribute_name('related_categories')  %></label>
                       </div>
                       <div class="col-md-7">
                           <%= category.related_categories.to_a.join(', ') %>
@@ -38,7 +38,7 @@
                 <% if category.related_by_categories.any? %>
                   <div class="row col-md-6">
                       <div class="col-md-5">
-                          <label><%= Recipe.human_attribute_name('related_by_categories')  %></label>
+                          <label><%= Category.human_attribute_name('related_by_categories')  %></label>
                       </div>
                       <div class="col-md-7">
                           <%= category.related_by_categories.to_a.join(', ') %>
@@ -48,7 +48,7 @@
                 <% if category.suggested_categories.any? %>
                   <div class="row col-md-6">
                       <div class="col-md-5">
-                          <label><%= Recipe.human_attribute_name('suggested_categories')  %></label>
+                          <label><%= Category.human_attribute_name('suggested_categories')  %></label>
                       </div>
                       <div class="col-md-7">
                           <%= category.suggested_categories.to_a.join(', ') %>
@@ -58,7 +58,7 @@
                 <% if category.suggested_by_categories.any? %>
                   <div class="row col-md-6">
                       <div class="col-md-5">
-                          <label><%= Recipe.human_attribute_name('suggested_by_categories')  %></label>
+                          <label><%= Category.human_attribute_name('suggested_by_categories')  %></label>
                       </div>
                       <div class="col-md-7">
                           <%= category.suggested_by_categories.to_a.join(', ') %>
