@@ -71,6 +71,7 @@ class IngredientsController < ApplicationController
   end
 
   private
+  
   def set_ingredient
     @ingredient = Ingredient.friendly.find(params[:id])
   end

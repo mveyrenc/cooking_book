@@ -100,15 +100,11 @@ class RecipesController < ApplicationController
   def new
     authorize! :create, Recipe
     @recipe = Recipe.new
-    @course_types = Category.course_type.ordered
-    @categories = Category.categories.ordered
   end
 
   # GET /recipes/1/edit
   def edit
     authorize! :update, @recipe
-    @course_types = Category.course_type.ordered
-    @categories = Category.categories.ordered
   end
 
   # POST /recipes

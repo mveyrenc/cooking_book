@@ -3,25 +3,24 @@ Rails.application.routes.draw do
   devise_for :users
   
   post '/rate' => 'rater#create', :as => 'rate'
-  resources :users, path: '/admin/users'
+  
+  resources :users
+ 
   resources :recipes
-
-  get '/admin' => 'dish_types#index'
   
-  resources :dish_types, path: '/admin/dish_types', :except => [:show] do
-    get 'move_higher', on: :member
-    get 'move_lower', on: :member
-  end
-  resources :dish_types, path: '/admin/dish_types', :only => [:show], :defaults => { :format => 'json' }
+  resources :categories, :except => [:show]
+  resources :categories, :only => [:show], :defaults => { :format => 'json' }
   
-  resources :categories, path: '/admin/categories', :except => [:show]
-  resources :categories, path: '/admin/categories', :only => [:show], :defaults => { :format => 'json' }
+  resources :ingredients, :except => [:show]
+  resources :ingredients, :only => [:show], :defaults => { :format => 'json' }
   
-  resources :ingredients, path: '/admin/ingredients', :except => [:show]
-  resources :ingredients, path: '/admin/ingredients', :only => [:show], :defaults => { :format => 'json' }
+  resources :sources, :except => [:show]
+  resources :sources, :only => [:show], :defaults => { :format => 'json' }
   
-  resources :sources, path: '/admin/sources', :except => [:show]
-  resources :sources, path: '/admin/sources', :only => [:show], :defaults => { :format => 'json' }
+  resources :import_recipe_regals, :only => [:new, :create]
+  
+#  get '/import/recipe/regal', to: :regal, controller: 'import_recipe'
+#  post '/import/recipe/regal', to: :regal_run_import, controller: 'import_recipe'
 
   root :to => "welcome#index"
   # The priority is based upon order of creation: first created -> highest priority.
