@@ -27,3 +27,7 @@
 
 # Ignore database dump
 *.sql
+
+# Environment wrapper
+ruby_wrapper.sh
+set_environment.sh
