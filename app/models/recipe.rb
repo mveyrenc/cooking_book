@@ -23,7 +23,7 @@ class Recipe < ActiveRecord::Base
   before_save :update_counters
   
   searchable do
-    text :name
+    text :name, :boost => 3.0
     text :wine
     text :ingredients do
       HTMLEntities.new.decode( Sanitize.clean( ingredients ) )
@@ -33,6 +33,9 @@ class Recipe < ActiveRecord::Base
     end
     text :directions do
       HTMLEntities.new.decode( Sanitize.clean( directions ) )
+    end
+    text :tags, :boost => 2.0 do 
+      (additional_categories | categories | additional_main_ingredients | main_ingredients | sources_list ).map{ |i| i.name }.join(' ')
     end
     time :created_at
     integer :course_type_ids, :multiple => true, :references => Category do
