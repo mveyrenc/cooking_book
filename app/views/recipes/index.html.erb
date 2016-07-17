@@ -68,19 +68,41 @@
           <% end %>
           <% if @search_result.results.total_pages > 1 %>
             <div class="text-center">
-                <ul class="pagination">
-                    <li <% if @search_result.results.first_page? %>class="disabled"<% end %>>
-                        <%= link_to "&laquo;".html_safe, recipes_path( params.merge({ :page => @search_result.results.previous_page }) ) %>
-                    </li>
-                    <% for page in 1..(@search_result.results.total_pages) %>
-                      <li <% if page == ( params[:page].to_i || 1 ) %>class="active"<% end %>>
-                          <%= link_to page, recipes_path( params.merge({ :page => page }) ) %>
-                      </li>
+                <nav>
+                    <% if !@search_result.results.first_page? %>
+                      <ul class="pagination">
+                          <li>
+                              <%= link_to "&laquo;".html_safe, recipes_path( params.merge({ :page => 1 }) ) %>
+                          </li>
+                      </ul>
+                      <ul class="pagination">
+                          <li>
+                              <%= link_to "&lsaquo;".html_safe, recipes_path( params.merge({ :page => @search_result.results.previous_page }) ) %>
+                          </li>
+                      </ul>
                     <% end %>
-                    <li <% if @search_result.results.last_page? %>class="disabled"<% end %>>
-                        <%= link_to "&raquo;".html_safe, recipes_path( params.merge({ :page => @search_result.results.next_page }) ) %>
-                    </li>
-                </ul>
+                    <ul class="pagination">
+                        <% for page in (@search_result.results.current_page-5)..(@search_result.results.current_page+5) %>
+                          <% if page >= 1 and page <= @search_result.results.total_pages %>
+                            <li <% if page == ( params[:page].to_i || 1 ) %>class="active"<% end %>>
+                                <%= link_to page, recipes_path( params.merge({ :page => page }) ) %>
+                            </li>
+                          <% end %>
+                        <% end %>
+                    </ul>
+                    <% if !@search_result.results.last_page? %>
+                      <ul class="pagination">
+                          <li>
+                              <%= link_to "&rsaquo;".html_safe, recipes_path( params.merge({ :page => @search_result.results.next_page }) ) %>
+                          </li>
+                      </ul>
+                      <ul class="pagination">
+                          <li>
+                              <%= link_to "&raquo;".html_safe, recipes_path( params.merge({ :page => @search_result.results.total_pages }) ) %>
+                          </li>
+                      </ul>
+                    <% end %>
+                </nav>
             </div>
           <% end %>
       </div>
