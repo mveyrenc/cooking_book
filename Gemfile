@@ -89,4 +89,7 @@ gem 'friendly_id', '~> 5.1.0'
 gem 'ancestry'
 
 # ActiveRecord
-gem "schema_plus"
+gem 'schema_plus'
+
+# Sorting strings
+gem 'sort_alphabetical'

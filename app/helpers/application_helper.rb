@@ -106,6 +106,94 @@ module ApplicationHelper
     end
   end
   
+  def recipe_difficulty_filter params, facet
+    if facet
+      content_tag :ul, :class => "list-unstyled" do
+        facet.rows.collect do |facet_item| 
+          if facet_item and ( !params[:difficulty].present? or !params[:difficulty].include? facet_item.value )
+            concat( link_to_filter params, :difficulty, facet_item )
+          end
+        end
+      end
+    end
+  end
+  
+  def remove_recipe_difficulty_include_filter params
+    if params[:difficulty].present?
+      params.except( :page )
+      content_tag :div, :class => "active-filters" do
+        params[:difficulty].each do |filter|
+          filter_params = params.dup
+          if filter_params[:difficulty].present? and filter_params[:difficulty].kind_of?(Array)
+            filter_params[:difficulty].delete(filter)
+          end
+          filter_params.reject!{ |k,v| v.empty? }
+          concat( link_to_remove_include_filter filter_params,  I18n.t(Recipe.difficulty_types.invert[filter], scope: 'recipes') )
+        end 
+      end
+    end
+  end
+  
+  def remove_recipe_difficulty_exclude_filter params
+    if params[:exclu_difficulty].present?
+      params.except( :page )
+      content_tag :div, :class => "active-filters" do
+        params[:exclu_difficulty].each do |filter|
+          filter_params = params.dup
+          if filter_params[:exclu_difficulty].present? and filter_params[:exclu_difficulty].kind_of?(Array)
+            filter_params[:exclu_difficulty].delete(filter)
+          end
+          filter_params.reject!{ |k,v| v.empty? }
+          concat( link_to_remove_exclude_filter filter_params,  I18n.t(Recipe.difficulty_types.invert[filter], scope: 'recipes') )
+        end 
+      end
+    end
+  end
+  
+  def recipe_cost_filter params, facet
+    if facet
+      content_tag :ul, :class => "list-unstyled" do
+        facet.rows.collect do |facet_item| 
+          if facet_item and ( !params[:cost].present? or !params[:cost].include? facet_item.value )
+            concat( link_to_filter params, :cost, facet_item )
+          end
+        end
+      end
+    end
+  end
+  
+  def remove_recipe_cost_include_filter params
+    if params[:cost].present?
+      params.except( :page )
+      content_tag :div, :class => "active-filters" do
+        params[:cost].each do |filter|
+          filter_params = params.dup
+          if filter_params[:cost].present? and filter_params[:cost].kind_of?(Array)
+            filter_params[:cost].delete(filter)
+          end
+          filter_params.reject!{ |k,v| v.empty? }
+          concat( link_to_remove_include_filter filter_params,  I18n.t(Recipe.difficulty_types.invert[filter], scope: 'recipes') )
+        end 
+      end
+    end
+  end
+  
+  def remove_recipe_cost_exclude_filter params
+    if params[:cost].present?
+      params.except( :page )
+      content_tag :div, :class => "active-filters" do
+        params[:cost].each do |filter|
+          filter_params = params.dup
+          if filter_params[:cost].present? and filter_params[:cost].kind_of?(Array)
+            filter_params[:cost].delete(filter)
+          end
+          filter_params.reject!{ |k,v| v.empty? }
+          concat( link_to_remove_exclude_filter filter_params,  I18n.t(Recipe.difficulty_types.invert[filter], scope: 'recipes') )
+        end 
+      end
+    end
+  end
+  
   def recipe_category_filter params, facet
     if facet
       content_tag :ul, :class => "list-unstyled" do
@@ -239,7 +327,7 @@ module ApplicationHelper
   end
   
   def link_to_filter params, param_identifier, item
-    name = item.instance ? item.instance.name : item.value
+    name = item.instance ? item.instance.name : I18n.t(Recipe.difficulty_types.invert[item.value], scope: 'recipes')
     include_param_identifier = param_identifier.to_s
     exclude_param_identifier = "exclu_"+param_identifier.to_s
     content_tag :li do

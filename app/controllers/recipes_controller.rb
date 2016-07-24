@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  
+
   authorize_resource
   
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
@@ -22,6 +22,34 @@ class RecipesController < ApplicationController
         all_of do
           params[:exclu_course_type_ids].each do |filter|
             without(:course_type_ids, filter)
+          end
+        end
+      end
+      if params[:difficulty].present?
+        all_of do
+          params[:difficulty].each do |filter|
+            with(:difficulty, filter)
+          end
+        end
+      end
+      if params[:exclu_difficulty].present?
+        all_of do
+          params[:exclu_difficulty].each do |filter|
+            without(:difficulty, filter)
+          end
+        end
+      end
+      if params[:cost].present?
+        all_of do
+          params[:cost].each do |filter|
+            with(:cost, filter)
+          end
+        end
+      end
+      if params[:exclu_cost].present?
+        all_of do
+          params[:exclu_cost].each do |filter|
+            without(:cost, filter)
           end
         end
       end
@@ -71,27 +99,43 @@ class RecipesController < ApplicationController
       facet :category_ids
       facet :main_ingredient_ids
       facet :source_ids
+      facet :difficulty, :sort => :index
+      facet :cost, :sort => :index
       paginate :page => params[:page] || 1, :per_page => 10
       order_by(:score, :desc)
       order_by(:created_at, :desc)
     end
     @query_params = params.except( :page )
     
-    filters = [:course_type_ids, :category_ids, :main_ingredient_ids, :source_ids, :exclu_course_type_ids, :exclu_category_ids, :exclu_main_ingredient_ids, :exclu_source_ids]
+    filters = [
+      :course_type_ids, 
+      :exclu_course_type_ids, 
+      :difficulty, 
+      :exclu_difficulty, 
+      :cost, 
+      :exclu_cost, 
+      :category_ids, 
+      :exclu_category_ids, 
+      :main_ingredient_ids, 
+      :exclu_main_ingredient_ids, 
+      :source_ids, 
+      :exclu_source_ids
+    ]
     filters.each do |filter|
       if params[filter].present?
         params[filter].map!{ |x| x.to_i }
       end
     end
     
-#    @search_result.facet(:main_ingredient_ids).rows.sort!{|a,b| (a.count <=> b.count) == 0 ? (a.instance.name <=> b.instance.name) : (a.count <=> b.count)*(-1) }
-    @search_result.facet(:main_ingredient_ids).rows.sort!{|a,b| a.instance.name <=> b.instance.name }
-#    @search_result.facet(:course_type_ids).rows.sort!{|a,b| (a.count <=> b.count) == 0 ? (a.instance.name <=> b.instance.name) : (a.count <=> b.count)*(-1) }
-    @search_result.facet(:course_type_ids).rows.sort!{|a,b| a.instance.name <=> b.instance.name }
-#    @search_result.facet(:category_ids).rows.sort!{|a,b| (a.count <=> b.count) == 0 ? (a.instance.name <=> b.instance.name) : (a.count <=> b.count)*(-1) }
-    @search_result.facet(:category_ids).rows.sort!{|a,b| a.instance.name <=> b.instance.name }
-#    @search_result.facet(:source_ids).rows.sort!{|a,b| (a.count <=> b.count) == 0 ? (a.instance.name <=> b.instance.name) : (a.count <=> b.count)*(-1) }
-    @search_result.facet(:source_ids).rows.sort!{|a,b| a.instance.name <=> b.instance.name }
+    #    @search_result.facet(:main_ingredient_ids).rows.sort!{|a,b| (a.count <=> b.count) == 0 ? (a.instance.name <=> b.instance.name) : (a.count <=> b.count)*(-1) }
+    #    @search_result.facet(:course_type_ids).rows.sort!{|a,b| (a.count <=> b.count) == 0 ? (a.instance.name <=> b.instance.name) : (a.count <=> b.count)*(-1) }
+    #    @search_result.facet(:category_ids).rows.sort!{|a,b| (a.count <=> b.count) == 0 ? (a.instance.name <=> b.instance.name) : (a.count <=> b.count)*(-1) }
+    #    @search_result.facet(:source_ids).rows.sort!{|a,b| (a.count <=> b.count) == 0 ? (a.instance.name <=> b.instance.name) : (a.count <=> b.count)*(-1) }
+    
+    sort_alphabetical(@search_result.facet(:main_ingredient_ids).rows)
+    sort_alphabetical(@search_result.facet(:course_type_ids).rows)
+    sort_alphabetical(@search_result.facet(:category_ids).rows)
+    sort_alphabetical(@search_result.facet(:source_ids).rows)
   end
 
   # GET /recipes/1
@@ -170,5 +214,11 @@ class RecipesController < ApplicationController
   def recipe_params
     params.require(:recipe).permit(:name, {:category_ids => []}, :description, :picture, :times, :quantity, 
       :ingredients, {:main_ingredient_ids => []}, :directions, {:source_ids => []}, :wine, :difficulty, :cost)
+  end
+  
+  def sort_alphabetical(facet)
+    facet.sort! do |w1,w2|
+      SortAlphabetical.normalize(w1.instance.name) <=> SortAlphabetical.normalize(w2.instance.name)
+    end
   end
 end

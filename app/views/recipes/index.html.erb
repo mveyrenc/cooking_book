@@ -26,17 +26,43 @@
                   </div>
               </form>
               <fieldset class="filter">
-                  <legend><span class="glyphicon glyphicon-menu-right"></span> <%= Recipe.human_attribute_name( 'course_type_ids' ) %></legend>
-                  <div class="form-group">
+                  <legend for="facet-recipe-course-type" class="facet-title">
+                      <span class="glyphicon glyphicon-menu-down"></span> <%= Recipe.human_attribute_name( 'course_type_ids' ) %>
+                  </legend>
+                  <div id="facet-recipe-course-type" class="form-group facet-list">
                       <%= remove_recipe_course_type_include_filter params %>
                       <%= remove_recipe_course_type_exclude_filter params %>
                       <%= recipe_course_type_filter params, @search_result.facet(:course_type_ids) %>
                   </div>
               </fieldset>
+              
+              <fieldset class="filter">
+                  <legend for="facet-recipe-difficulty" class="facet-title">
+                      <span class="glyphicon glyphicon-menu-right"></span> <%= Recipe.human_attribute_name( 'difficulty' ) %>
+                  </legend>
+                  <div id="facet-recipe-difficulty" class="form-group facet-list">
+                      <%= remove_recipe_difficulty_include_filter params %>
+                      <%= remove_recipe_difficulty_exclude_filter params %>
+                      <%= recipe_difficulty_filter params, @search_result.facet(:difficulty) %>
+                  </div>
+              </fieldset>
+              
+              <fieldset class="filter">
+                  <legend for="facet-recipe-cost" class="facet-title">
+                      <span class="glyphicon glyphicon-menu-right"></span> <%= Recipe.human_attribute_name( 'cost' ) %>
+                  </legend>
+                  <div id="facet-recipe-cost" class="form-group facet-list">
+                      <%= remove_recipe_cost_include_filter params %>
+                      <%= remove_recipe_cost_exclude_filter params %>
+                      <%= recipe_cost_filter params, @search_result.facet(:cost) %>
+                  </div>
+              </fieldset>
 
               <fieldset class="filter">
-                  <legend><span class="glyphicon glyphicon-menu-right"></span> <%= Recipe.human_attribute_name( 'category_ids' ) %></legend>
-                  <div class="form-group">
+                  <legend for="facet-recipe-category" class="facet-title">
+                      <span class="glyphicon glyphicon-menu-right"></span> <%= Recipe.human_attribute_name( 'category_ids' ) %>
+                  </legend>
+                  <div id="facet-recipe-category" class="form-group facet-list">
                       <%= remove_recipe_category_include_filter params %>
                       <%= remove_recipe_category_exclude_filter params %>
                       <%= recipe_category_filter params, @search_result.facet(:category_ids) %>
@@ -44,8 +70,10 @@
               </fieldset>
 
               <fieldset class="filter">
-                  <legend><span class="glyphicon glyphicon-menu-right"></span> <%= Recipe.human_attribute_name( 'main_ingredient_ids' ) %></legend>
-                  <div class="form-group">
+                  <legend for="facet-recipe-main-ingredient" class="facet-title">
+                      <span class="glyphicon glyphicon-menu-right"></span> <%= Recipe.human_attribute_name( 'main_ingredient_ids' ) %>
+                  </legend>
+                  <div id="facet-recipe-main-ingredient" class="form-group facet-list">
                       <%= remove_recipe_main_ingredient_include_filter params %>
                       <%= remove_recipe_main_ingredient_exclude_filter params %>
                       <%= recipe_main_ingredient_filter params, @search_result.facet(:main_ingredient_ids) %>
@@ -53,8 +81,10 @@
               </fieldset>
 
               <fieldset class="filter">
-                  <legend><span class="glyphicon glyphicon-menu-right"></span> <%= Recipe.human_attribute_name( 'source_ids' ) %></legend>
-                  <div class="form-group">
+                  <legend for="facet-recipe-source" class="facet-title">
+                      <span class="glyphicon glyphicon-menu-right"></span> <%= Recipe.human_attribute_name( 'source_ids' ) %>
+                  </legend>
+                  <div id="facet-recipe-source" class="form-group facet-list">
                       <%= remove_recipe_sources_include_filter params %>
                       <%= remove_recipe_sources_exclude_filter params %>
                       <%= recipe_sources_filter params, @search_result.facet(:source_ids) %>

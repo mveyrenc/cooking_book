@@ -57,6 +57,12 @@ class Recipe < ActiveRecord::Base
     integer :source_ids, :multiple => true, :references => Source do
       sources_list
     end
+    integer :difficulty do
+      difficulty > 0 ? difficulty : nil
+    end
+    integer :cost do
+      cost > 0 ? cost : nil
+    end
   end
   
   def index_in_solr

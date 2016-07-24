@@ -154,6 +154,8 @@ GEM
       rdoc (~> 4.0)
     simple-navigation (4.0.3)
       activesupport (>= 2.3.2)
+    sort_alphabetical (1.0.2)
+      unicode_utils (>= 1.2.2)
     spring (1.7.2)
     sprockets (2.12.4)
       hike (~> 1.2)
@@ -186,6 +188,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.0.0)
       execjs (>= 0.3.0, < 3)
+    unicode_utils (1.4.0)
     valuable (0.9.12)
     warden (1.2.6)
       rack (>= 1.0)
@@ -221,6 +224,7 @@ DEPENDENCIES
   schema_plus
   sdoc (~> 0.4.0)
   simple-navigation
+  sort_alphabetical
   spring
   sunspot-queue
   sunspot_rails
