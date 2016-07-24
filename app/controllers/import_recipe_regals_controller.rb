@@ -6,14 +6,14 @@ class ImportRecipeRegalsController < ApplicationController
   DIFFICULTY_LEVEL_1 = 'Très facile'
   DIFFICULTY_LEVEL_2 = 'Facile'
   DIFFICULTY_LEVEL_3 = 'Not defined'
-  DIFFICULTY_LEVEL_4 = 'Not defined'
-  DIFFICULTY_LEVEL_5 = 'Not defined'
+  DIFFICULTY_LEVEL_4 = 'Confirmé'
+  DIFFICULTY_LEVEL_5 = 'Expert'
 
   COST_LEVEL_1 = 'Bon marché'
   COST_LEVEL_2 = 'Not defined'
-  COST_LEVEL_3 = 'Not defined'
+  COST_LEVEL_3 = 'Abordable'
   COST_LEVEL_4 = 'Not defined'
-  COST_LEVEL_5 = 'Not defined'
+  COST_LEVEL_5 = 'Assez cher'
   
   def new
     authorize! :create, Recipe
@@ -51,32 +51,32 @@ class ImportRecipeRegalsController < ApplicationController
     
     @recipe.name = doc.xpath('//h1[contains(@class, "node-title")]').text
     
-    difficulty_level = doc.xpath('//*[contains(@class, "field-name-field-difficulty-level")]/*[contains(@class, "field-items")]').text
+    difficulty_level = doc.xpath('//*[contains(@class, "field-name-field-difficulty-level")]/*[contains(@class, "field-items")]').text.strip
     case difficulty_level
     when DIFFICULTY_LEVEL_1
-      @recipe.rate 1.0, current_user, 'difficulty'
+      @recipe.difficulty = 1
     when DIFFICULTY_LEVEL_2
-      @recipe.rate 2.0, current_user, 'difficulty'
+      @recipe.difficulty = 2
     when DIFFICULTY_LEVEL_3
-      @recipe.rate 3.0, current_user, 'difficulty'
+      @recipe.difficulty = 3
     when DIFFICULTY_LEVEL_4
-      @recipe.rate 4.0, current_user, 'difficulty'
+      @recipe.difficulty = 4
     when DIFFICULTY_LEVEL_5
-      @recipe.rate 5.0, current_user, 'difficulty'
+      @recipe.difficulty = 5
     end
     
-    cost_level = doc.xpath('//*[contains(@class, "field-name-field-price-level")]/*[contains(@class, "field-items")]').text
+    cost_level = doc.xpath('//*[contains(@class, "field-name-field-price-level")]/*[contains(@class, "field-items")]').text.strip
     case cost_level
     when COST_LEVEL_1
-      @recipe.rate 1.0, current_user, 'cost'
+      @recipe.cost = 1
     when COST_LEVEL_2
-      @recipe.rate 2.0, current_user, 'cost'
+      @recipe.cost = 2
     when COST_LEVEL_3
-      @recipe.rate 3.0, current_user, 'cost'
+      @recipe.cost = 3
     when COST_LEVEL_4
-      @recipe.rate 4.0, current_user, 'cost'
+      @recipe.cost = 4
     when COST_LEVEL_5
-      @recipe.rate 5.0, current_user, 'cost'
+      @recipe.cost = 5
     end
     
     times = Array.new

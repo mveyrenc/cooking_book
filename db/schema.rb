@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160714142530) do
+ActiveRecord::Schema.define(version: 20160719171852) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -170,9 +170,9 @@ ActiveRecord::Schema.define(version: 20160714142530) do
   end
 
   create_table "recipes", force: true do |t|
-    t.string   "name",                 null: false
-    t.text     "ingredients",          null: false
-    t.text     "directions",           null: false
+    t.string   "name",                             null: false
+    t.text     "ingredients",                      null: false
+    t.text     "directions",                       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "quantity"
@@ -186,6 +186,8 @@ ActiveRecord::Schema.define(version: 20160714142530) do
     t.text     "slug"
     t.integer  "author_id"
     t.integer  "modifier_id"
+    t.integer  "difficulty",           default: 0
+    t.integer  "cost",                 default: 0
     t.index ["author_id"], :name => "fk__recipes_author_id"
     t.index ["modifier_id"], :name => "fk__recipes_modifier_id"
     t.index ["slug"], :name => "index_recipes_on_slug", :unique => true

@@ -36,19 +36,19 @@
                         <label><%= Recipe.human_attribute_name('note')  %></label>
                     </div>
                     <div class="col-sm-3">
-                        <%= rating_for @recipe, "note" %>
+                        <%= rating_for @recipe, "note", disable_after_rate: false, cancel_hint: 'Annuler mon vote' %>
                     </div>
                     <div class="col-sm-1">
                         <label><%= Recipe.human_attribute_name('difficulty') %></label>
                     </div>
                     <div class="col-sm-3">
-                        <%= rating_for @recipe, "difficulty" %>
+                        <%= difficulty_rating @recipe %>
                     </div>
                     <div class="col-sm-1">
                         <label><%= Recipe.human_attribute_name('cost') %></label>
                     </div>
                     <div class="col-sm-3">
-                        <%= rating_for @recipe, "cost" %>
+                        <%= cost_rating @recipe %>
                     </div>
                 </div>
                 <% if !@recipe.description.blank? %>

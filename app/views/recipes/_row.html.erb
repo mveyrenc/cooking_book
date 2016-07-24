@@ -27,8 +27,10 @@
                 </div>
             </div>
             <div class="note">
-                <%= rating_for recipe, "note" %>
+                <%= rating_for recipe, "note", disable_after_rate: false, cancel_hint: 'Annuler mon vote', cancel_place: 'right' %>
             </div>
+            <%= difficulty_rating recipe, 'small' %>
+            <%= cost_rating recipe, 'small' %>
         </div>
         <% if !recipe.description.blank? %>
           <div class="description">

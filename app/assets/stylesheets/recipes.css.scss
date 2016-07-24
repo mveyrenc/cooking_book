@@ -101,6 +101,38 @@
             padding-left: 15px;
         }
     }
-}   
+}
 
+.difficulty-rating {
+    .fa-1x {
+        padding: 0 0.2em;
+    }
+    .fa-2x {
+        padding: 0;
+    }
+    .fa-1x:first-child, .fa-2x:first-child {
+        padding-left: 0;
+    }
+    .fa-1x:last-child, .fa-2x:last-child {
+        padding-right: 0;
+    }
+}
 
+.cost-rating {
+    .fa-1x {
+        padding: 0 0.6em;
+    }
+    .fa-2x {
+        padding: 0.2em;
+    }
+    .fa-1x:first-child, .fa-2x:first-child {
+        padding-left: 0;
+    }
+    .fa-1x:last-child, .fa-2x:last-child {
+        padding-right: 0;
+    }
+}
+
+.rating > div {
+    height: 100%;
+}

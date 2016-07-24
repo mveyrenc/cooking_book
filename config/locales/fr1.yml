@@ -42,6 +42,32 @@ fr:
             success: Recette modifiée avec succès.
         destroy:
             success: Recette supprimée avec succès.
+        difficulties:
+            level_0: Inconnue
+            level_1: Très facile
+            level_2: Facile
+            level_3: Intermédiare
+            level_4: Confirmé
+            level_5: Expert
+        difficulty_none: Inconnue
+        difficulty_very_easy: Très facile
+        difficulty_easy: Facile
+        difficulty_intermediate: Intermédiaire
+        difficulty_experienced: Confirmé
+        difficulty_expert: Expert
+        costs:
+            level_0: Inconnu
+            level_1: Bon marché (moins de 2€/part)
+            level_2: Abordable (2 à 4€/part)
+            level_3: Moyen (4 à 8€/part)
+            level_4: Assez coûteux (8 à 12€/part)
+            level_5: Coûteux (plus de 12€/part)
+        cost_none: Inconnu
+        cost_cheap: Bon marché (moins de 2€/part)
+        cost_affordable: Abordable (2 à 4€/part)
+        cost_middle: Moyen (4 à 8€/part)
+        cost_pretty_expensive: Assez coûteux (8 à 12€/part)
+        cost_expensive: Coûteux (plus de 12€/part)
     categories:
         index_page_title: "Catégories"
         new_page_title: "Nouvelle catégorie"

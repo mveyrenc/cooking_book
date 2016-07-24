@@ -1,4 +1,11 @@
 class Recipe < ActiveRecord::Base
+  
+#  DIFFICULTIES = %w[none very_easy easy intermediate experienced expert].freeze
+#  COSTS = %w[none cheap affordable middle pretty_expensive expensive].freeze
+  
+  enum difficulty_types: [:difficulty_none, :difficulty_very_easy, :difficulty_easy, :difficulty_intermediate, :difficulty_experienced, :difficulty_expert]
+  enum cost_types: [:cost_none, :cost_cheap, :cost_affordable, :cost_middle, :cost_pretty_expensive, :cost_expensive]
+  
   extend FriendlyId
   friendly_id :id_and_name, use: :slugged
   
