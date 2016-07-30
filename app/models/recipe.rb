@@ -22,7 +22,7 @@ class Recipe < ActiveRecord::Base
   validates :author, presence: true
   validates :modifier, presence: true
   
-  has_attached_file :picture, :styles => { :medium => "240", :thumb => "100", :medium_gray => "240", :thumb_gray => "100" }, :convert_options => { :thumb_gray => '-colorspace Gray', :medium_gray => '-colorspace Gray' }, :default_url => "/images/:style/missing.png"
+  has_attached_file :picture, :styles => { :medium => "240", :thumb => "100", :slide => "170", :medium_gray => "240", :thumb_gray => "100" }, :convert_options => { :thumb_gray => '-colorspace Gray', :medium_gray => '-colorspace Gray' }, :default_url => "/images/:style/missing.png"
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
   
   ratyrate_rateable "note", "difficulty", "cost"
@@ -30,9 +30,9 @@ class Recipe < ActiveRecord::Base
   before_save :update_counters
   
   searchable do
-    text :name, :boost => 3.0
+    text :name, :boost => 3.0, :more_like_this => true
     text :wine
-    text :ingredients do
+    text :ingredients, :more_like_this => true do
       HTMLEntities.new.decode( Sanitize.clean( ingredients ) )
     end
     text :description do
@@ -41,7 +41,7 @@ class Recipe < ActiveRecord::Base
     text :directions do
       HTMLEntities.new.decode( Sanitize.clean( directions ) )
     end
-    text :tags, :boost => 2.0 do 
+    text :tags, :more_like_this => true, :boost => 2.0 do 
       (additional_categories | categories | additional_main_ingredients | main_ingredients | sources_list ).map{ |i| i.name }.join(' ')
     end
     time :created_at

@@ -142,6 +142,11 @@ class RecipesController < ApplicationController
   # GET /recipes/1.json
   def show
     authorize! :read, Recipe
+    @other_recipes = Sunspot.more_like_this(@recipe) do
+        fields :ingredients, :name, :tags
+        boost_by_relevance true
+        paginate page: 1, per_page: 5
+    end
   end
 
   # GET /recipes/new

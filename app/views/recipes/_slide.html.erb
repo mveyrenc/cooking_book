@@ -1,0 +1,6 @@
+<li>
+    <% if !recipe.picture.blank?  %>
+      <%= image_tag recipe.picture.url(:slide), :class => "media-object" %>
+    <% end %>
+    <h3><%= link_to recipe, recipe %></h3>
+</li>

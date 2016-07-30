@@ -6,13 +6,6 @@
     }
 }
 .recipe-page.index-page {
-    /*    .left-col-container {
-            background-color: #EEE;
-            padding: 15px;
-            input {
-                margin-bottom: 10px
-            }
-        }*/
     h2 {
         margin-top: 0;
     }
@@ -100,6 +93,13 @@
         ul {
             padding-left: 15px;
         }
+    }
+    .bxslider {
+        text-align: center;
+    }
+    .bx-wrapper .bx-viewport {
+        box-shadow: none;
+        border: none;
     }
 }
 

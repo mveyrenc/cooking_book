@@ -28,7 +28,7 @@ fr:
         welcome: "Bienvenue !"
         lastest_10_recipes: "Les 10 dernières recettes"
     recipes:
-        index_page_title: "Recettes"
+        index_page_title: "%{total_count} recettes"
         new_page_title: "Nouvelle recette"
         edit_page_title: "Modification de la recette"
         new_button: "Nouvelle recette"
@@ -144,6 +144,7 @@ fr:
                 created_at: "Crée le"
                 modifier: "Modificateur"
                 updated_at: "Modifiée le"
+                similar_recipes: "Recettes similaires"
             category:
                 name: "Nom"
                 is_course_type: "Est un type de plat ?"

@@ -1,7 +1,7 @@
 <div class="recipe-page index-page">
     <div class="page-header row">
         <header class ="with-shadow row">
-            <h1><%= I18n.t( 'recipes.index_page_title' ) %></h1>
+            <h1><%= I18n.t( 'recipes.index_page_title', total_count: @search_result.total ) %></h1>
         </header>
     </div>
     <% if @search_result.total == 0 %>

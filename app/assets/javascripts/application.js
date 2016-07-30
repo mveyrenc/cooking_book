@@ -194,8 +194,8 @@ $(document).ready(function () {
             }
         });
     });
-    
-    var updateTitleFacetIcon = function(elmt) {
+
+    var updateTitleFacetIcon = function (elmt) {
         title = $('legend[for="' + elmt.attr('id') + '"] span');
         if (elmt.is(":visible")) {
             title.removeClass('glyphicon-menu-right');
@@ -206,13 +206,13 @@ $(document).ready(function () {
         }
     };
 
-    $('.filter .facet-list').each(function(){
+    $('.filter .facet-list').each(function () {
         elmt = $(this);
-        if(elmt.attr('id') !== "facet-recipe-course-type" && elmt.find('.active-filters').length === 0) {
+        if (elmt.attr('id') !== "facet-recipe-course-type" && elmt.find('.active-filters').length === 0) {
             elmt.hide();
         }
         updateTitleFacetIcon(elmt);
-    }); 
+    });
 //active-filters
 //    $("#facet-recipe-difficulty").hide();
 //    $("#facet-recipe-cost").hide();
@@ -226,6 +226,16 @@ $(document).ready(function () {
         facetList = $("#" + facetListId);
         facetList.toggle();
         updateTitleFacetIcon(facetList);
+    });
+
+    $('.bxslider').bxSlider({
+        minSlides: 1,
+        maxSlides: 5,
+        slideWidth: 170,
+        slideMargin: 20,
+        preloadImages: 'visible',
+        controls: false,
+        pager: false
     });
 });
 

@@ -118,6 +118,21 @@
       </div>
     <% end %>
 
+    <% if @other_recipes.results %>
+      <div class="other-recipes with-shadow">
+          <fieldset>
+              <legend>
+                  <%= Recipe.human_attribute_name('similar_recipes')  %>
+              </legend>
+              <ul class="bxslider">
+              <% @other_recipes.results.each do |recipe| %>
+                <%= render 'slide', recipe: recipe %>
+              <% end %>
+              </ul>
+          </fieldset>
+      </div>
+    <% end %>
+
     <div class="creator with-shadow">
         <fieldset>
             <div class="content">
