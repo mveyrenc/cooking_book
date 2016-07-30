@@ -118,7 +118,7 @@
       </div>
     <% end %>
 
-    <% if @other_recipes and @other_recipes.results %>
+    <% if !@other_recipes.nil? and @other_recipes.results %>
       <div class="other-recipes with-shadow">
           <fieldset>
               <legend>
