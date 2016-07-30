@@ -127,6 +127,7 @@ class ImportRecipeRegalsController < ApplicationController
     end
   
     @recipe.directions = doc.xpath('//*[contains(@class, "field-name-field-recipe-steps")]//p').to_s
+    @recipe.directions << doc.xpath('//*[contains(@class, "field-name-body")]//p').to_s
     
     doc.xpath('//*[contains(@class, "field-name-field-tags")]//a/text()').each do |tag|
       tag_name = tag.text.strip.chomp('s').downcase
