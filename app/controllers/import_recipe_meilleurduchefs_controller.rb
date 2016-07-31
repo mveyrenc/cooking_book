@@ -84,7 +84,7 @@ class ImportRecipeMeilleurduchefsController < ApplicationController
   
     quatity = doc.css('span[itemprop=recipeYield]').first
     if !quatity.nil?
-      @recipe.quantity = 'Pour : ' << quatity.text.strip
+      @recipe.quantity = 'Pour ' << quatity.text.strip
     end
   
     ingredients = doc.css('.ingredients ul')
@@ -106,7 +106,7 @@ class ImportRecipeMeilleurduchefsController < ApplicationController
         end
       end
     end
-    @recipe.ingredients = ingredients_text
+    @recipe.ingredients = '<ul>' << ingredients_text << '</ul>'
     
     description = doc.css('#presentation .texte').first
     if !description.nil?
@@ -121,7 +121,6 @@ class ImportRecipeMeilleurduchefsController < ApplicationController
       if !recipe_source.nil?
         @recipe.sources << recipe_source
       end
-      @recipe.sources = quatity
     end
       
     recipe_source = Source.where("lower(name) LIKE ?", 'meilleur du chef').ordered.first

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   
   resources :import_recipe_regals, :only => [:new, :create]
   resources :import_recipe_meilleurduchefs, :only => [:new, :create]
+  resources :import_recipe_elleatables, :only => [:new, :create]
   
 #  get '/import/recipe/regal', to: :regal, controller: 'import_recipe'
 #  post '/import/recipe/regal', to: :regal_run_import, controller: 'import_recipe'

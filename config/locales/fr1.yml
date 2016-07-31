@@ -38,6 +38,8 @@ fr:
         import_regal_page_title: Importer une recette depuis Régal.fr
         import_meilleurduchef: Depuis MeilleurDuChef.com
         import_meilleurduchef_page_title: Importer une recette depuis MeilleurDuChef.com
+        import_elleatable: Depuis Elle.fr
+        import_elleatable_page_title: Importer une recette depuis Elle.fr
         create:
             success: Recette créée avec succès.
         update:
