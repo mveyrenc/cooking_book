@@ -49,9 +49,9 @@ class ImportRecipeRegalsController < ApplicationController
     response = open(@import_recipe.url) rescue nil
     doc = Nokogiri::HTML(response)
     
-    @recipe.name = doc.xpath('//h1[contains(@class, "node-title")]').text
+    @recipe.name = doc.css('h1.node-title').first.text.strip
     
-    difficulty_level = doc.xpath('//*[contains(@class, "field-name-field-difficulty-level")]/*[contains(@class, "field-items")]').text.strip
+    difficulty_level = doc.css('.field-name-field-difficulty-level .field-items').first.text.strip
     case difficulty_level
     when DIFFICULTY_LEVEL_1
       @recipe.difficulty = 1
@@ -65,7 +65,7 @@ class ImportRecipeRegalsController < ApplicationController
       @recipe.difficulty = 5
     end
     
-    cost_level = doc.xpath('//*[contains(@class, "field-name-field-price-level")]/*[contains(@class, "field-items")]').text.strip
+    cost_level = doc.css('.field-name-field-price-level .field-items').first.text.strip
     case cost_level
     when COST_LEVEL_1
       @recipe.cost = 1
@@ -80,31 +80,31 @@ class ImportRecipeRegalsController < ApplicationController
     end
     
     times = Array.new
-    preptime = doc.xpath('//*[contains(@class, "field-name-field-recipe-preptime")]/*[contains(@class, "field-items")]').text.strip
-    if !preptime.empty?
-      times << ('Préparation : ' << preptime)
+    preptime = doc.css('.field-name-field-recipe-preptime .field-items').first
+    if !preptime.nil?
+      times << ('Préparation : ' << preptime.text.strip)
     end
-    cooktime = doc.xpath('//*[contains(@class, "field-name-field-recipe-cooktime")]/*[contains(@class, "field-items")]').text.strip
-    if !cooktime.empty?
-      times << ('Cuisson : ' << cooktime)
+    cooktime = doc.css('.field-name-field-recipe-cooktime .field-items').first
+    if !cooktime.nil?
+      times << ('Cuisson : ' << cooktime.text.strip)
     end
-    resttime = doc.xpath('//*[contains(@class, "field-name-field-recipe-resttime")]/*[contains(@class, "field-items")]').text.strip
-    if !resttime.empty?
-      times << ('Repos : ' << resttime)
+    resttime = doc.css('.field-name-field-recipe-resttime .field-items').first
+    if !resttime.nil?
+      times << ('Repos : ' << resttime.text.strip)
     end
     @recipe.times = times.join("\n")
     
-    doc.xpath('//*[contains(@class, "field field-name-categories")]/a/text()').each do |category|
+    doc.css('.field-name-categories a').each do |category|
       category_name = category.text.strip
-      recipe_category = Category.where("lower(name) LIKE ?", category_name.chomp('s').downcase << '%').first 
+      recipe_category = Category.where("lower(name) LIKE ?", category_name.downcase.chomp('s').downcase << '%').first 
       if !recipe_category.nil?
         @recipe.categories << recipe_category
       end
     end
     
-    recipe_img = doc.xpath('//*[contains(@class, "field-name-field-images")]//img[contains(@class, "adv-slide")]')
-    if recipe_img[0]
-      recipe_img_url = recipe_img[0].attr('src')
+    recipe_img = doc.css('.field-name-field-images img.adv-slide').first
+    if !recipe_img.nil?
+      recipe_img_url = recipe_img.attr('src')
       begin
         response = URI.parse(recipe_img_url)
         @recipe.picture = response if response
@@ -112,24 +112,25 @@ class ImportRecipeRegalsController < ApplicationController
       end
     end
   
-    quatity = doc.xpath('//*[contains(@class, "field-name-field-recipe-yield")]//h2').text.strip
-    if !quatity.empty?
-      @recipe.quantity = quatity
+    quatity = doc.css('.field-name-field-recipe-yield h2').first
+    if !quatity.nil?
+      @recipe.quantity = quatity.text.strip
     end
   
-    ingredients = doc.xpath('//*[contains(@class, "field-name-field-recipe-elements")]//*[contains(@class, "field-item")]//*[contains(@class, "content")]')
-    if !ingredients.empty?
+    ingredients = doc.css('.field-name-field-recipe-elements .entity-field-collection-item')
+    if !ingredients.nil?
       @recipe.ingredients = '<ul>'
       ingredients.each do |ingredient|
-        @recipe.ingredients << '<li>' << ingredient.text.each_line.map{|r| r.strip.downcase}.reject{|x| x.strip == ""}.join(' ') << '</li>'
+#        @recipe.ingredients << '<li>' << ingredient.text.each_line.map{|r| r.strip.downcase}.reject{|x| x.strip == ""}.join(' ') << '</li>'
+        @recipe.ingredients << '<li>' << ingredient.text.downcase.gsub('oe', 'œ') << '</li>'
       end
       @recipe.ingredients << '</ul>'
     end
   
-    @recipe.directions = doc.xpath('//*[contains(@class, "field-name-field-recipe-steps")]//p').to_s
-    @recipe.directions << doc.xpath('//*[contains(@class, "field-name-body")]//p').to_s
+    @recipe.directions = doc.css('.field-name-field-recipe-steps p').to_s.gsub('oe', 'œ')
+    @recipe.directions << doc.css('.field-name-body p').to_s.gsub('oe', 'œ')
     
-    doc.xpath('//*[contains(@class, "field-name-field-tags")]//a/text()').each do |tag|
+    doc.css('.field-name-field-tags a').each do |tag|
       tag_name = tag.text.strip.chomp('s').downcase
       
       recipe_category = Category.where("lower(name) LIKE ?", tag_name << '%').ordered
