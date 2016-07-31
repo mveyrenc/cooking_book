@@ -36,6 +36,8 @@ fr:
         import_button: Importer
         import_regal: Depuis Régal.fr
         import_regal_page_title: Importer une recette depuis Régal.fr
+        import_meilleurduchef: Depuis MeilleurDuChef.com
+        import_meilleurduchef_page_title: Importer une recette depuis MeilleurDuChef.com
         create:
             success: Recette créée avec succès.
         update:
