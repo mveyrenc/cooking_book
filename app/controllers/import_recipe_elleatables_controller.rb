@@ -121,9 +121,9 @@ class ImportRecipeElleatablesController < ApplicationController
     doc.css('li[itemprop=recipeIngredient]').each do |ingredient|
       ingredients_text << '<li>' << ingredient.text.strip << '</li>'
     end
-    @recipe.ingredients = '<ul>' << ingredients_text << '</ul>'
+    @recipe.ingredients = '<ul>' << ingredients_text.gsub('oe', 'œ') << '</ul>'
   
-    @recipe.directions = doc.css('li[itemprop=recipeInstructions] p').to_s
+    @recipe.directions = doc.css('li[itemprop=recipeInstructions] p').to_s.gsub('oe', 'œ')
     
     astuce = doc.css('.astuce p')
     if !astuce.empty?
