@@ -1,4 +1,4 @@
-class AddDescriptionToRecipe < ActiveRecord::Migration
+class AddDescriptionToRecipe < ActiveRecord::Migration[6.0]
   def change
     add_column :recipes, :description, :text
   end

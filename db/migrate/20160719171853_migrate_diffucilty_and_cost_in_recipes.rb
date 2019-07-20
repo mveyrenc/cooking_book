@@ -1,4 +1,4 @@
-class MigrateDiffuciltyAndCostInRecipes < ActiveRecord::Migration
+class MigrateDiffuciltyAndCostInRecipes < ActiveRecord::Migration[6.0]
   def self.up
     Recipe.reset_column_information
     Recipe.all.each do |r|

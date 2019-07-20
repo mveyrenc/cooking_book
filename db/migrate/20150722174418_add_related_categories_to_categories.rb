@@ -1,4 +1,4 @@
-class AddRelatedCategoriesToCategories < ActiveRecord::Migration
+class AddRelatedCategoriesToCategories < ActiveRecord::Migration[6.0]
   def change
     create_table "categories_related", :force => true, :id => false do |t|
       t.integer "category_id", :null => false

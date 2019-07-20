@@ -1,4 +1,4 @@
-class AddAuthorToModels < ActiveRecord::Migration
+class AddAuthorToModels < ActiveRecord::Migration[6.0]
   def change
     add_reference :recipes, :author, references: :users
     add_reference :recipes, :modifier, references: :users

@@ -1,4 +1,4 @@
-class AddRecipesCountToIngredients < ActiveRecord::Migration
+class AddRecipesCountToIngredients < ActiveRecord::Migration[6.0]
   def self.up
     add_column :ingredients, :recipes_count, :integer, :default => 0
     

@@ -16,9 +16,6 @@
 /log/*.lck
 /tmp
 
-# Ignore database configuration file
-/config/database.yml
-
 # Ignore Solr folder
 /solr
 
@@ -31,3 +28,10 @@
 # Environment wrapper
 ruby_wrapper.sh
 set_environment.sh
+
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
