@@ -1,40 +1,42 @@
-<div class="ui middle aligned center aligned grid">
-  <div class="column">
-    <h2 class="ui teal image header">
-      <div class="content">
-        Log in
-      </div>
-    </h2>
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "ui large form"}) do |f| %>
-      <div class="ui stacked segment">
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="user icon"></i>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", html: {placeholder: 'Email'} %>
-          </div>
+<section class="hero is-primary is-fullheight">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+          <h2 class="is-size-2">Log in</h2>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "box"}) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+
+            <div class="field">
+              <%= f.label :email %>
+              <div class="control has-icons-left">
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'e.g. bobsmith@gmail.com', required: true %>
+                <span class="icon is-small is-left"><i class="fa fa-envelope"></i></span>
+              </div>
+            </div>
+
+            <div class="field">
+              <%= f.label :password %>
+              <div class="control has-icons-left">
+                <%= f.password_field :password, autocomplete: "current-password", placeholder: '*******' %>
+                <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
+              </div>
+            </div>
+
+            <% if devise_mapping.rememberable? %>
+              <div class="field">
+                <%= f.check_box :remember_me %>
+                <%= f.check_box_label :remember_me %>
+              </div>
+            <% end %>
+
+            <div class="field has-text-centered">
+              <%= f.submit "Log in", class: "is-success" %>
+            </div>
+            <%= render "devise/shared/links" %>
+          <% end %>
         </div>
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="lock icon"></i>
-            <%= f.password_field :password, autocomplete: "current-password", html: {placeholder: 'Password'} %>
-          </div>
-        </div>
-        <% if devise_mapping.rememberable? %>
-          <div class="field">
-            <%= f.check_box :remember_me %>
-            <%= f.label :remember_me %>
-          </div>
-        <% end %>
-        <%= f.submit "Log in", class: "ui fluid large teal submit button" %>
       </div>
-
-      <div class="ui error message"></div>
-
-    <% end %>
-
-    <div class="ui message">
-      <%= render "devise/shared/links" %>
     </div>
   </div>
-</div>
-
+</section>

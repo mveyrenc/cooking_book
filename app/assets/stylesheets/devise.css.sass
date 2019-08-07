@@ -12,26 +12,31 @@
  *
  *= require_self
  */
-@import "font-awesome-sprockets";
-@import "font-awesome";
-@import "semantic-ui";
-@import "cookingbook-ui";
+
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro|Roboto+Slab|Open+Sans')
+@import "font-awesome-sprockets"
+@import "font-awesome"
+
+@import "variables"
+
+@import "bulma/bulma"
+
+@import "tags"
+
+body
+  background-color: #DADADA
 
 
-body {
-  background-color: #DADADA;
-}
+body > .grid
+  height: 100%
 
-body > .grid {
-  height: 100%;
-}
 
-.image {
-  margin-top: -100px;
-}
+.image
+  margin-top: -100px
 
-.column {
-  max-width: 450px;
-}
+
+.column
+  max-width: 450px
+
 
 
