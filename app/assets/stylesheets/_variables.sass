@@ -1,0 +1,80 @@
+@import "bulma/sass/utilities/initial-variables"
+@import "bulma/sass/utilities/functions"
+
+// Responsiveness
+
+$tablet: 768px
+
+// Colors
+
+$body-background-color: hsl(90, 6%, 94%)
+
+$deep-yellow: #FFAB00
+$yellow: #ffc107
+$orange: #fd7e14
+$deep-orange: #FF5722
+$red: #dc3545
+$pink: #f02475
+$deep-purple: #673AB7
+$purple: #9b59b6
+$indigo: #3F51B5
+$blue: #007bff
+$light-blue: #03A9F4
+$cyan: #17a2b8
+$teal: #20c997
+$turquoise: #1abc9c
+$light-green: #2ecc71
+$green: #28a745
+$brown: #795548
+$charcoal: #383636
+$gray-dark: #403734
+$asphalt: #34495e
+$gray: #BAB1AD
+
+$color-variants: ("-very-very-light": -10%, "-very-light": -25%, "-lighter": -50%, "-light": -75%, "": 100%, "-dark": 75%, "-darker": 50%, "-very-dark": 25%, "-very-very-dark": 15%)
+
+$base-colors: ()
+$base-colors: map-merge($base-colors, ("deep-yellow": $deep-yellow, "yellow": $yellow))
+$base-colors: map-merge($base-colors, ("deep-orange": $deep-orange, "orange": $orange))
+$base-colors: map-merge($base-colors, ("red": $red, "pink": $pink))
+$base-colors: map-merge($base-colors, ("deep-purple": $deep-purple, "purple": $purple))
+$base-colors: map-merge($base-colors, ("indigo": $indigo, "blue": $blue, "light-blue": $light-blue, "cyan": $cyan))
+$base-colors: map-merge($base-colors, ("teal": $teal, "turquoise": $turquoise, "light-green": $light-green, "green": $green))
+$base-colors: map-merge($base-colors, ("brown": $brown, "charcoal": $charcoal))
+$base-colors: map-merge($base-colors, ("gray-dark": $gray-dark, "asphalt": $asphalt, "gray": $gray))
+
+$primary: $orange
+$link: $deep-orange
+
+$secondary: hsl(304, 69%, 14%)
+$secondary-invert: findColorInvert($secondary)
+
+$accent: hsl(120, 51%, 40%)
+$accent-invert: findColorInvert($accent)
+
+$default: hsl(221, 100%, 7%)
+$default-invert: findColorInvert($default)
+
+$alert: $red
+$alert-invert: findColorInvert($alert)
+
+$notice: $blue
+$notice-invert: findColorInvert($notice)
+
+@import "bulma/sass/utilities/derived-variables"
+
+$title-color: $primary
+$subtitle-color: $primary-invert
+
+$colors: mergeColorMaps($colors, ("secondary": ($secondary, $secondary-invert)))
+$colors: mergeColorMaps($colors, ("accent": ($accent, $accent-invert)))
+$colors: mergeColorMaps($colors, ("default": ($default, $default-invert)))
+$colors: mergeColorMaps($colors, ("alert": ($alert, $alert-invert)))
+$colors: mergeColorMaps($colors, ("notice": ($notice, $notice-invert)))
+
+@each $color-name, $color in $base-colors
+  @each $variant-name, $percent in $color-variants
+    $mix-color: if($percent < 0%, white, black)
+    $variant-color: mix($color, $mix-color, abs($percent))
+    $variant-color-invert: findColorInvert($variant-color)
+    $colors: mergeColorMaps($colors, ($color-name+$variant-name: ($variant-color, $variant-color-invert)))
