@@ -1,50 +1,7 @@
-<div class="user-page index-page">
-    <div class="page-header row">
-        <header class="with-shadow">
-            <h1><%= I18n.t( 'users.index_page_title' ) %></h1>
-        </header>
-    </div>
-    <div class="buttons">
-        <%= new_button new_user_path, I18n.t( 'users.new_button' ) %>
-    </div>
-    <div class="with-shadow">
-        <% if @users.blank? %>
-          No entry
-        <% else %>
-          <% @users.each do |user| %>
-            <article class="row" id="user-<%= user.id %>">
-                <div class="col-sm-4">
-                    <p>
-                        <%= user.name %>
-                    </p>
-                </div>
-                <div class="col-sm-4">
-                    <p>
-                        <%= user.email %>
-                    </p>
-                </div>
-                <div class="col-sm-2">
-                    <p>
-                        <%= user.role ? user.role.humanize : User::DEFAULT_ROLE.humanize %>
-                    </p>
-                </div>
-                <div class="pull-right">
-                    <div class="btn-group">
-                        <% if can? :update, user %>
-                          <%= link_to edit_user_path(user), :class => 'btn btn-primary btn-xs no-print', :title => I18n.t( 'application.edit' ) do %>
-                            <span class="glyphicon glyphicon-pencil"></span>
-                          <% end %>
-                        <% end %>
-                        <% if can? :destroy, user %>
-                          <%= link_to user, :class => 'btn btn-danger btn-xs no-print', :title => I18n.t( 'application.destroy' ), :method => :delete, :data => { confirm: I18n.t( 'application.destroy_confirmation' ) } do %>
-                            <span class="glyphicon glyphicon-trash"></span>
-                          <% end %>
-                        <% end %>
-                    </div>
-                </div>
-            </article>
-          <% end %>
-        <% end %>
-    </div>
-</div>
+<section>
+  <div class="container box">
+    <div class="title is-size-1"><%= I18n.t('users.index_page_title') %></div>
+    <%= render(Users::ListComponent, items: @users) %>
+  </div>
+</section>
 
