@@ -56,6 +56,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Font-Awesome
 gem 'font-awesome-sass'
 
+# jQuery
+gem 'jquery-rails'
+
 # TinyMCE
 gem 'tinymce-rails'
 
