@@ -1,0 +1,11 @@
+<% if user_signed_in? %>
+  <nav class="navbar is-primary is-fixed-top" role="navigation" aria-label="main navigation">
+    <div class="container">
+      <%= render(MainMenu::BrandComponent) %>
+      <div id="main-navbar-menu" class="navbar-menu">
+        <%= render(MainMenu::MainNavbarComponent) %>
+        <%= render(MainMenu::UserNavbarComponent) %>
+      </div>
+    </div>
+  </nav>
+<% end %>

@@ -1,0 +1,26 @@
+<div class="navbar-start">
+  <%= render(MainMenu::NavbarItemComponent, title: t('menu.recipes'), path: recipes_path) %>
+  <% if can? :create, Recipe %>
+    <%= render(MainMenu::ButtonNavbarItemComponent, title: I18n.t('recipes.new_button'), path: new_recipe_path) %>
+    <div class="navbar-item has-dropdown is-hoverable">
+      <a href="#" class="navbar-link"><%= I18n.t('recipes.import_button') %></a>
+      <div class="navbar-dropdown">
+        <%= render(MainMenu::NavbarItemComponent, title: t('recipes.import_regal'), path: new_import_recipe_regal_path) %>
+        <%= render(MainMenu::NavbarItemComponent, title: t('recipes.import_meilleurduchef'), path: new_import_recipe_meilleurduchef_path) %>
+        <%= render(MainMenu::NavbarItemComponent, title: t('recipes.import_elleatable'), path: new_import_recipe_elleatable_path) %>
+      </div>
+    </div>
+  <% end %>
+  <% if can? :read, Category %>
+    <%= render(MainMenu::NavbarItemComponent, title: t('menu.categories'), path: categories_path) %>
+  <% end %>
+  <% if can? :read, Ingredient %>
+    <%= render(MainMenu::NavbarItemComponent, title: t('menu.ingredients'), path: ingredients_path) %>
+  <% end %>
+  <% if can? :read, Source %>
+    <%= render(MainMenu::NavbarItemComponent, title: t('menu.sources'), path: sources_path) %>
+  <% end %>
+  <% if can? :manage, User %>
+    <%= render(MainMenu::NavbarItemComponent, title: t('menu.users'), path: users_path) %>
+  <% end %>
+</div>
