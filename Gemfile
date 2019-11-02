@@ -102,3 +102,6 @@ gem 'ancestry'
 
 # Sorting strings
 gem 'sort_alphabetical'
+
+# Github ActionView::Component
+gem "actionview-component"
