@@ -15,13 +15,13 @@
   </div>
   <hr />
   <div class="form-group">
-      <%= f.label :name, :class => "col-sm-2 control-label required" %>
+      <%= f.label :name, :class => "col-sm-2 control-label is-required" %>
       <div class="col-sm-10">
           <%= f.text_field :name, :class => "form-control" %>
       </div>
   </div>
   <div class="form-group">
-      <%= f.label :course_types, :class => "col-sm-2 control-label required" %>
+      <%= f.label :course_types, :class => "col-sm-2 control-label is-required" %>
       <div class="col-sm-10">
           <div data-toggle="buttons">
               <input id="ingredient_category_ids_0" name="recipe[category_ids][]" type="hidden">
@@ -98,7 +98,7 @@
       </div>
   </div>
   <div class="form-group">
-      <%= f.label :directions, :class => "col-sm-2 control-label required" %>
+      <%= f.label :directions, :class => "col-sm-2 control-label is-required" %>
       <div class="col-sm-10">
           <%= f.text_area :directions, :class => "form-control tinymce" %>
       </div>
