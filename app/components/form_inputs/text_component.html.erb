@@ -1,0 +1,12 @@
+<div class="field is-horizontal">
+  <% if has_label %>
+    <%= render(FormInputs::LabelComponent, form: form, method: method.to_sym, resource: resource, text: label_text, is_required: is_required, is_disabled: is_disabled, options: label_options) %>
+  <% end %>
+  <div class="field-body">
+    <div class="field">
+      <div class="control">
+        <%= render(FormFields::TextComponent, form: form, method: method.to_sym, resource: resource, is_required: is_required, is_disabled: is_disabled, options: options) %>
+      </div>
+    </div>
+  </div>
+</div>
