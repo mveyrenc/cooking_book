@@ -1,6 +1,7 @@
 <section>
   <div class="container box">
     <div class="title is-size-1"><%= I18n.t('users.index_page_title') %></div>
+    <div class="buttons"><%= render(Elements::NewButtonComponent, url: new_user_path, name: I18n.t('users.new_button')) %></div>
     <%= render(Users::ListComponent, items: @users) %>
   </div>
 </section>

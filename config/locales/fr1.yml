@@ -4,6 +4,7 @@ fr:
         home: "Accueil"
         recipes: "Recettes"
         search: "Recherche"
+        new: "Ajouter"
         show: "Lire"
         edit: "Modifier"
         move_lower: "Descendre"
