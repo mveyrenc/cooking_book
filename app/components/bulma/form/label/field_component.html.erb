@@ -1,0 +1,7 @@
+<% if content %>
+  <%= form.label method.to_sym, text, html_options do %>
+    <%= content %>
+  <% end %> %>
+<% else %>
+  <%= form.label method.to_sym, text, html_options %>
+<% end %>
