@@ -1,12 +1,6 @@
-<div class="user-page edit-page form-page">
-    <div class="page-header row">
-        <div class="buttons">
-            <%= back_button users_path %>
-        </div>
-        <header class="with-shadow">
-            <h1><%= I18n.t( 'users.edit_page_title' ) %></h1>
-        </header>
-    </div>
-    <%= render 'form' %>
-</div>
-
+<section>
+  <div class="container box">
+    <div class="title is-size-1"><%= I18n.t( 'users.edit_page_title' ) %></div>
+    <%= render(Users::FormComponent, item: @user) %>
+  </div>
+</section>
