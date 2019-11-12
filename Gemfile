@@ -77,9 +77,6 @@ gem "sunspot-queue"
 gem "delayed_job"
 gem "delayed_job_active_record"
 
-# Navigation
-gem 'simple-navigation'
-
 # Attachement
 gem "paperclip"
 

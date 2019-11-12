@@ -1,2 +1,0 @@
-
-SimpleNavigation.register_renderer bootstrap_topbar_list: BootstrapTopbarList
