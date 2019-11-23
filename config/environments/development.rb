@@ -20,7 +20,7 @@ Rails.application.configure do
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.to_i}"
+        'Cache-Control' => "public, max-age=#{2.days.to_i}"
     }
   else
     config.action_controller.perform_caching = false
@@ -61,4 +61,12 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.web_console.whitelisted_ips = ['172.18.0.0/12', '192.168.0.0/16']
+
+  config.action_mailer.default_url_options = {:host => "localhost:3000"}
+
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.smtp_settings = {
+      address: 'mailhog',
+      port: 1025
+  }
 end

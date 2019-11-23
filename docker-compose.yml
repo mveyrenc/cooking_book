@@ -18,5 +18,11 @@ services:
       - "3000:3000"
     depends_on:
       - db
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "8025:8025"
+
 volumes:
   cooking_book_data: ~
