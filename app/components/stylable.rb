@@ -19,6 +19,13 @@ module Stylable
     self.styles = self.styles + args
   end
 
+  # Remove styles
+  #
+  #   remove_styles "style1", "style2"
+  def remove_styles(*args)
+    self.styles.reject! {|i| args.include? i}
+  end
+
   # Get de CSS classes related to the styles
   def css_class
     self.styles.uniq.join(' ')
