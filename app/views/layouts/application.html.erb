@@ -17,16 +17,24 @@
   <%= javascript_include_tag "application" %>
 </head>
 <body>
-<%= render(MainMenu::MenuComponent, request: request) %>
+<%= render(MainMenu::Menu, request: request) %>
 <main>
-
-  <% flash.each do |name, msg| %>
-    <%= content_tag :div, :class => "notification is-" + name do %>
-      <button class="delete"></button>
-      <%= msg %>
-    <% end %>
-  <% end %>
+  <section class="flash">
+    <div class="container">
+      <% flash.each do |name, msg| %>
+        <%= render(Bulma::Elements::Notification::Notification,
+                   html_options: {class: "is-" + name},
+                   delete: true
+            ) do %>
+          <%= msg %>
+        <% end %>
+      <% end %>
+    </div>
+  </section>
   <%= yield %>
 </main>
+<footer>
+</footer>
 </body>
+<%= render(Bulma::Elements::Notification::NotificationJs) %>
 </html>

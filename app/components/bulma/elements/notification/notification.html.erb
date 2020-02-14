@@ -1,0 +1,6 @@
+<div <%= raw(tag_builder.tag_options(html_options)) %>">
+<% if delete? %>
+  <%= render(Bulma::Elements::Delete::Delete, size: delete_size) %>
+<% end %>
+<%= content %>
+</div>
