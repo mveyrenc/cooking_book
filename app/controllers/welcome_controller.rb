@@ -1,7 +1,7 @@
 class WelcomeController < ApplicationController
   
   def index
-    @recipes = Recipe.all.order( 'created_at DESC' ).limit( 10 )
+    @recipes = (can? :read, Recipe) ? Recipe.all.order( 'created_at DESC' ).limit( 12 ) : []
   end
 
 end

@@ -1,0 +1,45 @@
+<div class="card">
+  <header class="card-header">
+    <p class="card-header-title"><%= link_to object %></p>
+  </header>
+  <div class="card-image">
+    <% if !object.picture.blank? %>
+      <figure class="image">
+        <%= image_tag object.picture.url(:medium), :class => "media-object" %>
+      </figure>
+    <% end %>
+  </div>
+  <div class="card-content">
+    <div class="tags">
+      <% object.categories.each do |category| %>
+        <%= render(Application::Elements::Category::MainTag, category: category) %>
+      <% end %>
+      <% object.additional_categories.each do |category| %>
+        <%= render(Application::Elements::Category::AdditionalTag, category: category) %>
+      <% end %>
+      <% object.main_ingredients.each do |ingredient| %>
+        <%= render(Application::Elements::Ingredient::MainTag, ingredient: ingredient) %>
+      <% end %>
+    </div>
+    <%= render(Application::Elements::Rating::User, object: object) %>
+    <%= render(Application::Elements::Rating::Difficulty, note: object.difficulty) %>
+    <%= render(Application::Elements::Rating::Cost, note: object.cost) %>
+  </div>
+  <footer class="card-footer">
+    <% if can? :read, object %>
+      <%= link_to object, :class => 'card-footer-item no-print', :title => I18n.t('application.show') do %>
+        <span class="fa fa-eye"></span>
+      <% end %>
+    <% end %>
+    <% if can? :update, object %>
+      <%= link_to edit_recipe_path(object), :class => 'card-footer-item no-print', :title => I18n.t('application.edit') do %>
+        <span class="fa fa-edit"></span>
+      <% end %>
+    <% end %>
+    <% if can? :destroy, object %>
+      <%= link_to object, :class => 'card-footer-item', :title => I18n.t('application.destroy'), :method => :delete, :data => {confirm: I18n.t('application.destroy_confirmation')} do %>
+        <span class="fa fa-trash"></span>
+      <% end %>
+    <% end %>
+  </footer>
+</div>

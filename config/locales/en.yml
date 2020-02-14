@@ -58,38 +58,7 @@ en:
         users: "Users"
     homepage:
         welcome: "Welcome!"
-        lastest_10_recipes: "The last 10 recipes"
-    recipes:
-        index_page_title: "Listing recipes"
-        new_page_title: "New recipe"
-        edit_page_title: "Edit recipe"
-        new_button: "New recipe"
-        search_page_title: "Search"
-    dish_types:
-        index_page_title: "Listing dish types"
-        new_page_title: "New dish type"
-        edit_page_title: "Edit dish type"
-        new_button: "New dish type"
-    categories:
-        index_page_title: "Listing categories"
-        new_page_title: "New category"
-        edit_page_title: "Edit category"
-        new_button: "New category"
-    ingredients:
-        index_page_title: "Listing ingredients"
-        new_page_title: "New ingredient"
-        edit_page_title: "Edit ingredient"
-        new_button: "New ingredient"
-    sources:
-        index_page_title: "Listing sources"
-        new_page_title: "New source"
-        edit_page_title: "Edit source"
-        new_button: "New source"
-    users:
-        index_page_title: "Listing users"
-        new_page_title: "New user"
-        edit_page_title: "Edit user"
-        new_button: "New user"
+        show_all_recipes: "View all recipes"
     activerecord:
         models:
             recipe: "Recipe"
@@ -111,6 +80,11 @@ en:
                 difficulty: "Difficulty"
                 cost: "Cost"
     recipes:
+        index_page_title: "Listing recipes"
+        new_page_title: "New recipe"
+        edit_page_title: "Edit recipe"
+        new_button: "New recipe"
+        search_page_title: "Search"
         create:
             success: Recipe was successfully created.
         update:
@@ -118,6 +92,10 @@ en:
         destroy:
             success: Recipe was successfully destroyed.
     categories:
+        index_page_title: "Listing categories"
+        new_page_title: "New category"
+        edit_page_title: "Edit category"
+        new_button: "New category"
         create:
             success: Category was successfully created.
         update:
@@ -125,6 +103,10 @@ en:
         destroy:
             success: Category was successfully destroyed.
     ingredients:
+        index_page_title: "Listing ingredients"
+        new_page_title: "New ingredient"
+        edit_page_title: "Edit ingredient"
+        new_button: "New ingredient"
         create:
             success: Ingredient was successfully created.
         update:
@@ -132,6 +114,10 @@ en:
         destroy:
             success: Ingredient was successfully destroyed.
     sources:
+        index_page_title: "Listing sources"
+        new_page_title: "New source"
+        edit_page_title: "Edit source"
+        new_button: "New source"
         create:
             success: Source was successfully created.
         update:
@@ -139,12 +125,21 @@ en:
         destroy:
             success: Source was successfully destroyed.
     users:
+        index_page_title: "Listing users"
+        new_page_title: "New user"
+        edit_page_title: "Edit user"
+        new_button: "New user"
         create:
             success: User was successfully created.
         update:
             success: User was successfully updated.
         destroy:
             success: User was successfully destroyed.
+    dish_types:
+        index_page_title: "Listing dish types"
+        new_page_title: "New dish type"
+        edit_page_title: "Edit dish type"
+        new_button: "New dish type"
     helpers:
         submit:
             create: "Validate"

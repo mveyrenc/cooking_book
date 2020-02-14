@@ -1,11 +1,7 @@
-<h1><%= I18n.t( 'homepage.welcome' ) %></h1>
-
-<h2><%= I18n.t( 'homepage.lastest_10_recipes' ) %></h2>
-<% if !@recipes.blank? %>
-  <div class="recipe-page index-page">
-      <% @recipes.each do |recipe| %>
-        <%= render 'recipes/row', recipe: recipe %>
-        <hr />
-      <%  end %>
+<section>
+  <div class="container box">
+    <div class="title is-size-1"><%= I18n.t( 'homepage.welcome' ) %></div>
+    <%= render(Recipes::List, items: @recipes) %>
+    <%= link_to I18n.t( 'homepage.show_all_recipes' ), recipes_path, class: 'button is-primary is-fullwidth has-margin-top-15'%>
   </div>
-<% end %>
+</section>

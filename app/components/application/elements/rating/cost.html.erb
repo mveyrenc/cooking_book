@@ -1,0 +1,10 @@
+<% unless note === 0 %>
+  <div class="tags has-addons">
+    <% (1..note).each do |i| %>
+      <a class="tag is-link" title="<%= t(Recipe.difficulty_types.invert[i], scope: 'recipes') %>"><i class="fa fa-euro-sign"></i></a>
+    <% end %>
+    <% (note + 1..5).each do |i| %>
+      <a class="tag is-light" title="<%= t(Recipe.difficulty_types.invert[i], scope: 'recipes') %>"><i class="fa fa-euro-sign"></i></a>
+    <% end %>
+  </div>
+<% end %>

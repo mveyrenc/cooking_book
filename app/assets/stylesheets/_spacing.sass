@@ -1,0 +1,10 @@
+$sizes: (0,10,15,20,25,30,50)
+$positions: ('top','left','bottom','right')
+
+@each $size in $sizes
+  @each $position in $positions
+    .has-margin-#{$position}-#{$size}
+      margin-#{$position}: $size + px
+
+    .has-padding-#{$position}-#{$size}
+      padding-#{$position}: $size + px

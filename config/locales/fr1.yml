@@ -27,7 +27,7 @@ fr:
         users: "Utilisateurs"
     homepage:
         welcome: "Bienvenue !"
-        lastest_10_recipes: "Les 10 dernières recettes"
+        show_all_recipes: "Voir toutes les recettes"
     recipes:
         index_page_title: "%{total_count} recettes"
         new_page_title: "Nouvelle recette"
