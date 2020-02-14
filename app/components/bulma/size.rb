@@ -20,10 +20,10 @@ module Bulma
     end
 
     private
-    
+
     def add_size_styles
       unless self.size.nil?
-        self.styles.append(SIZE[self.size][:class])
+        self.add_styles(SIZE[self.size][:class])
       end
     end
   end

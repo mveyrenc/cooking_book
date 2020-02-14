@@ -94,25 +94,25 @@ module Bulma
 
     def add_font_size_style
       unless self.font_size.nil?
-        self.styles.append(FONT_SIZE[self.font_size][:class])
+        self.add_styles(FONT_SIZE[self.font_size][:class])
       end
     end
 
     def add_text_alignment_style
       unless self.text_alignment.nil?
-        self.styles.append(TEXT_ALIGNMENT[self.text_alignment][:class])
+        self.add_styles(TEXT_ALIGNMENT[self.text_alignment][:class])
       end
     end
 
     def add_text_weight_style
       unless self.text_weight.nil?
-        self.styles.append(TEXT_WEIGHT[self.text_weight][:class])
+        self.add_styles(TEXT_WEIGHT[self.text_weight][:class])
       end
     end
 
     def add_font_family_style
       unless self.font_family.nil?
-        self.styles.append(FONT_FAMILY[self.font_family][:class])
+        self.add_styles(FONT_FAMILY[self.font_family][:class])
       end
     end
   end

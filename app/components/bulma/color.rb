@@ -44,8 +44,18 @@ module Bulma
         very_very_dark: {class: "very-very-dark"}
     }.freeze
 
+    attr_reader :is_light
     attr_reader :main_color, :background_color, :text_color
     attr_reader :main_color_variant, :background_color_variant, :text_color_variant
+
+    def is_light=(is_light)
+      @is_light = is_light
+      if @is_light
+        add_is_light_styles
+      else
+        remove_is_light_styles
+      end
+    end
 
     def main_color=(color)
       unless color.nil?
@@ -111,21 +121,33 @@ module Bulma
       raise ArgumentError, 'Color variant not valid'
     end
 
+    def add_is_light_styles
+      if self.is_light
+        self.add_styles 'is-light'
+      end
+    end
+
+    def remove_is_light_styles
+      if self.is_light
+        self.remove_styles 'is-light'
+      end
+    end
+
     def add_main_color_styles
       unless self.main_color.nil?
-        self.styles.append(get_color_css_class 'is', self.main_color, self.main_color_variant)
+        self.add_styles(get_color_css_class 'is', self.main_color, self.main_color_variant)
       end
     end
 
     def add_background_color_styles
       unless self.background_color.nil?
-        self.styles.append(get_color_css_class 'has-background', self.background_color, self.background_color_variant)
+        self.add_styles(get_color_css_class 'has-background', self.background_color, self.background_color_variant)
       end
     end
 
     def add_text_color_styles
       unless self.text_color.nil?
-        self.styles.append(get_color_css_class 'has-text', self.text_color, self.text_color_variant)
+        self.add_styles(get_color_css_class 'has-text', self.text_color, self.text_color_variant)
       end
     end
 
