@@ -15,6 +15,17 @@ module Bulma
     alias :loading? :loading
     alias :disabled? :disabled
 
+    def states=(styles)
+      self.outlined = styles[:outlined] if styles.key? :outlined
+      self.loading = styles[:loading] if styles.key? :loading
+    end
+
+    def disabled=(disabled)
+      @disabled = disabled
+    end
+
+    private
+
     def outlined=(outlined)
       @outlined = outlined
       add_outlined_style
@@ -25,25 +36,21 @@ module Bulma
       add_loading_style
     end
 
-    def disabled=(disabled)
-      @disabled = disabled
-    end
-
     private
 
     def add_outlined_style
       if self.outlined?
-        self.add_styles STATE[:outlined][:class]
+        self.add_css_classes STATE[:outlined][:class]
       else
-        self.remove_styles STATE[:outlined][:class]
+        self.remove_css_classes STATE[:outlined][:class]
       end
     end
 
     def add_loading_style
       if self.loading?
-        self.add_styles(STATE[:loading][:class])
+        self.add_css_classes(STATE[:loading][:class])
       else
-        self.remove_styles STATE[:loading][:class]
+        self.remove_css_classes STATE[:loading][:class]
       end
     end
   end

@@ -2,20 +2,17 @@ module Bulma
   module Elements
     module Delete
       class Delete < ActionView::Component::Base
-        include Stylable
-        include Bulma::Size
-
-        validates :size, inclusion: {in: SIZE.keys}, :allow_nil => true
+        include Bulma::Component
 
         def initialize(
-            size: nil
+            styles: {}
         )
-          self.size = size
+          self.styles = styles
         end
 
         private
 
-        def default_styles
+        def default_css_classes
           ['delete']
         end
       end

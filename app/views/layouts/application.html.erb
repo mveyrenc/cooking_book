@@ -23,7 +23,7 @@
     <div class="container">
       <% flash.each do |name, msg| %>
         <%= render(Bulma::Elements::Notification::Notification,
-                   html_options: {class: "is-" + name},
+                   styles: {color: name},
                    delete: true
             ) do %>
           <%= msg %>

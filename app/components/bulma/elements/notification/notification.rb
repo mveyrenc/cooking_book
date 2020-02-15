@@ -2,30 +2,29 @@ module Bulma
   module Elements
     module Notification
       class Notification < ActionView::Component::Base
-
-        include ActionView::Helpers
+        include Bulma::Component
 
         def initialize(
-            html_options: {},
+            styles: {},
             delete: true,
-            delete_size: nil
+            delete_styles: {}
         )
-          @html_options = html_options
-          @html_options[:class] = @html_options.fetch(:class, '').prepend('notification ')
+          self.styles = styles
 
           @delete = delete
-          @delete_size = delete_size
+          @delete_styles = delete_styles
         end
 
         private
 
-        attr_reader :html_options
-        attr_reader :delete_size
+        attr_reader :delete
+        attr_reader :delete_styles
 
-        def delete?
-          html_options.fetch(:delete, true)
+        alias :delete? :delete
+
+        def default_css_classes
+          ['notification']
         end
-
       end
     end
   end

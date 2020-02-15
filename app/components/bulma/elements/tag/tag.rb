@@ -2,20 +2,17 @@ module Bulma
   module Elements
     module Tag
       class Tag < ActionView::Component::Base
-        include Stylable
-        include Bulma::Color
+        include Bulma::Component
 
         def initialize(
-            is_light: nil,
-            color: nil
+            styles: {}
         )
-          self.is_light = is_light
-          self.main_color = color
+          self.styles = styles
         end
 
         private
 
-        def default_styles
+        def default_css_classes
           ['tag']
         end
       end

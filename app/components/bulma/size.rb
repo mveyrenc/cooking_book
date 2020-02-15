@@ -10,20 +10,24 @@ module Bulma
 
     attr_reader :size
 
-    def size=(size)
-      unless size.nil?
-        raise ArgumentError, 'Size not valid' unless SIZE.key? size
-
-        @size = size
-        add_size_styles
-      end
+    def sizes=(styles)
+      self.size = styles[:size] if styles.key? :size
     end
 
     private
 
-    def add_size_styles
+    def size=(size)
+      unless size.nil?
+        raise ArgumentError, "Size #{size} not valid" unless SIZE.key? size
+
+        @size = size
+        add_size_css_classes
+      end
+    end
+
+    def add_size_css_classes
       unless self.size.nil?
-        self.add_styles(SIZE[self.size][:class])
+        self.add_css_classes(SIZE[self.size][:class])
       end
     end
   end

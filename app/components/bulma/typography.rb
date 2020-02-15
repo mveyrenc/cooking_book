@@ -38,6 +38,15 @@ module Bulma
 
     attr_reader :font_size, :text_alignment, :text_weight, :font_family
 
+    def typography=(styles)
+      @font_size = styles[:font_size] if styles.key? :font_size
+      @font_family = styles[:font_family] if styles.key? :font_family
+      @text_alignment = styles[:text_alignment] if styles.key? :text_alignment
+      @text_weight = styles[:text_weight] if styles.key? :text_weight
+    end
+
+    private
+
     def font_size=(font_size)
       unless font_size.nil?
         @font_size = detect_font_size font_size
@@ -66,8 +75,6 @@ module Bulma
       end
     end
 
-    private
-
     def detect_font_size(font_size)
       font_size = font_size.to_sym
       return font_size if FONT_SIZE.key? font_size
@@ -94,25 +101,25 @@ module Bulma
 
     def add_font_size_style
       unless self.font_size.nil?
-        self.add_styles(FONT_SIZE[self.font_size][:class])
+        self.add_css_classes(FONT_SIZE[self.font_size][:class])
       end
     end
 
     def add_text_alignment_style
       unless self.text_alignment.nil?
-        self.add_styles(TEXT_ALIGNMENT[self.text_alignment][:class])
+        self.add_css_classes(TEXT_ALIGNMENT[self.text_alignment][:class])
       end
     end
 
     def add_text_weight_style
       unless self.text_weight.nil?
-        self.add_styles(TEXT_WEIGHT[self.text_weight][:class])
+        self.add_css_classes(TEXT_WEIGHT[self.text_weight][:class])
       end
     end
 
     def add_font_family_style
       unless self.font_family.nil?
-        self.add_styles(FONT_FAMILY[self.font_family][:class])
+        self.add_css_classes(FONT_FAMILY[self.font_family][:class])
       end
     end
   end

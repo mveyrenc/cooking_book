@@ -1,33 +1,34 @@
 module Stylable
 
   attr_writer :styles
+  attr_writer :css_classes
 
-  # Get all styles as array
-  def styles
-    @styles ||= default_styles.to_a
+  # Get all CSS classes as array
+  def css_classes
+    @css_classes ||= default_css_classes.to_a
   end
 
-  # Define default styles
-  def default_styles
+  # Define default CSS classes
+  def default_css_classes
     []
   end
 
-  # Add styles
+  # Add CSS classes
   #
-  #   add_styles "style1", "style2"
-  def add_styles(*args)
-    self.styles = self.styles + args
+  #   add_css_classes "style1", "style2"
+  def add_css_classes(*args)
+    self.css_classes = self.css_classes + args
   end
 
-  # Remove styles
+  # Remove CSS classes
   #
-  #   remove_styles "style1", "style2"
-  def remove_styles(*args)
-    self.styles.reject! {|i| args.include? i}
+  #   remove_css_classes "style1", "style2"
+  def remove_css_classes(*args)
+    self.css_classes.reject! {|i| args.include? i}
   end
 
-  # Get de CSS classes related to the styles
+  # Get de CSS classes related to the CSS classes
   def css_class
-    self.styles.uniq.join(' ')
+    self.css_classes.uniq.join(' ')
   end
 end

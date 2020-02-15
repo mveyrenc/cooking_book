@@ -36,12 +36,21 @@ module Bulma
     attr_reader :is_light
     attr_reader :main_color, :background_color, :text_color
 
+    def colors=(styles)
+      self.main_color = styles[:color] if styles.key? :color
+      self.background_color = styles[:background_color] if styles.key? :background_color
+      self.text_color = styles[:text_color] if styles.key? :text_color
+      self.is_light = styles[:is_light] if styles.key? :is_light
+    end
+
+    private
+
     def is_light=(is_light)
       @is_light = is_light
       if @is_light
-        add_is_light_styles
+        add_is_light_css_classes
       else
-        remove_is_light_styles
+        remove_is_light_css_classes
       end
     end
 
@@ -54,7 +63,7 @@ module Bulma
         end
 
         @main_color = base_color
-        add_main_color_styles
+        add_main_color_css_classes
       end
     end
 
@@ -67,7 +76,7 @@ module Bulma
         end
 
         @background_color = base_color
-        add_background_color_styles
+        add_background_color_css_classes
       end
     end
 
@@ -80,12 +89,10 @@ module Bulma
         end
 
         @text_color = base_color
-        add_text_color_styles
+        add_text_color_css_classes
 
       end
     end
-
-    private
 
     def detect_color(color)
       for valid_color in COLORS.keys
@@ -95,33 +102,33 @@ module Bulma
       raise ArgumentError, 'Color not valid'
     end
 
-    def add_is_light_styles
+    def add_is_light_css_classes
       if self.is_light
-        self.add_styles 'is-light'
+        self.add_css_classes 'is-light'
       end
     end
 
-    def remove_is_light_styles
+    def remove_is_light_css_classes
       if self.is_light
-        self.remove_styles 'is-light'
+        self.remove_css_classes 'is-light'
       end
     end
 
-    def add_main_color_styles
+    def add_main_color_css_classes
       unless self.main_color.nil?
-        self.add_styles(get_color_css_class 'is', self.main_color)
+        self.add_css_classes(get_color_css_class 'is', self.main_color)
       end
     end
 
-    def add_background_color_styles
+    def add_background_color_css_classes
       unless self.background_color.nil?
-        self.add_styles(get_color_css_class 'has-background', self.background_color)
+        self.add_css_classes(get_color_css_class 'has-background', self.background_color)
       end
     end
 
-    def add_text_color_styles
+    def add_text_color_css_classes
       unless self.text_color.nil?
-        self.add_styles(get_color_css_class 'has-text', self.text_color)
+        self.add_css_classes(get_color_css_class 'has-text', self.text_color)
       end
     end
 

@@ -1,6 +1,6 @@
-<div <%= raw(tag_builder.tag_options(html_options)) %>">
+<div class="<% css_class %>">
 <% if delete? %>
-  <%= render(Bulma::Elements::Delete::Delete, size: delete_size) %>
+  <%= render(Bulma::Elements::Delete::Delete, styles: delete_styles) %>
 <% end %>
 <%= content %>
 </div>
