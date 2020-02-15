@@ -20,20 +20,9 @@ RSpec.describe Bulma::Color do
     expect(dc.css_class).to eq('is-orange')
   end
 
-  it 'main color variant must be valid' do
-    dc = Bulma::Color::DummyClass.new
-    dc.main_color = :orange_dark
-    expect(dc.css_class).to eq('is-orange-dark')
-  end
-
   it 'main color raise error if invalid' do
     dc = Bulma::Color::DummyClass.new
     expect {dc.main_color = :foo}.to raise_error(ArgumentError, 'Main color not valid')
-  end
-
-  it 'main color variant raise error if invalid' do
-    dc = Bulma::Color::DummyClass.new
-    expect {dc.main_color = :orange_foo}.to raise_error(ArgumentError, 'Main color variant not valid')
   end
 
   it 'background color must be valid' do

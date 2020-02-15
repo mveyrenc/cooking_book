@@ -12,6 +12,7 @@ RSpec.configure do |config|
 
   # config.use_transactional_fixtures = true
 
+  # Ensure that the test helpers are available in component specs
   config.include ActionView::Component::TestHelpers
 end
 
