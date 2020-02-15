@@ -9,22 +9,6 @@
       </figure>
     <% end %>
   </div>
-  <div class="card-content">
-    <div class="tags">
-      <% object.categories.each do |category| %>
-        <%= render(Application::Elements::Category::MainTag, category: category) %>
-      <% end %>
-      <% object.additional_categories.each do |category| %>
-        <%= render(Application::Elements::Category::AdditionalTag, category: category) %>
-      <% end %>
-      <% object.main_ingredients.each do |ingredient| %>
-        <%= render(Application::Elements::Ingredient::MainTag, ingredient: ingredient) %>
-      <% end %>
-    </div>
-    <%= render(Application::Elements::Rating::User, object: object) %>
-    <%= render(Application::Elements::Rating::Difficulty, note: object.difficulty) %>
-    <%= render(Application::Elements::Rating::Cost, note: object.cost) %>
-  </div>
   <footer class="card-footer">
     <% if can? :read, object %>
       <%= link_to object, :class => 'card-footer-item no-print', :title => I18n.t('application.show') do %>
