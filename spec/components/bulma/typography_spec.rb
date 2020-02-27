@@ -22,18 +22,7 @@ RSpec.describe Bulma::Typography do
 
   it 'font size raise error if invalid' do
     dc = Bulma::Typography::DummyClass.new
-    expect {dc.font_size = :foo}.to raise_error(ArgumentError, 'Font size not valid')
-  end
-
-  it 'text alignment must be valid' do
-    dc = Bulma::Typography::DummyClass.new
-    dc.text_alignment = :justified
-    expect(dc.css_class).to eq('has-text-justified')
-  end
-
-  it 'text alignment raise error if invalid' do
-    dc = Bulma::Typography::DummyClass.new
-    expect {dc.text_alignment = :foo}.to raise_error(ArgumentError, 'Text alignment not valid')
+    expect {dc.font_size = :foo}.to raise_error(ArgumentError, 'Font size foo not valid')
   end
 
   it 'text weight must be valid' do
@@ -44,7 +33,7 @@ RSpec.describe Bulma::Typography do
 
   it 'text weight raise error if invalid' do
     dc = Bulma::Typography::DummyClass.new
-    expect {dc.text_weight = :foo}.to raise_error(ArgumentError, 'Text weight not valid')
+    expect {dc.text_weight = :foo}.to raise_error(ArgumentError, 'Text weight foo not valid')
   end
 
   it 'font family must be valid' do
@@ -55,6 +44,6 @@ RSpec.describe Bulma::Typography do
 
   it 'font family raise error if invalid' do
     dc = Bulma::Typography::DummyClass.new
-    expect {dc.font_family = :foo}.to raise_error(ArgumentError, 'Font family not valid')
+    expect {dc.font_family = :foo}.to raise_error(ArgumentError, 'Font family foo not valid')
   end
 end

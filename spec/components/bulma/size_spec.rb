@@ -22,6 +22,6 @@ RSpec.describe Bulma::Size do
 
   it 'raise error if invalid' do
     dc = Bulma::Size::DummyClass.new
-    expect {dc.size = :foo}.to raise_error(ArgumentError, 'Size not valid')
+    expect {dc.size = :foo}.to raise_error(ArgumentError, 'Size foo not valid')
   end
 end

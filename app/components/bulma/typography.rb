@@ -13,13 +13,6 @@ module Bulma
         size7: {class: 'is-size-7'}
     }.freeze
 
-    TEXT_ALIGNMENT = {
-        centered: {class: 'has-text-centered'},
-        justified: {class: 'has-text-justified'},
-        left: {class: 'has-text-left'},
-        right: {class: 'has-text-right'}
-    }.freeze
-
     TEXT_WEIGHT = {
         light: {class: 'has-text-weight-light'},
         normal: {class: 'has-text-weight-normal'},
@@ -39,87 +32,41 @@ module Bulma
     attr_reader :font_size, :text_alignment, :text_weight, :font_family
 
     def typography=(styles)
-      @font_size = styles[:font_size] if styles.key? :font_size
-      @font_family = styles[:font_family] if styles.key? :font_family
-      @text_alignment = styles[:text_alignment] if styles.key? :text_alignment
-      @text_weight = styles[:text_weight] if styles.key? :text_weight
+      self.font_size = styles[:font_size] if styles.key? :font_size
+      self.font_family = styles[:font_family] if styles.key? :font_family
+      self.text_weight = styles[:text_weight] if styles.key? :text_weight
     end
-
-    private
 
     def font_size=(font_size)
       unless font_size.nil?
-        @font_size = detect_font_size font_size
-        add_font_size_style
-      end
-    end
+        font_size = font_size.to_sym
 
-    def text_alignment=(text_alignment)
-      unless text_alignment.nil?
-        @text_alignment = detect_text_alignment text_alignment
-        add_text_alignment_style
-      end
-    end
+        raise ArgumentError, "Font size #{font_size} not valid" unless FONT_SIZE.key? font_size
 
-    def text_weight=(text_weight)
-      unless text_weight.nil?
-        @text_weight = detect_text_weight text_weight
-        add_text_weight_style
+        @font_size = font_size
+        add_css_classes(FONT_SIZE[font_size][:class])
       end
     end
 
     def font_family=(font_family)
       unless font_family.nil?
-        @font_family = detect_font_family font_family
-        add_font_family_style
+        font_family = font_family.to_sym
+
+        raise ArgumentError, "Font family #{font_family} not valid" unless FONT_FAMILY.key? font_family
+
+        @font_family = font_family
+        add_css_classes(FONT_FAMILY[font_family][:class])
       end
     end
 
-    def detect_font_size(font_size)
-      font_size = font_size.to_sym
-      return font_size if FONT_SIZE.key? font_size
-      raise ArgumentError, 'Font size not valid'
-    end
+    def text_weight=(text_weight)
+      unless text_weight.nil?
+        text_weight = text_weight.to_sym
 
-    def detect_text_alignment(text_alignment)
-      text_alignment = text_alignment.to_sym
-      return text_alignment if TEXT_ALIGNMENT.key? text_alignment
-      raise ArgumentError, 'Text alignment not valid'
-    end
+        raise ArgumentError, "Text weight #{text_weight} not valid" unless TEXT_WEIGHT.key? text_weight
 
-    def detect_text_weight(text_weight)
-      text_weight = text_weight.to_sym
-      return text_weight if TEXT_WEIGHT.key? text_weight
-      raise ArgumentError, 'Text weight not valid'
-    end
-
-    def detect_font_family(font_family)
-      font_family = font_family.to_sym
-      return font_family if FONT_FAMILY.key? font_family
-      raise ArgumentError, 'Font family not valid'
-    end
-
-    def add_font_size_style
-      unless self.font_size.nil?
-        self.add_css_classes(FONT_SIZE[self.font_size][:class])
-      end
-    end
-
-    def add_text_alignment_style
-      unless self.text_alignment.nil?
-        self.add_css_classes(TEXT_ALIGNMENT[self.text_alignment][:class])
-      end
-    end
-
-    def add_text_weight_style
-      unless self.text_weight.nil?
-        self.add_css_classes(TEXT_WEIGHT[self.text_weight][:class])
-      end
-    end
-
-    def add_font_family_style
-      unless self.font_family.nil?
-        self.add_css_classes(FONT_FAMILY[self.font_family][:class])
+        @text_weight = text_weight
+        add_css_classes(TEXT_WEIGHT[text_weight][:class])
       end
     end
   end

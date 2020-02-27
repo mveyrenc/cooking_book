@@ -7,6 +7,7 @@ module Bulma
         primary: {class: 'primary'},
         link: {class: 'link'},
         info: {class: 'info'},
+        notice: {class: 'notice'},
         success: {class: 'success'},
         warning: {class: 'warning'},
         danger: {class: 'danger'},
@@ -43,98 +44,46 @@ module Bulma
       self.is_light = styles[:is_light] if styles.key? :is_light
     end
 
-    private
-
-    def is_light=(is_light)
-      @is_light = is_light
-      if @is_light
-        add_is_light_css_classes
-      else
-        remove_is_light_css_classes
-      end
-    end
-
     def main_color=(color)
       unless color.nil?
-        begin
-          base_color = detect_color color
-        rescue ArgumentError => e
-          raise ArgumentError, 'Main ' + e.message.downcase
-        end
+        color = color.to_sym
 
-        @main_color = base_color
-        add_main_color_css_classes
+        raise ArgumentError, "Color #{color} not valid" unless COLORS.key? color
+
+        @main_color = color
+        add_css_classes('is-' + COLORS[color][:class])
       end
     end
 
     def background_color=(color)
       unless color.nil?
-        begin
-          base_color = detect_color color
-        rescue ArgumentError => e
-          raise ArgumentError, 'Background ' + e.message.downcase
-        end
+        color = color.to_sym
 
-        @background_color = base_color
-        add_background_color_css_classes
+        raise ArgumentError, "Background color #{color} not valid" unless COLORS.key? color
+
+        @background_color = color
+        add_css_classes('has-background-' + COLORS[color][:class])
       end
     end
 
     def text_color=(color)
       unless color.nil?
-        begin
-          base_color = detect_color color
-        rescue ArgumentError => e
-          raise ArgumentError, 'Text ' + e.message.downcase
-        end
+        color = color.to_sym
 
-        @text_color = base_color
-        add_text_color_css_classes
+        raise ArgumentError, "Text color #{color} not valid" unless COLORS.key? color
 
+        @text_color = color
+        add_css_classes('has-text-' + COLORS[color][:class])
       end
     end
 
-    def detect_color(color)
-      for valid_color in COLORS.keys
-        return valid_color.to_sym if color.to_s.start_with? valid_color.to_s
+    def is_light=(is_light)
+      @is_light = is_light
+      if @is_light
+        add_css_classes 'is-light'
+      else
+        remove_css_classes 'is-light'
       end
-
-      raise ArgumentError, 'Color not valid'
-    end
-
-    def add_is_light_css_classes
-      if self.is_light
-        self.add_css_classes 'is-light'
-      end
-    end
-
-    def remove_is_light_css_classes
-      if self.is_light
-        self.remove_css_classes 'is-light'
-      end
-    end
-
-    def add_main_color_css_classes
-      unless self.main_color.nil?
-        self.add_css_classes(get_color_css_class 'is', self.main_color)
-      end
-    end
-
-    def add_background_color_css_classes
-      unless self.background_color.nil?
-        self.add_css_classes(get_color_css_class 'has-background', self.background_color)
-      end
-    end
-
-    def add_text_color_css_classes
-      unless self.text_color.nil?
-        self.add_css_classes(get_color_css_class 'has-text', self.text_color)
-      end
-    end
-
-    def get_color_css_class(prefix, color)
-      css_class = [prefix, COLORS[color][:class]]
-      css_class.join('-')
     end
   end
 end

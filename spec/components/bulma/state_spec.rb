@@ -39,17 +39,4 @@ RSpec.describe Bulma::State do
     dc.loading = false
     expect(dc.css_class).to_not contain_exactly('is-loading')
   end
-
-  it 'disabled' do
-    dc = Bulma::State::DummyClass.new
-    dc.disabled = true
-    expect(dc.css_class).to eq('')
-  end
-
-  it 'not disabled after disabled' do
-    dc = Bulma::State::DummyClass.new
-    dc.disabled = true
-    dc.disabled = false
-    expect(dc.css_class).to eq('')
-  end
 end
