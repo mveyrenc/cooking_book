@@ -26,5 +26,7 @@ module CookingBook
     }
     
     config.autoload_paths += %W(#{config.root}/app/navigation_renderers)
+
+    config.action_view_component.preview_path = "#{Rails.root}/spec/components/previews"
   end
 end
