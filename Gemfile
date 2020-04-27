@@ -109,4 +109,4 @@ gem 'ancestry'
 gem 'sort_alphabetical'
 
 # Github ActionView::Component
-gem "actionview-component"
+gem "view_component"
