@@ -1,29 +1,41 @@
-<div class="card">
-  <header class="card-header">
+<%= render(Bulma::Components::Card::Card.new) do |component| %>
+
+  <% component.with(:header) do %>
     <p class="card-header-title"><%= link_to object %></p>
-  </header>
-  <div class="card-image">
-    <% if !object.picture.blank? %>
+  <% end %>
+
+  <% component.with(:image) do %>
+    <% unless object.picture.blank? %>
       <figure class="image">
         <%= image_tag object.picture.url(:medium), :class => "media-object" %>
       </figure>
     <% end %>
-  </div>
-  <footer class="card-footer">
+  <% end %>
+
+  <% component.with(:footer) do %>
     <% if can? :read, object %>
-      <%= link_to object, :class => 'card-footer-item no-print', :title => I18n.t('application.show') do %>
-        <span class="fa fa-eye"></span>
-      <% end %>
+      <%= render(Bulma::Components::Card::CardFooterItem.new(
+          url: recipe_path(object),
+          name: I18n.t('application.show'),
+          icon: 'eye'
+      )) %>
     <% end %>
     <% if can? :update, object %>
-      <%= link_to edit_recipe_path(object), :class => 'card-footer-item no-print', :title => I18n.t('application.edit') do %>
-        <span class="fa fa-edit"></span>
-      <% end %>
+      <%= render(Bulma::Components::Card::CardFooterItem.new(
+          url: edit_recipe_path(object),
+          name: I18n.t('application.edit'),
+          icon: 'edit'
+      )) %>
     <% end %>
     <% if can? :destroy, object %>
-      <%= link_to object, :class => 'card-footer-item', :title => I18n.t('application.destroy'), :method => :delete, :data => {confirm: I18n.t('application.destroy_confirmation')} do %>
-        <span class="fa fa-trash"></span>
-      <% end %>
+      <%= render(Bulma::Components::Card::CardFooterItem.new(
+          url: recipe_path(object),
+          name: I18n.t('application.destroy'),
+          icon: 'trash',
+          method: :delete,
+          data: {confirm: I18n.t('application.destroy_confirmation')}
+      )) %>
     <% end %>
-  </footer>
-</div>
+  <% end %>
+
+<% end %>
