@@ -1,8 +1,7 @@
 module Application
   module Elements
     module Button
-      class Delete < ViewComponent::Base
-        include Bulma::Component
+      class Delete < Base
 
         def initialize(
             url:,
@@ -10,22 +9,12 @@ module Application
             icon: 'trash',
             styles: {}
         )
-          @url = url
-          @name = name
-          @icon = icon
-          self.styles = {is_light: true}.merge(styles)
-        end
-
-        private
-
-        attr_reader :url
-        attr_reader :name
-        attr_reader :icon
-
-        private
-
-        def default_css_classes
-          ['button']
+          super(
+              url: url,
+              name: name,
+              icon: icon,
+              styles: styles
+          )
         end
       end
     end
