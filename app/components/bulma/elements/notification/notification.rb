@@ -1,7 +1,7 @@
 module Bulma
   module Elements
     module Notification
-      class Notification < ActionView::Component::Base
+      class Notification < ViewComponent::Base
         include Bulma::Component
 
         def initialize(

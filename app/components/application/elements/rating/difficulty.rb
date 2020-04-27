@@ -1,7 +1,7 @@
 module Application
   module Elements
     module Rating
-      class Difficulty < ActionView::Component::Base
+      class Difficulty < ViewComponent::Base
         def initialize(note:)
           @note = note
         end

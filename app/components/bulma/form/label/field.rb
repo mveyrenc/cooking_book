@@ -1,10 +1,8 @@
 module Bulma
   module Form
     module Label
-      class Field < ActionView::Component::Base
+      class Field < ViewComponent::Base
         include Bulma::Form::FieldBase
-
-        validates :form, :method, presence: true
 
         def initialize(*args)
           initialize_field(args.extract_options!)

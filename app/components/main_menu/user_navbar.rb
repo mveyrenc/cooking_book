@@ -1,5 +1,5 @@
 module MainMenu
-  class UserNavbar < ActionView::Component::Base
+  class UserNavbar < ViewComponent::Base
     include Devise::Controllers::Helpers
 
     def initialize(*)

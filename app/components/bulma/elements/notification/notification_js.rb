@@ -1,7 +1,7 @@
 module Bulma
   module Elements
     module Notification
-      class NotificationJs < ActionView::Component::Base
+      class NotificationJs < ViewComponent::Base
         def initialize(*)
         end
       end

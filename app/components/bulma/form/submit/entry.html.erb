@@ -1,7 +1,7 @@
-<%= render(Bulma::Form::Submit::Field,
-           form: form,
-           value: value,
-           resource: resource,
-           options: options,
-           html_options: field_html_options
-    ) %>
+<%= render(Bulma::Form::Submit::Field.new(
+    form: form,
+    value: value,
+    resource: resource,
+    options: options,
+    html_options: field_html_options
+)) %>

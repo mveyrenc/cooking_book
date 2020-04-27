@@ -1,9 +1,9 @@
 <div class="field-label">
-  <%= render(Bulma::Form::Label::Field,
+  <%= render(Bulma::Form::Label::Field.new(
              form: form,
              method: method.to_sym,
              resource: resource,
              options: options,
              html_options: html_options,
-      ) if has_label %>
+             )) if has_label %>
 </div>

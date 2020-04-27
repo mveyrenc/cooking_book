@@ -1,7 +1,7 @@
 module Bulma
   module Elements
     module Tag
-      class Tag < ActionView::Component::Base
+      class Tag < ViewComponent::Base
         include Bulma::Component
 
         def initialize(

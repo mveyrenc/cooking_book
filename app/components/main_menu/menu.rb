@@ -1,5 +1,5 @@
 module MainMenu
-  class Menu < ActionView::Component::Base
+  class Menu < ViewComponent::Base
     include Devise::Controllers::Helpers
 
     def initialize(request:)

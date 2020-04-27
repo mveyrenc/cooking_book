@@ -1,6 +1,6 @@
 module Bulma
   module Elements
-    class DeletePreview < ActionView::Component::Preview
+    class DeletePreview < ViewComponent::Preview
       def with_default_options
         render(
             Bulma::Elements::Delete

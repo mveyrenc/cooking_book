@@ -1,7 +1,5 @@
 module MainMenu
-  class ButtonNavbarItem < ActionView::Component::Base
-    validates :title, :path, presence: true
-
+  class ButtonNavbarItem < ViewComponent::Base
     def initialize(title:, path:)
       @title = title
       @path = path

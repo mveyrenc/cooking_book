@@ -1,5 +1,5 @@
 module MainMenu
-  class Brand < ActionView::Component::Base
+  class Brand < ViewComponent::Base
     def initialize(*)
     end
   end

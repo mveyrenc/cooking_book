@@ -1,7 +1,5 @@
 module FontAwesome
-  class Icon < ActionView::Component::Base
-    validates :icon, presence: true
-
+  class Icon < ViewComponent::Base
     def initialize(icon:)
       @icon = icon
     end

@@ -1,7 +1,7 @@
 module Application
   module Elements
     module Ingredient
-      class MainTag < ActionView::Component::Base
+      class MainTag < ViewComponent::Base
         def initialize(ingredient:)
           @ingredient = ingredient
         end

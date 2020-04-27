@@ -1,10 +1,8 @@
 module Application
   module Elements
     module Button
-      class Back < ActionView::Component::Base
+      class Back < ViewComponent::Base
         include Bulma::Component
-
-        validates :url, presence: true
 
         def initialize(
             url:,

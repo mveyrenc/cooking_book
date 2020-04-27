@@ -1,15 +1,15 @@
-<%= render(Bulma::Form::Entry,
-           form: form,
-           method: method.to_sym,
-           resource: resource,
-           options: options,
-           label_html_options: label_html_options
-    ) do %>
-  <%= render(Bulma::Form::Password::Field,
-             form: form,
-             method: method.to_sym,
-             resource: resource,
-             options: options,
-             html_options: field_html_options
-      ) %>
+<%= render(Bulma::Form::Entry.new(
+    form: form,
+    method: method.to_sym,
+    resource: resource,
+    options: options,
+    label_html_options: label_html_options
+)) do %>
+  <%= render(Bulma::Form::Password::Field.new(
+      form: form,
+      method: method.to_sym,
+      resource: resource,
+      options: options,
+      html_options: field_html_options
+  )) %>
 <% end %>

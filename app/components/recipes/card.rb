@@ -1,10 +1,8 @@
 module Recipes
-  class Card < ActionView::Component::Base
+  class Card < ViewComponent::Base
     include ActionController::Helpers
     include Devise::Controllers::Helpers
     include CanCan::ControllerAdditions
-
-    validates :object, presence: true
 
     def initialize(object:)
       @object = object

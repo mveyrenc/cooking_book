@@ -1,5 +1,5 @@
 module MainMenu
-  class MainNavbar < ActionView::Component::Base
+  class MainNavbar < ViewComponent::Base
     include ActionController::Helpers
     include Devise::Controllers::Helpers
     include CanCan::ControllerAdditions

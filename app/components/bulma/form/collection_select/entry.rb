@@ -1,10 +1,8 @@
 module Bulma
   module Form
     module CollectionSelect
-      class Entry < ActionView::Component::Base
+      class Entry < ViewComponent::Base
         include Bulma::Form::EntryBase
-
-        validates :form, :method, :choices, :value_method, :text_method, presence: true
 
         def initialize(
             form:,

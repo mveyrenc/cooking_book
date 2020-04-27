@@ -1,7 +1,5 @@
 module Users
-  class ListItem < ActionView::Component::Base
-    validates :item, presence: true
-
+  class ListItem < ViewComponent::Base
     def initialize(item:)
       @item = item
     end

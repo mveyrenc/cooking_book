@@ -1,7 +1,7 @@
 module Application
   module Elements
     module Rating
-      class Cost < ActionView::Component::Base
+      class Cost < ViewComponent::Base
         def initialize(note:)
           @note = note
         end

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Bulma::Components::Breadcrumb do
   it "renders the breadcrumb" do
-    result = render_inline(Bulma::Components::Breadcrumb) do
+    result = render_inline(Bulma::Components::Breadcrumb.new()) do
       '<ul>
             <li><a href="#">Bulma</a></li>
             <li><a href="#">Documentation</a></li>
@@ -15,7 +15,7 @@ RSpec.describe Bulma::Components::Breadcrumb do
   end
 
   it "renders the breadcrumb with a size" do
-    result = render_inline(Bulma::Components::Breadcrumb, styles: {size: :small}) do
+    result = render_inline(Bulma::Components::Breadcrumb.new(styles: {size: :small})) do
       '<ul>
             <li><a href="#">Bulma</a></li>
             <li><a href="#">Documentation</a></li>
@@ -31,7 +31,7 @@ RSpec.describe Bulma::Components::Breadcrumb do
   end
 
   it "renders the breadcrumb with an alignment" do
-    result = render_inline(Bulma::Components::Breadcrumb, styles: {alignment: :centered}) do
+    result = render_inline(Bulma::Components::Breadcrumb.new(styles: {alignment: :centered})) do
       '<ul>
             <li><a href="#">Bulma</a></li>
             <li><a href="#">Documentation</a></li>
@@ -48,7 +48,7 @@ RSpec.describe Bulma::Components::Breadcrumb do
   end
 
   it "renders the breadcrumb with a separator" do
-    result = render_inline(Bulma::Components::Breadcrumb, styles: {separator: :arrow}) do
+    result = render_inline(Bulma::Components::Breadcrumb.new(styles: {separator: :arrow})) do
       '<ul>
             <li><a href="#">Bulma</a></li>
             <li><a href="#">Documentation</a></li>

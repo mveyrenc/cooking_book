@@ -1,6 +1,6 @@
 module Bulma
   module Components
-    class BreadcrumbPreview < ActionView::Component::Preview
+    class BreadcrumbPreview < ViewComponent::Preview
       def with_default_options
         render(Bulma::Components::Breadcrumb) do
           '<ul>

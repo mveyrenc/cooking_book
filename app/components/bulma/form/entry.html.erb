@@ -1,12 +1,12 @@
 <div class="field is-horizontal">
   <% if has_label %>
-    <%= render(Bulma::Form::Label::Entry,
-               form: form,
-               method: method.to_sym,
-               resource: resource,
-               options: options,
-               html_options: label_html_options
-        ) %>
+    <%= render(Bulma::Form::Label::Entry.new(
+        form: form,
+        method: method.to_sym,
+        resource: resource,
+        options: options,
+        html_options: label_html_options
+    )) %>
   <% end %>
   <div class="field-body">
     <div class="field">

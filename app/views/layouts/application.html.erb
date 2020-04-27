@@ -17,15 +17,15 @@
   <%= javascript_include_tag "application" %>
 </head>
 <body>
-<%= render(MainMenu::Menu, request: request) %>
+<%= render(MainMenu::Menu.new(request: request)) %>
 <main>
   <section class="flash">
     <div class="container">
       <% flash.each do |name, msg| %>
-        <%= render(Bulma::Elements::Notification::Notification,
-                   styles: {color: name},
-                   delete: true
-            ) do %>
+        <%= render(Bulma::Elements::Notification::Notification.new(
+            styles: {color: name},
+            delete: true
+        )) do %>
           <%= msg %>
         <% end %>
       <% end %>
@@ -36,5 +36,5 @@
 <footer>
 </footer>
 </body>
-<%= render(Bulma::Elements::Notification::NotificationJs) %>
+<%= render(Bulma::Elements::Notification::NotificationJs.new()) %>
 </html>

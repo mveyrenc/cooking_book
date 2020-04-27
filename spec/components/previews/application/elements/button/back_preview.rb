@@ -1,7 +1,7 @@
 module Application
   module Elements
     module Button
-      class BackPreview < ActionView::Component::Preview
+      class BackPreview < ViewComponent::Preview
         def with_default_options
           render(
               Application::Elements::Button::Back,

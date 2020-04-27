@@ -1,6 +1,6 @@
 module Bulma
   module Elements
-    class Delete < ActionView::Component::Base
+    class Delete < ViewComponent::Base
       include Bulma::Component
 
       def initialize(

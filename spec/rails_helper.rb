@@ -5,7 +5,7 @@ ENV["RAILS_ENV"] ||= "test"
 require File.expand_path("../../config/environment", __FILE__)
 require "rspec/rails"
 require "capybara/rspec"
-require "action_view/component/test_helpers"
+require "view_component/test_helpers"
 
 RSpec.configure do |config|
   # config.include FactoryBot::Syntax::Methods
@@ -13,7 +13,7 @@ RSpec.configure do |config|
   # config.use_transactional_fixtures = true
 
   # Ensure that the test helpers are available in component specs
-  config.include ActionView::Component::TestHelpers
+  config.include ViewComponent::TestHelpers
 end
 
 # The following line is provided for convenience purposes. It has the downside

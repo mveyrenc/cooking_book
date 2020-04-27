@@ -26,13 +26,13 @@ module ButtonsHelper
   end
 
   def move_lower_button url
-    link_to url, :class => 'button is-blue no-print', :title => I18n.t('application.move_lower') do
+    link_to url, :class => 'button is-blue no-print', :title => I18n.t('application.move_down') do
       font_awesome_icon("arrow-down")
     end
   end
 
   def move_higher_button url
-    link_to url, :class => 'button is-blue no-print', :title => I18n.t('application.move_higher') do
+    link_to url, :class => 'button is-blue no-print', :title => I18n.t('application.move_up') do
       font_awesome_icon("arrow-up")
     end
   end

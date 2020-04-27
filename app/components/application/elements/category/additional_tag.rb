@@ -1,7 +1,7 @@
 module Application
   module Elements
     module Category
-      class AdditionalTag < ActionView::Component::Base
+      class AdditionalTag < ViewComponent::Base
         def initialize(category:)
           @category = category
         end

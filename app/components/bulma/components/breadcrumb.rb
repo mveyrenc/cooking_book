@@ -1,9 +1,7 @@
 module Bulma
   module Components
-    class Breadcrumb < ActionView::Component::Base
+    class Breadcrumb < ViewComponent::Base
       include Bulma::Component
-
-      validates :content, presence: true
 
       SEPARATOR = {
           arrow: {class: 'has-arrow-separator'},

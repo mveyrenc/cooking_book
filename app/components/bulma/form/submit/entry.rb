@@ -1,9 +1,7 @@
 module Bulma
   module Form
     module Submit
-      class Entry < ActionView::Component::Base
-        validates :form, presence: true
-
+      class Entry < ViewComponent::Base
         def initialize(
             form:,
             value: nil,

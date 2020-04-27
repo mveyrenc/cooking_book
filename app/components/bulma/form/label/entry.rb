@@ -1,12 +1,10 @@
 module Bulma
   module Form
     module Label
-      class Entry < ActionView::Component::Base
+      class Entry < ViewComponent::Base
         include Bulma::Form::EntryBase
 
         alias_method :html_options, :field_html_options
-
-        validates :form, :method, presence: true
 
         def initialize(
             form:,

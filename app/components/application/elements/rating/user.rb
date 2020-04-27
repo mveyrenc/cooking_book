@@ -1,12 +1,10 @@
 module Application
   module Elements
     module Rating
-      class User < ActionView::Component::Base
+      class User < ViewComponent::Base
         include ActionController::Helpers
         include Devise::Controllers::Helpers
         include CanCan::ControllerAdditions
-
-        validates :object, presence: true
 
         def initialize(object:)
           @object = object

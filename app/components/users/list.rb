@@ -1,5 +1,5 @@
 module Users
-  class List < ActionView::Component::Base
+  class List < ViewComponent::Base
     def initialize(items:)
       @items = items
     end
