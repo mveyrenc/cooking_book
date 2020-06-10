@@ -1,32 +1,32 @@
 class Recipe < ActiveRecord::Base
-  
+
 #  DIFFICULTIES = %w[none very_easy easy intermediate experienced expert].freeze
 #  COSTS = %w[none cheap affordable middle pretty_expensive expensive].freeze
-  
+
   enum difficulty_types: [:difficulty_none, :difficulty_very_easy, :difficulty_easy, :difficulty_intermediate, :difficulty_experienced, :difficulty_expert]
   enum cost_types: [:cost_none, :cost_cheap, :cost_affordable, :cost_middle, :cost_pretty_expensive, :cost_expensive]
-  
+
   extend FriendlyId
   friendly_id :id_and_name, use: :slugged
-  
+
   has_and_belongs_to_many :categories
   has_and_belongs_to_many :sources
   has_and_belongs_to_many(:main_ingredients,
-    :class_name => "Ingredient"
+                          :class_name => "Ingredient"
   )
   belongs_to :author, class_name: "User"
   belongs_to :modifier, class_name: "User"
-  
+
   validates :name, presence: true
   validates :directions, presence: true
   validates :author, presence: true
   validates :modifier, presence: true
-  
-  has_attached_file :picture, :styles => { :medium => "240", :thumb => "100", :slide => "170", :medium_gray => "240", :thumb_gray => "100" }, :convert_options => { :thumb_gray => '-colorspace Gray', :medium_gray => '-colorspace Gray' }, :default_url => "/images/:style/missing.png"
+
+  has_attached_file :picture, :styles => {:medium => "240", :thumb => "100", :slide => "170", :medium_gray => "240", :thumb_gray => "100"}, :convert_options => {:thumb_gray => '-colorspace Gray', :medium_gray => '-colorspace Gray'}, :default_url => "/images/:style/missing.png"
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
-  
+
   ratyrate_rateable "note", "difficulty", "cost"
-  
+
   before_save :update_counters
 
   searchkick
@@ -83,7 +83,7 @@ class Recipe < ActiveRecord::Base
   #     cost > 0 ? cost : nil
   #   end
   # end
-  
+
   # def index_in_solr
   #   begin
   #     Recipe.reindex
@@ -92,7 +92,7 @@ class Recipe < ActiveRecord::Base
   #     logger.error e.message
   #   end
   # end
-  
+
   def additional_categories
     additional_categories = []
     categories.each do |category|
@@ -100,7 +100,7 @@ class Recipe < ActiveRecord::Base
     end
     additional_categories - categories
   end
-  
+
   def additional_main_ingredients
     additional_ingredients = []
     main_ingredients.each do |ingredient|
@@ -108,7 +108,7 @@ class Recipe < ActiveRecord::Base
     end
     additional_ingredients - main_ingredients
   end
-  
+
   def sources_list
     sources_list = []
     sources.each do |source|
@@ -116,24 +116,25 @@ class Recipe < ActiveRecord::Base
     end
     sources_list.uniq
   end
-  
+
   def id_and_name
     "#{id} #{name}"
   end
-  
+
   def should_generate_new_friendly_id?
     true
   end
-  
+
   def to_s
     name
   end
-  
+
   def to_i
     id
   end
-  
+
   private
+
   def update_counters
     for i in main_ingredients do
       i.save

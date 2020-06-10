@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
 
   authorize_resource
-  
+
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
 
   # GET /recipes
@@ -23,11 +23,7 @@ class RecipesController < ApplicationController
   # GET /recipes/1.json
   def show
     authorize! :read, Recipe
-    @other_recipes = Sunspot.more_like_this(@recipe) do
-        fields :ingredients, :name, :tags
-        boost_by_relevance true
-        paginate page: 1, per_page: 5
-    end
+    @other_recipes = @recipe.similar(fields: [:ingredients, :name, :tags], limit: 5)
   end
 
   # GET /recipes/new
@@ -45,11 +41,11 @@ class RecipesController < ApplicationController
   # POST /recipes.json
   def create
     authorize! :create, Recipe
-    
+
     @recipe = Recipe.new(recipe_params)
     @recipe.author = current_user
     @recipe.modifier = current_user
-    
+
     respond_to do |format|
       if @recipe.save
         format.html { redirect_to @recipe, notice: t('.success') }
@@ -65,9 +61,9 @@ class RecipesController < ApplicationController
   # PATCH/PUT /recipes/1.json
   def update
     authorize! :update, @recipe
-    
+
     @recipe.modifier = current_user
-    
+
     respond_to do |format|
       if @recipe.update(recipe_params)
         format.html { redirect_to @recipe, notice: t('.success') }
@@ -91,6 +87,7 @@ class RecipesController < ApplicationController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_recipe
     @recipe = Recipe.friendly.find(params[:id])
@@ -98,12 +95,12 @@ class RecipesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def recipe_params
-    params.require(:recipe).permit(:name, {:category_ids => []}, :description, :picture, :times, :quantity, 
-      :ingredients, {:main_ingredient_ids => []}, :directions, {:source_ids => []}, :wine, :difficulty, :cost)
+    params.require(:recipe).permit(:name, {:category_ids => []}, :description, :picture, :times, :quantity,
+                                   :ingredients, {:main_ingredient_ids => []}, :directions, {:source_ids => []}, :wine, :difficulty, :cost)
   end
-  
+
   def sort_alphabetical(facet)
-    facet.sort! do |w1,w2|
+    facet.sort! do |w1, w2|
       SortAlphabetical.normalize(w1.instance.name) <=> SortAlphabetical.normalize(w2.instance.name)
     end
   end
