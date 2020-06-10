@@ -1,4 +1,4 @@
-FROM ruby:2.6.3
+FROM ruby:2.7.1
 
 ARG USERID
 ARG GROUPID
@@ -19,8 +19,6 @@ WORKDIR /app
 USER docker
 
 COPY --chown=docker:docker . /app
-#COPY --chown=docker:docker Gemfile /app/
-#COPY --chown=docker:docker Gemfile.lock /app/
 
 RUN bundle install
 
