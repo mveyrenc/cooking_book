@@ -3,7 +3,7 @@ fr:
         name: "CookingBook"
         home: "Accueil"
         recipes: "Recettes"
-        search: "Recherche"
+        search: "Rechercher"
         new: "Ajouter"
         show: "Lire"
         edit: "Modifier"

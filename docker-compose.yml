@@ -7,6 +7,18 @@ services:
     environment:
       - POSTGRES_USER=docker
       - POSTGRES_DB=cookingBook_development
+
+  elastic:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.7.1
+    environment:
+      - discovery.type=single-node
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - cooking_book_index:/usr/share/elasticsearch/data
+
   web:
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
@@ -18,6 +30,7 @@ services:
       - "3000:3000"
     depends_on:
       - db
+      - elastic
 
   mailhog:
     image: mailhog/mailhog
@@ -26,3 +39,4 @@ services:
 
 volumes:
   cooking_book_data: ~
+  cooking_book_index: ~

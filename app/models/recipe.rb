@@ -28,51 +28,70 @@ class Recipe < ActiveRecord::Base
   ratyrate_rateable "note", "difficulty", "cost"
   
   before_save :update_counters
+
+  searchkick
+  # language: "french",
+  #            fields: ["name^3", "tags^2"]
+
+  # def search_data
+  #   {
+  #       ingredients: HTMLEntities.new.decode( Sanitize.clean( ingredients ) ),
+  #       description: HTMLEntities.new.decode( Sanitize.clean( description ) ),
+  #       directions: HTMLEntities.new.decode( Sanitize.clean( directions ) ),
+  #       tags: (additional_categories | categories | additional_main_ingredients | main_ingredients | sources_list ).map{ |i| i.name }.join(' '),
+  #       course_type_ids:  (additional_categories | categories).select{ |c| c.is_course_type },
+  #       category_ids: (additional_categories | categories).reject{ |c| c.is_course_type },
+  #       main_ingredient_ids: additional_main_ingredients | main_ingredients,
+  #       source_ids: sources_list,
+  #       difficulty: difficulty > 0 ? difficulty : nil,
+  #       cost: cost > 0 ? cost : nil
+  #   }
+  # end
+
+  # searchable do
+  #   text :name, :boost => 3.0, :more_like_this => true
+  #   text :wine
+  #   text :ingredients, :more_like_this => true do
+  #     HTMLEntities.new.decode( Sanitize.clean( ingredients ) )
+  #   end
+  #   text :description do
+  #     HTMLEntities.new.decode( Sanitize.clean( description ) )
+  #   end
+  #   text :directions do
+  #     HTMLEntities.new.decode( Sanitize.clean( directions ) )
+  #   end
+  #   text :tags, :more_like_this => true, :boost => 2.0 do
+  #     (additional_categories | categories | additional_main_ingredients | main_ingredients | sources_list ).map{ |i| i.name }.join(' ')
+  #   end
+  #   time :created_at
+  #   integer :course_type_ids, :multiple => true, :references => Category do
+  #     (additional_categories | categories).select{ |c| c.is_course_type }
+  #   end
+  #   integer :category_ids, :multiple => true, :references => Category do
+  #     (additional_categories | categories).reject{ |c| c.is_course_type }
+  #   end
+  #   integer :main_ingredient_ids, :multiple => true, :references => Ingredient do
+  #     additional_main_ingredients | main_ingredients
+  #   end
+  #   integer :source_ids, :multiple => true, :references => Source do
+  #     sources_list
+  #   end
+  #   integer :difficulty do
+  #     difficulty > 0 ? difficulty : nil
+  #   end
+  #   integer :cost do
+  #     cost > 0 ? cost : nil
+  #   end
+  # end
   
-  searchable do
-    text :name, :boost => 3.0, :more_like_this => true
-    text :wine
-    text :ingredients, :more_like_this => true do
-      HTMLEntities.new.decode( Sanitize.clean( ingredients ) )
-    end
-    text :description do
-      HTMLEntities.new.decode( Sanitize.clean( description ) )
-    end
-    text :directions do
-      HTMLEntities.new.decode( Sanitize.clean( directions ) )
-    end
-    text :tags, :more_like_this => true, :boost => 2.0 do 
-      (additional_categories | categories | additional_main_ingredients | main_ingredients | sources_list ).map{ |i| i.name }.join(' ')
-    end
-    time :created_at
-    integer :course_type_ids, :multiple => true, :references => Category do
-      (additional_categories | categories).select{ |c| c.is_course_type }
-    end
-    integer :category_ids, :multiple => true, :references => Category do
-      (additional_categories | categories).reject{ |c| c.is_course_type }
-    end
-    integer :main_ingredient_ids, :multiple => true, :references => Ingredient do
-      additional_main_ingredients | main_ingredients
-    end
-    integer :source_ids, :multiple => true, :references => Source do
-      sources_list
-    end
-    integer :difficulty do
-      difficulty > 0 ? difficulty : nil
-    end
-    integer :cost do
-      cost > 0 ? cost : nil
-    end
-  end
-  
-  def index_in_solr
-    begin
-      Recipe.reindex
-      Sunspot.commit
-    rescue Errno::ECONNREFUSED, Timeout::Error => e
-      logger.error e.message
-    end
-  end
+  # def index_in_solr
+  #   begin
+  #     Recipe.reindex
+  #     Sunspot.commit
+  #   rescue Errno::ECONNREFUSED, Timeout::Error => e
+  #     logger.error e.message
+  #   end
+  # end
   
   def additional_categories
     additional_categories = []

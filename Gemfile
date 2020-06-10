@@ -71,14 +71,8 @@ gem 'tinymce-rails'
 gem 'progress_bar'
 gem 'htmlentities', '~> 4.3.4'
 gem 'sanitize'
-gem 'sunspot_rails'
-# This is an optional packaged Solr:
-group :test, :development do
-  gem 'sunspot_solr'
-end
+gem 'searchkick'
 
-# Solr delay indexing
-gem "sunspot-queue"
 gem "delayed_job"
 gem "delayed_job_active_record"
 
@@ -93,7 +87,7 @@ gem 'ratyrate'
 
 # Authentification
 gem 'devise'
-gem 'cancan'
+gem 'cancancan'
 gem 'role_model'
 
 # Sorting
@@ -110,3 +104,6 @@ gem 'sort_alphabetical'
 
 # Github ActionView::Component
 gem "view_component"
+
+# Pagination
+gem "kaminari"

@@ -9,133 +9,14 @@ class RecipesController < ApplicationController
   def index
     authorize! :read, Recipe
     @query = params[:query]
-    @search_result = Recipe.search do
-      fulltext params[:query]
-      if params[:course_type_ids].present?
-        all_of do
-          params[:course_type_ids].each do |filter|
-            with(:course_type_ids, filter)
-          end
-        end
-      end
-      if params[:exclu_course_type_ids].present?
-        all_of do
-          params[:exclu_course_type_ids].each do |filter|
-            without(:course_type_ids, filter)
-          end
-        end
-      end
-      if params[:difficulty].present?
-        all_of do
-          params[:difficulty].each do |filter|
-            with(:difficulty, filter)
-          end
-        end
-      end
-      if params[:exclu_difficulty].present?
-        all_of do
-          params[:exclu_difficulty].each do |filter|
-            without(:difficulty, filter)
-          end
-        end
-      end
-      if params[:cost].present?
-        all_of do
-          params[:cost].each do |filter|
-            with(:cost, filter)
-          end
-        end
-      end
-      if params[:exclu_cost].present?
-        all_of do
-          params[:exclu_cost].each do |filter|
-            without(:cost, filter)
-          end
-        end
-      end
-      if params[:category_ids].present?
-        all_of do
-          params[:category_ids].each do |filter|
-            with(:category_ids, filter)
-          end
-        end
-      end
-      if params[:exclu_category_ids].present?
-        all_of do
-          params[:exclu_category_ids].each do |filter|
-            without(:category_ids, filter)
-          end
-        end
-      end
-      if params[:main_ingredient_ids].present?
-        all_of do
-          params[:main_ingredient_ids].each do |filter|
-            with(:main_ingredient_ids, filter)
-          end
-        end
-      end
-      if params[:exclu_main_ingredient_ids].present?
-        all_of do
-          params[:exclu_main_ingredient_ids].each do |filter|
-            without(:main_ingredient_ids, filter)
-          end
-        end
-      end
-      if params[:source_ids].present?
-        all_of do
-          params[:source_ids].each do |filter|
-            with(:source_ids, filter)
-          end
-        end
-      end
-      if params[:exclu_source_ids].present?
-        all_of do
-          params[:exclu_source_ids].each do |filter|
-            without(:source_ids, filter)
-          end
-        end
-      end
-      facet :course_type_ids
-      facet :category_ids
-      facet :main_ingredient_ids
-      facet :source_ids
-      facet :difficulty, :sort => :index
-      facet :cost, :sort => :index
-      paginate :page => params[:page] || 1, :per_page => 10
-      order_by(:score, :desc)
-      order_by(:created_at, :desc)
-    end
-    @query_params = params.except( :page )
-    
-    filters = [
-      :course_type_ids, 
-      :exclu_course_type_ids, 
-      :difficulty, 
-      :exclu_difficulty, 
-      :cost, 
-      :exclu_cost, 
-      :category_ids, 
-      :exclu_category_ids, 
-      :main_ingredient_ids, 
-      :exclu_main_ingredient_ids, 
-      :source_ids, 
-      :exclu_source_ids
-    ]
-    filters.each do |filter|
-      if params[filter].present?
-        params[filter].map!{ |x| x.to_i }
-      end
-    end
-    
-    #    @search_result.facet(:main_ingredient_ids).rows.sort!{|a,b| (a.count <=> b.count) == 0 ? (a.instance.name <=> b.instance.name) : (a.count <=> b.count)*(-1) }
-    #    @search_result.facet(:course_type_ids).rows.sort!{|a,b| (a.count <=> b.count) == 0 ? (a.instance.name <=> b.instance.name) : (a.count <=> b.count)*(-1) }
-    #    @search_result.facet(:category_ids).rows.sort!{|a,b| (a.count <=> b.count) == 0 ? (a.instance.name <=> b.instance.name) : (a.count <=> b.count)*(-1) }
-    #    @search_result.facet(:source_ids).rows.sort!{|a,b| (a.count <=> b.count) == 0 ? (a.instance.name <=> b.instance.name) : (a.count <=> b.count)*(-1) }
-    
-    sort_alphabetical(@search_result.facet(:main_ingredient_ids).rows)
-    sort_alphabetical(@search_result.facet(:course_type_ids).rows)
-    sort_alphabetical(@search_result.facet(:category_ids).rows)
-    sort_alphabetical(@search_result.facet(:source_ids).rows)
+    search_query = @query ? @query : '*'
+    @search_result = Recipe.search search_query,
+                                   page: params[:page],
+                                   per_page: 10,
+                                   order: {
+                                       _score: :desc,
+                                       created_at: :desc
+                                   }
   end
 
   # GET /recipes/1
