@@ -8,11 +8,13 @@ module Application
             url:,
             name:,
             icon: false,
+            icon_only: false,
             styles: {}
         )
           @url = url
           @name = name
           @icon = icon
+          @icon_only = icon_only
           self.styles = {is_light: true}.merge(styles)
         end
 
@@ -21,6 +23,7 @@ module Application
         attr_reader :url
         attr_reader :name
         attr_reader :icon
+        attr_reader :icon_only
 
         private
 

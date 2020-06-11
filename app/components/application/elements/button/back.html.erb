@@ -6,7 +6,7 @@
   <% if icon %>
     <span class="icon is-small"><%= render(FontAwesome::Icon.new(icon: icon)) %></span>
   <% end %>
-  <% if name %>
+  <% if !icon_only and name %>
     <span><%= name %></span>
   <% end %>
 </a>

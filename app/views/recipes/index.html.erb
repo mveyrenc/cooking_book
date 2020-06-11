@@ -6,7 +6,9 @@
         <%= render(Recipes::SearchForm.new(query: @query)) %>
       </div>
     </section>
-    <%= render(Recipes::List.new(items: @search_result)) %>
+    <div class="container is-widescreen">
+      <%= render(Recipes::List.new(items: @search_result)) %>
+    </div>
     <%= paginate @search_result %>
   </div>
 </section>

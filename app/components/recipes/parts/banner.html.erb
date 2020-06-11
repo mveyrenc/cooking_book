@@ -1,0 +1,24 @@
+<section>
+  <div class="media mb-5">
+    <figure class="media-left">
+      <p class="image is-128x128">
+        <%= image_tag object.picture.url(:medium) %>
+      </p>
+    </figure>
+    <div class="media-content">
+      <h1 class="title">
+        <div class="title is-size-1"><%= object %></div>
+      </h1>
+      <% if object.description %>
+        <h2 class="subtitle">
+          <%= raw(object.description) %>
+        </h2>
+      <% end %>
+    </div>
+    <div class="media-right">
+      <%= render(Recipes::Elements::Cost.new(object: object)) %>
+      <%= render(Recipes::Elements::Difficulty.new(object: object)) %>
+      <%= render(Recipes::Elements::Rating.new(object: object)) %>
+    </div>
+  </div>
+</section>

@@ -23,7 +23,6 @@ class RecipesController < ApplicationController
   # GET /recipes/1.json
   def show
     authorize! :read, Recipe
-    @other_recipes = @recipe.similar(fields: [:ingredients, :name, :tags], limit: 5)
   end
 
   # GET /recipes/new

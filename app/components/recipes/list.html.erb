@@ -1,11 +1,9 @@
 <% if items.blank? %>
   <%= t('application.no_entry') %>
 <% else %>
-  <div class="container is-widescreen">
-    <div class="columns is-multiline">
-      <% items.each do |item| %>
-        <%= render(Recipes::ListItem.new(item: item)) %>
-      <% end %>
-    </div>
+  <div class="columns is-multiline">
+    <% items.each do |item| %>
+      <%= render(Recipes::ListItem.new(item: item)) %>
+    <% end %>
   </div>
 <% end %>

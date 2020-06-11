@@ -1,0 +1,36 @@
+<section class="mt-5">
+  <div class="level">
+    <div class="level-left">
+      <div class="field is-grouped is-grouped-multiline">
+        <div class="control">
+          <div class="tags has-addons">
+            <a class="tag is-primary is-light"><%= Recipe.human_attribute_name('author') %></a>
+            <a class="tag"><%= object.author.name %></a>
+          </div>
+        </div>
+        <div class="control">
+          <div class="tags has-addons">
+            <a class="tag is-primary is-light"><%= Recipe.human_attribute_name('created_at') %></a>
+            <a class="tag"><%= object.created_at.strftime("%d/%m/%Y %H:%M") %></a>
+          </div>
+        </div>
+
+        <div class="control">
+          <div class="tags has-addons">
+            <a class="tag is-primary is-light"><%= Recipe.human_attribute_name('modifier') %></a>
+            <a class="tag"><%= object.modifier.name %></a>
+          </div>
+        </div>
+        <div class="control">
+          <div class="tags has-addons">
+            <a class="tag is-primary is-light"><%= Recipe.human_attribute_name('updated_at') %></a>
+            <a class="tag"><%= object.updated_at.strftime("%d/%m/%Y %H:%M") %></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="level-right">
+      <%= render(Recipes::Parts::PublicationControls.new(object: object)) %>
+    </div>
+  </div>
+</section>

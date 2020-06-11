@@ -1,12 +1,12 @@
 <a href="<%= url %>"
-   <% if name %>
+   <% if icon_only %>
    title="<%= name %>"
    <% end %>
    class="<%= css_class %>">
   <% if icon %>
     <span class="icon is-small"><%= render(FontAwesome::Icon.new(icon: icon)) %></span>
   <% end %>
-  <% if name %>
+  <% unless icon_only %>
     <span><%= name %></span>
   <% end %>
 </a>
