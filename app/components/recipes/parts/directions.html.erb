@@ -1,7 +1,7 @@
 <section class="mt-5">
   <div class="box">
     <div class="content">
-      <%= raw(object.directions) %>
+      <%= render(Application::Elements::Markdown.new(text: object.directions)) %>
     </div>
   </div>
 </section>

@@ -5,7 +5,7 @@
       <p class="subtitle"><%= object.quantity %></p>
     <% end %>
     <div class="content">
-      <%= raw(object.ingredients) %>
+      <%= render(Application::Elements::Markdown.new(text: object.ingredients)) %>
     </div>
   </div>
 </section>

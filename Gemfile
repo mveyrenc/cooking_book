@@ -107,3 +107,7 @@ gem "view_component"
 
 # Pagination
 gem "kaminari"
+
+# markdown
+gem "reverse_markdown"
+gem "commonmarker"
