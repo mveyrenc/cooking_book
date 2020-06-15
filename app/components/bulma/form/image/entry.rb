@@ -1,6 +1,6 @@
 module Bulma
   module Form
-    module Password
+    module Image
       class Entry < ViewComponent::Base
         include Bulma::Form::EntryBase
 

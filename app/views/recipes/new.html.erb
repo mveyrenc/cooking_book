@@ -1,12 +1,6 @@
-<div class="recipe-page new-page form-page">
-    <div class="page-header row">
-        <div class="buttons">
-            <%= back_button recipes_path %>
-        </div>
-        <header class="with-shadow">
-            <h1><%= I18n.t( 'recipes.new_page_title' ) %></h1>
-        </header>
-    </div>
-    <%= render 'recipes/form' %>
-</div>
-
+<section class="section">
+  <div class="container box">
+    <div class="title is-size-1"><%= I18n.t( 'recipes.new_page_title' ) %></div>
+    <%= render(Recipes::Form.new(item: @recipe)) %>
+  </div>
+</section>

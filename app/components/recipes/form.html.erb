@@ -11,43 +11,113 @@
       </ul>
     </div>
   <% end %>
-
+  <div class="buttons is-centered">
+    <%= render(Bulma::Form::Submit::Entry.new(
+        form: f,
+        resource: item
+    )) %>
+  </div>
+  <hr/>
   <%= render(Bulma::Form::Text::Entry.new(
       form: f,
       method: :name,
       resource: item,
       options: {required: true}
   )) %>
-  <%= render(Bulma::Form::Email::Entry.new(
+  <!--  <div class="form-group">-->
+  <%#= f.label :course_types, :class => "col-sm-2 control-label is-required" %>
+  <!--    <div class="col-sm-10">-->
+  <!--      <div data-toggle="buttons">-->
+  <!--        <input id="ingredient_category_ids_0" name="recipe[category_ids][]" type="hidden">-->
+  <%# for course_type in Category.course_type.ordered %>
+  <!--          <label class="btn btn-success btn-xs <%# if @recipe.categories.include?( course_type ) %>active<%# end %>">-->
+  <!--            <input id="recipe_category_ids_<%#= course_type.id %>"-->
+  <!--                   name="recipe[category_ids][]"-->
+  <!--                   type="checkbox"-->
+  <!--                   <%# if @recipe.categories.include?( course_type ) %>checked="checked="<%# end %>-->
+  <!--                   value="<%#= course_type.id %>"> <%#= course_type %>-->
+  <!--          </label>-->
+  <%# end %>
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </div>-->
+  <!--  <div class="form-group">-->
+  <%#= f.label :categories, :class => "col-sm-2 control-label" %>
+  <!--    <div class="col-sm-10">-->
+  <%#= f.collection_select :category_ids, Category.categories.ordered, :id, :name, {}, {:multiple => true, :class => "tokenize-recipe-categories", :data_add_url => categories_path, :data_list_url => categories_path(format: :json)} %>
+  <!--      <div class="suggested-categories"></div>-->
+  <!--    </div>-->
+  <!--  </div>-->
+  <%= render(Bulma::Form::Markdown::Entry.new(
       form: f,
-      method: :email,
-      resource: item,
-      options: {required: true}
+      method: :description,
+      resource: item
   )) %>
-  <%= render(Bulma::Form::CollectionSelect::Entry.new(
+  <%= render(Bulma::Form::Image::Entry.new(
       form: f,
-      method: :role,
-      resource: item,
-      choices: User::ROLES,
-      value_method: :to_s,
-      text_method: :humanize,
-      options: {required: true}
+      method: :picture,
+      resource: item
   )) %>
-
-  <div class="help is-size-5"><%= t('devise.form.change_password_help') %></div>
-  <%= render(Bulma::Form::Password::Entry.new(
+  <!--  <div class="form-group">-->
+  <%#= f.label :picture, :class => "col-sm-2 control-label" %>
+  <!--    <div class="row">-->
+  <%#  if !@recipe.picture.blank?  %>
+  <%#= image_tag item.picture.url(:medium), :class => "media-object col-sm-2" %>
+  <%# end %>
+  <!--      <div class="col-sm-7">-->
+  <%#= f.file_field :picture, :class => "form-control" %>
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </div>-->
+  <%= render(Bulma::Form::Textarea::Entry.new(
       form: f,
-      method: :password,
-      resource: item,
-      field_html_options: {autocomplete: "off"}
+      method: :times,
+      resource: item
   )) %>
-  <%= render(Bulma::Form::Password::Entry.new(
+  <!--  <div class="form-group">-->
+  <%#= f.label :difficulty, :class => "col-sm-2 control-label" %>
+  <!--    <div class="col-sm-10">-->
+  <%#= f.select :difficulty, Recipe.difficulty_types.collect {|k,v| [ t(k.to_s, scope: 'recipes'), v ] }.to_h, {}, {:class => "form-control"} %>
+  <!--    </div>-->
+  <!--  </div>-->
+  <!--  <div class="form-group">-->
+  <%#= f.label :cost, :class => "col-sm-2 control-label" %>
+  <!--    <div class="col-sm-10">-->
+  <%#= f.select :cost, Recipe.cost_types.collect {|k,v| [ t(k.to_s, scope: 'recipes'),v ] }.to_h, {}, {:class => "form-control"} %>
+  <!--    </div>-->
+  <!--  </div>-->
+  <%= render(Bulma::Form::Text::Entry.new(
       form: f,
-      method: :password_confirmation,
-      resource: item,
-      field_html_options: {autocomplete: "off"}
+      method: :quantity,
+      resource: item
   )) %>
-
+  <%= render(Bulma::Form::Markdown::Entry.new(
+      form: f,
+      method: :ingredients,
+      resource: item
+  )) %>
+  <!--  <div class="form-group">-->
+  <%#= f.label :main_ingredients, :class => "col-sm-2 control-label" %>
+  <!--    <div class="col-sm-10">-->
+  <%#= f.collection_select :main_ingredient_ids, Ingredient.ordered, :id, :name, {}, {:multiple => true, :class => "tokenize-recipe-ingredients", :data_add_url => ingredients_path, :data_list_url => ingredients_path(format: :json)} %>
+  <!--    </div>-->
+  <!--  </div>-->
+  <%= render(Bulma::Form::Markdown::Entry.new(
+      form: f,
+      method: :directions,
+      resource: item
+  )) %>
+  <!--  <div class="form-group">-->
+  <%#= f.label :sources, :class => "col-sm-2 control-label" %>
+  <!--    <div class="col-sm-10">-->
+  <%#= f.collection_select :source_ids, Source.ordered, :id, :name, {}, {:multiple => true, :class => "tokenize-recipe-sources", :data_add_url => sources_path, :data_list_url => sources_path(format: :json)} %>
+  <!--    </div>-->
+  <!--  </div>-->
+  <%= render(Bulma::Form::Text::Entry.new(
+      form: f,
+      method: :wine,
+      resource: item
+  )) %>
   <hr/>
   <div class="buttons is-centered">
     <%= render(Bulma::Form::Submit::Entry.new(

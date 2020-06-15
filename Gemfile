@@ -64,9 +64,6 @@ gem 'font-awesome-sass'
 # jQuery
 gem 'jquery-rails'
 
-# TinyMCE
-gem 'tinymce-rails'
-
 # SolR
 gem 'progress_bar'
 gem 'htmlentities', '~> 4.3.4'

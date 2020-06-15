@@ -4,7 +4,7 @@ module Bulma
       include Bulma::Form::EntryBase
 
       def initialize(*args)
-        initialize_entry(args.extract_options!)
+        initialize_entry(**args.extract_options!)
       end
     end
   end

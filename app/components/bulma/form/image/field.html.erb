@@ -1,0 +1,27 @@
+<div class="columns">
+  <div class="column is-one-third">
+    <div class="file <%= "has-name is-boxed" if image? %>">
+      <label class="file-label">
+        <%= form.file_field method.to_sym, html_options %>
+        <span class="file-cta">
+            <span class="file-icon">
+              <i class="fas fa-upload"></i>
+            </span>
+            <span class="file-label">
+              <%= t('form.image.choose_file') %>
+            </span>
+          </span>
+        <% if image? %>
+            <span class="file-name">
+              <%= image.original_filename %>
+            </span>
+        <% end %>
+      </label>
+    </div>
+  </div>
+  <div class="column">
+    <figure>
+      <%= image_tag image.url(:medium) %>
+    </figure>
+  </div>
+</div>
