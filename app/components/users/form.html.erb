@@ -12,19 +12,19 @@
     </div>
   <% end %>
 
-  <%= render(Bulma::Form::Text::Entry.new(
+  <%= render(Application::Form::Text::Entry.new(
       form: f,
       method: :name,
       resource: item,
       options: {required: true}
   )) %>
-  <%= render(Bulma::Form::Email::Entry.new(
+  <%= render(Application::Form::Email::Entry.new(
       form: f,
       method: :email,
       resource: item,
       options: {required: true}
   )) %>
-  <%= render(Bulma::Form::CollectionSelect::Entry.new(
+  <%= render(Application::Form::CollectionSelect::Entry.new(
       form: f,
       method: :role,
       resource: item,
@@ -35,13 +35,13 @@
   )) %>
 
   <div class="help is-size-5"><%= t('devise.form.change_password_help') %></div>
-  <%= render(Bulma::Form::Password::Entry.new(
+  <%= render(Application::Form::Password::Entry.new(
       form: f,
       method: :password,
       resource: item,
       field_html_options: {autocomplete: "off"}
   )) %>
-  <%= render(Bulma::Form::Password::Entry.new(
+  <%= render(Application::Form::Password::Entry.new(
       form: f,
       method: :password_confirmation,
       resource: item,
@@ -50,7 +50,7 @@
 
   <hr/>
   <div class="buttons is-centered">
-    <%= render(Bulma::Form::Submit::Entry.new(
+    <%= render(Application::Form::Submit::Entry.new(
         form: f,
         resource: item
     )) %>

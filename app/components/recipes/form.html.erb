@@ -12,13 +12,13 @@
     </div>
   <% end %>
   <div class="buttons is-centered">
-    <%= render(Bulma::Form::Submit::Entry.new(
+    <%= render(Application::Form::Submit::Entry.new(
         form: f,
         resource: item
     )) %>
   </div>
   <hr/>
-  <%= render(Bulma::Form::Text::Entry.new(
+  <%= render(Application::Form::Text::Entry.new(
       form: f,
       method: :name,
       resource: item,
@@ -48,12 +48,12 @@
   <!--      <div class="suggested-categories"></div>-->
   <!--    </div>-->
   <!--  </div>-->
-  <%= render(Bulma::Form::Markdown::Entry.new(
+  <%= render(Application::Form::Markdown::Entry.new(
       form: f,
       method: :description,
       resource: item
   )) %>
-  <%= render(Bulma::Form::Image::Entry.new(
+  <%= render(Application::Form::Image::Entry.new(
       form: f,
       method: :picture,
       resource: item
@@ -69,7 +69,7 @@
   <!--      </div>-->
   <!--    </div>-->
   <!--  </div>-->
-  <%= render(Bulma::Form::Textarea::Entry.new(
+  <%= render(Application::Form::Textarea::Entry.new(
       form: f,
       method: :times,
       resource: item
@@ -86,12 +86,12 @@
   <%#= f.select :cost, Recipe.cost_types.collect {|k,v| [ t(k.to_s, scope: 'recipes'),v ] }.to_h, {}, {:class => "form-control"} %>
   <!--    </div>-->
   <!--  </div>-->
-  <%= render(Bulma::Form::Text::Entry.new(
+  <%= render(Application::Form::Text::Entry.new(
       form: f,
       method: :quantity,
       resource: item
   )) %>
-  <%= render(Bulma::Form::Markdown::Entry.new(
+  <%= render(Application::Form::Markdown::Entry.new(
       form: f,
       method: :ingredients,
       resource: item
@@ -102,7 +102,7 @@
   <%#= f.collection_select :main_ingredient_ids, Ingredient.ordered, :id, :name, {}, {:multiple => true, :class => "tokenize-recipe-ingredients", :data_add_url => ingredients_path, :data_list_url => ingredients_path(format: :json)} %>
   <!--    </div>-->
   <!--  </div>-->
-  <%= render(Bulma::Form::Markdown::Entry.new(
+  <%= render(Application::Form::Markdown::Entry.new(
       form: f,
       method: :directions,
       resource: item
@@ -113,14 +113,14 @@
   <%#= f.collection_select :source_ids, Source.ordered, :id, :name, {}, {:multiple => true, :class => "tokenize-recipe-sources", :data_add_url => sources_path, :data_list_url => sources_path(format: :json)} %>
   <!--    </div>-->
   <!--  </div>-->
-  <%= render(Bulma::Form::Text::Entry.new(
+  <%= render(Application::Form::Text::Entry.new(
       form: f,
       method: :wine,
       resource: item
   )) %>
   <hr/>
   <div class="buttons is-centered">
-    <%= render(Bulma::Form::Submit::Entry.new(
+    <%= render(Application::Form::Submit::Entry.new(
         form: f,
         resource: item
     )) %>

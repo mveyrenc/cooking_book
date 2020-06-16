@@ -22,7 +22,7 @@
   <section class="flash">
     <div class="container">
       <% flash.each do |name, msg| %>
-        <%= render(Bulma::Elements::Notification::Notification.new(
+        <%= render(Application::Elements::Notification::Notification.new(
             styles: {color: name},
             delete: true
         )) do %>
@@ -36,5 +36,5 @@
 <footer>
 </footer>
 </body>
-<%= render(Bulma::Elements::Notification::NotificationJs.new()) %>
+<%= render(Application::Elements::Notification::NotificationJs.new()) %>
 </html>

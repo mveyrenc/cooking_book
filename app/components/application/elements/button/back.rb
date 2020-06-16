@@ -2,7 +2,7 @@ module Application
   module Elements
     module Button
       class Back < Base
-        include Bulma::Component
+        include Application::Component
 
         def initialize(
             url:,
