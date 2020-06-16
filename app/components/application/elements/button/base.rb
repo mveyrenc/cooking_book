@@ -18,6 +18,12 @@ module Application
           self.styles = {is_light: true}.merge(styles)
         end
 
+        def call
+          link_to url, :class => css_class, :title => name, :method => link_method, :data => data do
+            icon_tag + label_tag
+          end
+        end
+
         private
 
         attr_reader :url
@@ -26,6 +32,35 @@ module Application
         attr_reader :icon_only
 
         private
+
+        def label
+          name unless icon_only or !icon
+        end
+
+        def link_method
+          nil
+        end
+
+        def data
+          {}
+        end
+
+        def icon_tag
+          if icon
+            content_tag :span, class: "icon is-small" do
+              # FontAwesome::Icon.new(icon: icon).render_in(view_context)
+              render FontAwesome::Icon.new(icon: icon)
+            end
+          end
+        end
+
+        def label_tag
+          if label
+            content_tag :span do
+              label
+            end
+          end
+        end
 
         def default_css_classes
           ['button']

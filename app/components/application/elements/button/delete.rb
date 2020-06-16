@@ -18,6 +18,17 @@ module Application
               styles: styles
           )
         end
+
+        private
+
+        def link_method
+          :delete
+        end
+
+        def data
+          {confirm: I18n.t('application.destroy_confirmation')}
+        end
+
       end
     end
   end

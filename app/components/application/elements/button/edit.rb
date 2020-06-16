@@ -18,6 +18,7 @@ module Application
               styles: styles
           )
         end
+
       end
     end
   end
