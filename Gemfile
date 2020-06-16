@@ -67,23 +67,23 @@ gem 'jquery-rails'
 # SolR
 gem 'progress_bar'
 gem 'htmlentities', '~> 4.3.4'
-gem 'sanitize'
+gem 'sanitize', ">= 4.6.3"
 gem 'searchkick'
 
 gem "delayed_job"
 gem "delayed_job_active_record"
 
 # Attachement
-gem "paperclip"
+gem "paperclip", ">= 5.2.0"
 
 # Sniffer
-gem "nokogiri"
+gem "nokogiri", ">= 1.10.8"
 
 # Rating
 gem 'ratyrate'
 
 # Authentification
-gem 'devise'
+gem 'devise', ">= 4.7.1"
 gem 'cancancan'
 gem 'role_model'
 
