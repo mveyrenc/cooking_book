@@ -16,6 +16,9 @@ require("jquery")
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
+import {Application} from "stimulus"
+import {definitionsFromContext} from "stimulus/webpack-helpers"
+
 const application = Application.start();
 
 // requires all of the controllers in the app/components directory.
