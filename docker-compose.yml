@@ -26,6 +26,7 @@ services:
       - RAILS_ENV=development
     volumes:
       - .:/app
+      - cooking_book_yarn_cache:/root/.yarn-cache
     ports:
       - "3000:3000"
     depends_on:
@@ -40,3 +41,4 @@ services:
 volumes:
   cooking_book_data: ~
   cooking_book_index: ~
+  cooking_book_yarn_cache: ~
