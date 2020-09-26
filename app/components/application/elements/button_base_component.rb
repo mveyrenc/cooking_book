@@ -47,8 +47,8 @@ module Application
       def icon_tag
         if icon
           content_tag :span, class: "icon is-small" do
-            # FontAwesome::Icon.new(icon: icon).render_in(view_context)
-            render FontAwesome::Icon.new(icon: icon)
+            # Application::Elements::FontAwesomeIconComponent.new(icon: icon).render_in(view_context)
+            render Application::Elements::FontAwesomeIconComponent.new(icon: icon)
           end
         end
       end

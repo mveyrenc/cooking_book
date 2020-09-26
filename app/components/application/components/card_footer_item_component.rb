@@ -22,7 +22,7 @@ module Application
 
       def call
         link_to url, :class => css_class, :title => name, :method => method, :data => data do
-          render FontAwesome::Icon.new(icon: icon)
+          render Application::Elements::FontAwesomeIconComponent.new(icon: icon)
         end
       end
 
