@@ -1,8 +1,0 @@
-<div class="tags">
-  <% extra_categories.each do |item| %>
-    <%= render(Application::Elements::Category::AdditionalTag.new(category: item)) %>
-  <% end %>
-  <% categories.each do |item| %>
-    <%= render(Application::Elements::Category::MainTag.new(category: item)) %>
-  <% end %>
-</div>

@@ -15,20 +15,20 @@ module Recipes
       attr_reader :object
 
       def sources
-        @sources ||= Application::Elements::Category::CollectionTags.new(
+        @sources ||= Application::Elements::CategoryTagListComponent.new(
             categories: object.sources_list
         )
       end
 
       def categories
-        @categories ||= Application::Elements::Category::CollectionTags.new(
+        @categories ||= Application::Elements::CategoryTagListComponent.new(
             categories: object.categories,
             extra_categories: object.additional_categories
         )
       end
 
       def ingredients
-        @ingredients ||= Application::Elements::Category::CollectionTags.new(
+        @ingredients ||= Application::Elements::CategoryTagListComponent.new(
             categories: object.main_ingredients,
             extra_categories: object.additional_main_ingredients
         )
