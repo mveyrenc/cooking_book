@@ -4,14 +4,14 @@ module Application
       class BackPreview < ViewComponent::Preview
         def with_default_options
           render(
-              Application::Elements::Button::Back,
+              Application::Elements::ButtonBackComponent,
               url: "#"
           )
         end
 
         def with_custom_name
           render(
-              Application::Elements::Button::Back,
+              Application::Elements::ButtonBackComponent,
               url: "#",
               name: "Custom name"
           )
@@ -19,7 +19,7 @@ module Application
 
         def with_custom_icon
           render(
-              Application::Elements::Button::Back,
+              Application::Elements::ButtonBackComponent,
               url: "#",
               icon: "list"
           )
@@ -27,7 +27,7 @@ module Application
 
         def without_icon
           render(
-              Application::Elements::Button::Back,
+              Application::Elements::ButtonBackComponent,
               url: "#",
               icon: false
           )
@@ -35,7 +35,7 @@ module Application
 
         def with_custom_color
           render(
-              Application::Elements::Button::Back,
+              Application::Elements::ButtonBackComponent,
               url: "#",
               styles: {color: :red}
           )

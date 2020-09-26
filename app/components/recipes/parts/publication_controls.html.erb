@@ -1,10 +1,10 @@
 <% if control? %>
   <div class="buttons">
     <% if edit? %>
-      <%= render(Application::Elements::Button::Edit.new(url: edit_recipe_path(object))) %>
+      <%= render(Application::Elements::ButtonEditComponent.new(url: edit_recipe_path(object))) %>
     <% end %>
     <% if delete? %>
-      <%= render(Application::Elements::Button::Delete.new(url: object)) %>
+      <%= render(Application::Elements::ButtonDeleteComponent.new(url: object)) %>
     <% end %>
   </div>
 <% end %>

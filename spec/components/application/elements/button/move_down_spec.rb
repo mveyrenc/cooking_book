@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe Application::Elements::Button::MoveDown do
+RSpec.describe Application::Elements::ButtonMoveDownComponent do
   it "renders the MoveDown button" do
-    result = render_inline(Application::Elements::Button::MoveDown.new(url: "#"))
+    result = render_inline(Application::Elements::ButtonMoveDownComponent.new(url: "#"))
 
     assert result.css(".button").any?
     assert result.css("span.icon").any?
@@ -11,7 +11,7 @@ RSpec.describe Application::Elements::Button::MoveDown do
   end
 
   it "renders the MoveDown button with a custom name" do
-    result = render_inline(Application::Elements::Button::MoveDown.new(url: "#", name: "Custom name"))
+    result = render_inline(Application::Elements::ButtonMoveDownComponent.new(url: "#", name: "Custom name"))
 
     assert result.css("a.button").any?
     assert result.css("span.icon").any?
@@ -19,7 +19,7 @@ RSpec.describe Application::Elements::Button::MoveDown do
   end
 
   it "renders the MoveDown button without icon" do
-    result = render_inline(Application::Elements::Button::MoveDown.new(url: "#", icon: false))
+    result = render_inline(Application::Elements::ButtonMoveDownComponent.new(url: "#", icon: false))
 
     assert result.css("a.button").any?
     assert !result.css("span.icon").any?
@@ -27,7 +27,7 @@ RSpec.describe Application::Elements::Button::MoveDown do
   end
 
   it "renders the MoveDown button with a custom icon" do
-    result = render_inline(Application::Elements::Button::MoveDown.new(url: "#", icon: 'test'))
+    result = render_inline(Application::Elements::ButtonMoveDownComponent.new(url: "#", icon: 'test'))
 
     assert result.css("a.button").any?
     assert result.css("span.icon").any?
