@@ -28,7 +28,7 @@
   <section class="flash">
     <div class="container">
       <% flash.each do |name, msg| %>
-        <%= render(Application::Elements::Notification::Notification.new(
+        <%= render(Application::Elements::NotificationComponent.new(
             styles: {color: name},
             delete: true
         )) do %>
