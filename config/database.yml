@@ -22,6 +22,7 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   host: db
   username: docker
+  password: <%= ENV['APP_DATABASE_PASSWORD'] %>
 
 development:
   <<: *default
@@ -84,4 +85,3 @@ production:
   <<: *default
   database: cookingBook_production
   username: cookingBook
-  password: <%= ENV['APP_DATABASE_PASSWORD'] %>
