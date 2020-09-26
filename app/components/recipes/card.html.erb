@@ -1,4 +1,4 @@
-<%= render(Application::Components::Card::Card.new) do |component| %>
+<%= render(Application::Components::CardComponent.new) do |component| %>
 
   <% component.with(:header) do %>
     <p class="card-header-title"><%= link_to object, object %></p>
@@ -16,21 +16,21 @@
 
   <% component.with(:footer) do %>
     <% if can? :read, object %>
-      <%= render(Application::Components::Card::CardFooterItem.new(
+      <%= render(Application::Components::CardFooterItemComponent.new(
           url: recipe_path(object),
           name: I18n.t('application.show'),
           icon: 'eye'
       )) %>
     <% end %>
     <% if can? :update, object %>
-      <%= render(Application::Components::Card::CardFooterItem.new(
+      <%= render(Application::Components::CardFooterItemComponent.new(
           url: edit_recipe_path(object),
           name: I18n.t('application.edit'),
           icon: 'edit'
       )) %>
     <% end %>
     <% if can? :destroy, object %>
-      <%= render(Application::Components::Card::CardFooterItem.new(
+      <%= render(Application::Components::CardFooterItemComponent.new(
           url: recipe_path(object),
           name: I18n.t('application.destroy'),
           icon: 'trash',
