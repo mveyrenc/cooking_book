@@ -1,5 +1,5 @@
 module MainMenu
-  class ButtonNavbarItem < ViewComponent::Base
+  class ButtonNavbarItemComponent < ViewComponent::Base
     def initialize(title:, path:)
       @title = title
       @path = path

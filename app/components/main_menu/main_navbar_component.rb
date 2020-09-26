@@ -1,10 +1,9 @@
 module MainMenu
-  class MainNavbar < ViewComponent::Base
+  class MainNavbarComponent < ViewComponent::Base
     include ActionController::Helpers
     include Devise::Controllers::Helpers
     include CanCan::ControllerAdditions
 
-    def initialize(*)
-    end
+    def initialize(*) end
   end
 end
