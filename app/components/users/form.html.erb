@@ -12,19 +12,19 @@
     </div>
   <% end %>
 
-  <%= render(Application::Form::Text::Entry.new(
+  <%= render(Application::Form::TextEntryComponent.new(
       form: f,
       method: :name,
       resource: item,
       options: {required: true}
   )) %>
-  <%= render(Application::Form::Email::Entry.new(
+  <%= render(Application::Form::EmailEntryComponent.new(
       form: f,
       method: :email,
       resource: item,
       options: {required: true}
   )) %>
-  <%= render(Application::Form::CollectionSelect::Entry.new(
+  <%= render(Application::Form::CollectionSelectEntryComponent.new(
       form: f,
       method: :role,
       resource: item,
@@ -35,13 +35,13 @@
   )) %>
 
   <div class="help is-size-5"><%= t('devise.form.change_password_help') %></div>
-  <%= render(Application::Form::Password::Entry.new(
+  <%= render(Application::Form::PasswordEntryComponent.new(
       form: f,
       method: :password,
       resource: item,
       field_html_options: {autocomplete: "off"}
   )) %>
-  <%= render(Application::Form::Password::Entry.new(
+  <%= render(Application::Form::PasswordEntryComponent.new(
       form: f,
       method: :password_confirmation,
       resource: item,
@@ -50,7 +50,7 @@
 
   <hr/>
   <div class="buttons is-centered">
-    <%= render(Application::Form::Submit::Entry.new(
+    <%= render(Application::Form::SubmitEntryComponent.new(
         form: f,
         resource: item
     )) %>

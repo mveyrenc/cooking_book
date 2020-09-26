@@ -1,0 +1,15 @@
+<%= render(Application::Form::EntryComponent.new(
+    form: form,
+    method: method.to_sym,
+    resource: resource,
+    options: options,
+    label_html_options: label_html_options
+)) do %>
+  <%= render(Application::Form::MarkdownFieldComponent.new(
+      form: form,
+      method: method.to_sym,
+      resource: resource,
+      options: options,
+      html_options: field_html_options
+  )) %>
+<% end %>
