@@ -1,6 +1,6 @@
 module Recipes
   module Parts
-    class PublicationControls < ViewComponent::Base
+    class PublicationControlsComponent < ViewComponent::Base
       include ActionController::Helpers
       include Devise::Controllers::Helpers
       include CanCan::ControllerAdditions

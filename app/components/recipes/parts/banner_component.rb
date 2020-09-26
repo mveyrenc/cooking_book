@@ -1,6 +1,6 @@
 module Recipes
   module Parts
-    class PublicationInfo < ViewComponent::Base
+    class BannerComponent < ViewComponent::Base
 
       def initialize(object:)
         @object = object
@@ -9,7 +9,6 @@ module Recipes
       private
 
       attr_reader :object
-
     end
   end
 end

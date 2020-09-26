@@ -1,5 +1,5 @@
 module Recipes
-  class List < ViewComponent::Base
+  class ListComponent < ViewComponent::Base
     def initialize(items:)
       @items = items
     end

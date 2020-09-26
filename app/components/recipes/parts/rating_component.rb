@@ -1,6 +1,6 @@
 module Recipes
-  module Elements
-    class Rating < ViewComponent::Base
+  module Parts
+    class RatingComponent < ViewComponent::Base
 
       def initialize(object:)
         @object = object

@@ -1,5 +1,5 @@
 module Recipes
-  class Card < ViewComponent::Base
+  class CardComponent < ViewComponent::Base
     include ActionController::Helpers
     include Devise::Controllers::Helpers
     include CanCan::ControllerAdditions

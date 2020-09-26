@@ -1,6 +1,6 @@
 module Recipes
   module Parts
-    class Times < ViewComponent::Base
+    class TimesComponent < ViewComponent::Base
 
       def initialize(object:)
         @object = object

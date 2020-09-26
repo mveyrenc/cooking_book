@@ -1,5 +1,5 @@
 module Recipes
-  class SearchForm < ViewComponent::Base
+  class SearchFormComponent < ViewComponent::Base
     def initialize(query:)
       @query = query
     end

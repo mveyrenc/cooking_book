@@ -3,7 +3,7 @@
 <% else %>
   <div class="columns is-multiline">
     <% items.each do |item| %>
-      <%= render(Recipes::ListItem.new(item: item)) %>
+      <%= render(Recipes::ListItemComponent.new(item: item)) %>
     <% end %>
   </div>
 <% end %>

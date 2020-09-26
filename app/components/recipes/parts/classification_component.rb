@@ -1,6 +1,6 @@
 module Recipes
   module Parts
-    class Classification < ViewComponent::Base
+    class ClassificationComponent < ViewComponent::Base
 
       def initialize(object:)
         @object = object

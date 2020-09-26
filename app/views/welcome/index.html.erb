@@ -2,7 +2,7 @@
   <div class="container box">
     <div class="title is-size-1"><%= I18n.t('homepage.welcome') %></div>
     <div class="container is-widescreen">
-      <%= render(Recipes::List.new(items: @recipes)) %>
+      <%= render(Recipes::ListComponent.new(items: @recipes)) %>
     </div>
     <%= link_to I18n.t('homepage.show_all_recipes'), recipes_path, class: 'button is-primary is-fullwidth has-margin-top-15' %>
   </div>

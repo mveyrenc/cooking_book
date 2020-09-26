@@ -1,18 +1,22 @@
 module Recipes
   module Parts
-    class Directions < ViewComponent::Base
+    class MoreLikeThisComponent < ViewComponent::Base
 
       def initialize(object:)
         @object = object
       end
 
       def render?
-        !@object.directions.blank?
+        items.any?
       end
 
       private
 
       attr_reader :object
+
+      def items
+        @items ||= object.similar(fields: [:ingredients, :name, :tags], limit: 5)
+      end
     end
   end
 end

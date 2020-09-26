@@ -1,6 +1,6 @@
 module Recipes
   module Parts
-    class Ingredients < ViewComponent::Base
+    class IngredientsComponent < ViewComponent::Base
 
       def initialize(object:)
         @object = object

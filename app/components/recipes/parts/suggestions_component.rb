@@ -1,9 +1,13 @@
 module Recipes
   module Parts
-    class Banner < ViewComponent::Base
+    class SuggestionsComponent < ViewComponent::Base
 
       def initialize(object:)
         @object = object
+      end
+
+      def render?
+        !@object.wine.blank?
       end
 
       private

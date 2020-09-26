@@ -1,6 +1,6 @@
 module Recipes
-  module Elements
-    class Difficulty < ViewComponent::Base
+  module Parts
+    class RatingDifficultyComponent < ViewComponent::Base
 
       def initialize(object:)
         @object = object

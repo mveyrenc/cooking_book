@@ -1,5 +1,5 @@
 module Recipes
-  class Detail < ViewComponent::Base
+  class DetailComponent < ViewComponent::Base
     def initialize(object:)
       @object = object
     end
