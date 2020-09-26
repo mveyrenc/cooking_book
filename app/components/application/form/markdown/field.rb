@@ -9,7 +9,11 @@ module Application
         end
 
         def default_html_options
-          merge_options(super, {class: 'markdown-editor', rows: 2})
+          merge_options(super, {
+              class: 'markdown-editor',
+              rows: 2,
+              'data-controller': "application--form--markdown--field"
+          })
         end
       end
     end

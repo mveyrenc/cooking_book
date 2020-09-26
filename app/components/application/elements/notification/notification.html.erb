@@ -1,6 +1,6 @@
 <div class="<%= css_class %>">
 <% if delete? %>
-  <%= render(Application::Elements::Delete.new(styles: delete_styles)) %>
+  <%= render(Application::Elements::Delete::DeleteComponent.new(styles: delete_styles)) %>
 <% end %>
 <%= content %>
 </div>
