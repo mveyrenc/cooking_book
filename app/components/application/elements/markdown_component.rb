@@ -1,6 +1,6 @@
 module Application
   module Elements
-    class Markdown < ViewComponent::Base
+    class MarkdownComponent < ViewComponent::Base
 
       require 'commonmarker'
 

@@ -11,7 +11,7 @@
       </h1>
       <% if object.description %>
         <h2 class="subtitle">
-          <%= render(Application::Elements::Markdown.new(text: object.description)) %>
+          <%= render(Application::Elements::MarkdownComponent.new(text: object.description)) %>
         </h2>
       <% end %>
     </div>
