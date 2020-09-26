@@ -1,5 +1,5 @@
 module Users
-  class ListItem < ViewComponent::Base
+  class FormComponent < ViewComponent::Base
     def initialize(item:)
       @item = item
     end

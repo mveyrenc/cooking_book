@@ -1,7 +1,7 @@
 <section class="section">
   <div class="container box">
     <div class="title is-size-1"><%= I18n.t('users.index_page_title') %></div>
-    <%= render(Users::List.new(items: @users)) %>
+    <%= render(Users::ListComponent.new(items: @users)) %>
   </div>
 </section>
 
