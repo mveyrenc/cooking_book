@@ -1,6 +1,6 @@
 module Application
   module Components
-    class Breadcrumb < ViewComponent::Base
+    class BreadcrumbComponent < ViewComponent::Base
       include Application::Component
 
       SEPARATOR = {

@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe Application::Components::Breadcrumb do
+RSpec.describe Application::Components::BreadcrumbComponent do
   it "renders the breadcrumb" do
-    result = render_inline(Application::Components::Breadcrumb.new()) do
+    result = render_inline(Application::Components::BreadcrumbComponent.new()) do
       '<ul>
             <li><a href="#">Bulma</a></li>
             <li><a href="#">Documentation</a></li>
@@ -15,7 +15,7 @@ RSpec.describe Application::Components::Breadcrumb do
   end
 
   it "renders the breadcrumb with a size" do
-    result = render_inline(Application::Components::Breadcrumb.new(styles: {size: :small})) do
+    result = render_inline(Application::Components::BreadcrumbComponent.new(styles: {size: :small})) do
       '<ul>
             <li><a href="#">Bulma</a></li>
             <li><a href="#">Documentation</a></li>
@@ -31,7 +31,7 @@ RSpec.describe Application::Components::Breadcrumb do
   end
 
   it "renders the breadcrumb with an alignment" do
-    result = render_inline(Application::Components::Breadcrumb.new(styles: {alignment: :centered})) do
+    result = render_inline(Application::Components::BreadcrumbComponent.new(styles: {alignment: :centered})) do
       '<ul>
             <li><a href="#">Bulma</a></li>
             <li><a href="#">Documentation</a></li>
@@ -48,7 +48,7 @@ RSpec.describe Application::Components::Breadcrumb do
   end
 
   it "renders the breadcrumb with a separator" do
-    result = render_inline(Application::Components::Breadcrumb.new(styles: {separator: :arrow})) do
+    result = render_inline(Application::Components::BreadcrumbComponent.new(styles: {separator: :arrow})) do
       '<ul>
             <li><a href="#">Bulma</a></li>
             <li><a href="#">Documentation</a></li>
