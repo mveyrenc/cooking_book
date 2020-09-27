@@ -6,7 +6,6 @@ export default class extends Controller {
     static targets = ["field"]
 
     connect() {
-        console.log("Hello, Stimulus!", this.element)
         var simplemde = new SimpleMDE({
             element: this.element,
             forceSync: true,

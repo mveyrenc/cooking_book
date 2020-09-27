@@ -24,6 +24,14 @@
       resource: item,
       options: {required: true}
   )) %>
+  <%= render(Application::Form::CollectionCheckboxesEntryComponent.new(
+      form: f,
+      method: :course_types,
+      resource: item,
+      choices: Category.course_type.ordered,
+      value_method: :to_s,
+      text_method: :to_s
+  )) %>
   <!--  <div class="form-group">-->
   <%#= f.label :course_types, :class => "col-sm-2 control-label is-required" %>
   <!--    <div class="col-sm-10">-->

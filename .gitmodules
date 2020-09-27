@@ -1,3 +1,6 @@
 [submodule "app/assets/stylesheets/bulma"]
 	path = app/assets/stylesheets/bulma
 	url = https://github.com/jgthms/bulma.git
+[submodule "app/assets/stylesheets/bulma-checkradio"]
+	path = app/assets/stylesheets/bulma-checkradio
+	url = git://github.com/Wikiki/bulma-checkradio.git

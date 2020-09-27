@@ -18,7 +18,7 @@ class BulmaFormBuilder < ActionView::Helpers::FormBuilder
     default_options = {}
     label(method, text, merge_options(default_options, options), &block)
   end
-  #
+
   # def check_box(method, options = {}, checked_value = "1", unchecked_value = "0")
   #   default_options = {class: "is-checkradio"}
   #   super(method, merge_options(default_options, options), checked_value, unchecked_value)

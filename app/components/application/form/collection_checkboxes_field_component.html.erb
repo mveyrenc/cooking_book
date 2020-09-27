@@ -1,0 +1,8 @@
+<div class="columns is-multiline">
+  <%= form.collection_check_boxes method.to_sym, choices, value_method, text_method, options, html_options do |b| %>
+    <% content_tag :div, class: "column is-4" do %>
+      <%= b.check_box %>
+      <%= b.label %>
+    <% end %>
+  <% end %>
+</div>
