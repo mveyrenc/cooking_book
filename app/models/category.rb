@@ -37,7 +37,7 @@ class Category < ActiveRecord::Base
   validates :modifier, presence: true
   
   scope :ordered, ->{ order(name: :asc) }
-  scope :course_type, -> { where(is_course_type: true) }
+  scope :recipe_type, -> { where(is_course_type: true) }
   scope :categories, -> { where(is_course_type: false) }
   
   def related_categories_for_recipes

@@ -43,7 +43,7 @@ class Recipe < ActiveRecord::Base
   #       description: HTMLEntities.new.decode( Sanitize.clean( description ) ),
   #       directions: HTMLEntities.new.decode( Sanitize.clean( directions ) ),
   #       tags: (additional_categories | categories | additional_main_ingredients | main_ingredients | sources_list ).map{ |i| i.name }.join(' '),
-  #       course_type_ids:  (additional_categories | categories).select{ |c| c.is_course_type },
+  #       recipe_type_ids:  (additional_categories | categories).select{ |c| c.is_course_type },
   #       category_ids: (additional_categories | categories).reject{ |c| c.is_course_type },
   #       main_ingredient_ids: additional_main_ingredients | main_ingredients,
   #       source_ids: sources_list,
@@ -96,10 +96,6 @@ class Recipe < ActiveRecord::Base
   #     logger.error e.message
   #   end
   # end
-
-  def course_types
-    categories.select { |c| c.is_course_type }
-  end
 
   def additional_categories
     additional_categories = []

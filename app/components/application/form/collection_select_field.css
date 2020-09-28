@@ -1,0 +1,28 @@
+.selectize-control.single .selectize-input:after {
+    border: 3px solid #fd7e17;
+    border-radius: 2px;
+    border-right: 0;
+    border-top: 0;
+    content: " ";
+    display: block;
+    height: 0.625em;
+    margin-top: -0.4375em;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    transform: rotate(-45deg);
+    transform-origin: center;
+    width: 0.625em;
+}
+
+.selectize-control.multi .selectize-input > div {
+    background-color: #fff4eb;
+    color: #b65302;
+    border-color: transparent;
+}
+
+.selectize-control.multi .selectize-input > div.active {
+    background: #fd7e17;
+    color: #fff;
+    border-color: transparent;
+}

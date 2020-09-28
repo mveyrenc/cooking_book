@@ -131,8 +131,8 @@ fr:
       recipe:
         name: "Nom"
         description: "Description"
-        course_type_ids: "Types de plat"
-        course_types: "Types de plat"
+        recipe_type_ids: "Types de recette"
+        recipe_types: "Types de recette"
         category_ids: "Catégories"
         categories: "Catégories"
         picture: "Photo"

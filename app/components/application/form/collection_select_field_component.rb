@@ -25,6 +25,12 @@ module Application
         @text_method = text_method
       end
 
+      def default_html_options
+        merge_options(super, {
+            'data-controller': "application--form--collection-select-field"
+        })
+      end
+
       private
 
       attr_reader :choices

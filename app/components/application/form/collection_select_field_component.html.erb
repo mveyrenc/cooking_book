@@ -1,3 +1,3 @@
-<div class="select">
+<div class="selectize <%= "is-multiple" if html_options[:multiple] %>">
   <%= form.collection_select method.to_sym, choices, value_method, text_method, options, html_options %>
 </div>
