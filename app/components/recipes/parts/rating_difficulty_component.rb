@@ -7,7 +7,7 @@ module Recipes
       end
 
       def render?
-        object.difficulty > 0
+        !object.difficulty.nil? and object.difficulty > 0
       end
 
       def call

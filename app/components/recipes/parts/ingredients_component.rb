@@ -7,7 +7,7 @@ module Recipes
       end
 
       def render?
-        !@object.ingredients.blank?
+        !object.ingredients.blank?
       end
 
       private

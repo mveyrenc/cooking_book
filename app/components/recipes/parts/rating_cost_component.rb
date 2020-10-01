@@ -7,7 +7,7 @@ module Recipes
       end
 
       def render?
-        object.cost > 0
+        !object.cost.nil? and object.cost > 0
       end
 
       def call
