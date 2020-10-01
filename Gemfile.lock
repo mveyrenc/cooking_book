@@ -347,6 +347,7 @@ DEPENDENCIES
   delayed_job
   delayed_job_active_record
   devise (>= 4.7.1)
+  down (~> 1.1)
   factory_bot_rails
   font-awesome-sass
   friendly_id

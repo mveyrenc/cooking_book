@@ -18,7 +18,6 @@ class Recipe < ActiveRecord::Base
   belongs_to :modifier, class_name: "User"
 
   validates :name, presence: true
-  validates :directions, presence: true
   validates :author, presence: true
   validates :modifier, presence: true
 

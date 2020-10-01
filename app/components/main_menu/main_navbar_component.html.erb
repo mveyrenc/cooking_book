@@ -5,9 +5,7 @@
     <div class="navbar-item has-dropdown is-hoverable">
       <a href="#" class="navbar-link"><%= I18n.t('recipes.import_button') %></a>
       <div class="navbar-dropdown">
-        <%= render(MainMenu::NavbarItemComponent.new(title: t('recipes.import_regal'), path: new_import_recipe_regal_path)) %>
-        <%= render(MainMenu::NavbarItemComponent.new(title: t('recipes.import_meilleurduchef'), path: new_import_recipe_meilleurduchef_path)) %>
-        <%= render(MainMenu::NavbarItemComponent.new(title: t('recipes.import_elleatable'), path: new_import_recipe_elleatable_path)) %>
+        <%= render(MainMenu::NavbarItemComponent.new(title: t('recipes.import_url'), path: import_recipe_index_path)) %>
       </div>
     </div>
   <% end %>

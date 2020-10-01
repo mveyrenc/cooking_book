@@ -18,14 +18,16 @@ module CookingBook
     # the framework and any gems in your application.
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-#     config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-     config.i18n.default_locale = :fr
-  
-    config.action_view.field_error_proc = Proc.new { |html_tag, instance| 
+    #     config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
+    config.i18n.default_locale = :fr
+
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance|
       "<div class=\"has-error\">#{html_tag}</div>".html_safe
     }
+
+    config.action_view.form_with_generates_remote_forms = false
     
-    config.autoload_paths += %W(#{config.root}/app/navigation_renderers)
+    config.autoload_paths += %W(#{config.root}/app/libs)
 
     config.view_component.preview_path = "#{Rails.root}/spec/components/previews"
   end

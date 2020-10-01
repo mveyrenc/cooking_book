@@ -1,0 +1,18 @@
+<%= t('recipes.last_import_recipe_url', url: url) unless url.nil? %>
+
+<%= form_with url: import_recipe_index_path, method: :post do |f| %>
+  <%= render(Application::Form::UrlEntryComponent.new(
+      form: f,
+      method: :url,
+      resource: nil,
+      options: {required: true}
+  )) %>
+  <hr/>
+  <div class="buttons is-centered">
+    <%= render(Application::Form::SubmitEntryComponent.new(
+        form: f,
+        resource: nil
+    )) %>
+  </div>
+<% end %>
+

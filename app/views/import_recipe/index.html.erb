@@ -1,0 +1,6 @@
+<section class="section">
+  <div class="container box">
+    <div class="title is-size-1"><%= I18n.t('recipes.import_url_page_title') %></div>
+    <%= render(Recipes::ImportComponent.new(url: @url, item: @recipe)) %>
+  </div>
+</section>

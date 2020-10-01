@@ -37,13 +37,13 @@ fr:
     edit_page_title: "Modification de la recette"
     new_button: "Nouvelle recette"
     search_page_title: "Recherche"
+    last_import_recipe_url: "Dernière page importée %{url}"
     import_button: Importer
-    import_regal: Depuis Régal.fr
-    import_regal_page_title: Importer une recette depuis Régal.fr
-    import_meilleurduchef: Depuis MeilleurDuChef.com
-    import_meilleurduchef_page_title: Importer une recette depuis MeilleurDuChef.com
-    import_elleatable: Depuis Elle.fr
-    import_elleatable_page_title: Importer une recette depuis Elle.fr
+    import_url: Depuis un autre site intrenet
+    import_url_page_title: Importer une recette depuis un autre site intrenet
+    import_url_error:
+      unknown_recipe_provider: "Impossible d'importer des recettes de ce site"
+      invalid_url: "URL manquante"
     create:
       success: Recette créée avec succès.
     update:
