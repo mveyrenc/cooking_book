@@ -7,7 +7,7 @@ class Recipe < ActiveRecord::Base
   enum cost_types: [:cost_none, :cost_cheap, :cost_affordable, :cost_middle, :cost_pretty_expensive, :cost_expensive]
 
   extend FriendlyId
-  friendly_id :id_and_name, use: :slugged
+  friendly_id :name, use: :slugged
 
   belongs_to :book
 
@@ -120,14 +120,6 @@ class Recipe < ActiveRecord::Base
       sources_list |= source.path
     end
     sources_list.uniq
-  end
-
-  def id_and_name
-    "#{id} #{name}"
-  end
-
-  def should_generate_new_friendly_id?
-    true
   end
 
   def to_s

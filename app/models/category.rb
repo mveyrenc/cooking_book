@@ -1,6 +1,6 @@
 class Category < ActiveRecord::Base
   extend FriendlyId
-  friendly_id :id_and_name, use: :slugged
+  friendly_id :name, use: :slugged
   
   has_and_belongs_to_many :recipes
   
@@ -66,14 +66,6 @@ class Category < ActiveRecord::Base
       end
     end
     suggested_categories_for_recipes - related_categories_for_recipes - [self]
-  end
-  
-  def id_and_name
-    "#{id} #{name}"
-  end
-  
-  def should_generate_new_friendly_id?
-    true
   end
   
   def to_s

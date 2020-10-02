@@ -1,6 +1,6 @@
 class Source < ActiveRecord::Base
   extend FriendlyId
-  friendly_id :id_and_name, use: :slugged
+  friendly_id :name, use: :slugged
   
   has_ancestry
   
@@ -15,14 +15,6 @@ class Source < ActiveRecord::Base
   default_scope { order('name') } 
   
   scope :ordered, ->{ order(name: :asc) }
-  
-  def id_and_name
-    "#{id} #{name}"
-  end
-  
-  def should_generate_new_friendly_id?
-    true
-  end
   
   def to_s
     name
