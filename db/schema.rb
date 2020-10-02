@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_02_165650) do
+ActiveRecord::Schema.define(version: 2020_10_02_170217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -192,7 +192,7 @@ ActiveRecord::Schema.define(version: 2020_10_02_165650) do
     t.integer "modifier_id"
     t.integer "difficulty", default: 0
     t.integer "cost", default: 0
-    t.bigint "book_id"
+    t.bigint "book_id", null: false
     t.index ["author_id"], name: "fk__recipes_author_id"
     t.index ["book_id"], name: "index_recipes_on_book_id"
     t.index ["modifier_id"], name: "fk__recipes_modifier_id"
