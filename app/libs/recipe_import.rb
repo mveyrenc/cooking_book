@@ -7,8 +7,8 @@ require 'recipe_import/parsers/meilleur_du_chef'
 require 'recipe_import/parsers/regal'
 
 module RecipeImport
-  def self.import(url, current_user)
-    RecipeImport::Parsers.lookup(url).import(url, current_user)
+  def self.import(book, url, current_user)
+    RecipeImport::Parsers.lookup(url).import(book, url, current_user)
   end
 
 

@@ -1,10 +1,15 @@
 <% if user_signed_in? %>
   <nav class="navbar is-primary is-fixed-top" role="navigation" aria-label="main navigation">
     <div class="container">
-      <%= render(MainMenu::BrandComponent.new()) %>
+      <%= render(MainMenu::BrandComponent.new) %>
       <div id="main-navbar-menu" class="navbar-menu">
-        <%= render(MainMenu::MainNavbarComponent.new()) %>
-        <%= render(MainMenu::UserNavbarComponent.new()) %>
+        <div class="navbar-start">
+          <%= render(MainMenu::BooksComponent.new) %>
+        </div>
+        <div class="navbar-end">
+          <%= render(MainMenu::AdminNavbarComponent.new) %>
+          <%= render(MainMenu::UserNavbarComponent.new) %>
+        </div>
       </div>
     </div>
   </nav>

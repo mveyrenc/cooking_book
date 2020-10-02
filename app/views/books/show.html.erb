@@ -1,0 +1,13 @@
+<section class="navigation">
+  <div class="container">
+    <%= render(Recipes::NavigationComponent.new(book: @book)) %>
+  </div>
+</section>
+<section class="section">
+  <div class="container box">
+    <div class="container is-widescreen">
+      <%= render(Recipes::ListComponent.new(items: @recipes)) %>
+    </div>
+    <%= link_to I18n.t('homepage.show_all_recipes'), book_recipes_path(@book), class: 'button is-primary is-fullwidth has-margin-top-15' %>
+  </div>
+</section>

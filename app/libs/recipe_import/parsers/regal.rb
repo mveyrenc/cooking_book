@@ -58,15 +58,15 @@ module RecipeImport
         r = Array.new
         pt = extract_first_text document, '.region-content .field-name-field-recipe-preptime .field-items'
         unless pt.nil?
-          r << ('Préparation : ' << pt.text.strip)
+          r << ('Préparation : ' << pt)
         end
         ct = extract_first_text document, '.region-content .field-name-field-recipe-cooktime .field-items'
         unless ct.nil?
-          r << ('Cuisson : ' << ct.text.strip)
+          r << ('Cuisson : ' << ct)
         end
         rt = extract_first_text document, '.region-content .field-name-field-recipe-resttime .field-items'
         unless rt.nil?
-          r << ('Repos : ' << rt.text.strip)
+          r << ('Repos : ' << rt)
         end
         r.join("\n")
       end
@@ -84,9 +84,13 @@ module RecipeImport
       end
 
       def description(document)
-        markdown(document.css(
+        d = document.css(
             '.region-content .field-name-field-chapo p'
-        ).to_s)
+        )
+        d.css('a').each do |r|
+          r.replace(r.inner_html)
+        end
+        markdown(d.to_s)
       end
 
       def ingredients(document)
@@ -101,10 +105,14 @@ module RecipeImport
       end
 
       def directions(document)
-        markdown(document.css(
+        d = document.css(
             '.region-content .field-name-field-recipe-steps p',
             '.region-content .field-name-body p'
-        ).to_s)
+        )
+        d.css('a').each do |r|
+          r.replace(r.inner_html)
+        end
+        markdown(d.to_s)
       end
 
       def main_ingredients(document)

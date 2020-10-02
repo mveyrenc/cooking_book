@@ -1,0 +1,18 @@
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <%= link_to book_recipes_path(book), class: "button is-rounded is-large" do %>
+        <span class="icon"><%= render Application::Elements::FontAwesomeIconComponent.new(icon: 'book') %></span>
+        <span><%= t('books.recipes.view_all') %></span>
+      <% end %>
+      <%= link_to new_book_recipe_path(book), class: "button is-rounded is-large" do %>
+        <span class="icon"><%= render Application::Elements::FontAwesomeIconComponent.new(icon: 'plus') %></span>
+        <span><%= t('recipes.new_button') %></span>
+      <% end %>
+      <%= link_to book_import_recipe_index_path(book), class: "button is-rounded is-large" do %>
+        <span class="icon"><%= render Application::Elements::FontAwesomeIconComponent.new(icon: 'download') %></span>
+        <span><%= t('recipes.import_url') %></span>
+      <% end %>
+    </div>
+  </div>
+</section>

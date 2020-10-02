@@ -1,5 +1,7 @@
 class ImportRecipeController < ApplicationController
 
+  before_action :set_book
+
   def index
     authorize! :create, Recipe
 
@@ -16,7 +18,7 @@ class ImportRecipeController < ApplicationController
       flash[:danger] = 'recipes.import_url_error.invalid_url'
     else
       begin
-        @recipe = RecipeImport.import(@url, current_user)
+        @recipe = RecipeImport.import(@book, @url, current_user)
       rescue RecipeImport::UnknownTagError => e
         flash[:danger] = 'recipes.import_url_error.unknown_recipe_provider'
       rescue => e
@@ -30,7 +32,7 @@ class ImportRecipeController < ApplicationController
       if @recipe.nil?
         format.html { render :index }
       elsif @recipe.save
-        format.html { redirect_to edit_recipe_path(@recipe), notice: t('recipes.create.success') }
+        format.html { redirect_to edit_book_recipe_path(@book, @recipe), notice: t('recipes.create.success') }
         format.json { render :show, status: :created, location: @recipe }
       else
         @recipe.errors.full_messages.each do |e|
@@ -46,6 +48,10 @@ class ImportRecipeController < ApplicationController
   end
 
   private
+
+  def set_book
+    @book = Book.friendly.find(params[:book_id])
+  end
 
   def import_recipe_params
     params.permit(:url, :authenticity_token, :commit)

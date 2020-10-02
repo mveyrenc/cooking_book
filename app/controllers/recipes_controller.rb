@@ -2,6 +2,8 @@ class RecipesController < ApplicationController
 
   authorize_resource
 
+  before_action :set_book
+
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
 
   # GET /recipes
@@ -10,25 +12,27 @@ class RecipesController < ApplicationController
     authorize! :read, Recipe
     @query = params[:query]
     search_query = @query ? @query : '*'
-    @search_result = Recipe.search search_query,
-                                   page: params[:page],
-                                   per_page: 10,
-                                   order: {
-                                       _score: :desc,
-                                       created_at: :desc
-                                   }
+    @search_result = Recipe.search(
+        search_query,
+        where: {book_id: @book.id},
+        page: params[:page],
+        per_page: 10,
+        order: {
+            _score: :desc,
+            created_at: :desc
+        })
   end
 
   # GET /recipes/1
   # GET /recipes/1.json
   def show
-    authorize! :read, Recipe
+    authorize! :read, @book.recipes
   end
 
   # GET /recipes/new
   def new
     authorize! :create, Recipe
-    @recipe = Recipe.new
+    @recipe = Recipe.new(book: @book)
   end
 
   # GET /recipes/1/edit
@@ -42,12 +46,13 @@ class RecipesController < ApplicationController
     authorize! :create, Recipe
 
     @recipe = Recipe.new(recipe_params)
+    @recipe.book = @book
     @recipe.author = current_user
     @recipe.modifier = current_user
 
     respond_to do |format|
       if @recipe.save
-        format.html { redirect_to @recipe, notice: t('.success') }
+        format.html { redirect_to [@book, @recipe], notice: t('.success') }
         format.json { render :show, status: :created, location: @recipe }
       else
         format.html { render :new }
@@ -62,10 +67,11 @@ class RecipesController < ApplicationController
     authorize! :update, @recipe
 
     @recipe.modifier = current_user
+    @recipe.book = @book
 
     respond_to do |format|
       if @recipe.update(recipe_params)
-        format.html { redirect_to @recipe, notice: t('.success') }
+        format.html { redirect_to [@book, @recipe], notice: t('.success') }
         format.json { render :show, status: :ok, location: @recipe }
       else
         format.html { render :edit }
@@ -80,14 +86,17 @@ class RecipesController < ApplicationController
     authorize! :destroy, @recipe
     @recipe.destroy
     respond_to do |format|
-      format.html { redirect_to recipes_url, notice: t('.success') }
+      format.html { redirect_to @book, notice: t('.success') }
       format.json { head :no_content }
     end
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
+  def set_book
+    @book = Book.friendly.find(params[:book_id])
+  end
+
   def set_recipe
     @recipe = Recipe.friendly.find(params[:id])
   end

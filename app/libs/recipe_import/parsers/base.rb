@@ -2,7 +2,7 @@ module RecipeImport
   module Parsers
     class Base
 
-      def import(url, current_user)
+      def import(book, url, current_user)
         document = get_document(url)
         if document.nil?
           raise PageNotFound, %w"${url} not found"
@@ -10,6 +10,7 @@ module RecipeImport
 
         begin
           recipe = Recipe.new
+          recipe.book = book
           recipe.author = current_user
           recipe.modifier = current_user
           recipe.name = name(document)
@@ -143,14 +144,14 @@ module RecipeImport
       end
 
       def clean_text(text)
-        text.gsub('oe', 'œ')
+        text.gsub('oe', 'œ').gsub('Oe', 'Œ')
       end
 
       def extract_first_text(document, selector)
         n = document.css(selector).first
 
         unless n.nil?
-          n.text.strip
+          clean_text(n.text.strip)
         end
       end
 
@@ -158,7 +159,7 @@ module RecipeImport
         n = document.css(selector).first
 
         unless n.nil?
-          n.parent.text.strip
+          clean_text(n.parent.text.strip)
         end
       end
     end

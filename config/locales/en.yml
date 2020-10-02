@@ -1,171 +1,210 @@
 en:
-    application:
-        name: "CookingBook"
-        home: "Home"
-        recipes: "Recipes"
-        search: "Search"
-        new: "New"
-        show: "Show"
-        edit: "Edit"
-        move_down: "Move down"
-        move_up: "Move up"
-        destroy: "Destroy"
-        destroy_confirmation: "Are you sure?"
-        no_entry: "No entry"
-        back: "Back"
-        error: "error"
-        error_message: "detected:"
-    menu:
-        home: "Home"
-        recipes: "Recipes"
-        new_recipe: "New recipe"
-        admin: "Admin"
-        categories: "Categories"
-        ingredients: "Ingredients"
-        sources: "Sources"
-        profile: "Profile"
-        users: "Users"
-    homepage:
-        welcome: "Welcome!"
-        show_all_recipes: "View all recipes"
-    activerecord:
-        models:
-            recipe: "Recipe"
-        attributes:
-            recipe:
-                name: "Name"
-                description: "Description"
-                dish_type: "Dish type"
-                recipe_type_ids: "Course type"
-                category_ids: "Categories"
-                main_ingredient_ids: "Main ingredients"
-                times: "Times"
-                quantity: "Quantity"
-                ingredients: "Ingredients"
-                directions: "Directions"
-                source: "Source"
-                wine: "Wine"
-                note: "Note"
-                difficulty: "Difficulty"
-                cost: "Cost"
+  application:
+    name: "CookingBook"
+    home: "Home"
+    recipes: "Recipes"
+    search: "Search"
+    new: "New"
+    show: "Show"
+    edit: "Edit"
+    move_down: "Move down"
+    move_up: "Move up"
+    destroy: "Destroy"
+    destroy_confirmation: "Are you sure?"
+    no_entry: "No entry"
+    back: "Back"
+    error: "error"
+    error_message: "detected:"
+  menu:
+    home: "Home"
+    recipes: "Recipes"
+    new_recipe: "New recipe"
+    admin: "Admin"
+    categories: "Categories"
+    ingredients: "Ingredients"
+    sources: "Sources"
+    profile: "Profile"
+    users: "Users"
+  homepage:
+    welcome: "Welcome!"
+    show_all_recipes: "View all recipes"
+  recipes:
+    index_page_title: "Listing recipes"
+    new_page_title: "New recipe"
+    edit_page_title: "Edit recipe"
+    new_button: "New recipe"
+    search_page_title: "Search"
+    last_import_recipe_url: "Last import from %{url}"
+    import_button: "Import"
+    import_url: "From an other website"
+    import_url_page_title: "Import from an other website"
+    import_url_error:
+      unknown_recipe_provider: "Impossible to import from this website"
+      invalid_url: "URL is missing"
+    create:
+      success: "Recipe was successfully created."
+    update:
+      success: "Recipe was successfully updated."
+    destroy:
+      success: "Recipe was successfully destroyed."
+    difficulties:
+      level_0: "Unknown"
+      level_1: "Very easy"
+      level_2: "Easy"
+      level_3: "Intermediate"
+      level_4: "Confirmed"
+      level_5: "Expert"
+    difficulty_none: "Unknown"
+    difficulty_very_easy: "Very easy"
+    difficulty_easy: "Easy"
+    difficulty_intermediate: "Intermediate"
+    difficulty_experienced: "Confirmed"
+    difficulty_expert: "Expert"
+    costs:
+      level_0: "Unknown"
+      level_1: "Cheap (less than 2€/part)"
+      level_2: "Affordable (2 to 4€/part)"
+      level_3: "Medium (4 to 8€/part)"
+      level_4: "Quite expensive (8 to 12€/part)"
+      level_5: "Expensive (more than 12€/part)"
+    cost_none: "Unknown"
+    cost_cheap: "Cheap (less than 2€/part)"
+    cost_affordable: "Affordable (2 to 4€/part)"
+    cost_middle: "Medium (4 to 8€/part)"
+    cost_pretty_expensive: "Quite expensive (8 to 12€/part)"
+    cost_expensive: "Expensive (more than 12€/part)"
+  categories:
+    index_page_title: "Listing categories"
+    new_page_title: "New category"
+    edit_page_title: "Edit category"
+    new_button: "New category"
+    create:
+      success: "Category was successfully created."
+    update:
+      success: "Category was successfully updated."
+    destroy:
+      success: "Category was successfully destroyed."
+  ingredients:
+    index_page_title: "Listing ingredients"
+    new_page_title: "New ingredient"
+    edit_page_title: "Edit ingredient"
+    new_button: "New ingredient"
+    create:
+      success: "Ingredient was successfully created."
+    update:
+      success: "Ingredient was successfully updated."
+    destroy:
+      success: "Ingredient was successfully destroyed."
+  sources:
+    index_page_title: "Listing sources"
+    new_page_title: "New source"
+    edit_page_title: "Edit source"
+    new_button: "New source"
+    create:
+      success: "Source was successfully created."
+    update:
+      success: "Source was successfully updated."
+    destroy:
+      success: "Source was successfully destroyed."
+  users:
+    index_page_title: "Listing users"
+    new_page_title: "New user"
+    edit_page_title: "Edit user"
+    new_button: "New user"
+    create:
+      success: "User was successfully created."
+    update:
+      success: "User was successfully updated."
+    destroy:
+      success: "User was successfully destroyed."
+  books:
+    item:
+      cooking:
+        name: "Cooking"
+      health_wellness:
+        name: "Health & wellness"
+      house:
+        name: "House"
     recipes:
-        index_page_title: "Listing recipes"
-        new_page_title: "New recipe"
-        edit_page_title: "Edit recipe"
-        new_button: "New recipe"
-        search_page_title: "Search"
-        last_import_recipe_url: "Last import from %{url}"
-        import_button: "Import"
-        import_url: "From an other website"
-        import_url_page_title: "Import from an other website"
-        import_url_error:
-            unknown_recipe_provider: "Impossible to import from this website"
-            invalid_url: "URL is missing"
-        create:
-            success: "Recipe was successfully created."
-        update:
-            success: "Recipe was successfully updated."
-        destroy:
-            success: "Recipe was successfully destroyed."
-        difficulties:
-            level_0: "Unknown"
-            level_1: "Very easy"
-            level_2: "Easy"
-            level_3: "Intermediate"
-            level_4: "Confirmed"
-            level_5: "Expert"
-        difficulty_none: "Unknown"
-        difficulty_very_easy: "Very easy"
-        difficulty_easy: "Easy"
-        difficulty_intermediate: "Intermediate"
-        difficulty_experienced: "Confirmed"
-        difficulty_expert: "Expert"
-        costs:
-            level_0: "Unknown"
-            level_1: "Cheap (less than 2€/part)"
-            level_2: "Affordable (2 to 4€/part)"
-            level_3: "Medium (4 to 8€/part)"
-            level_4: "Quite expensive (8 to 12€/part)"
-            level_5: "Expensive (more than 12€/part)"
-        cost_none: "Unknown"
-        cost_cheap: "Cheap (less than 2€/part)"
-        cost_affordable: "Affordable (2 to 4€/part)"
-        cost_middle: "Medium (4 to 8€/part)"
-        cost_pretty_expensive: "Quite expensive (8 to 12€/part)"
-        cost_expensive: "Expensive (more than 12€/part)"
-    categories:
-        index_page_title: "Listing categories"
-        new_page_title: "New category"
-        edit_page_title: "Edit category"
-        new_button: "New category"
-        create:
-            success: "Category was successfully created."
-        update:
-            success: "Category was successfully updated."
-        destroy:
-            success: "Category was successfully destroyed."
-    ingredients:
-        index_page_title: "Listing ingredients"
-        new_page_title: "New ingredient"
-        edit_page_title: "Edit ingredient"
-        new_button: "New ingredient"
-        create:
-            success: "Ingredient was successfully created."
-        update:
-            success: "Ingredient was successfully updated."
-        destroy:
-            success: "Ingredient was successfully destroyed."
-    sources:
-        index_page_title: "Listing sources"
-        new_page_title: "New source"
-        edit_page_title: "Edit source"
-        new_button: "New source"
-        create:
-            success: "Source was successfully created."
-        update:
-            success: "Source was successfully updated."
-        destroy:
-            success: "Source was successfully destroyed."
-    users:
-        index_page_title: "Listing users"
-        new_page_title: "New user"
-        edit_page_title: "Edit user"
-        new_button: "New user"
-        create:
-            success: "User was successfully created."
-        update:
-            success: "User was successfully updated."
-        destroy:
-            success: "User was successfully destroyed."
-    book:
-        item:
-            cooking:
-                name: "Cooking"
-            health_wellness:
-                name: "Health & wellness"
-            house:
-                name: "House"
-    helpers:
-        submit:
-            create: "Validate"
-            update: "Validate"
-            submit: "Validate"
-    devise:
-        label:
-            sign_in: "Sign in"
-            log_in: "Log in"
-            sign_up: "Sign up"
-            forgot_your_password: "Forgot your password?"
-            receive_confirmation_instructions: "Didn't receive confirmation instructions?"
-            receive_unlock_instructions: "Didn't receive unlock instructions?"
-            sign_up_with: "Sign up with %{provider}"
-            logged_in_as: "Logged in as"
-            edit_profile: "Edit profile"
-            logout: "Logout"
-            login: "Login"
-            currently_waiting_confirmation: Currently waiting confirmation for #{email}
-            save: "Save"
-        form:
-            change_password_help: "Leave these fields blank if you don't want to change your password."
-            current_password_help: "You must enter your current password to make changes."
+      view_all: "See all recipes"
+  helpers:
+    submit:
+      create: "Validate"
+      update: "Validate"
+      submit: "Validate"
+  activerecord:
+    models:
+      recipe: "Recipe"
+      category: "Category"
+      ingredient: "Ingredient"
+      source: "Source"
+      import_recipe: "Recipe import"
+    attributes:
+      recipe:
+        name: "Name"
+        description: "Description"
+        recipe_type_ids: "Course type"
+        recipe_types: "Course type"
+        category_ids: "Categories"
+        categories: "Category"
+        picture: "Pcture"
+        times: "Times"
+        quantity: "Quantity"
+        ingredients: "Ingredients"
+        main_ingredients: "Main ingredients"
+        main_ingredient_ids: "Main ingredients"
+        directions: "Directions"
+        source: "Source"
+        source_ids: "Sources"
+        wine: "Suggested wine"
+        note: "Note"
+        difficulty: "Difficulty"
+        cost: "Cost"
+        author: "Author"
+        created_at: "Created at"
+        modifier: "Modifier"
+        updated_at: "Updated at"
+        similar_recipes: "Similar recipes"
+      category:
+        name: "Name"
+        is_course_type: "Is a type of dish ?"
+        related_categories: "Related categories"
+        related_by_categories: "Linked by categories"
+        suggested_categories: "Suggested categories"
+        suggested_by_categories: "Suggested by categories"
+      ingredient:
+        name: "Name"
+        parent: "Parent"
+        best_months: "High season"
+        worse_months: "Out of season"
+      source:
+        name: "Name"
+        parent: "Parent"
+      user:
+        name: "Name"
+        email: "Email"
+        role: "Role"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+  form:
+    image:
+      choose_file: "Choisir un fichier"
+  devise:
+    label:
+      sign_in: "Sign in"
+      log_in: "Log in"
+      sign_up: "Sign up"
+      forgot_your_password: "Forgot your password?"
+      receive_confirmation_instructions: "Didn't receive confirmation instructions?"
+      receive_unlock_instructions: "Didn't receive unlock instructions?"
+      sign_up_with: "Sign up with %{provider}"
+      logged_in_as: "Logged in as"
+      edit_profile: "Edit profile"
+      logout: "Logout"
+      login: "Login"
+      currently_waiting_confirmation: Currently waiting confirmation for #{email}
+      save: "Save"
+    form:
+      change_password_help: "Leave these fields blank if you don't want to change your password."
+      current_password_help: "You must enter your current password to make changes."
   

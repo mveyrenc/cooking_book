@@ -1,6 +1,6 @@
 <%= t('recipes.last_import_recipe_url', url: url) unless url.nil? %>
 
-<%= form_with url: import_recipe_index_path, method: :post do |f| %>
+<%= form_with url: book_import_recipe_index_path(book), method: :post do |f| %>
   <%= render(Application::Form::UrlEntryComponent.new(
       form: f,
       method: :url,

@@ -15,7 +15,10 @@ module Recipes
       attr_reader :object
 
       def items
-        @items ||= object.similar(fields: [:ingredients, :name, :tags], limit: 5)
+        @items ||= object.similar(
+            fields: [:ingredients, :name, :tags],
+            where: {book_id: object.book.id},
+            limit: 5)
       end
     end
   end

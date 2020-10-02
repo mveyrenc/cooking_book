@@ -1,3 +1,8 @@
+<section class="navigation">
+  <div class="container">
+    <%= render(Recipes::NavigationComponent.new(book: @book)) %>
+  </div>
+</section>
 <section class="section">
   <div class="container box">
     <%= render(Recipes::DetailComponent.new(object: @recipe)) %>

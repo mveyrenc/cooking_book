@@ -36,8 +36,8 @@ fr:
     search_page_title: "Recherche"
     last_import_recipe_url: "Dernière page importée %{url}"
     import_button: "Importer"
-    import_url: "Depuis un autre site intrenet"
-    import_url_page_title: "Importer une recette depuis un autre site intrenet"
+    import_url: "Depuis un autre site internet"
+    import_url_page_title: "Importer une recette depuis un autre site internet"
     import_url_error:
       unknown_recipe_provider: "Impossible d'importer des recettes de ce site"
       invalid_url: "URL manquante"
@@ -117,7 +117,7 @@ fr:
       success: "Utilisateur modifié avec succès."
     destroy:
       success: "Utilisateur supprimé avec succès."
-  book:
+  books:
     item:
       cooking:
         name: "Cuisine"
@@ -125,6 +125,8 @@ fr:
         name: "Santé & bien-être"
       house:
         name: "Maison"
+    recipes:
+      view_all: "Voir toutes les recettes"
   helpers:
     submit:
       create: "Valider"

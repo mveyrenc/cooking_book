@@ -3,26 +3,24 @@ Rails.application.routes.draw do
   devise_for :users
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  
+
   post '/rate' => 'rater#create', :as => 'rate'
-  
+
   resources :users, :except => [:new, :create]
- 
-  resources :recipes
-  
+
+  resources :books, only: [:show] do
+    resources :recipes
+    resources :import_recipe, :only => [:index, :create]
+  end
+
   resources :categories, :except => [:show]
-  resources :categories, :only => [:show], :defaults => { :format => 'json' }
-  
+  resources :categories, :only => [:show], :defaults => {:format => 'json'}
+
   resources :ingredients, :except => [:show]
-  resources :ingredients, :only => [:show], :defaults => { :format => 'json' }
-  
+  resources :ingredients, :only => [:show], :defaults => {:format => 'json'}
+
   resources :sources, :except => [:show]
   resources :sources, :only => [:show], :defaults => { :format => 'json' }
-  
-  resources :import_recipe, :only => [:index, :create]
-  
-#  get '/import/recipe/regal', to: :regal, controller: 'import_recipe'
-#  post '/import/recipe/regal', to: :regal_run_import, controller: 'import_recipe'
 
   root :to => "welcome#index"
   # The priority is based upon order of creation: first created -> highest priority.
