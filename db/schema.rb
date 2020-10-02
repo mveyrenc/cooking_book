@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_01_110349) do
+ActiveRecord::Schema.define(version: 2020_10_02_154933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,14 @@ ActiveRecord::Schema.define(version: 2020_10_01_110349) do
     t.float "avg", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "books", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["slug"], name: "index_books_on_slug", unique: true
   end
 
   create_table "categories", id: :serial, force: :cascade do |t|
@@ -184,7 +192,9 @@ ActiveRecord::Schema.define(version: 2020_10_01_110349) do
     t.integer "modifier_id"
     t.integer "difficulty", default: 0
     t.integer "cost", default: 0
+    t.bigint "book_id"
     t.index ["author_id"], name: "fk__recipes_author_id"
+    t.index ["book_id"], name: "index_recipes_on_book_id"
     t.index ["modifier_id"], name: "fk__recipes_modifier_id"
     t.index ["slug"], name: "index_recipes_on_slug", unique: true
   end
@@ -232,6 +242,7 @@ ActiveRecord::Schema.define(version: 2020_10_01_110349) do
   add_foreign_key "categories", "users", column: "modifier_id", name: "fk_categories_modifier_id"
   add_foreign_key "ingredients", "users", column: "author_id", name: "fk_ingredients_author_id"
   add_foreign_key "ingredients", "users", column: "modifier_id", name: "fk_ingredients_modifier_id"
+  add_foreign_key "recipes", "books"
   add_foreign_key "recipes", "users", column: "author_id", name: "fk_recipes_author_id"
   add_foreign_key "recipes", "users", column: "modifier_id", name: "fk_recipes_modifier_id"
   add_foreign_key "sources", "users", column: "author_id", name: "fk_sources_author_id"

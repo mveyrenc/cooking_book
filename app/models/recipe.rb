@@ -9,6 +9,8 @@ class Recipe < ActiveRecord::Base
   extend FriendlyId
   friendly_id :id_and_name, use: :slugged
 
+  belongs_to :book
+
   has_and_belongs_to_many :categories
   has_and_belongs_to_many :sources
   has_and_belongs_to_many(:main_ingredients,
