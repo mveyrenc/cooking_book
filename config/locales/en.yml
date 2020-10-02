@@ -1,40 +1,10 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
     application:
         name: "CookingBook"
         home: "Home"
         recipes: "Recipes"
         search: "Search"
+        new: "New"
         show: "Show"
         edit: "Edit"
         move_down: "Move down"
@@ -50,7 +20,6 @@ en:
         recipes: "Recipes"
         new_recipe: "New recipe"
         admin: "Admin"
-        dish_types: "Dish types"
         categories: "Categories"
         ingredients: "Ingredients"
         sources: "Sources"
@@ -85,65 +54,102 @@ en:
         edit_page_title: "Edit recipe"
         new_button: "New recipe"
         search_page_title: "Search"
+        last_import_recipe_url: "Last import from %{url}"
+        import_button: "Import"
+        import_url: "From an other website"
+        import_url_page_title: "Import from an other website"
+        import_url_error:
+            unknown_recipe_provider: "Impossible to import from this website"
+            invalid_url: "URL is missing"
         create:
-            success: Recipe was successfully created.
+            success: "Recipe was successfully created."
         update:
-            success: Recipe was successfully updated.
+            success: "Recipe was successfully updated."
         destroy:
-            success: Recipe was successfully destroyed.
+            success: "Recipe was successfully destroyed."
+        difficulties:
+            level_0: "Unknown"
+            level_1: "Very easy"
+            level_2: "Easy"
+            level_3: "Intermediate"
+            level_4: "Confirmed"
+            level_5: "Expert"
+        difficulty_none: "Unknown"
+        difficulty_very_easy: "Very easy"
+        difficulty_easy: "Easy"
+        difficulty_intermediate: "Intermediate"
+        difficulty_experienced: "Confirmed"
+        difficulty_expert: "Expert"
+        costs:
+            level_0: "Unknown"
+            level_1: "Cheap (less than 2€/part)"
+            level_2: "Affordable (2 to 4€/part)"
+            level_3: "Medium (4 to 8€/part)"
+            level_4: "Quite expensive (8 to 12€/part)"
+            level_5: "Expensive (more than 12€/part)"
+        cost_none: "Unknown"
+        cost_cheap: "Cheap (less than 2€/part)"
+        cost_affordable: "Affordable (2 to 4€/part)"
+        cost_middle: "Medium (4 to 8€/part)"
+        cost_pretty_expensive: "Quite expensive (8 to 12€/part)"
+        cost_expensive: "Expensive (more than 12€/part)"
     categories:
         index_page_title: "Listing categories"
         new_page_title: "New category"
         edit_page_title: "Edit category"
         new_button: "New category"
         create:
-            success: Category was successfully created.
+            success: "Category was successfully created."
         update:
-            success: Category was successfully updated.
+            success: "Category was successfully updated."
         destroy:
-            success: Category was successfully destroyed.
+            success: "Category was successfully destroyed."
     ingredients:
         index_page_title: "Listing ingredients"
         new_page_title: "New ingredient"
         edit_page_title: "Edit ingredient"
         new_button: "New ingredient"
         create:
-            success: Ingredient was successfully created.
+            success: "Ingredient was successfully created."
         update:
-            success: Ingredient was successfully updated.
+            success: "Ingredient was successfully updated."
         destroy:
-            success: Ingredient was successfully destroyed.
+            success: "Ingredient was successfully destroyed."
     sources:
         index_page_title: "Listing sources"
         new_page_title: "New source"
         edit_page_title: "Edit source"
         new_button: "New source"
         create:
-            success: Source was successfully created.
+            success: "Source was successfully created."
         update:
-            success: Source was successfully updated.
+            success: "Source was successfully updated."
         destroy:
-            success: Source was successfully destroyed.
+            success: "Source was successfully destroyed."
     users:
         index_page_title: "Listing users"
         new_page_title: "New user"
         edit_page_title: "Edit user"
         new_button: "New user"
         create:
-            success: User was successfully created.
+            success: "User was successfully created."
         update:
-            success: User was successfully updated.
+            success: "User was successfully updated."
         destroy:
-            success: User was successfully destroyed.
-    dish_types:
-        index_page_title: "Listing dish types"
-        new_page_title: "New dish type"
-        edit_page_title: "Edit dish type"
-        new_button: "New dish type"
+            success: "User was successfully destroyed."
+    book:
+        item:
+            cooking:
+                name: "Cooking"
+            health_wellness:
+                name: "Health & wellness"
+            house:
+                name: "House"
     helpers:
         submit:
             create: "Validate"
             update: "Validate"
+            submit: "Validate"
     devise:
         label:
             sign_in: "Sign in"
