@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_02_170217) do
+ActiveRecord::Schema.define(version: 2020_10_02_212228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,7 +61,9 @@ ActiveRecord::Schema.define(version: 2020_10_02_170217) do
     t.boolean "is_course_type", default: false, null: false
     t.integer "author_id"
     t.integer "modifier_id"
+    t.bigint "categorization_id"
     t.index ["author_id"], name: "fk__categories_author_id"
+    t.index ["categorization_id"], name: "index_categories_on_categorization_id"
     t.index ["modifier_id"], name: "fk__categories_modifier_id"
     t.index ["name"], name: "index_categories_on_name", unique: true
     t.index ["slug"], name: "index_categories_on_slug", unique: true
@@ -80,6 +82,16 @@ ActiveRecord::Schema.define(version: 2020_10_02_170217) do
   create_table "categories_suggested", id: false, force: :cascade do |t|
     t.integer "category_id", null: false
     t.integer "suggested_category_id", null: false
+  end
+
+  create_table "categorizations", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
+    t.bigint "book_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_categorizations_on_book_id"
+    t.index ["slug", "book_id"], name: "index_categorizations_on_slug_and_book_id", unique: true
   end
 
   create_table "delayed_jobs", id: :serial, force: :cascade do |t|
@@ -238,8 +250,10 @@ ActiveRecord::Schema.define(version: 2020_10_02_170217) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "categories", "categorizations"
   add_foreign_key "categories", "users", column: "author_id", name: "fk_categories_author_id"
   add_foreign_key "categories", "users", column: "modifier_id", name: "fk_categories_modifier_id"
+  add_foreign_key "categorizations", "books"
   add_foreign_key "ingredients", "users", column: "author_id", name: "fk_ingredients_author_id"
   add_foreign_key "ingredients", "users", column: "modifier_id", name: "fk_ingredients_modifier_id"
   add_foreign_key "recipes", "books"

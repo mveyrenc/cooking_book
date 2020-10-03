@@ -121,12 +121,76 @@ fr:
     item:
       cooking:
         name: "Cuisine"
-      health_wellness:
+      healthwellness:
         name: "Santé & bien-être"
       house:
         name: "Maison"
     recipes:
       view_all: "Voir toutes les recettes"
+  categorization:
+    item:
+      cooking_serving:
+        name: "Service"
+      cooking_thematic:
+        name: "Thématique"
+      cooking_season:
+        name: "Saison"
+      cooking_occasion:
+        name: "Occasion"
+      cooking_special_menu:
+        name: "Menu spécial"
+      cooking_region:
+        name: "Région"
+      cooking_cooking_method:
+        name: "Mode de cuisson"
+      cooking_dish_type:
+        name: "Type de plat"
+      cooking_meal:
+        name: "Repas"
+      cooking_main_ingredient:
+        name: "Ingrédient principal"
+      cooking_source:
+        name: "Source"
+      cooking_chef:
+        name: "Chef"
+      cooking_difficulty:
+        name: "Difficulté"
+      cooking_cost:
+        name: "Coût"
+      cooking_todo:
+        name: "Todo"
+      healthwellness_problem_type:
+        name: "Type de problème"
+      healthwellness_suitable_for:
+        name: "Adapté pour"
+      healthwellness_benefit:
+        name: "Bienfait"
+      healthwellness_source:
+        name: "Source"
+      healthwellness_product_type:
+        name: "Type de produit"
+      healthwellness_difficulty:
+        name: "Difficulté"
+      healthwellness_cost:
+        name: "Coût"
+      healthwellness_todo:
+        name: "Todo"
+      house_problem_type:
+        name: "Type de problème"
+      house_occasion:
+        name: "Occasion"
+      house_room:
+        name: "Pièce"
+      house_source:
+        name: "Source"
+      house_product_type:
+        name: "Type de produit"
+      house_difficulty:
+        name: "Difficulté"
+      house_cost:
+        name: "Coût"
+      house_todo:
+        name: "Todo"
   helpers:
     submit:
       create: "Valider"
@@ -168,6 +232,8 @@ fr:
       category:
         name: "Nom"
         is_course_type: "Est un type de plat ?"
+        book: "Livre de recette"
+        categorization: "Catégorisation"
         related_categories: "Catégories liées"
         related_by_categories: "Liées par les catégories"
         suggested_categories: "Catégories suggérées"

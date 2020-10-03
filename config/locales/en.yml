@@ -121,12 +121,76 @@ en:
     item:
       cooking:
         name: "Cooking"
-      health_wellness:
+      healthwellness:
         name: "Health & wellness"
       house:
         name: "House"
     recipes:
       view_all: "See all recipes"
+  categorization:
+    item:
+      cooking_serving:
+        name: "Serving"
+      cooking_thematic:
+        name: "Thematic"
+      cooking_season:
+        name: "Season"
+      cooking_occasion:
+        name: "Occasion"
+      cooking_special_menu:
+        name: "Special menu"
+      cooking_region:
+        name: "Region"
+      cooking_cooking_method:
+        name: "Cooking method"
+      cooking_dish_type:
+        name: "Dish type"
+      cooking_meal:
+        name: "Meal"
+      cooking_main_ingredient:
+        name: "Main ingredient"
+      cooking_source:
+        name: "Source"
+      cooking_chef:
+        name: "Chef"
+      cooking_difficulty:
+        name: "Difficulty"
+      cooking_cost:
+        name: "Cost"
+      cooking_todo:
+        name: "Todo"
+      healthwellness_problem_type:
+        name: "Problem type"
+      healthwellness_suitable_for:
+        name: "Suitable for"
+      healthwellness_benefit:
+        name: "Benefit"
+      healthwellness_source:
+        name: "Source"
+      healthwellness_product_type:
+        name: "Product type"
+      healthwellness_difficulty:
+        name: "Difficulty"
+      healthwellness_cost:
+        name: "Cost"
+      healthwellness_todo:
+        name: "Todo"
+      house_problem_type:
+        name: "Problem type"
+      house_occasion:
+        name: "Occasion"
+      house_room:
+        name: "Room"
+      house_source:
+        name: "Source"
+      house_product_type:
+        name: "Product type"
+      house_difficulty:
+        name: "Difficulty"
+      house_cost:
+        name: "Cost"
+      house_todo:
+        name: "Todo"
   helpers:
     submit:
       create: "Validate"
@@ -168,6 +232,8 @@ en:
       category:
         name: "Name"
         is_course_type: "Is a type of dish ?"
+        book: "Recipe book"
+        categorization: "Categorization"
         related_categories: "Related categories"
         related_by_categories: "Linked by categories"
         suggested_categories: "Suggested categories"

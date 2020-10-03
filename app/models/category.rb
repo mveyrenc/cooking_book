@@ -17,26 +17,27 @@ class Category < ActiveRecord::Base
     :association_foreign_key => "category_id")
   
   has_and_belongs_to_many(:suggested_categories,
-    :class_name => "Category", 
-    :join_table => "categories_suggested",
-    :foreign_key => "category_id",
-    :association_foreign_key => "suggested_category_id")
-  
+                          :class_name => "Category",
+                          :join_table => "categories_suggested",
+                          :foreign_key => "category_id",
+                          :association_foreign_key => "suggested_category_id")
+
   has_and_belongs_to_many(:suggested_by_categories,
-    :class_name => "Category", 
-    :join_table => "categories_suggested",
-    :foreign_key => "suggested_category_id",
-    :association_foreign_key => "category_id")
-  
+                          :class_name => "Category",
+                          :join_table => "categories_suggested",
+                          :foreign_key => "suggested_category_id",
+                          :association_foreign_key => "category_id")
+
+  belongs_to :categorization
+
   belongs_to :author, class_name: "User"
-  
   belongs_to :modifier, class_name: "User"
-  
+
   validates :name, presence: true, :uniqueness => true
   validates :author, presence: true
   validates :modifier, presence: true
-  
-  scope :ordered, ->{ order(name: :asc) }
+
+  scope :ordered, -> { order(name: :asc) }
   scope :recipe_type, -> { where(is_course_type: true) }
   scope :categories, -> { where(is_course_type: false) }
   
