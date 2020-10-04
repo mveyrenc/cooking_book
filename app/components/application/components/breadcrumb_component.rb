@@ -11,18 +11,22 @@ module Application
       }.freeze
 
       def initialize(
+          breadcrumb_trail:,
           html_options: {},
           styles: {}
       )
-        @separator = styles[:separator] if styles.key? :separator
+        @breadcrumb_trail = breadcrumb_trail
 
         self.html_options = html_options
         self.styles = styles
         compute_styles
+
+        @separator = styles[:separator] if styles.key? :separator
       end
 
       private
 
+      attr_reader :breadcrumb_trail
       attr_reader :separator
 
       def separator=(separator)

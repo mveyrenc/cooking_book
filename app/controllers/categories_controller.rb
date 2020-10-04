@@ -2,6 +2,8 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
   before_action :set_search_params, only: [:index]
 
+  breadcrumb I18n.t('breadcrumb.categories'), :categories_path, match: :exact
+
   # GET /categories
   # GET /categories.json
   def index
@@ -60,6 +62,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1.json
   def show
     authorize! :read, @category
+    breadcrumb @category.name, category_path(@category)
   end
 
   # GET /categories/new
@@ -70,12 +73,15 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1/edit
   def edit
+    breadcrumb @category.name, category_path(@category)
   end
 
   # POST /categories
   # POST /categories.json
   def create
     authorize! :create, Category
+    breadcrumb @category.name, category_path(@category)
+
     @category = Category.new(category_params)
 
     @category.author = current_user
@@ -120,6 +126,8 @@ class CategoriesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
 
   private
 

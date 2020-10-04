@@ -5,12 +5,16 @@ class ImportRecipeController < ApplicationController
   def index
     authorize! :create, Recipe
 
+    breadcrumb I18n.t('breadcrumb.import_recipe'), book_path(@book)
+
     @recipe = nil
     @url = nil
   end
 
   def create
     authorize! :create, Recipe
+
+    breadcrumb I18n.t('breadcrumb.import_recipe'), book_path(@book)
 
     @recipe = nil
     @url = import_recipe_params[:url]
@@ -51,6 +55,8 @@ class ImportRecipeController < ApplicationController
 
   def set_book
     @book = Book.friendly.find(params[:book_id])
+    breadcrumb I18n.t('menu.recipes'), book_path(@book)
+    breadcrumb @book.name, book_path(@book), match: :exact
   end
 
   def import_recipe_params

@@ -11,7 +11,10 @@
   <div class="buttons is-centered">
     <%= render(Application::Form::SubmitEntryComponent.new(
         form: f,
-        resource: nil
+        resource: nil,
+        field_html_options: {
+            class: css_book_color
+        }
     )) %>
   </div>
 <% end %>

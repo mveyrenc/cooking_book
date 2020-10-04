@@ -106,3 +106,6 @@ gem "kaminari"
 # markdown
 gem "reverse_markdown"
 gem "commonmarker"
+
+# breadcrumbs
+gem 'loaf'

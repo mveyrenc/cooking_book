@@ -27,6 +27,7 @@ class RecipesController < ApplicationController
   # GET /recipes/1.json
   def show
     authorize! :read, @book.recipes
+    breadcrumb @recipe.name, book_recipe_path(@book, @recipe)
   end
 
   # GET /recipes/new
@@ -38,6 +39,7 @@ class RecipesController < ApplicationController
   # GET /recipes/1/edit
   def edit
     authorize! :update, @recipe
+    breadcrumb @recipe.name, book_recipe_path(@book, @recipe)
   end
 
   # POST /recipes
@@ -65,6 +67,8 @@ class RecipesController < ApplicationController
   # PATCH/PUT /recipes/1.json
   def update
     authorize! :update, @recipe
+
+    breadcrumb @recipe.name, book_recipe_path(@book, @recipe)
 
     @recipe.modifier = current_user
     @recipe.book = @book
@@ -95,10 +99,12 @@ class RecipesController < ApplicationController
 
   def set_book
     @book = Book.friendly.find(params[:book_id])
+    breadcrumb I18n.t('breadcrumb.recipes'), book_path(@book)
+    breadcrumb @book.name, book_path(@book), match: :exact
   end
 
   def set_recipe
-    @recipe = Recipe.friendly.find(params[:id])
+    @recipe = @book.recipes.friendly.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

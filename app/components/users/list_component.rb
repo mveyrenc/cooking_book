@@ -1,7 +1,7 @@
 module Users
   class ListComponent < ViewComponent::Base
-    def initialize(items:)
-      @objects = items
+    def initialize(objects:)
+      @objects = objects
     end
 
     private

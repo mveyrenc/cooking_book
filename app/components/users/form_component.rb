@@ -1,7 +1,7 @@
 module Users
   class FormComponent < ViewComponent::Base
-    def initialize(item:)
-      @object = item
+    def initialize(object:)
+      @object = object
     end
 
     private

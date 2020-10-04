@@ -37,6 +37,11 @@
       <% end %>
     </div>
   </section>
+  <section class="breadcrumb">
+    <div class="container">
+      <%= render(Application::Components::BreadcrumbComponent.new(breadcrumb_trail: breadcrumb_trail)) %>
+    </div>
+  </section>
   <%= yield %>
 </main>
 <footer>

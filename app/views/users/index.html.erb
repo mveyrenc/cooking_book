@@ -1,7 +1,1 @@
-<section class="section">
-  <div class="container box">
-    <div class="title is-size-1"><%= I18n.t('users.index_page_title') %></div>
-    <%= render(Users::ListComponent.new(objects: @users)) %>
-  </div>
-</section>
-
+<%= render(Users::Views::IndexComponent.new(objects: @users)) %>

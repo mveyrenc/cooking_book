@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
+  breadcrumb I18n.t('breadcrumb.users'), :users_path, match: :exact
+
   def index
     authorize! :read, User
     @users = User.all
@@ -8,14 +10,18 @@ class UsersController < ApplicationController
 
   def show
     authorize! :read, User
+    breadcrumb @user.name, user_path(@user)
   end
 
   def edit
     authorize! :update, @user
+    breadcrumb @user.name, user_path(@user)
   end
 
   def update
     authorize! :update, @user
+    breadcrumb @user.name, user_path(@user)
+
     if user_params[:password].blank?
       user_params.delete(:password)
       user_params.delete(:password_confirmation)
@@ -23,8 +29,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update(user_params)
-        format.html {redirect_to users_url, notice: t('.success')}
-        format.json {render :show, status: :ok, location: @user}
+        format.html { redirect_to users_url, notice: t('.success') }
+        format.json { render :show, status: :ok, location: @user }
       else
         format.html {render :edit}
         format.json {render json: @user.errors, status: :unprocessable_entity}
