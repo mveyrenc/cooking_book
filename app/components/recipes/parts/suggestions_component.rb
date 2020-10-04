@@ -1,6 +1,7 @@
 module Recipes
   module Parts
     class SuggestionsComponent < ViewComponent::Base
+      include BookColorable
 
       def initialize(object:)
         @object = object

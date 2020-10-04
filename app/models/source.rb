@@ -15,7 +15,11 @@ class Source < ActiveRecord::Base
   default_scope { order('name') } 
   
   scope :ordered, ->{ order(name: :asc) }
-  
+
+  def book
+    Book::COOKING
+  end
+
   def to_s
     name
   end

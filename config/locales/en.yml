@@ -139,6 +139,8 @@ en:
         name: "Occasion"
       cooking_special_menu:
         name: "Special menu"
+      cooking_country:
+        name: "Country"
       cooking_region:
         name: "Region"
       cooking_cooking_method:
@@ -231,13 +233,17 @@ en:
         similar_recipes: "Similar recipes"
       category:
         name: "Name"
-        is_course_type: "Is a type of dish ?"
         book: "Recipe book"
+        categorization_id: "Categorization"
         categorization: "Categorization"
         related_categories: "Related categories"
+        related_category_ids: "Related categories"
         related_by_categories: "Linked by categories"
+        related_by_category_ids: "Linked by categories"
         suggested_categories: "Suggested categories"
+        suggested_category_ids: "Suggested categories"
         suggested_by_categories: "Suggested by categories"
+        suggested_by_category_ids: "Suggested by categories"
       ingredient:
         name: "Name"
         parent: "Parent"

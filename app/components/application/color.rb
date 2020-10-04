@@ -5,6 +5,9 @@ module Application
 
     COLORS = {
         primary: {class: 'primary'},
+        cooking: {class: 'cooking'},
+        healthwellness: {class: 'healthwellness'},
+        house: {class: 'house'},
         link: {class: 'link'},
         info: {class: 'info'},
         notice: {class: 'notice'},

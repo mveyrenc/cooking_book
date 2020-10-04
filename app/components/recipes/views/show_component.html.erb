@@ -1,0 +1,10 @@
+<section class="navigation">
+  <div class="container">
+    <%= render(Recipes::NavigationComponent.new(book: object.book)) %>
+  </div>
+</section>
+<section class="section">
+  <div class="container box">
+    <%= render(Recipes::DetailComponent.new(object: object)) %>
+  </div>
+</section>

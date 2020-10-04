@@ -8,6 +8,8 @@ export default class extends Controller {
     static targets = ["select"]
 
     connect() {
-        $('select#'+this.element.id).selectize();
+        $('select#'+this.element.id).selectize({
+            sortField: 'text'
+        });
     }
 }

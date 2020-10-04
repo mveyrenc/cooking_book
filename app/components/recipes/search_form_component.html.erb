@@ -1,10 +1,10 @@
 <form role="search" action="<%= book_recipes_path(book) %>">
   <div class="field  has-addons">
     <div class="control is-expanded">
-      <input type="text" class="input is-fullwidth" name="query" value="<%= query %>">
+      <input type="text" class="input is-fullwidth" name="query" value="<%= search_params[:query] %>">
     </div>
     <div class="control">
-      <button type="submit" class="button is-primary"><%= I18n.t('application.search') %></button>
+      <button type="submit" class="button <%= css_book_color %>"><%= I18n.t('application.search') %></button>
     </div>
   </div>
 </form>

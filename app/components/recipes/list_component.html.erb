@@ -1,9 +1,9 @@
-<% if items.blank? %>
+<% if objects.blank? %>
   <%= t('application.no_entry') %>
 <% else %>
   <div class="columns is-multiline">
-    <% items.each do |item| %>
-      <%= render(Recipes::ListItemComponent.new(item: item)) %>
+    <% objects.each do |item| %>
+      <%= render(Recipes::ListItemComponent.new(object: item)) %>
     <% end %>
   </div>
 <% end %>

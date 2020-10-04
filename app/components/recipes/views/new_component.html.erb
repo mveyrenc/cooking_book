@@ -1,0 +1,6 @@
+<section class="section">
+  <div class="container box">
+    <div class="title is-size-1 <%= css_book_color %>"><%= I18n.t('recipes.new_page_title') %></div>
+    <%= render(Recipes::FormComponent.new(object: object)) %>
+  </div>
+</section>

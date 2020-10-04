@@ -1,0 +1,27 @@
+@import "variables"
+
+.navbar-item, .navbar-link
+  @each $name, $pair in $colors
+    $color: nth($pair, 1)
+    $color-invert: nth($pair, 2)
+    &.is-#{$name}
+      background-color: $color !important
+      color: $color-invert !important
+a.navbar-item, .navbar-link
+  &:focus,
+  &:hover,
+  &.is-active
+    @each $name, $pair in $colors
+      $color: nth($pair, 1)
+      $color-invert: nth($pair, 2)
+      &.is-#{$name}
+        background-color: bulmaDarken($color, 5%) !important
+        color: $color-invert !important
+
+.navbar-link
+  &::after
+    @each $name, $pair in $colors
+      $color: nth($pair, 1)
+      $color-invert: nth($pair, 2)
+      &.is-#{$name}
+        border-color: $color-invert !important

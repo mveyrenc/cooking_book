@@ -13,8 +13,7 @@ Rails.application.routes.draw do
     resources :import_recipe, :only => [:index, :create]
   end
 
-  resources :categories, :except => [:show]
-  resources :categories, :only => [:show], :defaults => {:format => 'json'}
+  resources :categories
 
   resources :ingredients, :except => [:show]
   resources :ingredients, :only => [:show], :defaults => {:format => 'json'}

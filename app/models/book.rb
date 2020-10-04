@@ -7,8 +7,12 @@ class Book < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-  has_many :categories
+  has_many :categorizations
   has_many :recipes
+
+  def categories
+    Category.joins(:categorization).where(categorizations: {book: self})
+  end
 
   def color
     slug.parameterize.underscore.to_sym

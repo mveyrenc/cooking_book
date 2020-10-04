@@ -1,3 +1,7 @@
 <div class="selectize <%= "is-multiple" if html_options[:multiple] %>">
-  <%= form.collection_select method.to_sym, choices, value_method, text_method, options, html_options %>
+  <% if grouped? %>
+    <%= form.grouped_collection_select method.to_sym, choices, group_method, group_label_method, value_method, text_method, options, html_options %>
+  <% else %>
+    <%= form.collection_select method.to_sym, choices, value_method, text_method, options, html_options %>
+  <% end %>
 </div>

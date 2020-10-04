@@ -1,11 +1,11 @@
 module Users
   class ListComponent < ViewComponent::Base
     def initialize(items:)
-      @items = items
+      @objects = items
     end
 
     private
 
-    attr_reader :items
+    attr_reader :objects
   end
 end

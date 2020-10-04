@@ -1,6 +1,7 @@
 module Recipes
   module Parts
     class DirectionsComponent < ViewComponent::Base
+      include BookColorable
 
       def initialize(object:)
         @object = object

@@ -1,6 +1,7 @@
 module Recipes
   module Parts
     class BannerComponent < ViewComponent::Base
+      include BookColorable
 
       def initialize(object:)
         @object = object
@@ -9,6 +10,7 @@ module Recipes
       private
 
       attr_reader :object
+
     end
   end
 end

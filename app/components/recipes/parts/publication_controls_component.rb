@@ -4,6 +4,7 @@ module Recipes
       include ActionController::Helpers
       include Devise::Controllers::Helpers
       include CanCan::ControllerAdditions
+      include BookColorable
 
       def initialize(object:)
         @object = object

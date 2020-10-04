@@ -9,6 +9,8 @@ module Application
           choices:,
           value_method:,
           text_method:,
+          group_method: nil,
+          group_label_method: nil,
           resource: nil,
           options: {},
           field_html_options: {},
@@ -25,6 +27,8 @@ module Application
         @choices = choices
         @value_method = value_method
         @text_method = text_method
+        @group_method = group_method
+        @group_label_method = group_label_method
       end
 
       private
@@ -32,6 +36,8 @@ module Application
       attr_reader :choices
       attr_reader :value_method
       attr_reader :text_method
+      attr_reader :group_method
+      attr_reader :group_label_method
     end
   end
 end

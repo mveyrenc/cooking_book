@@ -1,21 +1,22 @@
 module Recipes
   module Parts
     class MoreLikeThisComponent < ViewComponent::Base
+      include BookColorable
 
       def initialize(object:)
         @object = object
       end
 
       def render?
-        items.any?
+        objects.any?
       end
 
       private
 
       attr_reader :object
 
-      def items
-        @items ||= object.similar(
+      def objects
+        @objects ||= object.similar(
             fields: [:ingredients, :name, :tags],
             where: {book_id: object.book.id},
             limit: 5)

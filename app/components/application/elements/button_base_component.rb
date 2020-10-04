@@ -14,7 +14,9 @@ module Application
         @name = name
         @icon = icon
         @icon_only = icon_only
+
         self.styles = {is_light: true}.merge(styles)
+        compute_styles
       end
 
       def call

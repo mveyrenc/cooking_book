@@ -1,7 +1,7 @@
 <%= render(Application::Components::CardComponent.new) do |component| %>
 
   <% component.with(:header) do %>
-    <p class="card-header-title"><%= link_to object, [object.book, object] %></p>
+    <p class="card-header-title"><%= link_to object, [object.book, object], :class => css_book_color %></p>
   <% end %>
 
   <% component.with(:image) do %>
@@ -19,14 +19,16 @@
       <%= render(Application::Components::CardFooterItemComponent.new(
           url: [object.book, object],
           name: I18n.t('application.show'),
-          icon: 'eye'
+          icon: 'eye',
+          styles: {color: book_color}
       )) %>
     <% end %>
     <% if can? :update, object %>
       <%= render(Application::Components::CardFooterItemComponent.new(
           url: edit_book_recipe_path(object.book, object),
           name: I18n.t('application.edit'),
-          icon: 'edit'
+          icon: 'edit',
+          styles: {color: book_color}
       )) %>
     <% end %>
     <% if can? :destroy, object %>
@@ -35,7 +37,8 @@
           name: I18n.t('application.destroy'),
           icon: 'trash',
           method: :delete,
-          data: {confirm: I18n.t('application.destroy_confirmation')}
+          data: {confirm: I18n.t('application.destroy_confirmation')},
+          styles: {color: book_color}
       )) %>
     <% end %>
   <% end %>

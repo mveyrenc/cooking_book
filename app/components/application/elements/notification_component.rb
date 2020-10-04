@@ -8,10 +8,11 @@ module Application
           delete: true,
           delete_styles: {}
       )
-        self.styles = styles
-
         @delete = delete
         @delete_styles = delete_styles
+
+        self.styles = styles
+        compute_styles
       end
 
       private

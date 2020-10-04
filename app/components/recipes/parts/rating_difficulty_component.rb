@@ -1,6 +1,7 @@
 module Recipes
   module Parts
     class RatingDifficultyComponent < ViewComponent::Base
+      include BookColorable
 
       def initialize(object:)
         @object = object
@@ -14,7 +15,7 @@ module Recipes
         content_tag :div, :class => "tags has-addons" do
           (1..object.difficulty).each do |i|
             concat content_tag :i, '', {
-                :class => "tag fa fa-graduation-cap has-text-primary fa-1x",
+                :class => "tag fa fa-graduation-cap #{text_book_color} fa-1x",
                 :title => I18n.t(Recipe.difficulty_types.invert[i], scope: 'recipes')
             }
           end

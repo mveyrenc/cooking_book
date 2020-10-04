@@ -1,3 +1,7 @@
+.selectize-dropdown, .selectize-input, .selectize-input input {
+    font-size: 1em;
+}
+
 .selectize-control.single .selectize-input:after {
     border: 3px solid #fd7e17;
     border-radius: 2px;
@@ -16,13 +20,17 @@
 }
 
 .selectize-control.multi .selectize-input > div {
-    background-color: #fff4eb;
-    color: #b65302;
     border-color: transparent;
 }
 
 .selectize-control.multi .selectize-input > div.active {
-    background: #fd7e17;
-    color: #fff;
     border-color: transparent;
+}
+
+.selectize-dropdown .optgroup-header {
+    font-weight: 600;
+}
+
+.selectize-dropdown .optgroup .option {
+    padding-left: 30px;
 }

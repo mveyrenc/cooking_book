@@ -7,6 +7,7 @@ module Application
           styles: {}
       )
         self.styles = styles
+        compute_styles
       end
 
       def call

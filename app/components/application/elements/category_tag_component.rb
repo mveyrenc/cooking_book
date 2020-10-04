@@ -1,13 +1,15 @@
 module Application
   module Elements
     class CategoryTagComponent < ViewComponent::Base
-      def initialize(category:)
-        @category = category
+      include BookColorable
+
+      def initialize(object:)
+        @object = object
       end
 
       private
 
-      attr_reader :category
+      attr_reader :object
     end
   end
 end

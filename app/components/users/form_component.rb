@@ -1,11 +1,11 @@
 module Users
   class FormComponent < ViewComponent::Base
     def initialize(item:)
-      @item = item
+      @object = item
     end
 
     private
 
-    attr_reader :item
+    attr_reader :object
   end
 end

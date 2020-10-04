@@ -1,10 +1,10 @@
-<% if items.blank? %>
+<% if objects.blank? %>
   <%= t('application.no_entry') %>
 <% else %>
   <div class="container is-widescreen">
     <div class="columns is-multiline">
-      <% items.each do |item| %>
-        <%= render(Users::ListItemComponent.new(item: item)) %>
+      <% objects.each do |item| %>
+        <%= render(Users::ListItemComponent.new(object: item)) %>
       <% end %>
     </div>
   </div>

@@ -1,15 +1,17 @@
 module Recipes
   class ImportComponent < ViewComponent::Base
-    def initialize(book:, item:, url:)
+    include BookColorable
+
+    def initialize(book:, object:, url:)
       @book = book
-      @item = item
+      @object = object
       @url = url
     end
 
     private
 
     attr_reader :book
-    attr_reader :item
+    attr_reader :object
     attr_reader :url
   end
 end

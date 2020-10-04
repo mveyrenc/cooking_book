@@ -9,16 +9,10 @@ module Application
     include State
     include Typography
 
-    attr_reader :html_options
-    attr_reader :styles
+    attr_accessor :html_options
+    attr_accessor :styles
 
-    def html_options=(html_options)
-      @html_options = html_options
-    end
-
-    def styles=(styles)
-      @styles = styles
-
+    def compute_styles
       self.alignments = styles
       self.colors = styles
       self.sizes = styles

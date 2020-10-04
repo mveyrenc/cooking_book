@@ -1,11 +1,11 @@
-<%= form_for(item) do |f| %>
-  <% if item.errors.any? %>
+<%= form_for(object) do |f| %>
+  <% if object.errors.any? %>
     <div class="alert alert-danger alert-dismissable">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <h4><%= pluralize(item.errors.count, "error") %> prohibited this user from being saved:</h4>
+      <h4><%= pluralize(object.errors.count, "error") %> prohibited this user from being saved:</h4>
 
       <ul>
-        <% item.errors.full_messages.each do |msg| %>
+        <% object.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul>
@@ -15,19 +15,19 @@
   <%= render(Application::Form::TextEntryComponent.new(
       form: f,
       method: :name,
-      resource: item,
+      resource: object,
       options: {required: true}
   )) %>
   <%= render(Application::Form::EmailEntryComponent.new(
       form: f,
       method: :email,
-      resource: item,
+      resource: object,
       options: {required: true}
   )) %>
   <%= render(Application::Form::CollectionSelectEntryComponent.new(
       form: f,
       method: :role,
-      resource: item,
+      resource: object,
       choices: User::ROLES,
       value_method: :to_s,
       text_method: :humanize,
@@ -38,13 +38,13 @@
   <%= render(Application::Form::PasswordEntryComponent.new(
       form: f,
       method: :password,
-      resource: item,
+      resource: object,
       field_html_options: {autocomplete: "off"}
   )) %>
   <%= render(Application::Form::PasswordEntryComponent.new(
       form: f,
       method: :password_confirmation,
-      resource: item,
+      resource: object,
       field_html_options: {autocomplete: "off"}
   )) %>
 
@@ -52,7 +52,7 @@
   <div class="buttons is-centered">
     <%= render(Application::Form::SubmitEntryComponent.new(
         form: f,
-        resource: item
+        resource: object
     )) %>
   </div>
 <% end %>

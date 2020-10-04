@@ -20,6 +20,10 @@ class Categorization < ApplicationRecord
       name: I18n.t('categorization.item.cooking_special_menu.name'),
       book_id: Book::COOKING.id
   ).find_or_create_by(slug: 'cooking-special-menu').freeze
+  COOKING_COUNTRY = create_with(
+      name: I18n.t('categorization.item.cooking_country.name'),
+      book_id: Book::COOKING.id
+  ).find_or_create_by(slug: 'cooking-country').freeze
   COOKING_REGION = create_with(
       name: I18n.t('categorization.item.cooking_region.name'),
       book_id: Book::COOKING.id
@@ -129,12 +133,12 @@ class Categorization < ApplicationRecord
 
   belongs_to :book
 
-  has_many :recipes
+  has_many :categories
 
   extend FriendlyId
   friendly_id :book_name, :use => :slugged
 
-  has_many :recipes
+  scope :ordered, -> { joins(:book).order("books.id asc", name: :asc) }
 
   def book_name
     "%s %s" % [book, name]

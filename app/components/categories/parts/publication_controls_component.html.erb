@@ -1,0 +1,10 @@
+<% if control? %>
+  <div class="buttons">
+    <% if edit? %>
+      <%= render(Application::Elements::ButtonEditComponent.new(url: edit_category_path(object))) %>
+    <% end %>
+    <% if delete? %>
+      <%= render(Application::Elements::ButtonDeleteComponent.new(url: object)) %>
+    <% end %>
+  </div>
+<% end %>

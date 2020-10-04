@@ -1,11 +1,13 @@
 module Recipes
   class ListItemComponent < ViewComponent::Base
-    def initialize(item:)
-      @item = item
+    include BookColorable
+
+    def initialize(object:)
+      @object = object
     end
 
     private
 
-    attr_reader :item
+    attr_reader :object
   end
 end

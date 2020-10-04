@@ -10,8 +10,8 @@ class RecipesController < ApplicationController
   # GET /recipes.json
   def index
     authorize! :read, Recipe
-    @query = params[:query]
-    search_query = @query ? @query : '*'
+    @search_params = params
+    search_query = @search_params[:query] ? @search_params[:query] : '*'
     @search_result = Recipe.search(
         search_query,
         where: {book_id: @book.id},

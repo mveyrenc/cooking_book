@@ -14,9 +14,11 @@ module Application
           html_options: {},
           styles: {}
       )
+        @separator = styles[:separator] if styles.key? :separator
+
         self.html_options = html_options
         self.styles = styles
-        self.separator = styles[:separator] if styles.key? :separator
+        compute_styles
       end
 
       private

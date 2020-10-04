@@ -36,7 +36,7 @@ SimpleNavigation::Configuration.run do |navigation|
   # navigation.consider_item_names_as_safe = false
 
   # Define the primary navigation
-  navigation.items do |primary|
+  navigation.objects do |primary|
     # Add an item to the primary navigation. The following params apply:
     # key - a symbol which uniquely defines your navigation item in the scope of the primary_navigation
     # name - will be displayed in the rendered navigation. This can also be a call to your I18n-framework.
@@ -68,11 +68,11 @@ SimpleNavigation::Configuration.run do |navigation|
     #primary.item :key_3, 'Admin', url, class: 'special', if: -> { current_user.admin? }
     #primary.item :key_4, 'Account', url, unless: -> { logged_in? }
       
-    primary.item :home, 'Home', root_path
-    primary.item :recipes, 'Recipe', recipes_path
-    primary.item :admin, 'Admin', admin_path do |sub_nav|
-      sub_nav.item :dish_types, 'Dish types', dish_types_path
-      sub_nav.item :categories, 'Categories', categories_path
+    primary.object :home, 'Home', root_path
+    primary.object :recipes, 'Recipe', recipes_path
+    primary.object :admin, 'Admin', admin_path do |sub_nav|
+      sub_nav.object :dish_types, 'Dish types', dish_types_path
+      sub_nav.object :categories, 'Categories', categories_path
     end
 
     # you can also specify html attributes to attach to this particular level

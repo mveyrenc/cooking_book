@@ -1,19 +1,7 @@
-<section class="navigation">
-  <div class="container">
-    <%= render(Recipes::NavigationComponent.new(book: @book)) %>
-  </div>
-</section>
-<section class="section">
-  <div class="container box">
-    <div class="title is-size-1"><%= I18n.t('recipes.index_page_title', total_count: @search_result.total_count) %></div>
-    <section class="section">
-      <div class="container">
-        <%= render(Recipes::SearchFormComponent.new(book: @book, query: @query)) %>
-      </div>
-    </section>
-    <div class="container is-widescreen">
-      <%= render(Recipes::ListComponent.new(items: @search_result)) %>
-    </div>
-    <%= paginate @search_result %>
-  </div>
-</section>
+<%= render(Recipes::Views::IndexComponent.new(
+    book: @book,
+    search_params: @search_params,
+    search_result: @search_result
+)) %>
+
+

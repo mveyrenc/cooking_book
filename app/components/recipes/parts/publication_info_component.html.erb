@@ -4,26 +4,26 @@
       <div class="field is-grouped is-grouped-multiline">
         <div class="control">
           <div class="tags has-addons">
-            <a class="tag is-primary is-light"><%= Recipe.human_attribute_name('author') %></a>
+            <a class="tag <%= css_book_color %> is-light"><%= Recipe.human_attribute_name('author') %></a>
             <a class="tag"><%= object.author.name %></a>
           </div>
         </div>
         <div class="control">
           <div class="tags has-addons">
-            <a class="tag is-primary is-light"><%= Recipe.human_attribute_name('created_at') %></a>
+            <a class="tag <%= css_book_color %> is-light"><%= Recipe.human_attribute_name('created_at') %></a>
             <a class="tag"><%= object.created_at.strftime("%d/%m/%Y %H:%M") %></a>
           </div>
         </div>
 
         <div class="control">
           <div class="tags has-addons">
-            <a class="tag is-primary is-light"><%= Recipe.human_attribute_name('modifier') %></a>
+            <a class="tag <%= css_book_color %> is-light"><%= Recipe.human_attribute_name('modifier') %></a>
             <a class="tag"><%= object.modifier.name %></a>
           </div>
         </div>
         <div class="control">
           <div class="tags has-addons">
-            <a class="tag is-primary is-light"><%= Recipe.human_attribute_name('updated_at') %></a>
+            <a class="tag <%= css_book_color %> is-light"><%= Recipe.human_attribute_name('updated_at') %></a>
             <a class="tag"><%= object.updated_at.strftime("%d/%m/%Y %H:%M") %></a>
           </div>
         </div>

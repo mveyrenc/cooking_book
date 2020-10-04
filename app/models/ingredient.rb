@@ -17,7 +17,11 @@ class Ingredient < ActiveRecord::Base
   scope :ordered, ->{ order(name: :asc) }
   
   before_save :update_counters
-  
+
+  def book
+    Book::COOKING
+  end
+
   def months
     months = {}
     empty_count = 0

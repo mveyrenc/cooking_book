@@ -1,13 +1,15 @@
 module Recipes
   class SearchFormComponent < ViewComponent::Base
-    def initialize(book:, query:)
+    include BookColorable
+
+    def initialize(book:, search_params:)
       @book = book
-      @query = query
+      @search_params = search_params
     end
 
     private
 
     attr_reader :book
-    attr_reader :query
+    attr_reader :search_params
   end
 end

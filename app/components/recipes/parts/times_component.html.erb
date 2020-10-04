@@ -1,6 +1,6 @@
 <section class="mt-5">
   <div class="box">
-    <p class="title"><%= Recipe.human_attribute_name('times') %></p>
+    <p class="title <%= css_book_color %>"><%= Recipe.human_attribute_name('times') %></p>
     <div class="content">
       <%= simple_format(object.times) %>
     </div>

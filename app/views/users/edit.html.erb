@@ -1,6 +1,6 @@
 <section class="section">
   <div class="container box">
     <div class="title is-size-1"><%= I18n.t('users.edit_page_title') %></div>
-    <%= render(Users::FormComponent.new(item: @user)) %>
+    <%= render(Users::FormComponent.new(object: @user)) %>
   </div>
 </section>

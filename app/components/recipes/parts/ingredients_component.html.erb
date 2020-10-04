@@ -1,6 +1,6 @@
 <section class="mt-5">
   <div class="box">
-    <p class="title"><%= Recipe.human_attribute_name('ingredients') %></p>
+    <p class="title <%= css_book_color %>"><%= Recipe.human_attribute_name('ingredients') %></p>
     <% unless object.quantity.blank? %>
       <p class="subtitle"><%= object.quantity %></p>
     <% end %>
