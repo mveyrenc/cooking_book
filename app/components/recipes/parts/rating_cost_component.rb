@@ -8,23 +8,18 @@ module Recipes
       end
 
       def render?
-        !object.cost.nil? and object.cost > 0
+        cost.present?
       end
 
       def call
         content_tag :div, :class => "tags has-addons" do
-          (1..object.cost).each do |i|
-            concat content_tag :i, '', {
-                :class => "tag fa fa-euro-sign #{text_book_color} fa-1x",
-                :title => I18n.t(Recipe.cost_types.invert[i], scope: 'recipes')
-            }
-          end
-          (object.cost + 1..5).each do |i|
-            concat content_tag :i, '', {
-                :class => "tag fa fa-euro-sign has-text-grey-lighter fa-1x",
-                :title => I18n.t(Recipe.cost_types.invert[i], scope: 'recipes')
-            }
-          end
+          concat content_tag :i, '', {
+              :class => "tag fa fa-euro-sign #{text_book_color} fa-1x",
+              :title => cost.categorization.to_s
+          }
+          concat content_tag :span, cost.to_s, {
+              :class => "tag #{text_book_color}"
+          }
         end
       end
 
@@ -32,6 +27,9 @@ module Recipes
 
       attr_reader :object
 
+      def cost
+        @cost ||= object.categories.where(categorization: Categorization::COST).first
+      end
     end
   end
 end

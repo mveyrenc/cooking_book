@@ -131,6 +131,18 @@ class Categorization < ApplicationRecord
       book_id: Book::HOUSE.id
   ).find_or_create_by(slug: 'house-todo').freeze
 
+  DIFFICULTY = [
+      COOKING_DIFFICULTY,
+      HEALTHWELLNESS_DIFFICULTY,
+      HOUSE_DIFFICULTY
+  ]
+
+  COST = [
+      COOKING_COST,
+      HEALTHWELLNESS_COST,
+      HOUSE_COST
+  ]
+
   belongs_to :book
 
   has_many :categories

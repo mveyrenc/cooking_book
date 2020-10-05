@@ -57,32 +57,6 @@ en:
     destroy:
       success: "Recipe was successfully destroyed."
     view_all: "See all recipes"
-    difficulties:
-      level_0: "Unknown"
-      level_1: "Very easy"
-      level_2: "Easy"
-      level_3: "Intermediate"
-      level_4: "Confirmed"
-      level_5: "Expert"
-    difficulty_none: "Unknown"
-    difficulty_very_easy: "Very easy"
-    difficulty_easy: "Easy"
-    difficulty_intermediate: "Intermediate"
-    difficulty_experienced: "Confirmed"
-    difficulty_expert: "Expert"
-    costs:
-      level_0: "Unknown"
-      level_1: "Cheap (less than 2€/part)"
-      level_2: "Affordable (2 to 4€/part)"
-      level_3: "Medium (4 to 8€/part)"
-      level_4: "Quite expensive (8 to 12€/part)"
-      level_5: "Expensive (more than 12€/part)"
-    cost_none: "Unknown"
-    cost_cheap: "Cheap (less than 2€/part)"
-    cost_affordable: "Affordable (2 to 4€/part)"
-    cost_middle: "Medium (4 to 8€/part)"
-    cost_pretty_expensive: "Quite expensive (8 to 12€/part)"
-    cost_expensive: "Expensive (more than 12€/part)"
   categories:
     index_page_title: "Listing categories"
     new_page_title: "New category"
@@ -202,6 +176,18 @@ en:
         name: "Cost"
       house_todo:
         name: "Todo"
+    difficulty:
+      very_easy: "Very easy"
+      easy: "Easy"
+      intermediate: "Intermediate"
+      experienced: "Confirmed"
+      expert: "Expert"
+    cost:
+      cheap: "Cheap"
+      affordable: "Affordable"
+      middle: "Medium"
+      pretty_expensive: "Quite expensive"
+      expensive: "Expensive"
   helpers:
     submit:
       create: "Validate"
