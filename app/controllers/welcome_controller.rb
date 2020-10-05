@@ -1,7 +1,7 @@
 class WelcomeController < ApplicationController
   
   def index
-    redirect_to Book::COOKING
+    redirect_to book_recipes_path(Book::COOKING)
   end
 
 end

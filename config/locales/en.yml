@@ -13,6 +13,7 @@ en:
     destroy_confirmation: "Are you sure?"
     no_entry: "No entry"
     back: "Back"
+    all: "All"
     error: "error"
     error_message: "detected:"
   menu:
@@ -23,6 +24,14 @@ en:
     categories: "Categories"
     ingredients: "Ingredients"
     sources: "Sources"
+    profile: "Profile"
+    users: "Users"
+  breadcrumb:
+    home: "Home"
+    recipes: "Recipes"
+    import_recipe: "Import recipe"
+    admin: "Administration"
+    categories: "Categories"
     profile: "Profile"
     users: "Users"
   homepage:
@@ -47,6 +56,7 @@ en:
       success: "Recipe was successfully updated."
     destroy:
       success: "Recipe was successfully destroyed."
+    view_all: "See all recipes"
     difficulties:
       level_0: "Unknown"
       level_1: "Very easy"
@@ -84,6 +94,7 @@ en:
       success: "Category was successfully updated."
     destroy:
       success: "Category was successfully destroyed."
+    view_all: "See all categories"
   ingredients:
     index_page_title: "Listing ingredients"
     new_page_title: "New ingredient"
@@ -125,8 +136,6 @@ en:
         name: "Health & wellness"
       house:
         name: "House"
-    recipes:
-      view_all: "See all recipes"
   categorization:
     item:
       cooking_serving:

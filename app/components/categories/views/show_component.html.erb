@@ -1,5 +1,16 @@
 <section class="section">
-  <div class="container box">
-    <%= render(Categories::DetailComponent.new(object: object)) %>
+  <div class="container-fluid">
+    <div class="columns is-desktop">
+      <div class="column is-one-quarter-desktop">
+        <div class="box">
+          <%= render(Categories::DetailNavigationComponent.new(object: object)) %>
+        </div>
+      </div>
+      <div class="column">
+        <div class="box">
+          <%= render(Categories::DetailComponent.new(object: object)) %>
+        </div>
+      </div>
+    </div>
   </div>
 </section>

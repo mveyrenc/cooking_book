@@ -13,13 +13,13 @@ fr:
     destroy_confirmation: "Êtes-vous sûr ?"
     no_entry: "Aucun élément"
     back: "Retour"
+    all: "Tout"
     error: "Erreur"
     error_message: "détectée : "
   menu:
     home: "Accueil"
     recipes: "Recettes"
     new_recipe: "Nouvelle recette"
-    import_recipe: "Importer une recette"
     admin: "Administration"
     categories: "Catégories"
     ingredients: "Ingrédients"
@@ -56,6 +56,7 @@ fr:
       success: "Recette modifiée avec succès."
     destroy:
       success: "Recette supprimée avec succès."
+    view_all: "Voir toutes les recettes"
     difficulties:
       level_0: "Inconnue"
       level_1: "Très facile"
@@ -93,6 +94,7 @@ fr:
       success: "Catégorie modifiée avec succès."
     destroy:
       success: "Catégorie supprimée avec succès."
+    view_all: "Voir toutes les catégories"
   ingredients:
     index_page_title: "Ingrédients"
     new_page_title: "Nouvel ingrédient"
@@ -134,8 +136,6 @@ fr:
         name: "Santé & bien-être"
       house:
         name: "Maison"
-    recipes:
-      view_all: "Voir toutes les recettes"
   categorization:
     item:
       cooking_serving:

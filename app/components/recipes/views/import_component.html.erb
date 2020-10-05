@@ -1,5 +1,5 @@
 <section class="page">
-  <div class="container box">
+  <div class="container-fluid box">
     <div class="title is-size-1 <%= css_book_color %>"><%= I18n.t('recipes.import_url_page_title') %></div>
     <%= render(Recipes::ImportComponent.new(book: book, url: url, object: object)) %>
   </div>

@@ -1,60 +1,46 @@
 <form role="search" action="<%= categories_path %>">
-  <div class="columns is-multiline">
-    <div class="column is-half">
-      <%= render(Application::Form::AggregationSelectComponent.new(
-          label: Category.human_attribute_name('book'),
-          buckets: search_result.aggs['book_id']['buckets'],
-          search_param_name: 'book_id',
-          search_param_value: search_params[:book_id]
-      )) %>
-    </div>
-    <div class="column is-half">
-      <%= render(Application::Form::AggregationSelectComponent.new(
-          label: Category.human_attribute_name('categorization'),
-          buckets: search_result.aggs['categorization_id']['buckets'],
-          search_param_name: 'categorization_id',
-          search_param_value: search_params[:categorization_id]
-      )) %>
-    </div>
-    <div class="column is-half">
-      <%= render(Application::Form::AggregationSelectComponent.new(
-          label: Category.human_attribute_name('related_categories'),
-          buckets: search_result.aggs['related_categories_ids']['buckets'],
-          search_param_name: 'related_category_id',
-          search_param_value: search_params[:related_category_id]
-      )) %>
-    </div>
-    <div class="column is-half">
-      <%= render(Application::Form::AggregationSelectComponent.new(
-          label: Category.human_attribute_name('related_by_categories'),
-          buckets: search_result.aggs['related_by_categories_ids']['buckets'],
-          search_param_name: 'related_by_category_id',
-          search_param_value: search_params[:related_by_category_id]
-      )) %>
-    </div>
-    <div class="column is-half">
-      <%= render(Application::Form::AggregationSelectComponent.new(
-          label: Category.human_attribute_name('suggested_categories'),
-          buckets: search_result.aggs['suggested_categories_ids']['buckets'],
-          search_param_name: 'suggested_category_id',
-          search_param_value: search_params[:suggested_category_id]
-      )) %>
-    </div>
-    <div class="column is-half">
-      <%= render(Application::Form::AggregationSelectComponent.new(
-          label: Category.human_attribute_name('suggested_by_categories'),
-          buckets: search_result.aggs['suggested_by_categories_ids']['buckets'],
-          search_param_name: 'suggested_by_category_id',
-          search_param_value: search_params[:suggested_by_category_id]
-      )) %>
-    </div>
-  </div>
-  <div class="field  has-addons">
-    <div class="control is-expanded">
+  <%= render(Application::Form::AggregationSelectComponent.new(
+      label: Category.human_attribute_name('book'),
+      buckets: search_result.aggs['book_id']['buckets'],
+      search_param_name: 'book_id',
+      search_param_value: search_params[:book_id]
+  )) %>
+  <%= render(Application::Form::AggregationSelectComponent.new(
+      label: Category.human_attribute_name('categorization'),
+      buckets: search_result.aggs['categorization_id']['buckets'],
+      search_param_name: 'categorization_id',
+      search_param_value: search_params[:categorization_id]
+  )) %>
+  <%= render(Application::Form::AggregationSelectComponent.new(
+      label: Category.human_attribute_name('related_categories'),
+      buckets: search_result.aggs['related_categories_ids']['buckets'],
+      search_param_name: 'related_category_id',
+      search_param_value: search_params[:related_category_id]
+  )) %>
+  <%= render(Application::Form::AggregationSelectComponent.new(
+      label: Category.human_attribute_name('related_by_categories'),
+      buckets: search_result.aggs['related_by_categories_ids']['buckets'],
+      search_param_name: 'related_by_category_id',
+      search_param_value: search_params[:related_by_category_id]
+  )) %>
+  <%= render(Application::Form::AggregationSelectComponent.new(
+      label: Category.human_attribute_name('suggested_categories'),
+      buckets: search_result.aggs['suggested_categories_ids']['buckets'],
+      search_param_name: 'suggested_category_id',
+      search_param_value: search_params[:suggested_category_id]
+  )) %>
+  <%= render(Application::Form::AggregationSelectComponent.new(
+      label: Category.human_attribute_name('suggested_by_categories'),
+      buckets: search_result.aggs['suggested_by_categories_ids']['buckets'],
+      search_param_name: 'suggested_by_category_id',
+      search_param_value: search_params[:suggested_by_category_id]
+  )) %>
+  <div class="field ">
+    <div class="control">
       <input type="text" class="input is-fullwidth" name="query" value="<%= search_params[:query] %>">
     </div>
-    <div class="control">
-      <button type="submit" class="button is-primary"><%= I18n.t('application.search') %></button>
-    </div>
+  </div>
+  <div class="buttons is-centered">
+    <button type="submit" class="button is-primary"><%= I18n.t('application.search') %></button>
   </div>
 </form>

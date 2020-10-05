@@ -1,0 +1,49 @@
+<div class="menu">
+  <ul class="menu-list">
+    <li>
+      <%= link_to book_recipes_path(object.book) do %>
+        <span class="icon"><%= render Application::Elements::FontAwesomeIconComponent.new(icon: 'book') %></span>
+        <span><%= t('recipes.view_all') %></span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to new_book_recipe_path(object.book) do %>
+        <span class="icon"><%= render Application::Elements::FontAwesomeIconComponent.new(icon: 'plus') %></span>
+        <span><%= t('recipes.new_button') %></span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to book_import_recipe_index_path(object.book) do %>
+        <span class="icon"><%= render Application::Elements::FontAwesomeIconComponent.new(icon: 'download') %></span>
+        <span><%= t('recipes.import_url') %></span>
+      <% end %>
+    </li>
+  </ul>
+<!--  <p class="menu-label">-->
+<!--    Recette-->
+<!--  </p>-->
+<!--  <ul class="menu-list">-->
+<!--    <li><a>Voir la recette</a></li>-->
+<!--    <li><a>Voir la masterclass</a></li>-->
+<!--    <li><a>Galerie de médias</a></li>-->
+<!--    <li><a>Classification</a></li>-->
+<!--    <li><a>Recettes simulaires</a></li>-->
+<!--    <li><a>Menus</a></li>-->
+<!--    <li><a>Avis</a></li>-->
+<!--    <li><a>Informations éditoriales</a></li>-->
+<!--  </ul>-->
+<!--  <p class="menu-label">-->
+<!--    Édition de la recette-->
+<!--  </p>-->
+<!--  <ul class="menu-list">-->
+<!--    <li><a>Informations générales</a></li>-->
+<!--    <li><a>Galerie de médias</a></li>-->
+<!--    <li><a>Classification</a></li>-->
+<!--    <li><a>Composition de la recette</a></li>-->
+<!--    <li><a>Temps</a></li>-->
+<!--    <li><a>Ingrédients</a></li>-->
+<!--    <li><a>Mode opératoire</a></li>-->
+<!--    <li><a>Import</a></li>-->
+<!--    <li><a>Supprimer la recette</a></li>-->
+<!--  </ul>-->
+</div>

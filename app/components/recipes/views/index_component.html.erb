@@ -1,21 +1,25 @@
-<section class="navigation">
-  <div class="container">
-    <%= render(Recipes::NavigationComponent.new(book: book)) %>
-  </div>
-</section>
 <section class="section">
-  <div class="container box">
-    <div class="title is-size-1 <%= css_book_color %>"><%= I18n.t('recipes.index_page_title', total_count: search_result.total_count) %></div>
-    <section class="section">
-      <div class="container">
-        <%= render(Recipes::SearchFormComponent.new(book: book, search_params: search_params)) %>
+  <div class="container-fluid">
+    <div class="columns is-desktop">
+      <div class="column is-one-quarter-desktop">
+        <div class="box">
+          <%= render(Recipes::NavigationComponent.new(book: book)) %>
+          <hr/>
+          <%= render(Recipes::SearchFormComponent.new(
+              book: book,
+              search_params: search_params
+          )) %>
+        </div>
       </div>
-    </section>
-    <div class="container is-widescreen">
-      <%= render(Recipes::ListComponent.new(objects: search_result)) %>
-    </div>
-    <div class="<%= css_book_color %>">
-      <%= paginate search_result %>
+      <div class="column">
+        <div class="box">
+          <div class="title is-size-1 <%= css_book_color %>"><%= I18n.t('recipes.index_page_title', total_count: search_result.total_count) %></div>
+          <%= render(Recipes::ListComponent.new(objects: search_result)) %>
+          <div>
+            <%= paginate search_result %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
