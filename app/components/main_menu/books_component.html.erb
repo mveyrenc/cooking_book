@@ -1,18 +1,18 @@
-<%= render(MainMenu::NavbarItemComponent.new(
+<%= render(MainMenu::ButtonNavbarItemComponent.new(
     title: Book::COOKING,
-    path: Book::COOKING,
+    path: book_recipes_path(Book::COOKING),
     icon: 'cloud-meatball',
     color: Book::COOKING.color
 )) %>
-<%= render(MainMenu::NavbarItemComponent.new(
+<%= render(MainMenu::ButtonNavbarItemComponent.new(
     title: Book::HEALTHWELLNESS,
-    path: Book::HEALTHWELLNESS,
+    path: book_recipes_path(Book::HEALTHWELLNESS),
     icon: 'bath',
     color: Book::HEALTHWELLNESS.color
 )) %>
-<%= render(MainMenu::NavbarItemComponent.new(
+<%= render(MainMenu::ButtonNavbarItemComponent.new(
     title: Book::HOUSE,
-    path: Book::HOUSE,
+    path: book_recipes_path(Book::HOUSE),
     icon: 'home',
     color: Book::HOUSE.color
 )) %>

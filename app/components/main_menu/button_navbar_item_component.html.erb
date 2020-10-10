@@ -1,3 +1,8 @@
-<%= link_to path, :class => 'navbar-item', :title => title do
-  content_tag( :span, title, { :class => "button is-primary is-inverted is-rounded"} )
-end %>
+<span class="navbar-item">
+ <%= link_to path, class: css_class do %>
+  <% unless icon.nil? %>
+    <span class="icon"><%= render Application::Elements::FontAwesomeIconComponent.new(icon: icon) %></span>
+  <% end %>
+    <span><%= title %></span>
+<% end %>
+</span>
