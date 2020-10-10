@@ -12,7 +12,6 @@ class Recipe < ActiveRecord::Base
   belongs_to :book
 
   has_and_belongs_to_many :categories
-  has_and_belongs_to_many :sources
   has_and_belongs_to_many(:main_ingredients,
                           :class_name => "Ingredient"
   )
@@ -113,14 +112,6 @@ class Recipe < ActiveRecord::Base
       additional_ingredients |= ingredient.ancestors
     end
     additional_ingredients - main_ingredients
-  end
-
-  def sources_list
-    sources_list = []
-    sources.each do |source|
-      sources_list |= source.path
-    end
-    sources_list.uniq
   end
 
   def to_s

@@ -126,7 +126,7 @@ module RecipeImport
         unless l.nil?
           l.each do |c|
             n = c.text.strip
-            e = Source.where("lower(name) LIKE ?", n.downcase.chomp('s').downcase << '%').first
+            e = Categorization::COOKING_SOURCE.categories.where("lower(name) LIKE ?", n.downcase.chomp('s').downcase << '%').first
             unless e.nil?
               r << e
             end

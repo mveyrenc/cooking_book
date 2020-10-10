@@ -132,7 +132,7 @@ module RecipeImport
 
       def sources(document)
         r = super(document)
-        e = Source.where("lower(name) LIKE ?", 'régal').ordered.first
+        e = Categorization::COOKING_SOURCE.categories.where("lower(name) LIKE ?", 'régal').ordered.first
         unless e.nil?
           r << e
         end

@@ -8,18 +8,12 @@ module Recipes
       end
 
       def render?
-        sources.render? or categories.render? or ingredients.render?
+        categories.render? or ingredients.render?
       end
 
       private
 
       attr_reader :object
-
-      def sources
-        @sources ||= Application::Elements::CategoryTagListComponent.new(
-            categories: object.sources_list
-        )
-      end
 
       def categories
         @categories ||= Application::Elements::CategoryTagListComponent.new(

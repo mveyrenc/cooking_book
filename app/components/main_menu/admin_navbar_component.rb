@@ -7,7 +7,7 @@ module MainMenu
     def initialize(*) end
 
     def render?
-      can? :read, Category or can? :read, Ingredient or can? :read, Source or can? :manage, User
+      can? :read, Category or can? :read, Ingredient or can? :manage, User
     end
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_05_212633) do
+ActiveRecord::Schema.define(version: 2020_10_10_223455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -209,25 +209,6 @@ ActiveRecord::Schema.define(version: 2020_10_05_212633) do
     t.index ["slug"], name: "index_recipes_on_slug", unique: true
   end
 
-  create_table "recipes_sources", id: false, force: :cascade do |t|
-    t.integer "recipe_id", null: false
-    t.integer "source_id", null: false
-  end
-
-  create_table "sources", id: :serial, force: :cascade do |t|
-    t.string "name", limit: 255
-    t.string "slug", limit: 255
-    t.string "ancestry", limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer "author_id"
-    t.integer "modifier_id"
-    t.index ["ancestry"], name: "index_sources_on_ancestry"
-    t.index ["author_id"], name: "fk__sources_author_id"
-    t.index ["modifier_id"], name: "fk__sources_modifier_id"
-    t.index ["slug"], name: "index_sources_on_slug", unique: true
-  end
-
   create_table "users", id: :serial, force: :cascade do |t|
     t.string "email", limit: 255, default: "", null: false
     t.string "encrypted_password", limit: 255, default: "", null: false
@@ -257,6 +238,4 @@ ActiveRecord::Schema.define(version: 2020_10_05_212633) do
   add_foreign_key "recipes", "books"
   add_foreign_key "recipes", "users", column: "author_id", name: "fk_recipes_author_id"
   add_foreign_key "recipes", "users", column: "modifier_id", name: "fk_recipes_modifier_id"
-  add_foreign_key "sources", "users", column: "author_id", name: "fk_sources_author_id"
-  add_foreign_key "sources", "users", column: "modifier_id", name: "fk_sources_modifier_id"
 end
