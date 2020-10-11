@@ -14,17 +14,17 @@ module RecipeImport
           recipe.author = current_user
           recipe.modifier = current_user
           recipe.name = name(document)
-          recipe.difficulty = difficulty(document)
-          recipe.cost = cost(document)
-          recipe.times = times(document)
           recipe.categories = categories(document)
+          recipe.categories << difficulty(document)
+          recipe.categories << cost(document)
+          recipe.categories << main_ingredients(document)
+          recipe.categories << sources(document)
+          recipe.times = times(document)
           recipe.picture = picture(document)
           recipe.quantity = quantity(document)
           recipe.description = description(document)
           recipe.ingredients = ingredients(document)
-          recipe.main_ingredients = main_ingredients(document)
           recipe.directions = directions(document)
-          recipe.sources = sources(document)
 
           recipe
         rescue => e
@@ -46,11 +46,11 @@ module RecipeImport
       end
 
       def difficulty(document)
-        nil
+        Array.new
       end
 
       def cost(document)
-        nil
+        Array.new
       end
 
       def times(document)

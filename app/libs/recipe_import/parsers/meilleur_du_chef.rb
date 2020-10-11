@@ -17,17 +17,22 @@ module RecipeImport
         unless n.nil?
           case n["style"]
           when DIFFICULTY_LEVEL_1
-            1
+            [Category.find_by(name: I18n.t("categorization.difficulty.very_easy"),
+                              categorization: Categorization::COOKING_DIFFICULTY)]
           when DIFFICULTY_LEVEL_2
-            2
+            [Category.find_by(name: I18n.t("categorization.difficulty.easy"),
+                              categorization: Categorization::COOKING_DIFFICULTY)]
           when DIFFICULTY_LEVEL_3
-            3
+            [Category.find_by(name: I18n.t("categorization.difficulty.intermediate"),
+                              categorization: Categorization::COOKING_DIFFICULTY)]
           when DIFFICULTY_LEVEL_4
-            4
+            [Category.find_by(name: I18n.t("categorization.difficulty.experienced"),
+                              categorization: Categorization::COOKING_DIFFICULTY)]
           when DIFFICULTY_LEVEL_5
-            5
+            [Category.find_by(name: I18n.t("categorization.difficulty.expert"),
+                              categorization: Categorization::COOKING_DIFFICULTY)]
           else
-            nil
+            Array.new
           end
         end
       end

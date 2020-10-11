@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_11_091808) do
+ActiveRecord::Schema.define(version: 2020_10_11_111208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -137,28 +137,6 @@ ActiveRecord::Schema.define(version: 2020_10_11_091808) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
-  create_table "ingredients", id: :serial, force: :cascade do |t|
-    t.string "name", limit: 255
-    t.string "slug", limit: 255
-    t.string "ancestry", limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text "best_months", default: [], array: true
-    t.text "worse_months", default: [], array: true
-    t.integer "recipes_count", default: 0
-    t.integer "author_id"
-    t.integer "modifier_id"
-    t.index ["ancestry"], name: "index_ingredients_on_ancestry"
-    t.index ["author_id"], name: "fk__ingredients_author_id"
-    t.index ["modifier_id"], name: "fk__ingredients_modifier_id"
-    t.index ["slug"], name: "index_ingredients_on_slug", unique: true
-  end
-
-  create_table "ingredients_recipes", id: false, force: :cascade do |t|
-    t.integer "ingredient_id", null: false
-    t.integer "recipe_id", null: false
-  end
-
   create_table "overall_averages", id: :serial, force: :cascade do |t|
     t.integer "rateable_id"
     t.string "rateable_type", limit: 255
@@ -238,8 +216,6 @@ ActiveRecord::Schema.define(version: 2020_10_11_091808) do
   add_foreign_key "categories", "users", column: "author_id", name: "fk_categories_author_id"
   add_foreign_key "categories", "users", column: "modifier_id", name: "fk_categories_modifier_id"
   add_foreign_key "categorizations", "books"
-  add_foreign_key "ingredients", "users", column: "author_id", name: "fk_ingredients_author_id"
-  add_foreign_key "ingredients", "users", column: "modifier_id", name: "fk_ingredients_modifier_id"
   add_foreign_key "recipes", "books"
   add_foreign_key "recipes", "users", column: "author_id", name: "fk_recipes_author_id"
   add_foreign_key "recipes", "users", column: "modifier_id", name: "fk_recipes_modifier_id"

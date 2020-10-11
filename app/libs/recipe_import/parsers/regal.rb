@@ -22,17 +22,22 @@ module RecipeImport
         r = extract_first_text document, '.region-content .field-name-field-difficulty-level .field-items'
         case r
         when DIFFICULTY_LEVEL_1
-          1
+          [Category.find_by(name: I18n.t("categorization.difficulty.very_easy"),
+                           categorization: Categorization::COOKING_DIFFICULTY)]
         when DIFFICULTY_LEVEL_2
-          2
+          [Category.find_by(name: I18n.t("categorization.difficulty.easy"),
+                           categorization: Categorization::COOKING_DIFFICULTY)]
         when DIFFICULTY_LEVEL_3
-          3
+          [Category.find_by(name: I18n.t("categorization.difficulty.intermediate"),
+                           categorization: Categorization::COOKING_DIFFICULTY)]
         when DIFFICULTY_LEVEL_4
-          4
+          [Category.find_by(name: I18n.t("categorization.difficulty.experienced"),
+                           categorization: Categorization::COOKING_DIFFICULTY)]
         when DIFFICULTY_LEVEL_5
-          5
+          [Category.find_by(name: I18n.t("categorization.difficulty.expert"),
+                           categorization: Categorization::COOKING_DIFFICULTY)]
         else
-          nil
+          Array.new
         end
       end
 
@@ -40,17 +45,22 @@ module RecipeImport
         r = extract_first_text document, '.region-content .field-name-field-price-level .field-items'
         case r
         when COST_LEVEL_1
-          1
+          [Category.find_by(name: I18n.t("categorization.cost.cheap"),
+                           categorization: Categorization::COOKING_COST)]
         when COST_LEVEL_2
-          2
+          [Category.find_by(name: I18n.t("categorization.cost.affordable"),
+                           categorization: Categorization::COOKING_COST)]
         when COST_LEVEL_3
-          3
+          [Category.find_by(name: I18n.t("categorization.cost.middle"),
+                           categorization: Categorization::COOKING_COST)]
         when COST_LEVEL_4
-          4
+          [Category.find_by(name: I18n.t("categorization.cost.pretty_expensive"),
+                           categorization: Categorization::COOKING_COST)]
         when COST_LEVEL_5
-          5
+          [Category.find_by(name: I18n.t("categorization.cost.expensive"),
+                           categorization: Categorization::COOKING_COST)]
         else
-          nil
+          Array.new
         end
       end
 
@@ -117,17 +127,17 @@ module RecipeImport
 
       def main_ingredients(document)
         l = categories_node(document)
+        r = Array.new
         unless l.nil?
-          r = Array.new
           l.each do |c|
             n = c.text.strip
-            e = Ingredient.where("lower(name) LIKE ?", n.downcase.chomp('s').downcase << '%').first
+            e = Categorization::COOKING_MAIN_INGREDIENT.categories.where("lower(name) LIKE ?", n.downcase.chomp('s').downcase << '%').first
             if !e.nil? and !e.is_root?
               r << e
             end
           end
-          r
         end
+        r
       end
 
       def sources(document)

@@ -69,15 +69,6 @@
       method: :ingredients,
       resource: object
   )) %>
-  <%= render(Application::Form::CollectionSelectEntryComponent.new(
-      form: f,
-      method: :main_ingredient_ids,
-      resource: object,
-      choices: Ingredient.ordered,
-      value_method: :to_s,
-      text_method: :to_s,
-      field_html_options: {multiple: true}
-  )) %>
   <%= render(Application::Form::MarkdownEntryComponent.new(
       form: f,
       method: :directions,

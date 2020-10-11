@@ -69,28 +69,6 @@ fr:
     destroy:
       success: "Catégorie supprimée avec succès."
     view_all: "Voir toutes les catégories"
-  ingredients:
-    index_page_title: "Ingrédients"
-    new_page_title: "Nouvel ingrédient"
-    edit_page_title: "Modification de l'ingrédient"
-    new_button: "Nouvel ingrédient"
-    create:
-      success: "Ingredient créé avec succès."
-    update:
-      success: "Ingredient modifié avec succès."
-    destroy:
-      success: "Ingredient supprimé avec succès."
-  sources:
-    index_page_title: "Sources"
-    new_page_title: "Nouvelle source"
-    edit_page_title: "Modification de la source"
-    new_button: "Nouvelle source"
-    create:
-      success: "Source créée avec succès."
-    update:
-      success: "Source modifiée avec succès."
-    destroy:
-      success: "Source supprimée avec succès."
   users:
     index_page_title: "Utilisateurs"
     new_page_title: "Nouvel utilisateur"
@@ -197,8 +175,6 @@ fr:
     models:
       recipe: "Recette"
       category: "Catégorie"
-      ingredient: "Ingredient"
-      source: "Source"
       import_recipe: "Import de recette"
     attributes:
       recipe:
@@ -243,14 +219,6 @@ fr:
         suggested_category_ids: "Catégories suggérées"
         suggested_by_categories: "Suggérées par les catégories"
         suggested_by_category_ids: "Suggérées par les catégories"
-      ingredient:
-        name: "Nom"
-        parent: "Parent"
-        best_months: "Pleine saison"
-        worse_months: "Hors saison"
-      source:
-        name: "Nom"
-        parent: "Parente"
       user:
         name: "Nom"
         email: "Email"

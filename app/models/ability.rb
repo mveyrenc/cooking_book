@@ -39,16 +39,16 @@ class Ability
       can :update, Category
     end
     if user.role? :moderator
-      can :update, [Recipe, Ingredient]
+      can :update, [Recipe]
     end
     if user.role? :contributor
-      can :create, [Recipe, Ingredient]
+      can :create, [Recipe]
       can :update, Recipe do |recipe|
         recipe.try(:author) == user
       end
     end
     if user.role? :reader
-      can :read, [Recipe, Ingredient, Category]
+      can :read, [Recipe, Category]
     end
   end
 end

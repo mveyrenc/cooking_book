@@ -8,7 +8,7 @@ module Recipes
       end
 
       def render?
-        categories.render? or ingredients.render?
+        categories.render?
       end
 
       private
@@ -19,13 +19,6 @@ module Recipes
         @categories ||= Application::Elements::CategoryTagListComponent.new(
             categories: object.categories,
             extra_categories: object.additional_categories
-        )
-      end
-
-      def ingredients
-        @ingredients ||= Application::Elements::CategoryTagListComponent.new(
-            categories: object.main_ingredients,
-            extra_categories: object.additional_main_ingredients
         )
       end
     end

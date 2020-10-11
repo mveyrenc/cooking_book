@@ -25,6 +25,11 @@
 <body>
 <%= render(MainMenu::MenuComponent.new(request: request)) %>
 <main>
+  <section class="breadcrumb">
+    <div class="container">
+      <%= render(Application::Components::BreadcrumbComponent.new(breadcrumb_trail: breadcrumb_trail)) %>
+    </div>
+  </section>
   <section class="flash">
     <div class="container">
       <% flash.each do |name, msg| %>
@@ -35,11 +40,6 @@
           <%= msg %>
         <% end %>
       <% end %>
-    </div>
-  </section>
-  <section class="breadcrumb">
-    <div class="container">
-      <%= render(Application::Components::BreadcrumbComponent.new(breadcrumb_trail: breadcrumb_trail)) %>
     </div>
   </section>
   <%= yield %>

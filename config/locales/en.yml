@@ -69,28 +69,6 @@ en:
     destroy:
       success: "Category was successfully destroyed."
     view_all: "See all categories"
-  ingredients:
-    index_page_title: "Listing ingredients"
-    new_page_title: "New ingredient"
-    edit_page_title: "Edit ingredient"
-    new_button: "New ingredient"
-    create:
-      success: "Ingredient was successfully created."
-    update:
-      success: "Ingredient was successfully updated."
-    destroy:
-      success: "Ingredient was successfully destroyed."
-  sources:
-    index_page_title: "Listing sources"
-    new_page_title: "New source"
-    edit_page_title: "Edit source"
-    new_button: "New source"
-    create:
-      success: "Source was successfully created."
-    update:
-      success: "Source was successfully updated."
-    destroy:
-      success: "Source was successfully destroyed."
   users:
     index_page_title: "Listing users"
     new_page_title: "New user"
@@ -197,8 +175,6 @@ en:
     models:
       recipe: "Recipe"
       category: "Category"
-      ingredient: "Ingredient"
-      source: "Source"
       import_recipe: "Recipe import"
     attributes:
       recipe:
@@ -243,14 +219,6 @@ en:
         suggested_category_ids: "Suggested categories"
         suggested_by_categories: "Suggested by categories"
         suggested_by_category_ids: "Suggested by categories"
-      ingredient:
-        name: "Name"
-        parent: "Parent"
-        best_months: "High season"
-        worse_months: "Out of season"
-      source:
-        name: "Name"
-        parent: "Parent"
       user:
         name: "Name"
         email: "Email"

@@ -12,9 +12,6 @@ class Recipe < ActiveRecord::Base
   belongs_to :book
 
   has_and_belongs_to_many :categories
-  has_and_belongs_to_many(:main_ingredients,
-                          :class_name => "Ingredient"
-  )
   belongs_to :author, class_name: "User"
   belongs_to :modifier, class_name: "User"
 
@@ -104,14 +101,6 @@ class Recipe < ActiveRecord::Base
       additional_categories |= category.related_categories_for_recipes
     end
     additional_categories - categories
-  end
-
-  def additional_main_ingredients
-    additional_ingredients = []
-    main_ingredients.each do |ingredient|
-      additional_ingredients |= ingredient.ancestors
-    end
-    additional_ingredients - main_ingredients
   end
 
   def to_s

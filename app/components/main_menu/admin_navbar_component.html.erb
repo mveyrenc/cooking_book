@@ -4,9 +4,6 @@
     <% if can? :read, Category %>
       <%= render(MainMenu::NavbarItemComponent.new(title: t('menu.categories'), path: categories_path)) %>
     <% end %>
-    <% if can? :read, Ingredient %>
-      <%= render(MainMenu::NavbarItemComponent.new(title: t('menu.ingredients'), path: ingredients_path)) %>
-    <% end %>
     <% if can? :manage, User %>
       <%= render(MainMenu::NavbarItemComponent.new(title: t('menu.users'), path: users_path)) %>
     <% end %>
