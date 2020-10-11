@@ -7,6 +7,24 @@
     <div class="columns">
       <div class="column">
         <div>
+          <div class="heading"><%= Category.human_attribute_name('related_tree_categories') %></div>
+          <%= render Application::Elements::CategoryTagListComponent.new(
+              categories: object.related_tree_categories,
+              display_if_empty: true
+          ) %>
+        </div>
+      </div>
+      <div class="column">
+        <div>
+          <p class="heading"><%= Category.human_attribute_name('related_tree_by_categories') %></p>
+          <%= render Application::Elements::CategoryTagListComponent.new(
+              categories: object.related_tree_by_categories,
+              display_if_empty: true
+          ) %>
+        </div>
+      </div>
+      <div class="column">
+        <div>
           <div class="heading"><%= Category.human_attribute_name('related_categories') %></div>
           <%= render Application::Elements::CategoryTagListComponent.new(
               categories: object.related_categories,

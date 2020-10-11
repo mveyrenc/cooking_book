@@ -1,4 +1,18 @@
 <div class="block">
+  <div class="heading"><%= Category.human_attribute_name('related_tree_categories') %></div>
+  <%= render Application::Elements::CategoryTagListComponent.new(
+      categories: object.related_tree_categories,
+      display_if_empty: true
+  ) %>
+</div>
+<div class="block">
+  <p class="heading"><%= Category.human_attribute_name('related_tree_by_categories') %></p>
+  <%= render Application::Elements::CategoryTagListComponent.new(
+      categories: object.related_tree_by_categories,
+      display_if_empty: true
+  ) %>
+</div>
+<div class="block">
   <div class="heading"><%= Category.human_attribute_name('related_categories') %></div>
   <%= render Application::Elements::CategoryTagListComponent.new(
       categories: object.related_categories,
@@ -9,6 +23,13 @@
   <p class="heading"><%= Category.human_attribute_name('related_by_categories') %></p>
   <%= render Application::Elements::CategoryTagListComponent.new(
       categories: object.related_by_categories,
+      display_if_empty: true
+  ) %>
+</div>
+<div class="block">
+  <p class="heading"><%= Category.human_attribute_name('extra_related_categories') %></p>
+  <%= render Application::Elements::CategoryTagListComponent.new(
+      categories: object.extra_related_categories,
       display_if_empty: true
   ) %>
 </div>

@@ -80,7 +80,6 @@ class CategoriesController < ApplicationController
   # POST /categories.json
   def create
     authorize! :create, Category
-    breadcrumb @category.name, category_path(@category)
 
     @category = Category.new(category_params)
 
@@ -102,6 +101,7 @@ class CategoriesController < ApplicationController
   # PATCH/PUT /categories/1.json
   def update
     authorize! :update, @category
+    breadcrumb @category.name, category_path(@category)
 
     @category.modifier = current_user
 
@@ -152,6 +152,8 @@ class CategoriesController < ApplicationController
   end
 
   def category_params
+    params[:category][:related_tree_category_ids].reject! { |c| c.empty? } if params[:category][:related_tree_category_ids]
+    params[:category][:related_tree_by_category_ids].reject! { |c| c.empty? } if params[:category][:related_tree_by_category_ids]
     params[:category][:related_category_ids].reject! { |c| c.empty? } if params[:category][:related_category_ids]
     params[:category][:related_by_category_ids].reject! { |c| c.empty? } if params[:category][:related_by_category_ids]
     params[:category][:suggested_category_ids].reject! { |c| c.empty? } if params[:category][:suggested_category_ids]
@@ -160,6 +162,8 @@ class CategoriesController < ApplicationController
     params.require(:category).permit(
         :name,
         :categorization_id,
+        :related_tree_category_ids => [],
+        :related_tree_by_category_ids => [],
         :related_category_ids => [],
         :related_by_category_ids => [],
         :suggested_category_ids => [],

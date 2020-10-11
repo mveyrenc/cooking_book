@@ -4,6 +4,18 @@ class Category < ActiveRecord::Base
 
   has_and_belongs_to_many :recipes
 
+  has_and_belongs_to_many(:related_tree_categories,
+                          :class_name => "Category",
+                          :join_table => "categories_related_tree",
+                          :foreign_key => "category_id",
+                          :association_foreign_key => "related_category_id")
+
+  has_and_belongs_to_many(:related_tree_by_categories,
+                          :class_name => "Category",
+                          :join_table => "categories_related_tree",
+                          :foreign_key => "related_category_id",
+                          :association_foreign_key => "category_id")
+
   has_and_belongs_to_many(:related_categories,
                           :class_name => "Category",
                           :join_table => "categories_related",
@@ -50,6 +62,8 @@ class Category < ActiveRecord::Base
         categorization_name: categorization.to_s,
         book_id: categorization.book.id,
         book_name: categorization.book.to_s,
+        related_tree_categories_ids: related_tree_categories.map(&:id),
+        related_tree_by_categories_ids: related_tree_by_categories.map(&:id),
         related_categories_ids: related_categories.map(&:id),
         related_by_categories_ids: related_by_categories.map(&:id),
         suggested_categories_ids: suggested_categories.map(&:id),
@@ -63,32 +77,38 @@ class Category < ActiveRecord::Base
     end
   end
 
-  def related_categories_for_recipes
-    related_categories_for_recipes = [self]
-    related_categories.each do |category|
-      related_categories_for_recipes |= category.related_categories_for_recipes
+  def extra_related_categories
+    categories = [self]
+    related_tree_categories.each do |category|
+      unless categories.include?(category)
+        categories |= category.related_categories_for_recipes
+      end
     end
-    related_categories_for_recipes
+    categories - related_tree_categories - [self]
+  end
+
+  def related_categories_for_recipes
+    related_tree_categories + related_categories + extra_related_categories - [self]
   end
 
   def suggested_categories_for_recipes
-    suggested_categories_for_recipes = []
+    categories = []
     parsed_categories = [self]
+    related_categories = related_categories_for_recipes
     suggested_categories.each do |category|
       if (!parsed_categories.include?(category))
-        suggested_categories_for_recipes |= [category]
-        suggested_categories_for_recipes |= category.suggested_categories_for_recipes
+        categories |= [category]
+        categories |= category.categories
         parsed_categories << category
       end
     end
-    categories = related_categories_for_recipes
     categories.each do |category|
       if (!parsed_categories.include?(category))
-        suggested_categories_for_recipes |= category.suggested_categories
+        categories |= category.suggested_categories
         parsed_categories << category
       end
     end
-    suggested_categories_for_recipes - related_categories_for_recipes - [self]
+    categories - related_categories - [self]
   end
 
   def to_s

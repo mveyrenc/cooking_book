@@ -48,6 +48,28 @@
   )) if object.categorization.present? %>
   <%= render(Application::Form::CollectionSelectEntryComponent.new(
       form: f,
+      method: :related_tree_category_ids,
+      resource: object,
+      choices: object.categorization.book.categorizations.ordered,
+      value_method: :id,
+      text_method: :to_s,
+      group_method: :categories,
+      group_label_method: :name,
+      field_html_options: {multiple: true}
+  )) if object.categorization.present? %>
+  <%= render(Application::Form::CollectionSelectEntryComponent.new(
+      form: f,
+      method: :related_tree_by_category_ids,
+      resource: object,
+      choices: object.categorization.book.categorizations.ordered,
+      value_method: :id,
+      text_method: :to_s,
+      group_method: :categories,
+      group_label_method: :name,
+      field_html_options: {multiple: true}
+  )) if object.categorization.present? %>
+  <%= render(Application::Form::CollectionSelectEntryComponent.new(
+      form: f,
       method: :related_category_ids,
       resource: object,
       choices: object.categorization.book.categorizations.ordered,
