@@ -68,6 +68,8 @@ GEM
       msgpack (~> 1.0)
     builder (3.2.4)
     byebug (11.1.3)
+    cable_ready (4.3.0)
+      rails (>= 5.2)
     cancancan (3.1.0)
     capybara (3.33.0)
       addressable
@@ -227,6 +229,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    redis (4.2.2)
     regexp_parser (1.8.0)
     responders (3.0.1)
       actionpack (>= 5.0)
@@ -300,6 +303,12 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    stimulus_reflex (3.3.0)
+      cable_ready (>= 4.3.0)
+      nokogiri
+      rack
+      rails (>= 5.2)
+      redis
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
     thor (1.0.1)
@@ -343,6 +352,7 @@ DEPENDENCIES
   ancestry
   bootsnap (>= 1.4.2)
   byebug
+  cable_ready
   cancancan
   capybara (>= 2.15)
   commonmarker
@@ -378,6 +388,7 @@ DEPENDENCIES
   sort_alphabetical
   spring
   spring-watcher-listen (~> 2.0.0)
+  stimulus_reflex
   turbolinks (~> 5)
   view_component
   web-console (>= 3.3.0)

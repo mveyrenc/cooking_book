@@ -26,3 +26,5 @@ const application = Application.start();
 // requires all of the controllers in the app/components directory.
 const componentContext = require.context("../../components/", true, /(.*)\/.+\.js$/);
 application.load(definitionsFromContext(componentContext));
+
+import "controllers"
