@@ -45,6 +45,7 @@
       choices: object.categorization.book.categorizations.ordered,
       value_method: :id,
       text_method: :to_s,
+      options: {required: true}
   )) if object.categorization.present? %>
   <%= render(Application::Form::CollectionSelectEntryComponent.new(
       form: f,
