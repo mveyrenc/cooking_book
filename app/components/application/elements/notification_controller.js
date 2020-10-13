@@ -1,8 +1,10 @@
 import {Controller} from "stimulus"
 
 export default class extends Controller {
+  static targets = [ "notification" ]
+
     close(event) {
-        let notification = event.currentTarget.parentNode.parentNode;
+        const notification = this.notificationTarget
         notification.parentNode.removeChild(notification)
     }
 }

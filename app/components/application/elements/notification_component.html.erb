@@ -1,6 +1,9 @@
-<div class="<%= css_class %>">
-<% if delete? %>
-  <%= render(Application::Elements::DeleteComponent.new(styles: delete_styles)) %>
-<% end %>
-<%= content %>
+<div class="<%= css_class %>" data-controller="<%= stimulus_controller %>" data-target="<%= stimulus_controller %>.notification">
+  <% if delete? %>
+    <%= render(Application::Elements::DeleteComponent.new(
+        stimulus_controller: stimulus_controller,
+        styles: delete_styles
+    )) %>
+  <% end %>
+  <%= content %>
 </div>

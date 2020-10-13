@@ -22,6 +22,10 @@ module Application
 
       alias :delete? :delete
 
+      def stimulus_controller
+        "application--elements--notification"
+      end
+
       def default_css_classes
         ['notification']
       end
