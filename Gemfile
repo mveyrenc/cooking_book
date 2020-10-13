@@ -109,3 +109,7 @@ gem "commonmarker"
 
 # breadcrumbs
 gem 'loaf'
+
+# Stimulus reflex
+gem 'cable_ready'
+gem 'stimulus_reflex'
