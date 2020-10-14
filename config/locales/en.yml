@@ -233,6 +233,7 @@ en:
       sign_in: "Sign in"
       log_in: "Log in"
       sign_up: "Sign up"
+      change_password: "Change my password"
       forgot_your_password: "Forgot your password?"
       receive_confirmation_instructions: "Didn't receive confirmation instructions?"
       receive_unlock_instructions: "Didn't receive unlock instructions?"
@@ -241,8 +242,13 @@ en:
       edit_profile: "Edit profile"
       logout: "Logout"
       login: "Login"
-      currently_waiting_confirmation: Currently waiting confirmation for #{email}
+      currently_waiting_confirmation: "Currently waiting confirmation for %{email}"
+      password_minimum_length: "%{length} characters minimum"
+      update_password_hint: "we need your current password to confirm your changes"
+      leave_blank_password_hint: "leave blank if you don't want to change it"
+      cancel_account: "Cancel my account"
       save: "Save"
+      send: "Send"
     form:
       change_password_help: "Leave these fields blank if you don't want to change your password."
       current_password_help: "You must enter your current password to make changes."

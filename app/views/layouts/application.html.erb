@@ -5,6 +5,7 @@
   <title><%= I18n.t 'application.name' %></title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
+  <%= action_cable_meta_tag %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="description" content="">
   <meta name="author" content="">
@@ -38,7 +39,7 @@
             delete: true
         )) do %>
           <%= msg %>
-        <% end %>
+        <% end unless msg.blank? %>
       <% end %>
     </div>
   </section>

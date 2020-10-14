@@ -5,6 +5,7 @@
   <title><%= I18n.t 'application.name' %></title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
+  <%= action_cable_meta_tag %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="description" content="">
   <meta name="author" content="">
@@ -23,12 +24,28 @@
                           'data-turbolinks-track': 'reload' %>
 </head>
 <body>
-<% flash.each do |name, msg| %>
-  <%= content_tag :div, :class => "notification is-" + name do %>
-    <button class="delete"></button>
-    <%= msg %>
-  <% end %>
-<% end %>
-<%= yield %>
+
+<section class="hero is-primary is-fullheight">
+  <div class="hero-body">
+    <div class="container">
+      <% flash.each do |name, msg| %>
+        <%= render(Application::Elements::NotificationComponent.new(
+            styles: {color: name},
+            delete: true
+        )) do %>
+          <%= msg %>
+        <% end unless msg.blank? %>
+      <% end %>
+      <div class="columns is-centered">
+        <div class="column is-5-tablet box">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+</footer>
 </body>
 </html>

@@ -233,6 +233,7 @@ fr:
       sign_in: "Se connecter"
       log_in: "Se connecter"
       sign_up: "S'inscrire"
+      change_password: "Change my password"
       forgot_your_password: "Mot de passe oublié ?"
       receive_confirmation_instructions: "Vous n'avez pas reçu les instructions de confirmation ?"
       receive_unlock_instructions: "Vous n'avez pas reçu les instructions de déverrouillage ?"
@@ -241,8 +242,13 @@ fr:
       edit_profile: "Modifier mon profile"
       logout: "Déconnexion"
       login: "Connexion"
-      currently_waiting_confirmation: Actuellement en attente de confirmation pour #{email}
+      currently_waiting_confirmation: "Actuellement en attente de confirmation pour #{email}"
+      password_minimum_length: "%{length} caractères minimum"
+      update_password_hint: "vous devez saisir votre mot de passe actuel pour confirmer le changement"
+      leave_blank_password_hint: "laissez vide si vous ne souhaitez pas le modifier"
+      cancel_account: "Supprimer mon compte"
       save: "Enregistrer"
+      send: "Envoyer"
     form:
       change_password_help: "Laissez ces champs vides si vous ne voulez pas changer votre mot de passe."
       current_password_help: "Vous devez entrer votre mot de passe actuel pour apporter des changements."

@@ -1,4 +1,4 @@
-class CategoriesController < ApplicationController
+class CategoriesController < SecuredController
 
   include Categories::SearchConcern
   include Categories::CreateConcern

@@ -14,6 +14,7 @@ module Application
         success: {class: 'success'},
         warning: {class: 'warning'},
         danger: {class: 'danger'},
+        alert: {class: 'alert'},
         deep_yellow: {class: 'deep-yellow'},
         yellow: {class: 'yellow'},
         orange: {class: 'orange'},

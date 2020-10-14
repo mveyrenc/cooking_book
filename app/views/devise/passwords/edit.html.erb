@@ -1,36 +1,30 @@
-<section class="hero is-primary is-fullheight">
-  <div class="hero-body">
-    <div class="container">
-      <div class="columns is-centered">
-        <div class="column is-5-tablet is-4-desktop">
-          <h2 class="is-size-2">Change your password</h2>
-          <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :put, class: "box"}) do |f| %>
-            <%= render "devise/shared/error_messages", resource: resource %>
+<h2 class="is-size-2">t('devise.label.change_password')</h2>
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :put, class: "box"}) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
 
-            <%= f.hidden_field :reset_password_token %>
+  <%= f.hidden_field :reset_password_token %>
 
-            <div class="field">
-              <%= f.label :password, "New password" %><br/>
-              <% if @minimum_password_length %>
-                <em>(<%= @minimum_password_length %> characters minimum)</em><br/>
-              <% end %>
-              <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
-            </div>
-
-            <div class="field">
-              <%= f.label :password_confirmation, "Confirm new password" %><br/>
-              <%= f.password_field :password_confirmation, autocomplete: "off" %>
-            </div>
-
-            <div class="field has-text-centered">
-              <%= f.submit "Change my password", class: "is-success" %>
-            </div>
-            <div class="notification is-link">
-              <%= render "devise/shared/links" %>
-            </div>
-          <% end %>
-        </div>
-      </div>
+  <div class="field">
+    <%= f.label :password, class: 'label' %>
+    <% if @minimum_password_length %>
+      <em>(<%= t('devise.label.password_minimum_length', {length: @minimum_password_length}) %>)</em>
+    <% end %>
+    <div class="control has-icons-left">
+      <%= f.password_field :password, autocomplete: "new-password", placeholder: '*******', class: 'input' %>
+      <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
     </div>
   </div>
-</section>
+
+  <div class="field">
+    <%= f.label :password_confirmation, class: 'label' %>
+    <div class="control has-icons-left">
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: '*******', class: 'input' %>
+      <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
+    </div>
+  </div>
+
+  <div class="control has-text-centered">
+    <%= f.submit t('devise.label.change_password'), class: "button is-success" %>
+  </div>
+<% end %>
+<%= render "devise/shared/links" %>

@@ -1,4 +1,4 @@
-class RaterController < ApplicationController
+class RaterController < SecuredController
 
   def create
     if user_signed_in?

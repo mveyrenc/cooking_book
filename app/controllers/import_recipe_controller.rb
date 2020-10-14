@@ -1,4 +1,4 @@
-class ImportRecipeController < ApplicationController
+class ImportRecipeController < SecuredController
 
   before_action :set_book
 

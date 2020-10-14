@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UsersController < SecuredController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   breadcrumb I18n.t('breadcrumb.users'), :users_path, match: :exact

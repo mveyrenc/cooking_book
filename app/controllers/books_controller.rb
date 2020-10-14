@@ -1,4 +1,4 @@
-class BooksController < ApplicationController
+class BooksController < SecuredController
 
   authorize_resource
 
