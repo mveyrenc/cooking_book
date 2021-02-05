@@ -15,165 +15,169 @@ $yellow: #faff8b
 $yellow-invert: findColorInvert($yellow)
 $yellow-light: findLightColor($yellow)
 $yellow-dark: findDarkColor($yellow)
-$custom-colors: mergeColorMaps($custom-colors, ("yellow": ($yellow, $yellow-invert, $yellow-light, $yellow-dark)))
+$custom-colors: map-merge($custom-colors, ("yellow": ($yellow, $yellow-invert, $yellow-light, $yellow-dark)))
 
 $deep-yellow: #fdee00
 $deep-yellow-invert: findColorInvert($deep-yellow)
 $deep-yellow-light: findLightColor($deep-yellow)
 $deep-yellow-dark: findDarkColor($deep-yellow)
-$custom-colors: mergeColorMaps($custom-colors, ("deep-yellow": ($deep-yellow, $deep-yellow-invert, $deep-yellow-light, $deep-yellow-dark)))
+$custom-colors: map-merge($custom-colors, ("deep-yellow": ($deep-yellow, $deep-yellow-invert, $deep-yellow-light, $deep-yellow-dark)))
 
 $orange: #ff5724
 $orange-invert: findColorInvert($orange)
 $orange-light: findLightColor($orange)
 $orange-dark: findDarkColor($orange)
-$custom-colors: mergeColorMaps($custom-colors, ("orange": ($orange, $orange-invert, $orange-light, $orange-dark)))
+$custom-colors: map-merge($custom-colors, ("orange": ($orange, $orange-invert, $orange-light, $orange-dark)))
 
 $deep-orange: #ff3900
 $deep-orange-invert: findColorInvert($deep-orange)
 $deep-orange-light: findLightColor($deep-orange)
 $deep-orange-dark: findDarkColor($deep-orange)
-$custom-colors: mergeColorMaps($custom-colors, ("deep-orange": ($deep-orange, $deep-orange-invert, $deep-orange-light, $deep-orange-dark)))
+$custom-colors: map-merge($custom-colors, ("deep-orange": ($deep-orange, $deep-orange-invert, $deep-orange-light, $deep-orange-dark)))
 
 $light-pink: #fee7f0
 $light-pink-invert: findColorInvert($light-pink)
 $light-pink-light: findLightColor($light-pink)
 $light-pink-dark: findDarkColor($light-pink)
-$custom-colors: mergeColorMaps($custom-colors, ("light-pink": ($light-pink, $light-pink-invert, $light-pink-light, $light-pink-dark)))
+$custom-colors: map-merge($custom-colors, ("light-pink": ($light-pink, $light-pink-invert, $light-pink-light, $light-pink-dark)))
 
 $pink: #fd277b
 $pink-invert: findColorInvert($pink)
 $pink-light: findLightColor($pink)
 $pink-dark: findDarkColor($pink)
-$custom-colors: mergeColorMaps($custom-colors, ("pink": ($pink, $pink-invert, $pink-light, $pink-dark)))
+$custom-colors: map-merge($custom-colors, ("pink": ($pink, $pink-invert, $pink-light, $pink-dark)))
 
 $purple: #9b58b6
 $purple-invert: findColorInvert($purple)
 $purple-light: findLightColor($purple)
 $purple-dark: findDarkColor($purple)
-$custom-colors: mergeColorMaps($custom-colors, ("purple": ($purple, $purple-invert, $purple-light, $purple-dark)))
+$custom-colors: map-merge($custom-colors, ("purple": ($purple, $purple-invert, $purple-light, $purple-dark)))
 
 $deep-purple: #8b008b
 $deep-purple-invert: findColorInvert($deep-purple)
 $deep-purple-light: findLightColor($deep-purple)
 $deep-purple-dark: findDarkColor($deep-purple)
-$custom-colors: mergeColorMaps($custom-colors, ("deep-purple": ($deep-purple, $deep-purple-invert, $deep-purple-light, $deep-purple-dark)))
+$custom-colors: map-merge($custom-colors, ("deep-purple": ($deep-purple, $deep-purple-invert, $deep-purple-light, $deep-purple-dark)))
 
 $indigo: #791cf8
 $indigo-invert: findColorInvert($indigo)
 $indigo-light: findLightColor($indigo)
 $indigo-dark: findDarkColor($indigo)
-$custom-colors: mergeColorMaps($custom-colors, ("indigo": ($indigo, $indigo-invert, $indigo-light, $indigo-dark)))
+$custom-colors: map-merge($custom-colors, ("indigo": ($indigo, $indigo-invert, $indigo-light, $indigo-dark)))
 
 $light-blue: #87cefa
 $light-blue-invert: findColorInvert($light-blue)
 $light-blue-light: findLightColor($light-blue)
 $light-blue-dark: findDarkColor($light-blue)
-$custom-colors: mergeColorMaps($custom-colors, ("light-blue": ($light-blue, $light-blue-invert, $light-blue-light, $light-blue-dark)))
+$custom-colors: map-merge($custom-colors, ("light-blue": ($light-blue, $light-blue-invert, $light-blue-light, $light-blue-dark)))
 
 $blue: #2c75ff
 $blue-invert: findColorInvert($blue)
 $blue-light: findLightColor($blue)
 $blue-dark: findDarkColor($blue)
-$custom-colors: mergeColorMaps($custom-colors, ("blue": ($blue, $blue-invert, $blue-light, $blue-dark)))
+$custom-colors: map-merge($custom-colors, ("blue": ($blue, $blue-invert, $blue-light, $blue-dark)))
 
 $dark-blue: #002fac
 $dark-blue-invert: findColorInvert($dark-blue)
 $dark-blue-light: findLightColor($dark-blue)
 $dark-blue-dark: findDarkColor($dark-blue)
-$custom-colors: mergeColorMaps($custom-colors, ("dark-blue": ($dark-blue, $dark-blue-invert, $dark-blue-light, $dark-blue-dark)))
+$custom-colors: map-merge($custom-colors, ("dark-blue": ($dark-blue, $dark-blue-invert, $dark-blue-light, $dark-blue-dark)))
 
 $cyan: #00c0f4
 $cyan-invert: findColorInvert($cyan)
 $cyan-light: findLightColor($cyan)
 $cyan-dark: findDarkColor($cyan)
-$custom-colors: mergeColorMaps($custom-colors, ("cyan": ($cyan, $cyan-invert, $cyan-light, $cyan-dark)))
+$custom-colors: map-merge($custom-colors, ("cyan": ($cyan, $cyan-invert, $cyan-light, $cyan-dark)))
 
 $turquoise: #25fde9
 $turquoise-invert: findColorInvert($turquoise)
 $turquoise-light: findLightColor($turquoise)
 $turquoise-dark: findDarkColor($turquoise)
-$custom-colors: mergeColorMaps($custom-colors, ("turquoise": ($turquoise, $turquoise-invert, $turquoise-light, $turquoise-dark)))
+$custom-colors: map-merge($custom-colors, ("turquoise": ($turquoise, $turquoise-invert, $turquoise-light, $turquoise-dark)))
 
 $teal: #008080
 $teal-invert: findColorInvert($teal)
 $teal-light: findLightColor($teal)
 $teal-dark: findDarkColor($teal)
-$custom-colors: mergeColorMaps($custom-colors, ("teal": ($teal, $teal-invert, $teal-light, $teal-dark)))
+$custom-colors: map-merge($custom-colors, ("teal": ($teal, $teal-invert, $teal-light, $teal-dark)))
 
 $light-green: hsl(145, 63%, 49%)
 $light-green-invert: findColorInvert($light-green)
 $light-green-light: findLightColor($light-green)
 $light-green-dark: findDarkColor($light-green)
-$custom-colors: mergeColorMaps($custom-colors, ("light-green": ($light-green, $light-green-invert, $light-green-light, $light-green-dark)))
+$custom-colors: map-merge($custom-colors, ("light-green": ($light-green, $light-green-invert, $light-green-light, $light-green-dark)))
 
 $green: #329a32
 $green-invert: findColorInvert($green)
 $green-light: findLightColor($green)
 $green-dark: findDarkColor($green)
-$custom-colors: mergeColorMaps($custom-colors, ("green": ($green, $green-invert, $green-light, $green-dark)))
+$custom-colors: map-merge($custom-colors, ("green": ($green, $green-invert, $green-light, $green-dark)))
 
 $dark-green: #206220
 $dark-green-invert: findColorInvert($green)
 $dark-green-light: findLightColor($green)
 $dark-green-dark: findDarkColor($green)
-$custom-colors: mergeColorMaps($custom-colors, ("dark-green": ($dark-green, $dark-green-invert, $dark-green-light, $dark-green-dark)))
+$custom-colors: map-merge($custom-colors, ("dark-green": ($dark-green, $dark-green-invert, $dark-green-light, $dark-green-dark)))
 
 $brown: #795649
 $brown-invert: findColorInvert($brown)
 $brown-light: findLightColor($brown)
 $brown-dark: findDarkColor($brown)
-$custom-colors: mergeColorMaps($custom-colors, ("brown": ($brown, $brown-invert, $brown-light, $brown-dark)))
+$custom-colors: map-merge($custom-colors, ("brown": ($brown, $brown-invert, $brown-light, $brown-dark)))
 
 $charcoal: #393737
 $charcoal-invert: findColorInvert($charcoal)
 $charcoal-light: findLightColor($charcoal)
 $charcoal-dark: findDarkColor($charcoal)
-$custom-colors: mergeColorMaps($custom-colors, ("charcoal": ($charcoal, $charcoal-invert, $charcoal-light, $charcoal-dark)))
+$custom-colors: map-merge($custom-colors, ("charcoal": ($charcoal, $charcoal-invert, $charcoal-light, $charcoal-dark)))
 
 $light-gray: #c0c0c0
 $light-gray-invert: findColorInvert($light-gray)
 $light-gray-light: findLightColor($light-gray)
 $light-gray-dark: findDarkColor($light-gray)
-$custom-colors: mergeColorMaps($custom-colors, ("light-gray": ($light-gray, $light-gray-invert, $light-gray-light, $light-gray-dark)))
+$custom-colors: map-merge($custom-colors, ("light-gray": ($light-gray, $light-gray-invert, $light-gray-light, $light-gray-dark)))
 
 $gray: #708090
 $gray-invert: findColorInvert($gray)
 $gray-light: findLightColor($gray)
 $gray-dark: findDarkColor($gray)
-$custom-colors: mergeColorMaps($custom-colors, ("gray": ($gray, $gray-invert, $gray-light, $gray-dark)))
+$custom-colors: map-merge($custom-colors, ("gray": ($gray, $gray-invert, $gray-light, $gray-dark)))
 
 $dark-gray: #413835
 $dark-gray-invert: findColorInvert($dark-gray)
 $dark-gray-light: findLightColor($dark-gray)
 $dark-gray-dark: findDarkColor($dark-gray)
-$custom-colors: mergeColorMaps($custom-colors, ("dark-gray": ($dark-gray, $dark-gray-invert, $dark-gray-light, $dark-gray-dark)))
+$custom-colors: map-merge($custom-colors, ("dark-gray": ($dark-gray, $dark-gray-invert, $dark-gray-light, $dark-gray-dark)))
 
 $asphalt: #354a5f
 $asphalt-invert: findColorInvert($asphalt)
 $asphalt-light: findLightColor($asphalt)
 $asphalt-dark: findDarkColor($asphalt)
-$custom-colors: mergeColorMaps($custom-colors, ("asphalt": ($asphalt, $asphalt-invert, $asphalt-light, $asphalt-dark)))
+$custom-colors: map-merge($custom-colors, ("asphalt": ($asphalt, $asphalt-invert, $asphalt-light, $asphalt-dark)))
 
 $red: #ed0000
 $red-invert: findColorInvert($red)
 $red-light: findLightColor($red)
 $red-dark: findDarkColor($red)
-$custom-colors: mergeColorMaps($custom-colors, ("red": ($red, $red-invert, $red-light, $red-dark)))
+$custom-colors: map-merge($custom-colors, ("red": ($red, $red-invert, $red-light, $red-dark)))
 
-$custom-colors: mergeColorMaps($custom-colors, ("default": ($asphalt, $asphalt-invert, $asphalt-light, $asphalt-dark)))
-$custom-colors: mergeColorMaps($custom-colors, ("secondary": ($charcoal, $charcoal-invert, $charcoal-light, $charcoal-dark)))
-$custom-colors: mergeColorMaps($custom-colors, ("accent": ($green, $green-invert, $green-light, $green-dark)))
-$custom-colors: mergeColorMaps($custom-colors, ("alert": ($red, $red-invert, $red-light, $red-dark)))
-$custom-colors: mergeColorMaps($custom-colors, ("danger": ($red, $red-invert, $red-light, $red-dark)))
-$custom-colors: mergeColorMaps($custom-colors, ("notice": ($blue, $blue-invert, $blue-light, $blue-dark)))
+$custom-colors: map-merge($custom-colors, ("default": ($asphalt, $asphalt-invert, $asphalt-light, $asphalt-dark)))
+$custom-colors: map-merge($custom-colors, ("secondary": ($charcoal, $charcoal-invert, $charcoal-light, $charcoal-dark)))
+$custom-colors: map-merge($custom-colors, ("accent": ($green, $green-invert, $green-light, $green-dark)))
+$custom-colors: map-merge($custom-colors, ("alert": ($red, $red-invert, $red-light, $red-dark)))
+$custom-colors: map-merge($custom-colors, ("danger": ($red, $red-invert, $red-light, $red-dark)))
+$custom-colors: map-merge($custom-colors, ("notice": ($blue, $blue-invert, $blue-light, $blue-dark)))
 
-$custom-colors: mergeColorMaps($custom-colors, ("cooking": ($orange, $orange-invert, $orange-light, $orange-dark)))
-$custom-colors: mergeColorMaps($custom-colors, ("house": ($dark-blue, $dark-blue-invert, $dark-blue-light, $dark-blue-dark)))
-$custom-colors: mergeColorMaps($custom-colors, ("healthwellness": ($green, $green-invert, $green-light, $green-dark)))
+$custom-colors: map-merge($custom-colors, ("cooking": ($orange, $orange-invert, $orange-light, $orange-dark)))
+$custom-colors: map-merge($custom-colors, ("house": ($dark-blue, $dark-blue-invert, $dark-blue-light, $dark-blue-dark)))
+$custom-colors: map-merge($custom-colors, ("healthwellness": ($green, $green-invert, $green-light, $green-dark)))
 
 $body-background-color: hsl(90, 6%, 94%)
 $primary: $asphalt
 $link: $cyan-dark
 $title-color: $primary
 $subtitle-color: $grey
+
+@import "bulma/sass/utilities/derived-variables"
+
+$colors: map-merge($colors, $custom-colors)
