@@ -2,9 +2,9 @@
   <%= link_to root_path, :class => "navbar-item" do
     content_tag( :span, I18n.t('application.name'), { :class => "button is-primary has-text-weight-bold is-large"} )
   end %>
-  <div class="navbar-burger burger" data-target="main-navbar-menu">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
+  <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+  </a>
 </div>
