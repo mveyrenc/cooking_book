@@ -4,10 +4,10 @@ module Application
     include Stylable
 
     ALIGNMENT = {
-        centered: {class: 'centered'},
-        justified: {class: 'justified'},
-        left: {class: 'left'},
-        right: {class: 'right'}
+      centered: { class: 'centered' },
+      justified: { class: 'justified' },
+      left: { class: 'left' },
+      right: { class: 'right' }
     }.freeze
 
     attr_reader :alignment, :text_alignment

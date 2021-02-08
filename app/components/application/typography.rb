@@ -4,29 +4,29 @@ module Application
     include Stylable
 
     FONT_SIZE = {
-        size1: {class: 'is-size-1'},
-        size2: {class: 'is-size-2'},
-        size3: {class: 'is-size-3'},
-        size4: {class: 'is-size-4'},
-        size5: {class: 'is-size-5'},
-        size6: {class: 'is-size-6'},
-        size7: {class: 'is-size-7'}
+      size1: { class: 'is-size-1' },
+      size2: { class: 'is-size-2' },
+      size3: { class: 'is-size-3' },
+      size4: { class: 'is-size-4' },
+      size5: { class: 'is-size-5' },
+      size6: { class: 'is-size-6' },
+      size7: { class: 'is-size-7' }
     }.freeze
 
     TEXT_WEIGHT = {
-        light: {class: 'has-text-weight-light'},
-        normal: {class: 'has-text-weight-normal'},
-        medium: {class: 'has-text-weight-medium'},
-        semibold: {class: 'has-text-weight-semibold'},
-        bold: {class: 'has-text-weight-bold'}
+      light: { class: 'has-text-weight-light' },
+      normal: { class: 'has-text-weight-normal' },
+      medium: { class: 'has-text-weight-medium' },
+      semibold: { class: 'has-text-weight-semibold' },
+      bold: { class: 'has-text-weight-bold' }
     }.freeze
 
     FONT_FAMILY = {
-        sans_serif: {class: 'is-family-sans-serif'},
-        monospace: {class: 'is-family-monospace'},
-        primary: {class: 'is-family-primary'},
-        secondary: {class: 'is-family-secondary'},
-        code: {class: 'is-family-code'}
+      sans_serif: { class: 'is-family-sans-serif' },
+      monospace: { class: 'is-family-monospace' },
+      primary: { class: 'is-family-primary' },
+      secondary: { class: 'is-family-secondary' },
+      code: { class: 'is-family-code' }
     }.freeze
 
     attr_reader :font_size, :text_alignment, :text_weight, :font_family

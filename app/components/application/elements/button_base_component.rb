@@ -4,18 +4,18 @@ module Application
       include Application::Component
 
       def initialize(
-          url:,
-          name:,
-          icon: false,
-          icon_only: false,
-          styles: {}
+        url:,
+        name:,
+        icon: false,
+        icon_only: false,
+        styles: {}
       )
         @url = url
         @name = name
         @icon = icon
         @icon_only = icon_only
 
-        self.styles = {is_light: true}.merge(styles)
+        self.styles = { is_light: true }.merge(styles)
         compute_styles
       end
 

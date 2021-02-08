@@ -1,7 +1,7 @@
 <%= t('recipes.last_import_recipe_url', url: url) unless url.nil? %>
 
 <%= form_with url: book_import_recipe_index_path(book), method: :post do |f| %>
-  <%= render(Application::Form::UrlEntryComponent.new(
+  <%= render(Application::FormEntry::UrlComponent.new(
       form: f,
       method: :url,
       resource: nil,
@@ -9,7 +9,7 @@
   )) %>
   <hr/>
   <div class="buttons is-centered">
-    <%= render(Application::Form::SubmitEntryComponent.new(
+    <%= render(Application::FormEntry::SubmitComponent.new(
         form: f,
         resource: nil,
         field_html_options: {

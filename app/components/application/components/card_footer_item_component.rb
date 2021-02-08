@@ -3,12 +3,12 @@ module Application
     class CardFooterItemComponent < Application::Elements::IconLinkComponent
 
       def initialize(
-          url:,
-          name:,
-          icon:,
-          method: :get,
-          data: {},
-          styles: {}
+        url:,
+        name:,
+        icon:,
+        method: :get,
+        data: {},
+        styles: {}
       )
         super
       end

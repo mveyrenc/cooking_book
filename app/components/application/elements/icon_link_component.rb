@@ -4,12 +4,12 @@ module Application
       include Application::Component
 
       def initialize(
-          url:,
-          name:,
-          icon:,
-          method: :get,
-          data: {},
-          styles: {}
+        url:,
+        name:,
+        icon:,
+        method: :get,
+        data: {},
+        styles: {}
       )
         @url = url
         @name = name

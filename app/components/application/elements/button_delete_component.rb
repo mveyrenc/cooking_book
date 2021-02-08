@@ -3,18 +3,18 @@ module Application
     class ButtonDeleteComponent < ButtonBaseComponent
 
       def initialize(
-          url:,
-          name: I18n.t('application.destroy'),
-          icon: 'trash',
-          icon_only: false,
-          styles: {}
+        url:,
+        name: I18n.t('application.destroy'),
+        icon: 'trash',
+        icon_only: false,
+        styles: {}
       )
         super(
-            url: url,
-            name: name,
-            icon: icon,
-            icon_only: icon_only,
-            styles: styles
+          url: url,
+          name: name,
+          icon: icon,
+          icon_only: icon_only,
+          styles: styles
         )
       end
 
@@ -25,7 +25,7 @@ module Application
       end
 
       def data
-        {confirm: I18n.t('application.destroy_confirmation')}
+        { confirm: I18n.t('application.destroy_confirmation') }
       end
 
     end

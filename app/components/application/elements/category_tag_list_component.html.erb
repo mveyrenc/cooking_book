@@ -5,7 +5,7 @@
   <% categories.each do |item| %>
     <%= render(Application::Elements::CategoryMainTagComponent.new(object: item)) %>
   <% end %>
-  <%= render(Application::Elements::TagComponent.new(styles: {color: :gray, is_light: true})) do %>
+  <%= render(Application::Elements::TagComponent.new(styles: { color: :gray, is_light: true })) do %>
     <%= t('application.no_entry') %>
   <% end if display_if_empty and extra_categories.empty? and categories.empty? %>
 </div>

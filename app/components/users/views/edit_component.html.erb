@@ -1,6 +1,4 @@
-<section class="section">
-  <div class="container-fluid box">
-    <div class="title is-size-1"><%= I18n.t('users.edit_page_title') %></div>
-    <%= render(Users::FormComponent.new(object: object)) %>
-  </div>
-</section>
+<div class="container-fluid box">
+  <div class="title is-size-1"><%= I18n.t('users.edit_page_title') %></div>
+  <%= render(Users::FormComponent.new(object: object)) %>
+</div>

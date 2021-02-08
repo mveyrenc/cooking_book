@@ -4,14 +4,14 @@ module Application
       include Application::Component
 
       def initialize(
-          styles: {}
+        styles: {}
       )
         self.styles = styles
         compute_styles
       end
 
       def call
-        content_tag :span, {:class => css_class} do
+        content_tag :span, { :class => css_class } do
           content
         end
       end

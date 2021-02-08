@@ -12,81 +12,79 @@
     </div>
   <% end %>
   <div class="buttons is-centered">
-    <%= render(Application::Form::SubmitEntryComponent.new(
-        form: f,
-        resource: object,
-        field_html_options: {
-            class: css_book_color
-        }
+    <%= render(Application::FormEntry::SubmitComponent.new(
+      form: f,
+      resource: object,
+      field_html_options: {
+        class: css_book_color
+      }
     )) %>
   </div>
   <hr/>
-  <%= render(Application::Form::TextEntryComponent.new(
-      form: f,
-      method: :name,
-      resource: object,
-      options: {required: true}
+  <%= render(Application::FormEntry::TextComponent.new(
+    form: f,
+    method: :name,
+    resource: object,
+    options: { required: true }
   )) %>
-  <%= render(Application::Form::CollectionCheckboxesEntryComponent.new(
+  <% object.book.categorizations.each do |c| %>
+    <%= render(Application::FormEntry::CollectionSelectComponent.new(
       form: f,
       method: :category_ids,
       resource: object,
-      choices: Category.recipe_type.ordered,
-      value_method: :id,
-      text_method: :to_s
-  )) %>
-  <%= render(Application::Form::CollectionSelectEntryComponent.new(
-      form: f,
-      method: :category_ids,
-      resource: object,
-      choices: Category.categories.ordered,
+      choices: c.categories,
       value_method: :id,
       text_method: :to_s,
+      options: {
+        text: c.name
+      },
       field_html_options: {multiple: true}
+    )) %>
+  <% end %>
+
+  <%= render(Application::FormEntry::MarkdownComponent.new(
+    form: f,
+    method: :description,
+    resource: object
   )) %>
-  <%= render(Application::Form::MarkdownEntryComponent.new(
-      form: f,
-      method: :description,
-      resource: object
+  <%= render(Application::FormEntry::ImageComponent.new(
+    form: f,
+    method: :picture,
+    resource: object
   )) %>
-  <%= render(Application::Form::ImageEntryComponent.new(
-      form: f,
-      method: :picture,
-      resource: object
+  <%= render(Application::FormEntry::TextareaComponent.new(
+    form: f,
+    method: :times,
+    resource: object
   )) %>
-  <%= render(Application::Form::TextareaEntryComponent.new(
-      form: f,
-      method: :times,
-      resource: object
+  <%= render(Application::FormEntry::TextComponent.new(
+    form: f,
+    method: :quantity,
+    resource: object
   )) %>
-  <%= render(Application::Form::TextEntryComponent.new(
-      form: f,
-      method: :quantity,
-      resource: object
+  <%= render(Application::FormEntry::MarkdownComponent.new(
+    form: f,
+    method: :ingredients,
+    resource: object
   )) %>
-  <%= render(Application::Form::MarkdownEntryComponent.new(
-      form: f,
-      method: :ingredients,
-      resource: object
+  <%= render(Application::FormEntry::MarkdownComponent.new(
+    form: f,
+    method: :directions,
+    resource: object
   )) %>
-  <%= render(Application::Form::MarkdownEntryComponent.new(
-      form: f,
-      method: :directions,
-      resource: object
-  )) %>
-  <%= render(Application::Form::TextEntryComponent.new(
-      form: f,
-      method: :wine,
-      resource: object
+  <%= render(Application::FormEntry::TextComponent.new(
+    form: f,
+    method: :wine,
+    resource: object
   )) %>
   <hr/>
   <div class="buttons is-centered">
-    <%= render(Application::Form::SubmitEntryComponent.new(
-        form: f,
-        resource: object,
-        field_html_options: {
-            class: css_book_color
-        }
+    <%= render(Application::FormEntry::SubmitComponent.new(
+      form: f,
+      resource: object,
+      field_html_options: {
+        class: css_book_color
+      }
     )) %>
   </div>
 <% end %>

@@ -4,8 +4,8 @@ module Application
     include Stylable
 
     STATE = {
-        outlined: {class: 'is-outlined'},
-        loading: {class: 'is-loading'}
+      outlined: { class: 'is-outlined' },
+      loading: { class: 'is-loading' }
     }.freeze
 
     attr_reader :outlined, :loading

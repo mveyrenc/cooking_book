@@ -4,9 +4,9 @@ module Application
       include Application::Component
 
       def initialize(
-          styles: {},
-          delete: true,
-          delete_styles: {}
+        styles: {},
+        delete: true,
+        delete_styles: {}
       )
         @delete = delete
         @delete_styles = delete_styles

@@ -1,16 +1,14 @@
-<section class="section">
-  <div class="container-fluid">
-    <div class="columns is-desktop">
-      <div class="column is-one-quarter-desktop">
-        <div class="box">
-          <%= render(Recipes::DetailNavigationComponent.new(object: object)) %>
-        </div>
+<div class="container-fluid">
+  <div class="columns is-desktop">
+    <div class="column is-one-quarter-desktop">
+      <div class="box">
+        <%= render(Recipes::DetailNavigationComponent.new(object: object)) %>
       </div>
-      <div class="column">
-        <div class="box">
-          <%= render(Recipes::DetailComponent.new(object: object)) %>
-        </div>
+    </div>
+    <div class="column">
+      <div class="box">
+        <%= render(Recipes::DetailComponent.new(object: object)) %>
       </div>
     </div>
   </div>
-</section>
+</div>

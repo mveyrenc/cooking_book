@@ -1,32 +1,30 @@
-<section class="section">
-  <div class="container-fluid">
-    <div class="columns is-desktop">
-      <div class="column is-one-quarter-desktop">
-        <div class="box">
-          <%= render(Categories::SearchFormComponent.new(
-              search_params: search_params,
-              search_result: search_result
-          )) %>
-        </div>
+<div class="container-fluid">
+  <div class="columns is-desktop">
+    <div class="column is-one-quarter-desktop">
+      <div class="box">
+        <%= render(Categories::SearchFormComponent.new(
+          search_params: search_params,
+          search_result: search_result
+        )) %>
       </div>
-      <div class="column">
-        <div class="box">
-          <div class="level">
-            <div class="level-left">
-              <div class="title is-size-1"><%= I18n.t('categories.index_page_title') %></div>
-            </div>
-            <div class="level-right">
-              <%= render(Application::Elements::ButtonNewComponent.new(url: new_category_path)) %>
-            </div>
+    </div>
+    <div class="column">
+      <div class="box">
+        <div class="level">
+          <div class="level-left">
+            <div class="title is-size-1"><%= I18n.t('categories.index_page_title') %></div>
           </div>
-          <%= render(Categories::ListComponent.new(
-              objects: search_result
-          )) %>
-          <div>
-            <%= paginate search_result %>
+          <div class="level-right">
+            <%= render(Application::Elements::ButtonNewComponent.new(url: new_category_path)) %>
           </div>
+        </div>
+        <%= render(Categories::ListComponent.new(
+          objects: search_result
+        )) %>
+        <div>
+          <%= paginate search_result %>
         </div>
       </div>
     </div>
   </div>
-</section>
+</div>

@@ -4,8 +4,8 @@ module Application
       include Application::Component
 
       def initialize(
-          stimulus_controller:,
-          styles: {}
+        stimulus_controller:,
+        styles: {}
       )
         @stimulus_controller = stimulus_controller
 

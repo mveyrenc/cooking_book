@@ -1,17 +1,15 @@
-<section class="section">
-  <div class="container-fluid">
-    <div class="columns is-desktop">
-      <div class="column is-one-quarter-desktop">
-        <div class="box">
-          <%= render(Recipes::FormNavigationComponent.new(object: object)) %>
-        </div>
+<div class="container-fluid">
+  <div class="columns is-desktop">
+    <div class="column is-one-quarter-desktop">
+      <div class="box">
+        <%= render(Recipes::FormNavigationComponent.new(object: object)) %>
       </div>
-      <div class="column">
-        <div class="box">
-          <div class="title is-size-1 <%= css_book_color %>"><%= I18n.t('recipes.edit_page_title') %></div>
-          <%= render(Recipes::FormComponent.new(object: object)) %>
-        </div>
+    </div>
+    <div class="column">
+      <div class="box">
+        <div class="title is-size-1 <%= css_book_color %>"><%= I18n.t('recipes.edit_page_title') %></div>
+        <%= render(Recipes::FormComponent.new(object: object)) %>
       </div>
     </div>
   </div>
-</section>
+</div>

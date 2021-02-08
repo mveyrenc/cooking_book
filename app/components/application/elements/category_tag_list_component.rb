@@ -2,9 +2,9 @@ module Application
   module Elements
     class CategoryTagListComponent < ViewComponent::Base
       def initialize(
-          categories:,
-          extra_categories: [],
-          display_if_empty: false
+        categories:,
+        extra_categories: [],
+        display_if_empty: false
       )
         @categories = categories
         @extra_categories = extra_categories

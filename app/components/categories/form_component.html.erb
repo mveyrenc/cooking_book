@@ -12,7 +12,7 @@
     </div>
   <% end %>
   <div class="buttons is-centered">
-    <%= render(Application::Form::SubmitEntryComponent.new(
+    <%= render(Application::FormEntry::SubmitComponent.new(
         form: f,
         resource: object,
         field_html_options: {
@@ -21,13 +21,13 @@
     )) %>
   </div>
   <hr/>
-  <%= render(Application::Form::TextEntryComponent.new(
+  <%= render(Application::FormEntry::TextComponent.new(
       form: f,
       method: :name,
       resource: object,
       options: {required: true}
   )) %>
-  <%= render(Application::Form::CollectionSelectEntryComponent.new(
+  <%= render(Application::FormEntry::CollectionSelectComponent.new(
       form: f,
       method: :categorization_id,
       resource: object,
@@ -38,7 +38,7 @@
       group_label_method: :name,
       options: {required: true}
   )) if object.categorization.nil? %>
-  <%= render(Application::Form::CollectionSelectEntryComponent.new(
+  <%= render(Application::FormEntry::CollectionSelectComponent.new(
       form: f,
       method: :categorization_id,
       resource: object,
@@ -47,7 +47,7 @@
       text_method: :to_s,
       options: {required: true}
   )) if object.categorization.present? %>
-  <%= render(Application::Form::CollectionSelectEntryComponent.new(
+  <%= render(Application::FormEntry::CollectionSelectComponent.new(
       form: f,
       method: :related_tree_category_ids,
       resource: object,
@@ -58,7 +58,7 @@
       group_label_method: :name,
       field_html_options: {multiple: true}
   )) if object.categorization.present? %>
-  <%= render(Application::Form::CollectionSelectEntryComponent.new(
+  <%= render(Application::FormEntry::CollectionSelectComponent.new(
       form: f,
       method: :related_tree_by_category_ids,
       resource: object,
@@ -69,7 +69,7 @@
       group_label_method: :name,
       field_html_options: {multiple: true}
   )) if object.categorization.present? %>
-  <%= render(Application::Form::CollectionSelectEntryComponent.new(
+  <%= render(Application::FormEntry::CollectionSelectComponent.new(
       form: f,
       method: :related_category_ids,
       resource: object,
@@ -80,7 +80,7 @@
       group_label_method: :name,
       field_html_options: {multiple: true}
   )) if object.categorization.present? %>
-  <%= render(Application::Form::CollectionSelectEntryComponent.new(
+  <%= render(Application::FormEntry::CollectionSelectComponent.new(
       form: f,
       method: :related_by_category_ids,
       resource: object,
@@ -91,7 +91,7 @@
       group_label_method: :name,
       field_html_options: {multiple: true}
   )) if object.categorization.present? %>
-  <%= render(Application::Form::CollectionSelectEntryComponent.new(
+  <%= render(Application::FormEntry::CollectionSelectComponent.new(
       form: f,
       method: :suggested_category_ids,
       resource: object,
@@ -102,7 +102,7 @@
       group_label_method: :name,
       field_html_options: {multiple: true}
   )) if object.categorization.present? %>
-  <%= render(Application::Form::CollectionSelectEntryComponent.new(
+  <%= render(Application::FormEntry::CollectionSelectComponent.new(
       form: f,
       method: :suggested_by_category_ids,
       resource: object,
@@ -116,7 +116,7 @@
 
   <hr/>
   <div class="buttons is-centered">
-    <%= render(Application::Form::SubmitEntryComponent.new(
+    <%= render(Application::FormEntry::SubmitComponent.new(
         form: f,
         resource: object,
         field_html_options: {

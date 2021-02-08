@@ -3,9 +3,9 @@ module Application
     include Stylable
 
     SIZE = {
-        small: {class: 'is-small'},
-        medium: {class: 'is-medium'},
-        large: {class: 'is-large'}
+      small: { class: 'is-small' },
+      medium: { class: 'is-medium' },
+      large: { class: 'is-large' }
     }.freeze
 
     attr_reader :size
