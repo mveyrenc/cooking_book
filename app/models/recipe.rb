@@ -29,8 +29,6 @@ class Recipe < ActiveRecord::Base
 
   ratyrate_rateable "note", "difficulty", "cost"
 
-  before_save :update_counters
-
   searchkick
   # language: "french",
   #            fields: ["name^3", "tags^2"]
@@ -109,13 +107,5 @@ class Recipe < ActiveRecord::Base
 
   def to_i
     id
-  end
-
-  private
-
-  def update_counters
-    for i in main_ingredients do
-      i.save
-    end
   end
 end
