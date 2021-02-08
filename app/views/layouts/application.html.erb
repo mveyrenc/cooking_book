@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="has-navbar-fixed-top">
+<html>
 <head>
   <meta charset="utf-8">
   <title><%= I18n.t 'application.name' %></title>
@@ -26,24 +26,20 @@
 <body>
 <%= render(MainMenu::MenuComponent.new(request: request)) %>
 <main>
-  <section class="breadcrumb">
-    <div class="container">
-      <%= render(Application::Components::BreadcrumbComponent.new(breadcrumb_trail: breadcrumb_trail)) %>
-    </div>
-  </section>
+  <%= render(Application::Components::BreadcrumbComponent.new(breadcrumb_trail: breadcrumb_trail)) %>
   <section class="flash">
-    <div class="container">
-      <% flash.each do |name, msg| %>
-        <%= render(Application::Elements::NotificationComponent.new(
-            styles: {color: name},
-            delete: true
-        )) do %>
-          <%= msg %>
-        <% end unless msg.blank? %>
-      <% end %>
-    </div>
+    <% flash.each do |name, msg| %>
+      <%= render(Application::Elements::NotificationComponent.new(
+        styles: { color: name },
+        delete: true
+      )) do %>
+        <%= msg %>
+      <% end unless msg.blank? %>
+    <% end %>
   </section>
-  <%= yield %>
+  <section class="page">
+    <%= yield %>
+  </section>
 </main>
 <footer>
 </footer>

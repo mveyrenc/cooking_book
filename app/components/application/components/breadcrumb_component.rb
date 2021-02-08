@@ -4,20 +4,20 @@ module Application
       include Application::Component
 
       SEPARATOR = {
-          arrow: {class: 'has-arrow-separator'},
-          bullet: {class: 'has-bullet-separator'},
-          dot: {class: 'has-dot-separator'},
-          succeeds: {class: 'has-succeeds-separator'},
+        arrow: { class: 'has-arrow-separator' },
+        bullet: { class: 'has-bullet-separator' },
+        dot: { class: 'has-dot-separator' },
+        succeeds: { class: 'has-succeeds-separator' },
       }.freeze
 
       def initialize(
-          breadcrumb_trail:,
-          html_options: {},
-          styles: {}
+        breadcrumb_trail:,
+        html_options: {},
+        styles: {}
       )
         @breadcrumb_trail = breadcrumb_trail
 
-        self.html_options = html_options
+        self.html_options = {"aria-label": "breadcrumbs"}.merge html_options
         self.styles = styles
         compute_styles
 
