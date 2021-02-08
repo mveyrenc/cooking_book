@@ -1,0 +1,10 @@
+<section class="mt-5">
+  <div class="box">
+    <div class="content">
+      <%= render(Recipes::Parts::RatingCostComponent.new(object: object)) %>
+      <%= render(Recipes::Parts::RatingDifficultyComponent.new(object: object)) %>
+      <%= render(Recipes::Parts::RatingComponent.new(object: object)) %>
+      <%= render(Recipes::Parts::TimesComponent.new(object: object)) %>
+    </div>
+  </div>
+</section>

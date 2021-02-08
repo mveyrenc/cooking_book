@@ -1,22 +1,23 @@
 <%= render(Recipes::Parts::BannerComponent.new(object: object)) %>
 <%
-  times = Recipes::Parts::TimesComponent.new(object: object)
+  general_information = Recipes::Parts::GeneralInformationComponent.new(object: object)
   ingredients = Recipes::Parts::IngredientsComponent.new(object: object)
   directions = Recipes::Parts::DirectionsComponent.new(object: object)
 %>
-<% if times.render? or ingredients.render? %>
+<% if general_information.render? or ingredients.render? %>
   <div class="columns">
     <div class="column is-one-quarters">
-      <%= render(times) %>
-      <%= render(ingredients) %>
+      <%= render(general_information) %>
     </div>
     <div class="column is-three-quarters">
-      <%= render(directions) %>
+      <%= render(ingredients) %>
     </div>
   </div>
 <% else %>
-  <%= render(directions) %>
+  <%= render(general_information) %>
+  <%= render(ingredients) %>
 <% end %>
+<%= render(directions) %>
 <%= render(Recipes::Parts::SuggestionsComponent.new(object: object)) %>
 <%= render(Recipes::Parts::ClassificationComponent.new(object: object)) %>
 <%= render(Recipes::Parts::MoreLikeThisComponent.new(object: object)) %>
