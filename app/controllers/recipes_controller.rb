@@ -11,7 +11,7 @@ class RecipesController < SecuredController
   def index
     authorize! :read, Recipe
     @search_params = params
-    search_query = @search_params[:query] ? @search_params[:query] : '*'
+    search_query = @search_params[:query].blank? ? '*' : @search_params[:query]
     @search_result = Recipe.search(
         search_query,
         where: {book_id: @book.id},
