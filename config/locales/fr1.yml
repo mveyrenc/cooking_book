@@ -38,7 +38,10 @@ fr:
     welcome: "Bienvenue !"
     show_all_recipes: "Voir toutes les recettes"
   recipes:
-    index_page_title: "%{total_count} recettes"
+    index_page_title:
+      zero: 'Aucune recette'
+      one: '%{count} recette'
+      other: '%{count} recettes'
     new_page_title: "Nouvelle recette"
     edit_page_title: "Modification de la recette"
     new_button: "Nouvelle recette"

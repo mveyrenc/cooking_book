@@ -38,7 +38,10 @@ en:
     welcome: "Welcome!"
     show_all_recipes: "View all recipes"
   recipes:
-    index_page_title: "Listing recipes"
+    index_page_title:
+      zero: 'No recipe'
+      one: '%{count} recipe'
+      other: '%{count} recipes'
     new_page_title: "New recipe"
     edit_page_title: "Edit recipe"
     new_button: "New recipe"
