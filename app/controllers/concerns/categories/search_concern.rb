@@ -10,6 +10,8 @@ module Categories::SearchConcern
           aggs: [
               :book_id,
               :categorization_id,
+              :related_tree_categories_ids,
+              :related_tree_by_categories_ids,
               :related_categories_ids,
               :related_by_categories_ids,
               :suggested_categories_ids,
@@ -31,6 +33,12 @@ module Categories::SearchConcern
       unless @search_params[:book_id].blank?
         search_options[:where][:book_id] = @search_params[:book_id]
       end
+      unless @search_params[:related_tree_category_id].blank?
+        search_options[:where][:related_tree_categories_ids] = @search_params[:related_tree_category_id]
+      end
+      unless @search_params[:related_tree_by_category_id].blank?
+        search_options[:where][:related_tree_by_categories_ids] = @search_params[:related_tree_by_category_id]
+      end
       unless @search_params[:related_category_id].blank?
         search_options[:where][:related_categories_ids] = @search_params[:related_category_id]
       end
@@ -50,6 +58,8 @@ module Categories::SearchConcern
 
       @search_result.aggs['book_id']['buckets'].map! { |b| b.merge!({'object' => Book.find_by_id(b['key'])}) }
       @search_result.aggs['categorization_id']['buckets'].map! { |b| b.merge!({'object' => Categorization.find_by_id(b['key'])}) }
+      @search_result.aggs['related_tree_categories_ids']['buckets'].map! { |b| b.merge!({'object' => Category.find_by_id(b['key'])}) }
+      @search_result.aggs['related_tree_by_categories_ids']['buckets'].map! { |b| b.merge!({'object' => Category.find_by_id(b['key'])}) }
       @search_result.aggs['related_categories_ids']['buckets'].map! { |b| b.merge!({'object' => Category.find_by_id(b['key'])}) }
       @search_result.aggs['related_by_categories_ids']['buckets'].map! { |b| b.merge!({'object' => Category.find_by_id(b['key'])}) }
       @search_result.aggs['suggested_categories_ids']['buckets'].map! { |b| b.merge!({'object' => Category.find_by_id(b['key'])}) }
@@ -61,6 +71,8 @@ module Categories::SearchConcern
           :query,
           :book_id,
           :categorization_id,
+          :related_tree_category_id,
+          :related_tree_by_category_id,
           :related_category_id,
           :related_by_category_id,
           :suggested_category_id,

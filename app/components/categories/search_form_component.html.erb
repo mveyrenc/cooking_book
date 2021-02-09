@@ -1,4 +1,3 @@
-<!--<form_entry role="search" action="<%#= categories_path %>" data-controller="categories--search-form_entry"  data-action="submit->categories--search-form_entry#storeParameters">-->
 <%= form_with url: categories_path,
               data: { controller: "categories--search-form_entry", action: "submit->categories--search-form_entry#storeParameters" },
               method: :get,
@@ -18,6 +17,22 @@
     search_param_name: 'categorization_id',
     search_param_value: search_params[:categorization_id],
     options: { "data-target": "categories--search-form_entry.categorization_id" }
+  )) %>
+  <%= render(Application::SearchFormEntry::AggregationSelectComponent.new(
+    form: f,
+    method: Category.human_attribute_name('related_tree_categories'),
+    buckets: search_result.aggs['related_tree_categories_ids']['buckets'],
+    search_param_name: 'related_tree_category_id',
+    search_param_value: search_params[:related_tree_category_id],
+    options: { "data-target": "categories--search-form_entry.related_tree_category_id" }
+  )) %>
+  <%= render(Application::SearchFormEntry::AggregationSelectComponent.new(
+    form: f,
+    method: Category.human_attribute_name('related_tree_by_categories'),
+    buckets: search_result.aggs['related_tree_by_categories_ids']['buckets'],
+    search_param_name: 'related_tree_by_category_id',
+    search_param_value: search_params[:related_tree_by_category_id],
+    options: { "data-target": "categories--search-form_entry.related_tree_by_category_id" }
   )) %>
   <%= render(Application::SearchFormEntry::AggregationSelectComponent.new(
     form: f,
