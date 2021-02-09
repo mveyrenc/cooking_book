@@ -64,7 +64,7 @@ module Application
       end
 
       def default_css_classes
-        ['button']
+        ['button is-small']
       end
     end
   end
