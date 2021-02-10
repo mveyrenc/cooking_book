@@ -104,8 +104,8 @@ gem "view_component", require: "view_component/engine"
 gem "kaminari"
 
 # markdown
+gem "redcarpet"
 gem "reverse_markdown"
-gem "commonmarker"
 
 # breadcrumbs
 gem 'loaf'

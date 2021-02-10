@@ -2,10 +2,16 @@ module Application
   module Elements
     class MarkdownComponent < ViewComponent::Base
 
-      require 'commonmarker'
+      require 'redcarpet'
 
       def initialize(text:)
         @text = text
+        @markdown = Redcarpet::Markdown.new(
+          Redcarpet::Render::HTML,
+          autolink: true,
+          tables: true,
+          footnotes: true
+        )
       end
 
       def render?
@@ -13,7 +19,7 @@ module Application
       end
 
       def call
-        raw(CommonMarker.render_html(text, :DEFAULT))
+        raw(@markdown.render(text))
       end
 
       private
