@@ -1,11 +1,6 @@
-<section class="mt-5">
-  <div class="box">
-    <p class="title <%= css_book_color %>"><%= Recipe.human_attribute_name('ingredients') %></p>
-    <% unless object.quantity.blank? %>
-      <p class="subtitle"><%= object.quantity %></p>
-    <% end %>
-    <div class="content">
-      <%= render(Application::Elements::MarkdownComponent.new(text: object.ingredients)) %>
-    </div>
-  </div>
-</section>
+<% unless object.quantity.blank? %>
+  <p class="title has-text-gray"><%= object.quantity %></p>
+<% end %>
+<div class="content">
+  <%= render(Application::Elements::MarkdownComponent.new(text: object.ingredients)) %>
+</div>

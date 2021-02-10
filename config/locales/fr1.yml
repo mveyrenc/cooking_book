@@ -60,6 +60,30 @@ fr:
     destroy:
       success: "Recette supprimée avec succès."
     view_all: "Voir toutes les recettes"
+    return_to_search_list: "Retourner vers la liste"
+    navigation:
+      show:
+        menu:
+          title: "Recette"
+        recipe: "Recette"
+        masterclass: "Masterclass"
+        media: "Galerie de médias"
+        classification: "Classification"
+        similar-recipes: "Recettes similaires"
+        menus: "Menus"
+        opinions: "Avis"
+        editorial-information: "Informations éditoriales"
+      edit:
+        menu:
+          title: "Édition de la recette"
+        recipe: "Informations générales"
+        media: "Galerie de médias"
+        classification: "Classification"
+        composition: "Composition de la recette"
+        times: "Temps"
+        ingredients: "Ingrédients"
+        directions: "Mode opératoire"
+        import: "Import"
   categories:
     index_page_title: "Catégories"
     new_page_title: "Nouvelle catégorie"

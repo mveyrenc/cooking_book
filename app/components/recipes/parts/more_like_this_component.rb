@@ -1,19 +1,12 @@
 module Recipes
   module Parts
-    class MoreLikeThisComponent < ViewComponent::Base
-      include BookColorable
-
-      def initialize(object:)
-        @object = object
-      end
+    class MoreLikeThisComponent < BaseComponent
 
       def render?
         objects.any?
       end
 
       private
-
-      attr_reader :object
 
       def objects
         @objects ||= object.similar(

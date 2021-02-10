@@ -1,6 +1,6 @@
 module Recipes
   module Parts
-    class BannerComponent < ViewComponent::Base
+    class BaseComponent < ViewComponent::Base
       include BookColorable
 
       def initialize(object:)

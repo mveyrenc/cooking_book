@@ -1,0 +1,16 @@
+<%= render(Application::FormEntry::TextComponent.new(
+  form: form,
+  method: :name,
+  resource: object,
+  options: { required: true }
+)) %>
+<%= render(Application::FormEntry::MarkdownComponent.new(
+  form: form,
+  method: :description,
+  resource: object
+)) %>
+<%= render(Application::FormEntry::TextComponent.new(
+  form: form,
+  method: :wine,
+  resource: object
+)) %>

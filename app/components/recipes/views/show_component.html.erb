@@ -1,13 +1,13 @@
 <div class="container-fluid">
   <div class="columns is-desktop">
-    <div class="column is-one-quarter-desktop">
+    <div class="column is-four-fifths-desktop">
       <div class="box">
-        <%= render(Recipes::DetailNavigationComponent.new(object: object)) %>
+        <%= render(Recipes::Parts::DetailComponent.new(object: object, part: part)) %>
       </div>
     </div>
-    <div class="column">
+    <div class="column is-one-fifth-desktop">
       <div class="box">
-        <%= render(Recipes::DetailComponent.new(object: object)) %>
+        <%= render(Recipes::Parts::NavigationComponent.new(object: object, part: part)) %>
       </div>
     </div>
   </div>

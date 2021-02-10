@@ -1,0 +1,45 @@
+<div class="menu">
+  <ul class="menu-list">
+    <li>
+      <%= link_to book_recipes_path(object.book) do %>
+        <span class="icon"><%= render Application::Elements::FontAwesomeIconComponent.new(icon: 'arrow-alt-circle-left') %></span>
+        <span><%= t('recipes.return_to_search_list') %></span>
+      <% end %>
+    </li>
+  </ul>
+  <% unless object.new_record? %>
+    <p class="menu-label">
+      <%= t('recipes.navigation.show.menu.title') %>
+    </p>
+    <ul class="menu-list">
+      <li><%= link_to_show Recipes::Parts::DetailComponent::PART_RECIPE %></li>
+      <li><%= link_to_show Recipes::Parts::DetailComponent::PART_MASTERCLASS %></li>
+      <li><%= link_to_show Recipes::Parts::DetailComponent::PART_MEDIA %></li>
+      <li><%= link_to_show Recipes::Parts::DetailComponent::PART_CLASSIFICATION %></li>
+      <li><%= link_to_show Recipes::Parts::DetailComponent::PART_SIMILAR_RECIPES %></li>
+      <li><%= link_to_show Recipes::Parts::DetailComponent::PART_MENUS %></li>
+      <li><%= link_to_show Recipes::Parts::DetailComponent::PART_OPINIONS %></li>
+      <li><%= link_to_show Recipes::Parts::DetailComponent::PART_EDITORIAL_INFORMATION %></li>
+    </ul>
+    <% if control? %>
+      <p class="menu-label">
+        <%= t('recipes.navigation.edit.menu.title') %>
+      </p>
+      <ul class="menu-list">
+        <% if edit? %>
+          <li><%= link_to_edit Recipes::Parts::DetailComponent::PART_RECIPE %></li>
+          <li><%= link_to_edit Recipes::Parts::DetailComponent::PART_MEDIA %></li>
+          <li><%= link_to_edit Recipes::Parts::DetailComponent::PART_CLASSIFICATION %></li>
+          <li><%= link_to_edit Recipes::Parts::DetailComponent::PART_COMPOSITION %></li>
+          <li><%= link_to_edit Recipes::Parts::DetailComponent::PART_TIMES %></li>
+          <li><%= link_to_edit Recipes::Parts::DetailComponent::PART_INGREDIENTS %></li>
+          <li><%= link_to_edit Recipes::Parts::DetailComponent::PART_DIRECTIONS %></li>
+          <li><%= link_to_edit Recipes::Parts::DetailComponent::PART_IMPORT %></li>
+        <% end %>
+        <% if delete? %>
+          <li><%= render(Application::Elements::ButtonDeleteComponent.new(url: [object.book, object])) %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+</div>

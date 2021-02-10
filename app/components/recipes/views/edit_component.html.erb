@@ -1,14 +1,13 @@
 <div class="container-fluid">
   <div class="columns is-desktop">
-    <div class="column is-one-quarter-desktop">
+    <div class="column is-four-fifths-desktop">
       <div class="box">
-        <%= render(Recipes::FormNavigationComponent.new(object: object)) %>
+        <%= render(Recipes::FormParts::FormComponent.new(object: object, part: part)) %>
       </div>
     </div>
-    <div class="column">
+    <div class="column is-one-fifth-desktop">
       <div class="box">
-        <div class="title is-size-1 <%= css_book_color %>"><%= I18n.t('recipes.edit_page_title') %></div>
-        <%= render(Recipes::FormComponent.new(object: object)) %>
+        <%= render(Recipes::Parts::NavigationComponent.new(object: object, part: part)) %>
       </div>
     </div>
   </div>

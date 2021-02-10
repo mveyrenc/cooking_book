@@ -1,11 +1,6 @@
 module Recipes
   module Parts
-    class RatingComponent < ViewComponent::Base
-      include BookColorable
-
-      def initialize(object:)
-        @object = object
-      end
+    class RatingComponent < BaseComponent
 
       def render?
         false
@@ -14,10 +9,6 @@ module Recipes
       def call
         # todo
       end
-
-      private
-
-      attr_reader :object
 
     end
   end

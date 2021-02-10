@@ -1,0 +1,25 @@
+<h1 class="title <%= css_book_color %>">
+  <%= object %>
+</h1>
+<% case part %>
+<% when Recipes::Parts::DetailComponent::PART_RECIPE %>
+  <%= render(Recipes::Parts::RecipeComponent.new(object: object)) %>
+<% when Recipes::Parts::DetailComponent::PART_MASTERCLASS %>
+  <%= render(Recipes::Parts::MasterclassComponent.new(object: object)) %>
+<% when Recipes::Parts::DetailComponent::PART_MEDIA %>
+  <%= render(Recipes::Parts::MediaGalleryComponent.new(object: object)) %>
+<% when Recipes::Parts::DetailComponent::PART_CLASSIFICATION %>
+  <%= render(Recipes::Parts::ClassificationComponent.new(object: object)) %>
+<% when Recipes::Parts::DetailComponent::PART_SIMILAR_RECIPES %>
+  <%= render(Recipes::Parts::MoreLikeThisComponent.new(object: object)) %>
+<% when Recipes::Parts::DetailComponent::PART_MENUS %>
+  <%= render(Recipes::Parts::MenusComponent.new(object: object)) %>
+<% when Recipes::Parts::DetailComponent::PART_OPINIONS %>
+  <%= render(Recipes::Parts::OpinionsComponent.new(object: object)) %>
+<% when Recipes::Parts::DetailComponent::PART_EDITORIAL_INFORMATION %>
+  <%= render(Recipes::Parts::PublicationInfoComponent.new(object: object)) %>
+<% else %>
+  <%= render(Recipes::Parts::NoPartComponent.new(object: object)) %>
+<% end %>
+
+

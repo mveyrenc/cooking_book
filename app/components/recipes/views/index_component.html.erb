@@ -1,6 +1,15 @@
 <div class="container-fluid">
   <div class="columns is-desktop">
-    <div class="column is-one-quarter-desktop">
+    <div class="column is-four-fifths-desktop">
+      <div class="box">
+        <div class="title is-size-1 <%= css_book_color %>"><%= I18n.t('recipes.index_page_title', count: search_result.total_count) %></div>
+        <%= render(Recipes::ListComponent.new(objects: search_result)) %>
+        <div>
+          <%= paginate search_result %>
+        </div>
+      </div>
+    </div>
+    <div class="column is-one-fifth-desktop">
       <div class="box">
         <%= render(Recipes::NavigationComponent.new(book: book)) %>
         <hr/>
@@ -8,15 +17,6 @@
           book: book,
           search_params: search_params
         )) %>
-      </div>
-    </div>
-    <div class="column">
-      <div class="box">
-        <div class="title is-size-1 <%= css_book_color %>"><%= I18n.t('recipes.index_page_title', total_count: search_result.total_count) %></div>
-        <%= render(Recipes::ListComponent.new(objects: search_result)) %>
-        <div>
-          <%= paginate search_result %>
-        </div>
       </div>
     </div>
   </div>

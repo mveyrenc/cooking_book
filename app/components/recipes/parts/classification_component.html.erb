@@ -1,9 +1,10 @@
-<section class="mt-5">
-  <div class="columns is-multiline is-centered">
-    <% if categories.render? %>
-      <div class="column is-narrow">
-        <%= render(categories) %>
-      </div>
-    <% end %>
-  </div>
-</section>
+<% object.book.categorizations.each do |categorization| %>
+  <% tag_list = Application::Elements::CategoryTagListComponent.new(
+    categories: object.categories.select { |c| c.categorization == categorization },
+    extra_categories: object.additional_categories.select { |c| c.categorization == categorization }
+  ) %>
+  <% if tag_list.render? %>
+    <p class="subtitle"><%= categorization %></p>
+    <%= render tag_list %>
+  <% end %>
+<% end %>

@@ -1,36 +1,19 @@
-<section class="mt-5">
-  <div class="level">
-    <div class="level-left">
-      <div class="field is-grouped is-grouped-multiline">
-        <div class="control">
-          <div class="tags has-addons">
-            <a class="tag <%= css_book_color %> is-light"><%= Recipe.human_attribute_name('author') %></a>
-            <a class="tag"><%= object.author.name %></a>
-          </div>
-        </div>
-        <div class="control">
-          <div class="tags has-addons">
-            <a class="tag <%= css_book_color %> is-light"><%= Recipe.human_attribute_name('created_at') %></a>
-            <a class="tag"><%= object.created_at.strftime("%d/%m/%Y %H:%M") %></a>
-          </div>
-        </div>
+<div class="tags has-addons">
+  <span class="tag <%= css_book_color %> is-light"><%= Recipe.human_attribute_name('author') %></span>
+  <span class="tag"><%= object.author.name %></span>
+</div>
 
-        <div class="control">
-          <div class="tags has-addons">
-            <a class="tag <%= css_book_color %> is-light"><%= Recipe.human_attribute_name('modifier') %></a>
-            <a class="tag"><%= object.modifier.name %></a>
-          </div>
-        </div>
-        <div class="control">
-          <div class="tags has-addons">
-            <a class="tag <%= css_book_color %> is-light"><%= Recipe.human_attribute_name('updated_at') %></a>
-            <a class="tag"><%= object.updated_at.strftime("%d/%m/%Y %H:%M") %></a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="level-right">
-      <%= render(Recipes::Parts::PublicationControlsComponent.new(object: object)) %>
-    </div>
-  </div>
-</section>
+<div class="tags has-addons">
+  <span class="tag <%= css_book_color %> is-light"><%= Recipe.human_attribute_name('created_at') %></span>
+  <span class="tag"><%= object.created_at.strftime("%d/%m/%Y %H:%M") %></span>
+</div>
+
+<div class="tags has-addons">
+  <span class="tag <%= css_book_color %> is-light"><%= Recipe.human_attribute_name('modifier') %></span>
+  <span class="tag"><%= object.modifier.name %></span>
+</div>
+
+<div class="tags has-addons">
+  <span class="tag <%= css_book_color %> is-light"><%= Recipe.human_attribute_name('updated_at') %></span>
+  <span class="tag"><%= object.updated_at.strftime("%d/%m/%Y %H:%M") %></span>
+</div>

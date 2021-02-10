@@ -60,6 +60,30 @@ en:
     destroy:
       success: "Recipe was successfully destroyed."
     view_all: "See all recipes"
+    return_to_search_list: "Return to the list"
+    navigation:
+      show:
+        menu:
+          title: "Recipe"
+        recipe: "Recipe"
+        masterclass: "Masterclass"
+        media: "Galerie de médias"
+        classification: "Classification"
+        similar-recipes: "Media gallery"
+        menus: "Menus"
+        opinions: "Opinions"
+        editorial-information: "Editorial information"
+      edit:
+        menu:
+          title: "Editing the recipe"
+        main: "General information"
+        media: "Galerie de médias"
+        classification: "Classification"
+        composition: "Composition of the recipe"
+        times: "Times"
+        ingredients: "Ingredients"
+        directions: "Directions"
+        import: "Import"
   categories:
     index_page_title: "Listing categories"
     new_page_title: "New category"
