@@ -16,7 +16,7 @@ module MainMenu
     attr_reader :color
 
     def css_class
-      url_string = URI.parser.unescape(url_for(path)).force_encoding(Encoding::BINARY)
+      url_string = URI::DEFAULT_PARSER.unescape(url_for(path)).force_encoding(Encoding::BINARY)
 
       css_class = ["button is-large is-rounded"]
       unless color.nil?

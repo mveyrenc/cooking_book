@@ -1,14 +1,8 @@
 <% object.book.categorizations.reject{ |c| c == Categorization::COOKING_MAIN_INGREDIENT }.each do |c| %>
-  <%= render(Application::FormEntry::CollectionSelectComponent.new(
+  <%= render(Application::FormEntry::CategorizationSelectComponent.new(
     form: form,
     method: :category_ids,
     resource: object,
-    choices: c.categories,
-    value_method: :id,
-    text_method: :to_s,
-    options: {
-      text: c.name
-    },
-    field_html_options: { multiple: true }
+    categorization: c
   )) %>
 <% end %>

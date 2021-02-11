@@ -54,11 +54,13 @@ class Categorization < ApplicationRecord
   ).find_or_create_by(slug: 'cooking-chef').freeze
   COOKING_DIFFICULTY = create_with(
       name: I18n.t('categorization.item.cooking_difficulty.name'),
-      book_id: Book::COOKING.id
+      book_id: Book::COOKING.id,
+      multiple: false
   ).find_or_create_by(slug: 'cooking-difficulty').freeze
   COOKING_COST = create_with(
       name: I18n.t('categorization.item.cooking_cost.name'),
-      book_id: Book::COOKING.id
+      book_id: Book::COOKING.id,
+      multiple: false
   ).find_or_create_by(slug: 'cooking-cost').freeze
   COOKING_TODO = create_with(
       name: I18n.t('categorization.item.cooking_todo.name'),
@@ -87,11 +89,13 @@ class Categorization < ApplicationRecord
   ).find_or_create_by(slug: 'healthwellness-product-type').freeze
   HEALTHWELLNESS_DIFFICULTY = create_with(
       name: I18n.t('categorization.item.healthwellness_difficulty.name'),
-      book_id: Book::HEALTHWELLNESS.id
+      book_id: Book::HEALTHWELLNESS.id,
+      multiple: false
   ).find_or_create_by(slug: 'healthwellness-difficulty').freeze
   HEALTHWELLNESS_COST = create_with(
       name: I18n.t('categorization.item.healthwellness_cost.name'),
-      book_id: Book::HEALTHWELLNESS.id
+      book_id: Book::HEALTHWELLNESS.id,
+      multiple: false
   ).find_or_create_by(slug: 'healthwellness-cost').freeze
   HEALTHWELLNESS_TODO = create_with(
       name: I18n.t('categorization.item.healthwellness_todo.name'),
@@ -120,11 +124,13 @@ class Categorization < ApplicationRecord
   ).find_or_create_by(slug: 'house-product-type').freeze
   HOUSE_DIFFICULTY = create_with(
       name: I18n.t('categorization.item.house_difficulty.name'),
-      book_id: Book::HOUSE.id
+      book_id: Book::HOUSE.id,
+      multiple: false
   ).find_or_create_by(slug: 'house-difficulty').freeze
   HOUSE_COST = create_with(
       name: I18n.t('categorization.item.house_cost.name'),
-      book_id: Book::HOUSE.id
+      book_id: Book::HOUSE.id,
+      multiple: false
   ).find_or_create_by(slug: 'house-cost').freeze
   HOUSE_TODO = create_with(
       name: I18n.t('categorization.item.house_todo.name'),

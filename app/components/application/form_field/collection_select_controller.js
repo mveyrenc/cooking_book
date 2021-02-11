@@ -5,11 +5,17 @@ import 'selectize/dist/css/selectize.css'
 import 'application/form_field/collection_select.css'
 
 export default class extends Controller {
-    static targets = ["select"]
-
+    static values = { maxItems: Number }
     connect() {
-        $('select#' + this.element.id).selectize({
+        let options = {
+            plugins: ['remove_button'],
             sortField: 'text'
-        });
+        }
+
+        if (this.hasMaxItemsValue) {
+            options.maxItems = this.maxItemsValue;
+        }
+
+        $('select#' + this.element.id).selectize(options);
     }
 }
