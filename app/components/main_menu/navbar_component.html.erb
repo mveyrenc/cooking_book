@@ -1,0 +1,10 @@
+<% if user_signed_in? %>
+  <nav class="navbar" role="navigation" aria-label="main navigation" data-controller="main-menu--navbar">
+    <%= render(MainMenu::Navbar::BrandComponent.new) %>
+    <div id="main-navbar-menu" class="navbar-menu">
+      <div class="navbar-end">
+        <%= render(MainMenu::Navbar::UserNavbarComponent.new) %>
+      </div>
+    </div>
+  </nav>
+<% end %>

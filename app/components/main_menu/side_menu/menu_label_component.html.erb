@@ -1,0 +1,6 @@
+<p class="<%= css_class %>">
+  <% unless icon.nil? %>
+    <span class="icon is-size-3 mr-2"><%= render Application::Elements::FontAwesomeIconComponent.new(icon: icon) %></span>
+  <% end %>
+  <span><%= title %></span>
+</p>

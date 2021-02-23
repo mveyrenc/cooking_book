@@ -24,22 +24,29 @@
                           'data-turbolinks-track': 'reload' %>
 </head>
 <body>
-<%= render(MainMenu::MenuComponent.new(request: request)) %>
-<main>
-  <%= render(Application::Components::BreadcrumbComponent.new(breadcrumb_trail: breadcrumb_trail)) %>
-  <section class="flash">
-    <% flash.each do |name, msg| %>
-      <%= render(Application::Elements::NotificationComponent.new(
-        styles: { color: name },
-        delete: true
-      )) do %>
-        <%= msg %>
-      <% end unless msg.blank? %>
-    <% end %>
-  </section>
-  <section class="page">
-    <%= yield %>
-  </section>
+<%= render(MainMenu::NavbarComponent.new(request: request)) %>
+<main class="columns is-fullheight is-gapless">
+  <aside class="column is-2 is-narrow-mobile is-fullheight is-hidden-mobile has-background-white">
+    <%= render(MainMenu::SideMenuComponent.new(request: request)) %>
+  </aside>
+  <div class="column">
+    <div class="pt-4">
+      <%= render(Application::Components::BreadcrumbComponent.new(breadcrumb_trail: breadcrumb_trail)) %>
+      <section class="flash">
+        <% flash.each do |name, msg| %>
+          <%= render(Application::Elements::NotificationComponent.new(
+            styles: { color: name },
+            delete: true
+          )) do %>
+            <%= msg %>
+          <% end unless msg.blank? %>
+        <% end %>
+      </section>
+      <section class="page">
+        <%= yield %>
+      </section>
+    </div>
+  </div>
 </main>
 <footer>
 </footer>

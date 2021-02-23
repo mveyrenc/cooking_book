@@ -11,8 +11,6 @@
     </div>
     <div class="column is-one-fifth-desktop">
       <div class="box">
-        <%= render(Recipes::NavigationComponent.new(book: book)) %>
-        <hr/>
         <%= render(Recipes::SearchFormComponent.new(
           book: book,
           search_params: search_params

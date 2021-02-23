@@ -18,8 +18,9 @@ en:
     error_message: "detected:"
   menu:
     home: "Home"
-    recipes: "Recipes"
+    recipes: "All the recipes"
     new_recipe: "New recipe"
+    import_recipe: "Import recipe"
     admin: "Admin"
     categories: "Categories"
     ingredients: "Ingredients"
@@ -47,7 +48,6 @@ en:
     new_button: "New recipe"
     search_page_title: "Search"
     last_import_recipe_url: "Last import from %{url}"
-    import_button: "Import"
     import_url: "From an other website"
     import_url_page_title: "Import from an other website"
     import_url_error:

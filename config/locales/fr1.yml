@@ -18,8 +18,9 @@ fr:
     error_message: "détectée : "
   menu:
     home: "Accueil"
-    recipes: "Recettes"
+    recipes: "Toutes les recettes"
     new_recipe: "Nouvelle recette"
+    import_recipe: "Importer une recette"
     admin: "Administration"
     categories: "Catégories"
     ingredients: "Ingrédients"
@@ -47,7 +48,6 @@ fr:
     new_button: "Nouvelle recette"
     search_page_title: "Recherche"
     last_import_recipe_url: "Dernière page importée %{url}"
-    import_button: "Importer"
     import_url: "Depuis un autre site internet"
     import_url_page_title: "Importer une recette depuis un autre site internet"
     import_url_error:

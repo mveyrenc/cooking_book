@@ -1,0 +1,12 @@
+<%= render(MainMenu::SideMenu::MenuLabelComponent.new(
+  title: t('menu.admin'),
+  icon: 'tools'
+)) %>
+<ul class="menu-list">
+  <% if can? :read, Category %>
+    <%= render(MainMenu::SideMenu::MenuItemComponent.new(title: t('menu.categories'), path: categories_path)) %>
+  <% end %>
+  <% if can? :manage, User %>
+    <%= render(MainMenu::SideMenu::MenuItemComponent.new(title: t('menu.users'), path: users_path)) %>
+  <% end %>
+</ul>
