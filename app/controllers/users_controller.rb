@@ -1,64 +1,46 @@
 class UsersController < SecuredController
+
+  include Users::ListConcern
+  include Users::ShowConcern
+  include Users::UpdateConcern
+  include Users::DestroyConcern
+
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
-  breadcrumb I18n.t('breadcrumb.users'), :users_path, match: :exact
+  breadcrumb I18n.t('breadcrumb.users'), :users_path, match: :exclusive
 
   def index
     authorize! :read, User
-    @users = User.all
+    do_list
   end
 
   def show
     authorize! :read, User
     breadcrumb @user.name, user_path(@user)
+    do_show
   end
 
   def edit
     authorize! :update, @user
     breadcrumb @user.name, user_path(@user)
+    do_edit
   end
 
   def update
     authorize! :update, @user
     breadcrumb @user.name, user_path(@user)
-
-    if user_params[:password].blank?
-      user_params.delete(:password)
-      user_params.delete(:password_confirmation)
-    end
-
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to users_url, notice: t('.success') }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html {render :edit}
-        format.json {render json: @user.errors, status: :unprocessable_entity}
-      end
-    end
+    do_update
   end
 
   def destroy
     authorize! :destroy, @user
     @user.destroy
-    respond_to do |format|
-      format.html {redirect_to users_url, notice: t('.success')}
-      format.json {head :no_content}
-    end
+    do_destroy
   end
 
   private
 
   def set_user
     @user = User.find(params[:id])
-  end
-
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def user_params
-    if params[:user][:password].blank?
-      params.require(:user).permit(:name, :email, :role)
-    else
-      params.require(:user).permit(:name, :email, :role, :password, :password_confirmation)
-    end
   end
 end

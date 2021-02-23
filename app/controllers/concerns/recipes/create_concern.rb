@@ -2,30 +2,36 @@ module Recipes::CreateConcern
   extend ActiveSupport::Concern
 
   included do
-    def create_recipe
+    def do_new
+      render new_component
+    end
+
+    def do_create
       @recipe = Recipe.new(create_recipe_params)
 
       @recipe.book = @book
       @recipe.author = current_user
       @recipe.modifier = current_user
 
-      respond_to do |format|
-        if @recipe.save
-          format.html { redirect_to edit_book_recipe_path(@book, @recipe), notice: t('.success') }
-          format.json { render :show, status: :created, location: @recipe }
-        else
-          format.html { render :new }
-          format.json { render json: @recipe.errors, status: :unprocessable_entity }
-        end
+      if @recipe.save
+        redirect_to edit_book_recipe_path(@book, @recipe), flash: { notice: t('.success') }
+      else
+        render new_component
       end
     end
 
+    private
+
     def create_recipe_params
       params.require(:recipe).permit(
-          :name,
-          :description,
-          :wine,
-      )
+        :name,
+        :description,
+        :wine,
+        )
+    end
+
+    def new_component
+      Recipes::Views::NewComponent.new(object: @recipe, part: @part)
     end
   end
 end

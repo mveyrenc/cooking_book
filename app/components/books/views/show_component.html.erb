@@ -1,0 +1,6 @@
+<div class="container-fluid">
+  <div class="box">
+    <%= render(Recipes::ListComponent.new(objects: recipes)) %>
+    <%= link_to I18n.t('homepage.show_all_recipes'), book_recipes_path(book), class: "button is-#{book.color} is-fullwidth has-margin-top-15" %>
+  </div>
+</div>

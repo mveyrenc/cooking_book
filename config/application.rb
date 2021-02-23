@@ -1,6 +1,6 @@
-require_relative 'boot'
+require_relative "boot"
 
-require 'rails/all'
+require "rails/all"
 require "view_component/engine"
 
 # Require the gems listed in Gemfile, including any gems
@@ -10,7 +10,7 @@ Bundler.require(*Rails.groups)
 module CookingBook
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.0
+    config.load_defaults 6.1
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -28,8 +28,6 @@ module CookingBook
       "<div class=\"has-error\">#{html_tag}</div>".html_safe
     }
 
-    config.action_view.form_with_generates_remote_forms = false
-    
     config.autoload_paths += %W(#{config.root}/app/libs)
 
     config.view_component.preview_path = "#{Rails.root}/spec/components/previews"

@@ -2,19 +2,21 @@ module Categories::UpdateConcern
   extend ActiveSupport::Concern
 
   included do
-    def update_category
+    def do_edit
+      render edit_component
+    end
+
+    def do_update
       @category.modifier = current_user
 
-      respond_to do |format|
-        if @category.update(update_category_params)
-          format.html { redirect_to @category, notice: t('.success') }
-          format.json { render :show, status: :ok, location: @category }
-        else
-          format.html { render :edit }
-          format.json { render json: @category.errors, status: :unprocessable_entity }
-        end
+      if @category.update(update_category_params)
+        redirect_to @category, flash: { notice: t('.success') }
+      else
+        render edit_component
       end
     end
+
+    private
 
     def update_category_params
       [:related_tree_category_ids, :related_tree_by_category_ids,
@@ -24,15 +26,19 @@ module Categories::UpdateConcern
       end
 
       params.require(:category).permit(
-          :name,
-          :categorization_id,
-          :related_tree_category_ids => [],
-          :related_tree_by_category_ids => [],
-          :related_category_ids => [],
-          :related_by_category_ids => [],
-          :suggested_category_ids => [],
-          :suggested_by_category_ids => []
+        :name,
+        :categorization_id,
+        :related_tree_category_ids => [],
+        :related_tree_by_category_ids => [],
+        :related_category_ids => [],
+        :related_by_category_ids => [],
+        :suggested_category_ids => [],
+        :suggested_by_category_ids => []
       )
+    end
+
+    def edit_component
+      Categories::Views::EditComponent.new(object: @category)
     end
   end
 end

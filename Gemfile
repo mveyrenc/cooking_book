@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+git_source(:github) { |repo| 'https://github.com/#{repo}.git' }
 
 ruby '2.7.1'
 
@@ -38,8 +38,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem "rspec-rails"
-  gem "rspec_junit_formatter"
+  gem 'rspec-rails'
+  gem 'rspec_junit_formatter'
 end
 
 group :test do
@@ -48,9 +48,9 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
-  gem "simplecov"
-  gem "factory_bot_rails"
-  gem "pry-rails"
+  gem 'simplecov'
+  gem 'factory_bot_rails'
+  gem 'pry-rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -63,23 +63,23 @@ gem 'font-awesome-sass'
 # SolR
 gem 'progress_bar'
 gem 'htmlentities', '~> 4.3.4'
-gem 'sanitize', ">= 4.6.3"
+gem 'sanitize', '>= 4.6.3'
 gem 'searchkick'
 
-gem "delayed_job"
-gem "delayed_job_active_record"
+gem 'delayed_job'
+gem 'delayed_job_active_record'
 
 # Attachement
-gem "paperclip", ">= 5.2.0"
+gem 'paperclip', '>= 5.2.0'
 
 # Sniffer
-gem "nokogiri", ">= 1.10.8"
+gem 'nokogiri', '>= 1.10.8'
 
 # Rating
 gem 'ratyrate'
 
 # Authentification
-gem 'devise', ">= 4.7.1"
+gem 'devise', '>= 4.7.1'
 gem 'cancancan'
 gem 'role_model'
 
@@ -96,14 +96,14 @@ gem 'ancestry'
 gem 'sort_alphabetical'
 
 # Github ActionView::Component
-gem "view_component", require: "view_component/engine"
+gem 'view_component', require: 'view_component/engine'
 
 # Pagination
-gem "kaminari"
+gem 'kaminari'
 
 # markdown
-gem "redcarpet"
-gem "reverse_markdown"
+gem 'redcarpet'
+gem 'reverse_markdown'
 
 # breadcrumbs
 gem 'loaf'
@@ -111,4 +111,5 @@ gem 'loaf'
 # Stimulus reflex
 gem 'cable_ready'
 gem 'stimulus_reflex'
+gem 'hotwire-rails'
 gem 'turbo-rails'

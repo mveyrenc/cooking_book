@@ -2,20 +2,22 @@ module Recipes::UpdateConcern
   extend ActiveSupport::Concern
 
   included do
+    def do_edit
+      render edit_component
+    end
+
     def update_recipe
       @recipe.modifier = current_user
       @recipe.book = @book
 
-      respond_to do |format|
-        if @recipe.update(update_recipe_params)
-          format.html { render :edit, notice: t('.success') }
-          format.json { render :show, status: :ok, location: @recipe }
-        else
-          format.html { render :edit }
-          format.json { render json: @recipe.errors, status: :unprocessable_entity }
-        end
+      if @recipe.update(update_recipe_params)
+        render edit_component, notice: t('.success')
+      else
+        render edit_component
       end
     end
+
+    private
 
     def update_recipe_params
       params.require(:recipe).permit(
@@ -31,6 +33,10 @@ module Recipes::UpdateConcern
         :difficulty,
         :cost
       )
+    end
+
+    def edit_component
+      Recipes::Views::EditComponent.new(object: @recipe, part: @part)
     end
   end
 end

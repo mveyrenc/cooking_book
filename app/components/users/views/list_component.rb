@@ -1,6 +1,6 @@
 module Users
   module Views
-    class IndexComponent < ViewComponent::Base
+    class ListComponent < ViewComponent::Base
       include BookColorable
 
       def initialize(

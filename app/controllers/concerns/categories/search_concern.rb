@@ -2,7 +2,7 @@ module Categories::SearchConcern
   extend ActiveSupport::Concern
 
   included do
-    def search_categories
+    def do_search
       @search_params = search_categories_params
 
       search_query = @search_params[:query].blank? ? "*" : @search_params[:query]
@@ -64,7 +64,11 @@ module Categories::SearchConcern
       @search_result.aggs['related_by_categories_ids']['buckets'].map! { |b| b.merge!({'object' => Category.find_by_id(b['key'])}) }
       @search_result.aggs['suggested_categories_ids']['buckets'].map! { |b| b.merge!({'object' => Category.find_by_id(b['key'])}) }
       @search_result.aggs['suggested_by_categories_ids']['buckets'].map! { |b| b.merge!({'object' => Category.find_by_id(b['key'])}) }
+
+      render search_component
     end
+
+    private
 
     def search_categories_params
       params.permit(
@@ -77,6 +81,13 @@ module Categories::SearchConcern
           :related_by_category_id,
           :suggested_category_id,
           :suggested_by_category_id
+      )
+    end
+
+    def search_component
+      Categories::Views::SearchComponent.new(
+        search_params: @search_params,
+        search_result: @search_result
       )
     end
   end

@@ -1,6 +1,6 @@
 module Recipes
   module Views
-    class IndexComponent < ViewComponent::Base
+    class SearchComponent < ViewComponent::Base
       include BookColorable
 
       def initialize(

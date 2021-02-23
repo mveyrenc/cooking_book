@@ -2,12 +2,10 @@ module Recipes::DestroyConcern
   extend ActiveSupport::Concern
 
   included do
-    def destroy_recipe
+    def do_destroy
       @recipe.destroy
-      respond_to do |format|
-        format.html { redirect_to recipes_url, notice: t('.success') }
-        format.json { head :no_content }
-      end
+
+      redirect_to @book, flash: { notice: t('.success') }
     end
   end
 end
