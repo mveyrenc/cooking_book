@@ -1,29 +1,31 @@
-class Application::FormEntry::LabelComponent < Application::FormEntry::BaseComponent
+module Application::FormEntry
+  class LabelComponent < Application::FormEntry::BaseComponent
 
-  alias_method :html_options, :field_html_options
+    alias_method :html_options, :field_html_options
 
-  def initialize(
-    form:,
-    method:,
-    resource: nil,
-    options: {},
-    html_options: {}
-  )
-    super(
-      form: form,
-      method: method,
-      resource: resource,
-      options: options,
-      field_html_options: html_options
+    def initialize(
+      form:,
+      method:,
+      resource: nil,
+      options: {},
+      html_options: {}
     )
-  end
+      super(
+        form: form,
+        method: method,
+        resource: resource,
+        options: options,
+        field_html_options: html_options
+      )
+    end
 
-  private
+    private
 
-  attr_reader :text
+    attr_reader :text
 
-  def has_label
-    text = options.fetch(:text, nil)
-    text.nil? || !text.blank?
+    def has_label
+      text = options.fetch(:text, nil)
+      text.nil? || !text.blank?
+    end
   end
 end

@@ -1,7 +1,7 @@
 module Recipes
   module Parts
-    class BaseComponent < ViewComponent::Base
-      include BookColorable
+    class BaseComponent < ApplicationComponent
+      include BookColorableConcern
 
       def initialize(object:)
         @object = object

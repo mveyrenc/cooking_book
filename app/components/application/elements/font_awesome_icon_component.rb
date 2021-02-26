@@ -1,6 +1,6 @@
 module Application
   module Elements
-    class Application::Elements::FontAwesomeIconComponent < ViewComponent::Base
+    class FontAwesomeIconComponent < ApplicationComponent
       def initialize(icon:)
         @icon = icon
       end

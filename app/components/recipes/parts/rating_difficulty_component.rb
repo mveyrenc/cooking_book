@@ -7,7 +7,7 @@ module Recipes
       end
 
       def call
-        content_tag :div, :class => "icon-text" do
+        content_tag :div, class: "icon-text" do
           concat content_tag :span,
                              content_tag(
                                :i,

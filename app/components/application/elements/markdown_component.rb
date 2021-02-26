@@ -1,6 +1,6 @@
 module Application
   module Elements
-    class MarkdownComponent < ViewComponent::Base
+    class MarkdownComponent < ApplicationComponent
 
       require 'redcarpet'
 

@@ -1,0 +1,16 @@
+<%= turbo_frame_tag "#{dom_id(object)}_classification_search" do %>
+  <p class="title is-6">Ajouter une catégorie</p>
+  <%= form_with url: search_classification_category_path(object),
+                method: :get,
+                html: { role: "classification_search", class: 'block' } do |f| %>
+    <div class="field has-addons">
+      <div class="control">
+        <input type="text" class="input is-fullwidth" name="search[query]" value="<%= query[:query] %>">
+      </div>
+      <div class="control">
+        <button type="submit" class="button is-primary"><%= I18n.t('application.search') %></button>
+      </div>
+    </div>
+  <% end %>
+  <%= render Categories::Classification::TagListComponent.new(objects: result) %>
+<% end %>

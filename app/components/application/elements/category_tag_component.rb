@@ -1,7 +1,7 @@
 module Application
   module Elements
-    class CategoryTagComponent < ViewComponent::Base
-      include BookColorable
+    class CategoryTagComponent < ApplicationComponent
+      include BookColorableConcern
 
       def initialize(object:)
         @object = object

@@ -1,5 +1,5 @@
 module Users
-  class FormComponent < ViewComponent::Base
+  class FormComponent < ApplicationComponent
     def initialize(object:)
       @object = object
     end

@@ -1,5 +1,5 @@
 module Application::FormEntry
-  class BaseComponent < ViewComponent::Base
+  class BaseComponent < ApplicationComponent
     def initialize(
       form:,
       method:,

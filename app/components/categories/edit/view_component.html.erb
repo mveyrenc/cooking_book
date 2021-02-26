@@ -1,0 +1,6 @@
+<div class="box">
+  <div class="title is-size-1 <%= css_book_color %>"><%= I18n.t('categories.edit_page_title') %></div>
+  <%= turbo_frame_tag dom_id(object) do %>
+    <%= render(Categories::Title::FormComponent.new(object: object, with_turbo: true)) %>
+  <% end %>
+</div>

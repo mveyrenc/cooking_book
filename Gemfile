@@ -60,6 +60,9 @@ end
 # Font-Awesome
 gem 'font-awesome-sass'
 
+# bulma
+gem 'bulma_form_builder'
+
 # SolR
 gem 'progress_bar'
 gem 'htmlentities', '~> 4.3.4'
@@ -113,3 +116,6 @@ gem 'cable_ready'
 gem 'stimulus_reflex'
 gem 'hotwire-rails'
 gem 'turbo-rails'
+
+# Decorator
+gem 'draper'

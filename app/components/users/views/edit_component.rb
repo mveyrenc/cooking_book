@@ -1,7 +1,7 @@
 module Users
   module Views
-    class EditComponent < ViewComponent::Base
-      include BookColorable
+    class EditComponent < ApplicationComponent
+      include BookColorableConcern
 
       def initialize(object:)
         @object = object

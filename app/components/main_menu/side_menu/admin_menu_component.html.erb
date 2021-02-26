@@ -3,6 +3,10 @@
   icon: 'tools'
 )) %>
 <ul class="menu-list">
+  <% if can? :read, Recipe %>
+    <%= render(MainMenu::SideMenu::MenuItemComponent.new(title: t('menu.new_recipe'), path: new_recipe_path)) %>
+    <%= render(MainMenu::SideMenu::MenuItemComponent.new(title: t('menu.import_recipe'), path: import_recipe_path)) %>
+  <% end %>
   <% if can? :read, Category %>
     <%= render(MainMenu::SideMenu::MenuItemComponent.new(title: t('menu.categories'), path: categories_path)) %>
   <% end %>

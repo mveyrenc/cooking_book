@@ -1,6 +1,6 @@
 module Application
   module Elements
-    class CategoryTagListComponent < ViewComponent::Base
+    class CategoryTagListComponent < ApplicationComponent
       def initialize(
         categories:,
         extra_categories: [],

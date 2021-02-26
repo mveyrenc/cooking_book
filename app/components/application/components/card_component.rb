@@ -1,7 +1,6 @@
 module Application
   module Components
-    class CardComponent < ViewComponent::Base
-      include Application::Component
+    class CardComponent < ApplicationComponent
 
       with_content_areas :header, :image, :body, :footer
 

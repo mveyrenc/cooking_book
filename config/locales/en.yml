@@ -232,6 +232,7 @@ en:
       category:
         name: "Name"
         book: "Recipe book"
+        book_id: "Recipe book"
         categorization_id: "Categorization"
         categorization: "Categorization"
         related_tree_categories: "Related categories (recursively)"

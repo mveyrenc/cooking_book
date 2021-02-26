@@ -1,2 +1,4 @@
-class Application::FormEntry::EntryComponent < Application::FormEntry::BaseComponent
+module Application::FormEntry
+  class EntryComponent < Application::FormEntry::BaseComponent
+  end
 end

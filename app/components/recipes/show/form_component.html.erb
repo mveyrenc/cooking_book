@@ -1,0 +1,36 @@
+<%= form_for(object, url: form_url, layout: :horizontal, data: { turbo: with_turbo? }) do |f| %>
+  <% if object.errors.any? %>
+    <div class="notification is-danger">
+      <button class="delete"></button>
+      <ul>
+        <% object.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% case part %>
+<% when Recipes::Parts::DetailComponent::PART_RECIPE %>
+    <%= render(Recipes::FormParts::GeneralInformationComponent.new(object: object, form: f)) %>
+  <% when Recipes::Parts::DetailComponent::PART_MEDIA %>
+    <%= render(Recipes::FormParts::MediaGalleryComponent.new(object: object, form: f)) %>
+  <% when Recipes::Parts::DetailComponent::PART_CLASSIFICATION %>
+    <%= render(Recipes::FormParts::ClassificationComponent.new(object: object, form: f)) %>
+  <% when Recipes::Parts::DetailComponent::PART_COMPOSITION %>
+    <%= render(Recipes::FormParts::CompositionComponent.new(object: object, form: f)) %>
+  <% when Recipes::Parts::DetailComponent::PART_TIMES %>
+    <%= render(Recipes::FormParts::TimesComponent.new(object: object, form: f)) %>
+  <% when Recipes::Parts::DetailComponent::PART_INGREDIENTS %>
+    <%= render(Recipes::FormParts::IngredientsComponent.new(object: object, form: f)) %>
+  <% when Recipes::Parts::DetailComponent::PART_DIRECTIONS %>
+    <%= render(Recipes::FormParts::DirectionsComponent.new(object: object, form: f)) %>
+  <% when Recipes::Parts::DetailComponent::PART_IMPORT %>
+    <%= render(Recipes::FormParts::ImportComponent.new(object: object, form: f)) %>
+  <% else %>
+    <%= render(Recipes::Parts::NoPartComponent.new(object: object)) %>
+  <% end %>
+  <hr/>
+  <div class="buttons is-centered">
+    <%= f.submit nil, { class: css_book_color } %>
+  </div>
+<% end %>

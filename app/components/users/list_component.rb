@@ -1,5 +1,5 @@
 module Users
-  class ListComponent < ViewComponent::Base
+  class ListComponent < ApplicationComponent
     def initialize(objects:)
       @objects = objects
     end

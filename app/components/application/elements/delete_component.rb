@@ -1,16 +1,11 @@
 module Application
   module Elements
-    class DeleteComponent < ViewComponent::Base
-      include Application::Component
+    class DeleteComponent < ApplicationComponent
 
       def initialize(
-        stimulus_controller:,
-        styles: {}
+        stimulus_controller:
       )
         @stimulus_controller = stimulus_controller
-
-        self.styles = styles
-        compute_styles
       end
 
       private

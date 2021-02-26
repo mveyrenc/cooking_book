@@ -1,5 +1,5 @@
 module MainMenu::Navbar
-  class BrandComponent < ViewComponent::Base
+  class BrandComponent < ApplicationComponent
     def initialize(*) end
   end
 end

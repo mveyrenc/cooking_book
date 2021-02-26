@@ -1,25 +1,25 @@
 module Application
   module Elements
-    class TagComponent < ViewComponent::Base
-      include Application::Component
+    class TagComponent < ApplicationComponent
 
       def initialize(
-        styles: {}
+        colors: []
       )
-        self.styles = styles
-        compute_styles
+        @colors = colors
       end
 
       def call
-        content_tag :span, { :class => css_class } do
+        content_tag :span, { class: css_class } do
           content
         end
       end
 
       private
 
+      attr_reader :colors
+
       def default_css_classes
-        ['tag']
+        ['tag'] + colors.map{ |c| "is-#{c}" }
       end
     end
   end

@@ -1,5 +1,5 @@
 module MainMenu
-  class SideMenuComponent < ViewComponent::Base
+  class SideMenuComponent < ApplicationComponent
     include Devise::Controllers::Helpers
 
     def initialize(request:)

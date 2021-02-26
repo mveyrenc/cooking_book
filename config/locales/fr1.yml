@@ -206,6 +206,8 @@ fr:
     attributes:
       recipe:
         name: "Nom"
+        book: "Livre"
+        book_id: "Livre"
         description: "Description"
         recipe_type_ids: "Types de recette"
         recipe_types: "Types de recette"

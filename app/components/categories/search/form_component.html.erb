@@ -1,0 +1,76 @@
+<%= form_with url: categories_path,
+              method: :get,
+              html: { role: "search" } do |f| %>
+  <div class="field ">
+    <div class="control">
+      <input type="text" class="input is-fullwidth" name="query" value="<%= query[:query] %>">
+    </div>
+  </div>
+  <%= render(Application::SearchFormEntry::AggregationSelectComponent.new(
+    form: f,
+    method: Category.human_attribute_name('book'),
+    buckets: result.aggs['book_id']['buckets'],
+    search_param_name: 'book_id',
+    search_param_value: query[:book_id],
+    options: { "data-target": "categories--search-form_entry.book" }
+  )) %>
+  <%= render(Application::SearchFormEntry::AggregationSelectComponent.new(
+    form: f,
+    method: Category.human_attribute_name('categorization'),
+    buckets: result.aggs['categorization_id']['buckets'],
+    search_param_name: 'categorization_id',
+    search_param_value: query[:categorization_id],
+    options: { "data-target": "categories--search-form_entry.categorization_id" }
+  )) %>
+  <%= render(Application::SearchFormEntry::AggregationSelectComponent.new(
+    form: f,
+    method: Category.human_attribute_name('related_tree_categories'),
+    buckets: result.aggs['related_tree_categories_ids']['buckets'],
+    search_param_name: 'related_tree_category_id',
+    search_param_value: query[:related_tree_category_id],
+    options: { "data-target": "categories--search-form_entry.related_tree_category_id" }
+  )) %>
+  <%= render(Application::SearchFormEntry::AggregationSelectComponent.new(
+    form: f,
+    method: Category.human_attribute_name('related_tree_by_categories'),
+    buckets: result.aggs['related_tree_by_categories_ids']['buckets'],
+    search_param_name: 'related_tree_by_category_id',
+    search_param_value: query[:related_tree_by_category_id],
+    options: { "data-target": "categories--search-form_entry.related_tree_by_category_id" }
+  )) %>
+  <%= render(Application::SearchFormEntry::AggregationSelectComponent.new(
+    form: f,
+    method: Category.human_attribute_name('related_categories'),
+    buckets: result.aggs['related_categories_ids']['buckets'],
+    search_param_name: 'related_category_id',
+    search_param_value: query[:related_category_id],
+    options: { "data-target": "categories--search-form_entry.related_category_id" }
+  )) %>
+  <%= render(Application::SearchFormEntry::AggregationSelectComponent.new(
+    form: f,
+    method: Category.human_attribute_name('related_by_categories'),
+    buckets: result.aggs['related_by_categories_ids']['buckets'],
+    search_param_name: 'related_by_category_id',
+    search_param_value: query[:related_by_category_id],
+    options: { "data-target": "categories--search-form_entry.related_by_category_id" }
+  )) %>
+  <%= render(Application::SearchFormEntry::AggregationSelectComponent.new(
+    form: f,
+    method: Category.human_attribute_name('suggested_categories'),
+    buckets: result.aggs['suggested_categories_ids']['buckets'],
+    search_param_name: 'suggested_category_id',
+    search_param_value: query[:suggested_category_id],
+    options: { "data-target": "categories--search-form_entry.suggested_category_id" }
+  )) %>
+  <%= render(Application::SearchFormEntry::AggregationSelectComponent.new(
+    form: f,
+    method: Category.human_attribute_name('suggested_by_categories'),
+    buckets: result.aggs['suggested_by_categories_ids']['buckets'],
+    search_param_name: 'suggested_by_category_id',
+    search_param_value: query[:suggested_by_category_id],
+    options: { "data-target": "categories--search-form_entry.suggested_by_category_id" }
+  )) %>
+  <div class="buttons is-centered">
+    <button type="submit" class="button is-primary"><%= I18n.t('application.search') %></button>
+  </div>
+<% end %>

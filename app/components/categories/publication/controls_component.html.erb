@@ -1,0 +1,14 @@
+<div class="block buttons is-right">
+  <% if edit? %>
+    <%= link_to(edit_category_path(object), class: edit_button_css_classes, title: edit_button_title) do %>
+      <%= render(Application::Elements::ButtonEditComponent.new) %>
+    <% end %>
+  <% end %>
+  <% if delete? %>
+    <%= form_with(model: object, method: :delete, data: delete_button_data) do |f| %>
+      <%= f.button(class: delete_button_css_classes, data: { confirm: I18n.t('application.destroy_confirmation') }) do %>
+        <%= render(Application::Elements::ButtonDeleteComponent.new) %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

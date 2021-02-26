@@ -1,0 +1,16 @@
+<div class="container-fluid">
+  <%= turbo_frame_tag dom_id(object) do %>
+    <div class="columns is-desktop">
+      <div class="column is-four-fifths-desktop">
+        <div class="box">
+          <%= render(Recipes::Parts::DetailComponent.new(object: object, part: part)) %>
+        </div>
+      </div>
+      <div class="column is-one-fifth-desktop">
+        <div class="box">
+          <%= render(Recipes::Parts::NavigationComponent.new(object: object, part: part)) %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

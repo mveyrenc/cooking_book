@@ -1,10 +1,10 @@
 <div class="menu">
   <ul class="menu-list">
     <li>
-      <%= link_to book_recipes_path(object.book) do %>
+      <%= link_to recipes_path(object.book) do %>
         <span class="icon"><%= render Application::Elements::FontAwesomeIconComponent.new(icon: 'arrow-alt-circle-left') %></span>
         <span><%= t('recipes.return_to_search_list') %></span>
-      <% end %>
+      <% end unless object.book.nil? %>
     </li>
   </ul>
   <% unless object.new_record? %>
@@ -37,7 +37,11 @@
           <li><%= link_to_edit Recipes::Parts::DetailComponent::PART_IMPORT %></li>
         <% end %>
         <% if delete? %>
-          <li><%= render(Application::Elements::ButtonDeleteComponent.new(url: [object.book, object])) %></li>
+          <li>
+            <%= link_to(object, class: edit_button_css_classes, title: delete_button_title, method: delete_button_method, data: delete_button_data) do %>
+              <%= render(Application::Elements::ButtonDeleteComponent.new) %>
+            <% end %>
+          </li>
         <% end %>
       </ul>
     <% end %>

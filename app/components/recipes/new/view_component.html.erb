@@ -1,0 +1,4 @@
+<div class="box">
+  <div class="title is-size-1 <%= css_book_color %>"><%= I18n.t('recipes.new_page_title') %></div>
+  <%= render(Recipes::Show::FormComponent.new(object: object, part: part, with_turbo: false)) %>
+</div>

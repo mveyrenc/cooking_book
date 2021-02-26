@@ -1,5 +1,5 @@
 module Users
-  class ListItemComponent < ViewComponent::Base
+  class ListItemComponent < ApplicationComponent
     def initialize(object:)
       @object = object
     end

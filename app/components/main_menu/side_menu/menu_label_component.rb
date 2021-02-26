@@ -1,5 +1,5 @@
 module MainMenu::SideMenu
-  class MenuLabelComponent < ViewComponent::Base
+  class MenuLabelComponent < ApplicationComponent
 
     def initialize(title:, icon: nil, color: nil)
       @title = title
@@ -16,7 +16,7 @@ module MainMenu::SideMenu
     def css_class
       css_class = ["menu-label is-size-5"]
       unless color.nil?
-        css_class << "has-text-#{Application::Color::COLORS[color][:class]}"
+        css_class << "has-text-#{color}"
       end
       css_class.join(' ')
     end

@@ -1,2 +1,4 @@
-class Application::FormEntry::ImageComponent < Application::FormEntry::BaseComponent
+module Application::FormEntry
+  class ImageComponent < Application::FormEntry::BaseComponent
+  end
 end

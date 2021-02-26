@@ -17,7 +17,7 @@ class RecipesController < SecuredController
 
   def show
     authorize! :read, @book.recipes
-    breadcrumb @recipe.name, book_recipe_path(@book, @recipe)
+    breadcrumb @recipe.name, recipe_path(@recipe)
     do_show
   end
 
@@ -36,13 +36,13 @@ class RecipesController < SecuredController
 
   def edit
     authorize! :update, @recipe
-    breadcrumb @recipe.name, book_recipe_path(@book, @recipe)
+    breadcrumb @recipe.name, recipe_path(@recipe)
     do_edit
   end
 
   def update
     authorize! :update, @recipe
-    breadcrumb @recipe.name, book_recipe_path(@book, @recipe)
+    breadcrumb @recipe.name, recipe_path(@recipe)
     update_recipe
   end
 

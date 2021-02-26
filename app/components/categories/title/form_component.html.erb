@@ -1,0 +1,34 @@
+  <%= form_with(model: object, layout: :horizontal, data: { turbo: with_turbo? }) do |f| %>
+    <% if object.errors.any? %>
+      <div class="notification is-danger">
+        <button class="delete"></button>
+        <ul>
+          <% object.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= f.text_field :name, required: true %>
+    <%= f.grouped_collection_select(
+      :categorization_id,
+      Book.all,
+      :categorizations,
+      :name,
+      :id,
+      :to_s,
+      { required: true }
+    ) if object.categorization.nil? %>
+    <%= f.collection_select(
+      :categorization_id,
+      object.categorization.book.categorizations.ordered,
+      :id,
+      :to_s,
+      {},
+      { required: true }
+    ) if object.categorization.present? and can? :manage, Category %>
+    <div class="buttons is-centered">
+      <%= f.submit nil, { class: css_book_color } %>
+    </div>
+  <% end %>
+

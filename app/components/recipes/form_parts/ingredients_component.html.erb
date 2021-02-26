@@ -1,24 +1,10 @@
-<%= render(Application::FormEntry::TextComponent.new(
-  form: form,
-  method: :quantity,
-  resource: object
-)) %>
-<%= render(Application::FormEntry::MarkdownComponent.new(
-  form: form,
-  method: :ingredients,
-  resource: object
-)) %>
-<% if object.book == Categorization::COOKING_MAIN_INGREDIENT.book %>
-  <%= render(Application::FormEntry::CollectionSelectComponent.new(
-    form: form,
-    method: :category_ids,
-    resource: object,
-    choices: Categorization::COOKING_MAIN_INGREDIENT.categories,
-    value_method: :id,
-    text_method: :to_s,
-    options: {
-      text: Categorization::COOKING_MAIN_INGREDIENT.name
-    },
-    field_html_options: { multiple: true }
-  )) %>
-<% end %>
+<%= form.text_field :quantity %>
+<%= form.markdown :ingredients %>
+<%= form.collection_select(
+  :category_ids,
+  Categorization::COOKING_MAIN_INGREDIENT.categories,
+  :id,
+  :to_s,
+  {},
+  { multiple: true }
+) if object.book == Categorization::COOKING_MAIN_INGREDIENT.book %>

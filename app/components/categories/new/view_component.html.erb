@@ -1,0 +1,4 @@
+<div class="box">
+  <div class="title is-size-1"><%= I18n.t('categories.new_page_title') %></div>
+  <%= render(Categories::Title::FormComponent.new(object: object, with_turbo: false)) %>
+</div>

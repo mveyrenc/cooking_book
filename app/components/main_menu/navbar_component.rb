@@ -1,5 +1,5 @@
 module MainMenu
-  class NavbarComponent < ViewComponent::Base
+  class NavbarComponent < ApplicationComponent
     include Devise::Controllers::Helpers
 
     def initialize(request:)

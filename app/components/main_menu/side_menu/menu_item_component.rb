@@ -1,5 +1,5 @@
 module MainMenu::SideMenu
-  class MenuItemComponent < ViewComponent::Base
+  class MenuItemComponent < ApplicationComponent
 
     def initialize(title:, path:, color: nil)
       @title = title

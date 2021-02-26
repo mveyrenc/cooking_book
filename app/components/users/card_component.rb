@@ -1,5 +1,5 @@
 module Users
-  class CardComponent < ViewComponent::Base
+  class CardComponent < ApplicationComponent
     include ActionController::Helpers
     include Devise::Controllers::Helpers
     include CanCan::ControllerAdditions

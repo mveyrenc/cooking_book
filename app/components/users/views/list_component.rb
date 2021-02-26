@@ -1,7 +1,7 @@
 module Users
   module Views
-    class ListComponent < ViewComponent::Base
-      include BookColorable
+    class ListComponent < ApplicationComponent
+      include BookColorableConcern
 
       def initialize(
           objects:

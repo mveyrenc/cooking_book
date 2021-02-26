@@ -1,16 +1,4 @@
-<%= render(Application::FormEntry::TextComponent.new(
-  form: form,
-  method: :name,
-  resource: object,
-  options: { required: true }
-)) %>
-<%= render(Application::FormEntry::MarkdownComponent.new(
-  form: form,
-  method: :description,
-  resource: object
-)) %>
-<%= render(Application::FormEntry::TextComponent.new(
-  form: form,
-  method: :wine,
-  resource: object
-)) %>
+<%= form.text_field :name, { required: true } %>
+<%= form.select :book_id, Book.all.collect { |p| [ p.name, p.id ] }, { required: true } if object.book.nil? %>
+<%= form.markdown :description %>
+<%= form.text_field :wine %>

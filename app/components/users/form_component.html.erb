@@ -1,9 +1,7 @@
 <%= form_for(object) do |f| %>
   <% if object.errors.any? %>
-    <div class="alert alert-danger alert-dismissable">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <h4><%= pluralize(object.errors.count, "error") %> prohibited this user from being saved:</h4>
-
+    <div class="notification is-danger">
+      <button class="delete"></button>
       <ul>
         <% object.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
@@ -12,47 +10,36 @@
     </div>
   <% end %>
 
-  <%= render(Application::FormEntry::TextComponent.new(
-      form: f,
-      method: :name,
-      resource: object,
-      options: {required: true}
-  )) %>
-  <%= render(Application::FormEntry::EmailComponent.new(
-      form: f,
-      method: :email,
-      resource: object,
-      options: {required: true}
-  )) %>
-  <%= render(Application::FormEntry::CollectionSelectComponent.new(
-      form: f,
-      method: :role,
-      resource: object,
-      choices: User::ROLES,
-      value_method: :to_s,
-      text_method: :humanize,
-      options: {required: true}
-  )) %>
+  <%= f.text_field(
+        :name,
+        { required: true }
+      ) %>
+  <%= f.email_field(
+        :email,
+        { required: true }
+      ) %>
+  <%= f.collection_select(
+        :role,
+        User::ROLES,
+        :to_s,
+        :humanize,
+        { required: true }
+      ) %>
 
   <div class="help is-size-5"><%= t('devise.form.change_password_help') %></div>
-  <%= render(Application::FormEntry::PasswordComponent.new(
-      form: f,
-      method: :password,
-      resource: object,
-      field_html_options: {autocomplete: "off"}
-  )) %>
-  <%= render(Application::FormEntry::PasswordComponent.new(
-      form: f,
-      method: :password_confirmation,
-      resource: object,
-      field_html_options: {autocomplete: "off"}
-  )) %>
+  <%= f.password(
+        :email,
+        {},
+        { autocomplete: "off" }
+      ) %>
+  <%= f.password(
+        :password_confirmation,
+        {},
+        { autocomplete: "off" }
+      ) %>
 
   <hr/>
   <div class="buttons is-centered">
-    <%= render(Application::FormEntry::SubmitComponent.new(
-        form: f,
-        resource: object
-    )) %>
+    <%= f.submit nil %>
   </div>
 <% end %>

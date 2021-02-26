@@ -10,7 +10,7 @@ class ImportRecipeController < SecuredController
     @recipe = nil
     @url = nil
 
-    render Recipes::Views::ImportComponent.new(book: @book, url: @url, object: @recipe)
+    render Recipes::Views::ViewComponent.new(book: @book, url: @url, object: @recipe)
   end
 
   def create
@@ -35,9 +35,9 @@ class ImportRecipeController < SecuredController
     end
 
     if @recipe.nil?
-      render Recipes::Views::ImportComponent.new(book: @book, url: @url, object: @recipe)
+      render Recipes::Views::ViewComponent.new(book: @book, url: @url, object: @recipe)
     elsif @recipe.save
-      redirect_to edit_book_recipe_path(@book, @recipe), notice: t('recipes.create.success')
+      redirect_to recipe_path(@recipe), notice: t('recipes.create.success')
     else
       @recipe.errors.full_messages.each do |e|
         flash[:danger] = e.message
@@ -45,7 +45,7 @@ class ImportRecipeController < SecuredController
         print e.full_message
       end
 
-      render Recipes::Views::ImportComponent.new(book: @book, url: @url, object: @recipe)
+      render Recipes::Views::ViewComponent.new(book: @book, url: @url, object: @recipe)
     end
   end
 

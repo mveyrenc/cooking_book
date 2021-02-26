@@ -1,0 +1,29 @@
+<div class="columns" data-controller="categories--classification--show">
+  <div class="column">
+    <%= turbo_frame_tag "#{dom_id(object)}_classification" do %>
+      <% %w"related_tree related_tree_by related related_by".map { |c| "#{c}_categories" }.each do |relation| %>
+        <div class="block">
+          <div class="heading"><%= Category.human_attribute_name(relation) %></div>
+          <%= render Categories::Classification::TagListComponent.new(objects: object.send(relation), add_delete: true, relation: relation) %>
+        </div>
+      <% end %>
+
+      <% %w"extra_related".map { |c| "#{c}_categories" }.each do |relation| %>
+        <div class="block">
+          <div class="heading"><%= Category.human_attribute_name(relation) %></div>
+          <%= render Categories::Classification::TagListComponent.new(objects: object.send(relation)) %>
+        </div>
+      <% end %>
+
+      <% %w"suggested suggested_by".map { |c| "#{c}_categories" }.each do |relation| %>
+        <div class="block">
+          <div class="heading"><%= Category.human_attribute_name(relation) %></div>
+          <%= render Categories::Classification::TagListComponent.new(objects: object.send(relation), add_delete: true, relation: relation) %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="column">
+    <%= render Categories::Classification::SearchComponent.new(object: object) %>
+  </div>
+</div>

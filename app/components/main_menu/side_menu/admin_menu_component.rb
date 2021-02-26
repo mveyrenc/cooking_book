@@ -1,5 +1,5 @@
 module MainMenu::SideMenu
-  class AdminMenuComponent < ViewComponent::Base
+  class AdminMenuComponent < ApplicationComponent
     include ActionController::Helpers
     include Devise::Controllers::Helpers
     include CanCan::ControllerAdditions

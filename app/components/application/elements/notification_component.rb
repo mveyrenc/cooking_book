@@ -1,24 +1,19 @@
 module Application
   module Elements
-    class NotificationComponent < ViewComponent::Base
-      include Application::Component
+    class NotificationComponent < ApplicationComponent
 
       def initialize(
-        styles: {},
-        delete: true,
-        delete_styles: {}
+        color: :primary,
+        delete: true
       )
+        @color = color
         @delete = delete
-        @delete_styles = delete_styles
-
-        self.styles = styles
-        compute_styles
       end
 
       private
 
+      attr_reader :color
       attr_reader :delete
-      attr_reader :delete_styles
 
       alias :delete? :delete
 
@@ -27,7 +22,7 @@ module Application
       end
 
       def default_css_classes
-        ['notification']
+        ['notification', "is-#{color}"]
       end
     end
   end

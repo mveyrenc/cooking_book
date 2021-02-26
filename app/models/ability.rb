@@ -30,25 +30,29 @@ class Ability
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
     
     user ||= User.new # guest user
- 
-    if user.role? :admin
-      can :manage, :all
-    end
-    if user.role? :manager
-      can :create, Category
-      can :update, Category
-    end
-    if user.role? :moderator
-      can :update, [Recipe]
-    end
-    if user.role? :contributor
-      can :create, [Recipe]
-      can :update, Recipe do |recipe|
-        recipe.try(:author) == user
-      end
-    end
+
     if user.role? :reader
       can :read, [Recipe, Category]
+
+      if user.role? :contributor
+        can :create, [Recipe]
+        can :update, Recipe do |recipe|
+          recipe.try(:author) == user
+        end
+
+        if user.role? :moderator
+          can :update, [Recipe]
+
+          if user.role? :manager
+            can :create, Category
+            can :update, Category
+
+            if user.role? :admin
+              can :manage, :all
+            end
+          end
+        end
+      end
     end
   end
 end

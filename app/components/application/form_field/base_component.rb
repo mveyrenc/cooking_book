@@ -1,5 +1,5 @@
 module Application::FormField
-  class BaseComponent < ViewComponent::Base
+  class BaseComponent < ApplicationComponent
 
     def initialize(
       form: nil,

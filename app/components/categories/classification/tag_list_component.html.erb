@@ -1,0 +1,8 @@
+<ul
+     data-controller="categories--classification--tag-list"
+     <% if relation %>
+     data-categories--classification--tag-list-relation-value="<%= relation %>"
+     data-relation="<%= relation %>"
+     <% end %>>
+  <%= render(Categories::Classification::TagComponent.with_collection(objects, add_delete: add_delete)) %>
+</ul>
