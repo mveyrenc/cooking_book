@@ -3,25 +3,8 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <%= f.hidden_field :reset_password_token %>
-
-  <div class="field">
-    <%= f.label :password, class: 'label' %>
-    <% if @minimum_password_length %>
-      <em>(<%= t('devise.label.password_minimum_length', {length: @minimum_password_length}) %>)</em>
-    <% end %>
-    <div class="control has-icons-left">
-      <%= f.password_field :password, autocomplete: "new-password", placeholder: '*******', class: 'input' %>
-      <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
-    </div>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation, class: 'label' %>
-    <div class="control has-icons-left">
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: '*******', class: 'input' %>
-      <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
-    </div>
-  </div>
+  <%= f.password_field :password, autocomplete: "new-password", placeholder: '*******', class: 'input', help: t('devise.label.password_minimum_length', {length: @minimum_password_length}) %>
+  <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: '*******', class: 'input' %>
 
   <div class="control has-text-centered">
     <%= f.submit t('devise.label.change_password'), class: "button is-success" %>

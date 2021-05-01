@@ -1,27 +1,11 @@
 <h2 class="is-size-2"><%= t('devise.label.log_in') %></h2>
-<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "box"}) do |f| %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "box" }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
-  <div class="field">
-    <%= f.label :email, class: 'label' %>
-    <div class="control has-icons-left">
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'e.g. bobsmith@gmail.com', required: true, class: 'input' %>
-      <span class="icon is-small is-left"><i class="fa fa-envelope"></i></span>
-    </div>
-  </div>
-
-  <div class="field">
-    <%= f.label :password, class: 'label' %>
-    <div class="control has-icons-left">
-      <%= f.password_field :password, autocomplete: "current-password", placeholder: '*******', class: 'input' %>
-      <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
-    </div>
-  </div>
+  <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'e.g. bobsmith@gmail.com', required: true, class: 'input' %>
+  <%= f.password_field :password, autocomplete: "current-password", placeholder: '*******', class: 'input' %>
 
   <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.check_box_label :remember_me %>
-    </div>
+    <%= f.check_box :remember_me %>
   <% end %>
 
   <div class="control has-text-centered">

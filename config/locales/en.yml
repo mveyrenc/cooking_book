@@ -253,9 +253,10 @@ en:
         role: "Role"
         password: "Password"
         password_confirmation: "Password confirmation"
+        current_password: "Current password"
   form:
     image:
-      choose_file: "Choisir un fichier"
+      choose_file: "Choose a file"
   devise:
     label:
       sign_in: "Sign in"

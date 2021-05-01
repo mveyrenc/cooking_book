@@ -2,73 +2,22 @@
   <section class="page">
     <div class="container-fluid box">
       <div class="title is-size-1"><%= I18n.t('devise.label.edit_profile') %></div>
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put, class: "box"}) do |f| %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put }, layout: :horizontal, data: { turbo: false }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
-
-        <div class="field is-horizontal">
-          <div class="field-label">
-            <%= f.label :email, class: 'label' %>
-          </div>
-          <div class="field-body">
-            <div class="field">
-              <div class="control">
-                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'input' %>
-              </div>
-            </div>
-          </div>
-        </div>
-
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'input' %>
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <div><%= t('devise.label.currently_waiting_confirmation', {email: resource.unconfirmed_email}) %></div>
         <% end %>
-
-        <div class="field is-horizontal">
-          <div class="field-label">
-            <%= f.label :password, class: 'label' %> <i>(<%= t('devise.label.leave_blank_password_hint') %>)</i></div>
-          <div class="field-body">
-            <div class="field">
-              <div class="control">
-                <%= f.password_field :password, autocomplete: "new-password", class: 'input' %>
-                <% if @minimum_password_length %>
-                  <em>(<%= t('devise.label.password_minimum_length', {length: @minimum_password_length}) %>)</em>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="field is-horizontal">
-          <div class="field-label">
-            <%= f.label :password_confirmation, class: 'label' %>
-          </div>
-          <div class="field-body">
-            <div class="field">
-              <div class="control">
-                <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'input' %>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="field is-horizontal">
-          <div class="field-label">
-            <%= f.label :current_password, class: 'label' %> <i>(<%= t('devise.label.update_password_hint') %>)</i>
-          </div>
-          <div class="field-body">
-            <div class="field">
-              <div class="control">
-                <%= f.password_field :current_password, autocomplete: "current-password", class: 'input' %>
-              </div>
-            </div>
-          </div>
-        </div>
+        <%= f.password_field :password, autocomplete: "new-password", class: 'input', help: t('devise.label.password_minimum_length', {length: @minimum_password_length}) %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'input' %>
+        <%= f.password_field :current_password, autocomplete: "current-password", class: 'input', help: t('devise.label.update_password_hint') %>
 
         <div class="control has-text-centered">
           <%= f.submit t('devise.label.save'), class: "button is-success" %>
         </div>
       <% end %>
 
-      <div class="has-text-centered">
+      <div class="control has-text-centered mt-4">
         <%= button_to t('devise.label.cancel_account'), registration_path(resource_name), class: 'button is-danger', data: {confirm: t('application.destroy_confirmation')}, method: :delete %>
       </div>
     </div>

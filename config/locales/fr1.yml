@@ -254,6 +254,7 @@ fr:
         role: "Rôle"
         password: "Mot de passe"
         password_confirmation: "Confirmation du mot de passe"
+        current_password: "Mot de passe actuel"
   form:
     image:
       choose_file: "Choisir un fichier"
