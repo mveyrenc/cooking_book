@@ -1,8 +1,6 @@
-module Categories
-  module New
-    class ViewComponent < ApplicationComponent
-      include Turbo::FramesHelper
-
+module Users
+  module List
+    class ItemComponent < ApplicationComponent
       def initialize(object:)
         @object = object
       end

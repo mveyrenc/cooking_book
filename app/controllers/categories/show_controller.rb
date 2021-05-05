@@ -1,7 +1,7 @@
 module Categories
   class ShowController < SecuredController
 
-    include InstanceConcern
+    include FriendlyInstanceConcern
 
     def call
       authorize! :read, instance

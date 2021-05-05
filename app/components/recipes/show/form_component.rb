@@ -5,20 +5,16 @@ module Recipes
 
       def initialize(
         object:,
-        part:,
-        with_turbo:
+        part:
       )
         @object = object
         @part = part
-        @with_turbo = with_turbo
       end
 
       private
 
       attr_reader :object
       attr_reader :part
-      attr_reader :with_turbo
-      alias :with_turbo? :with_turbo
 
       def form_url
         if object.new_record?

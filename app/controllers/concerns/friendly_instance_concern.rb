@@ -1,4 +1,4 @@
-module InstanceConcern
+module FriendlyInstanceConcern
   extend ActiveSupport::Concern
 
   include ModelConcern
@@ -7,7 +7,7 @@ module InstanceConcern
     private
 
     def instance
-      @instance ||= model_class.find(params[:id])
+      @instance ||= model_class.friendly.find(params[:id])
     end
   end
 end

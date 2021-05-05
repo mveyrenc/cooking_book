@@ -1,7 +1,7 @@
 module Recipes
   class UpdateController < SecuredController
 
-    include InstanceConcern
+    include FriendlyInstanceConcern
 
     def call
       authorize! :update, instance
@@ -12,14 +12,15 @@ module Recipes
       part = params[:part] || Recipes::Parts::DetailComponent::PART_RECIPE
 
       respond_to do |format|
+        flash.now[:notice] = t('.success')
         if instance.update(permit_params)
           format.turbo_stream {
             s = turbo_stream.replace dom_id(instance) do
-              view_context.render(Recipes::Show::FormComponent.new(object: decorate(instance), part: part, with_turbo: true))
+              view_context.render(Recipes::Show::FormComponent.new(object: decorate(instance), part: part))
             end
             render turbo_stream: s
           }
-          format.html { redirect_to instance, notice: t('.success') }
+          format.html { redirect_to instance }
         else
           format.html { render Recipes::Edit::ViewComponent.new(object: decorate(instance), part: part) }
         end

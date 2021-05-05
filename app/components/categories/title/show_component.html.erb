@@ -1,12 +1,15 @@
 <%= turbo_frame_tag dom_id(object) do %>
   <div class="columns">
     <div class="column is-four-fifths">
-      <p><span class="subtitle is-5"><%= object.categorization.book %></span> /
-        <span class="subtitle is-6"><%= object.categorization %></span></p>
-      <h1 class="title <%= css_book_color %>"><%= object %></h1>
+      <div class="block">
+        <h2><span class="subtitle is-5"><%= object.categorization.book %></span> /
+          <span class="subtitle is-6"><%= object.categorization %></span></h2>
+        <h1 class="title is-2 <%= css_book_color %>"><%= object %></h1>
+      </div>
     </div>
     <div class="column">
       <%= render(Categories::Publication::ControlsComponent.new(object: object)) %>
     </div>
   </div>
+  <div class="divider is-centered"></div>
 <% end %>

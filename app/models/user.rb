@@ -15,7 +15,9 @@ class User < ActiveRecord::Base
   before_save :default_role
   
   ratyrate_rater
-  
+
+  default_scope { order(:name) }
+
   def role?(base_role)
     logger.debug self.inspect
     if self.role.nil? || self.role.blank?

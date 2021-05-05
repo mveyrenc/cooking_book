@@ -1,27 +1,24 @@
 module Categories
   class ClassificationRemoveController < SecuredController
 
-    include InstanceConcern
+    include FriendlyInstanceConcern
 
     def call
       authorize! :update, instance
       breadcrumb instance.name, category_path(instance)
 
-      instance.modifier = current_user
       related = model_class.friendly.find(permit_params[:related_id])
-      if related
-        instance["#{permit_params[:relation_type]}"].delete(related)
-      end
 
       respond_to do |format|
-        if instance.save
+        flash.now[:notice] = t('.success')
+        if related and instance.send(permit_params[:relation_type]).delete(related)
           format.turbo_stream {
-            s = turbo_stream.replace helpers.dom_id(instance) do
-              view_context.render(Categories::Classification::ShowComponent.new(object: decorate(instance)))
+            s = turbo_stream.replace "#{helpers.dom_id(instance)}_classification" do
+              view_context.render(Categories::Classification::ManageComponent.new(object: decorate(instance)))
             end
             render turbo_stream: s
           }
-          format.html { redirect_to instance, notice: t('.success') }
+          format.html { redirect_to instance }
         else
           format.html { render Categories::Edit::ViewComponent.new(object: decorate(instance)) }
         end

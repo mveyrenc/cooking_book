@@ -1,6 +1,6 @@
 module Categories
-  module New
-    class ViewComponent < ApplicationComponent
+  module Classification
+    class ManageComponent < ApplicationComponent
       include Turbo::FramesHelper
 
       def initialize(object:)

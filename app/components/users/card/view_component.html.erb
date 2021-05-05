@@ -8,14 +8,14 @@
       <time datetime="<%= object.created_at.strftime("%F %T") %>"><%= object.created_at.strftime("%d/%m/%Y %H:%M") %></time>
     </div>
   </div>
-  <footer class="card-footer">
+  <footer class="card-footer" data-turbo="false">
     <% if can? :update, object %>
       <%= link_to edit_user_path(object), class: 'card-footer-item no-print', title: I18n.t('application.edit') do %>
         <span class="fa fa-edit"></span>
       <% end %>
     <% end %>
     <% if can? :destroy, object %>
-      <%= link_to object, class: 'card-footer-item', title: I18n.t('application.destroy'), method: :delete, data: {confirm: I18n.t('application.destroy_confirmation')} do %>
+      <%= link_to object, class: 'card-footer-item', title: I18n.t('application.destroy'), method: :delete, data: {'turbo-frame': '_top', turbo: false, confirm: I18n.t('application.destroy_confirmation')} do %>
         <span class="fa fa-trash"></span>
       <% end %>
     <% end %>

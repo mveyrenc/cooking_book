@@ -1,7 +1,7 @@
 module Categories
   class ClassificationSearchController < SecuredController
 
-    include InstanceConcern
+    include FriendlyInstanceConcern
 
     def call
       authorize! :read, model_class

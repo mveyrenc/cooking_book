@@ -1,9 +1,11 @@
 module Users
-  module Views
-    class EditComponent < ApplicationComponent
+  module Show
+    class FormComponent < ApplicationComponent
       include BookColorableConcern
 
-      def initialize(object:)
+      def initialize(
+        object:
+      )
         @object = object
       end
 

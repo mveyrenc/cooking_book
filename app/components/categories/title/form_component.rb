@@ -7,19 +7,22 @@ module Categories
       include BookColorableConcern
 
       def initialize(
-        object:,
-        with_turbo:
+        object:
       )
         @object = object
-        @with_turbo = with_turbo
       end
 
       private
 
       attr_reader :object
-      attr_reader :with_turbo
-      alias :with_turbo? :with_turbo
 
+      def categorization_list_by_book
+        Book.all.decorate
+      end
+
+      def categorization_list
+        object.book.categorizations.ordered
+      end
     end
   end
 end

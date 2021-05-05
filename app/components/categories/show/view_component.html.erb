@@ -1,4 +1,5 @@
 <div class="box">
   <%= render(Categories::Title::ShowComponent.new(object: object)) %>
-  <%= render(Categories::Classification::ShowComponent.new(object: object)) %>
+  <%= render(Categories::Classification::ShowComponent.new(object: object)) unless manage?%>
+  <%= render(Categories::Classification::ManageComponent.new(object: object)) if manage? %>
 </div>

@@ -1,0 +1,9 @@
+<% flash.each do |name, msg| %>
+  <%= render(Application::Elements::NotificationComponent.new(
+    color: name,
+    delete: true
+  )) do %>
+    <%= msg %>
+  <% end unless msg.blank? %>
+<% end %>
+<%= yield %>

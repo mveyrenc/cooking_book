@@ -1,5 +1,6 @@
 module Users
-  class CardComponent < ApplicationComponent
+module Card
+  class ViewComponent < ApplicationComponent
     include ActionController::Helpers
     include Devise::Controllers::Helpers
     include CanCan::ControllerAdditions
@@ -11,5 +12,6 @@ module Users
     private
 
     attr_reader :object
+  end
   end
 end

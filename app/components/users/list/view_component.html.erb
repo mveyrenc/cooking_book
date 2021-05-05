@@ -4,7 +4,7 @@
   <div class="container is-widescreen">
     <div class="columns is-multiline">
       <% objects.each do |item| %>
-        <%= render(Users::ListItemComponent.new(object: item)) %>
+        <%= render(Users::List::ItemComponent.new(object: item)) %>
       <% end %>
     </div>
   </div>

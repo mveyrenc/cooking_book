@@ -10,7 +10,8 @@ module Recipes
       instance.modifier = current_user
 
       if instance.save
-        redirect_to edit_recipe_path instance, flash: { notice: t('.success') }
+        flash.now[:notice] = t('.success')
+        redirect_to edit_recipe_path instance
       else
         render Recipes::New::ViewComponent.new(object: decorate(instance), part: Recipes::Parts::DetailComponent::PART_RECIPE)
       end

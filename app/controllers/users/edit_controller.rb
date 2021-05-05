@@ -8,7 +8,7 @@ module Users
       breadcrumb instance.name, category_path(instance)
 
 
-      render Users::Edit::FormComponent.new(object: decorate(instance))
+      render Users::Show::FormComponent.new(object: decorate(instance))
     end
   end
 end

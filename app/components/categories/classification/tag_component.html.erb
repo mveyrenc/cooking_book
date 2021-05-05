@@ -1,7 +1,1 @@
-<li data-id="<%= object.id %>">
-  <div class="tags has-addons are-medium mb-2">
-    <span class="tag is-gray"><%= object.categorization %> / <%= object %></span>
-    <% if add_delete %><a class="tag is-delete id-dark"></a>
-    <% end %>
-  </div>
-</li>
+<span class="tag <%= css_book_color %>"><%= link_to "#{related_object.categorization} / #{related_object}", related_object, class: "has-text-white", data: {'turbo-frame': '_top' } %></span>

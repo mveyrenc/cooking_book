@@ -1,7 +1,7 @@
 module Categories
   class EditController < SecuredController
 
-    include InstanceConcern
+    include FriendlyInstanceConcern
 
     def call
       authorize! :update, instance

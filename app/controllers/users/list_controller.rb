@@ -8,7 +8,7 @@ module Users
     def call
       authorize! :read, model_class
 
-      render  Users::Views::ListComponent.new(
+      render  Users::List::ViewComponent.new(
         objects: User.all.decorate
       )
     end

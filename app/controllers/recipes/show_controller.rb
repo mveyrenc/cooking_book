@@ -1,7 +1,7 @@
 module Recipes
   class ShowController < SecuredController
 
-    include InstanceConcern
+    include FriendlyInstanceConcern
 
     def call
       authorize! :read, instance

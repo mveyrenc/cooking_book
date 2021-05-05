@@ -337,12 +337,6 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (0.2.3)
       rails (>= 6.0.0)
-    stimulus_reflex (3.4.1)
-      cable_ready (>= 4.5)
-      nokogiri
-      rack
-      rails (>= 5.2)
-      redis
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
     thor (1.1.0)
@@ -426,7 +420,6 @@ DEPENDENCIES
   sort_alphabetical
   spring
   spring-watcher-listen (~> 2.0.0)
-  stimulus_reflex
   turbo-rails
   view_component
   web-console (>= 3.3.0)

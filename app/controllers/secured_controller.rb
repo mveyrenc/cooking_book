@@ -4,7 +4,8 @@ class SecuredController < ApplicationController
 
   rescue_from CanCan::AccessDenied do |exception|
     if user_signed_in?
-      redirect_to root_url, :flash => {:error => exception.message}
+      flash.now[:error] = exception.message
+      redirect_to root_url
     else
       redirect_to new_user_session_url
     end

@@ -37,8 +37,8 @@ Rails.application.routes.draw do
   delete '/categories/:id' => 'categories/destroy#call'
   get '/categories/:id/edit' => 'categories/edit#call', as: :edit_category
   get '/categories/:id/classification/search' => 'categories/classification_search#call', as: :search_classification_category
-  post '/categories/:id/classification/add' => 'categories/classification_add#call', as: :add_classification_category
-  post '/categories/:id/classification/remove' => 'categories/classification_remove#call', as: :remove_classification_category
+  post '/categories/:id/classification' => 'categories/classification_add#call', as: :add_classification_category
+  delete '/categories/:id/classification' => 'categories/classification_remove#call', as: :remove_classification_category
 
   # resources :categories
 

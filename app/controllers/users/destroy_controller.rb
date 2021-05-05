@@ -6,10 +6,10 @@ module Users
     def call
       authorize! :destroy, instance
 
-      respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.remove(instance) }
-        format.html         { redirect_to categories_url, flash: { notice: t('.success') } }
-      end
+      instance.destroy
+      flash.now[:notice] = t('.success')
+
+      redirect_to users_url
     end
   end
 end

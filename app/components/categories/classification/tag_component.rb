@@ -1,23 +1,20 @@
 module Categories
   module Classification
     class TagComponent < ApplicationComponent
-      with_collection_parameter :object
+      with_collection_parameter :related_object
 
       include BookColorableConcern
 
 
       def initialize(
-        object:,
-        add_delete: false
+        related_object:
       )
-        @object = object
-        @add_delete = add_delete
+        @related_object = related_object
       end
 
       private
 
-      attr_reader :object
-      attr_reader :add_delete
+      attr_reader :related_object
     end
   end
 end

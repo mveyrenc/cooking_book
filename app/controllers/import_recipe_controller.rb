@@ -21,14 +21,14 @@ class ImportRecipeController < SecuredController
     @recipe = nil
     @url = import_recipe_params[:url]
     if @url.blank?
-      flash[:danger] = 'recipes.import_url_error.invalid_url'
+      flash.now[:danger] = 'recipes.import_url_error.invalid_url'
     else
       begin
         @recipe = RecipeImport.import(@book, @url, current_user)
       rescue RecipeImport::UnknownTagError => e
-        flash[:danger] = 'recipes.import_url_error.unknown_recipe_provider'
+        flash.now[:danger] = 'recipes.import_url_error.unknown_recipe_provider'
       rescue => e
-        flash[:danger] = e.message
+        flash.now[:danger] = e.message
 
         print e.full_message
       end
@@ -37,10 +37,11 @@ class ImportRecipeController < SecuredController
     if @recipe.nil?
       render Recipes::Views::ViewComponent.new(book: @book, url: @url, object: @recipe)
     elsif @recipe.save
-      redirect_to recipe_path(@recipe), notice: t('recipes.create.success')
+      flash.now[:notice] = t('recipes.create.success')
+      redirect_to recipe_path(@recipe)
     else
       @recipe.errors.full_messages.each do |e|
-        flash[:danger] = e.message
+        flash.now[:danger] = e.message
 
         print e.full_message
       end

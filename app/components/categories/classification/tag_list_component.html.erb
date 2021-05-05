@@ -1,8 +1,7 @@
-<ul
-     data-controller="categories--classification--tag-list"
-     <% if relation %>
-     data-categories--classification--tag-list-relation-value="<%= relation %>"
-     data-relation="<%= relation %>"
-     <% end %>>
-  <%= render(Categories::Classification::TagComponent.with_collection(objects, add_delete: add_delete)) %>
-</ul>
+<div class="block">
+  <h3 class="title is-4"><%= Category.human_attribute_name(relation) %></h3>
+  <div class="tags are-small">
+    <%= render(Categories::Classification::TagComponent.with_collection(related_objects)) if related_objects? %>
+    <%= t('application.no_entry') unless related_objects? %>
+  </div>
+</div>

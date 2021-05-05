@@ -13,9 +13,10 @@ module Users
       end
 
       if instance.update(permit_params)
-        redirect_to users_url, flash: { notice: t('.success') }
+        flash.now[:notice] = t('.success')
+        redirect_to users_url
       else
-        render Users::Edit::FormComponent.new(object: decorate(instance))
+        render Users::Show::FormComponent.new(object: decorate(instance))
       end
     end
 

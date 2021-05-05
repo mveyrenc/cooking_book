@@ -1,0 +1,23 @@
+<div class="block">
+  <h3 class="title is-4"><%= Category.human_attribute_name(relation) %></h3>
+  <div class="tags are-small">
+    <%= render(Categories::Classification::ManageItemComponent.with_collection(related_objects, object: object, relation: relation)) if related_objects? %>
+    <%= t('application.no_entry') unless related_objects? %>
+  </div>
+  <%= form_with(url: add_classification_category_path(object), method: :post) do |f| %>
+    <%= hidden_field_tag 'category[relation_type]', relation %>
+    <div class="field has-addons">
+      <p class="control">
+        <span class="select">
+          <%= select_tag 'category[categorization_id]', options_from_collection_for_select(categorizations, "id", "name", object.categorization.id) %>
+        </span>
+      </p>
+      <p class="control">
+        <%= text_field_tag 'category[category_name]', nil, class: 'input' %>
+      </p>
+      <p class="control">
+        <%= button_tag(t('categories.add_related_button'), class: 'button') %>
+      </p>
+    </div>
+  <% end %>
+</div>

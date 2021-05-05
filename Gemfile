@@ -111,9 +111,8 @@ gem 'reverse_markdown'
 # breadcrumbs
 gem 'loaf'
 
-# Stimulus reflex
+# Stimulus & Turbo
 gem 'cable_ready'
-gem 'stimulus_reflex'
 gem 'hotwire-rails'
 gem 'turbo-rails'
 

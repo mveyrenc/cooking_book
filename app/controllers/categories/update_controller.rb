@@ -1,7 +1,7 @@
 module Categories
   class UpdateController < SecuredController
 
-    include InstanceConcern
+    include FriendlyInstanceConcern
 
     def call
       authorize! :update, instance
@@ -11,15 +11,22 @@ module Categories
 
       respond_to do |format|
         if instance.update(permit_params)
+          flash.now[:notice] = t('.success')
           format.turbo_stream {
             s = turbo_stream.replace helpers.dom_id(instance) do
               view_context.render(Categories::Title::ShowComponent.new(object: decorate(instance)))
             end
             render turbo_stream: s
           }
-          format.html { redirect_to instance, notice: t('.success') }
+          format.html { redirect_to instance }
         else
-          format.html { render Categories::Edit::ViewComponent.new(object: decorate(instance)) }
+          format.turbo_stream {
+            s = turbo_stream.replace helpers.dom_id(instance) do
+              view_context.render(Categories::Title::FormComponent.new(object: decorate(instance)))
+            end
+            render turbo_stream: s, status: :unprocessable_entity
+          }
+          format.html { render Categories::Edit::ViewComponent.new(object: decorate(instance)), status: :unprocessable_entity }
         end
       end
     end

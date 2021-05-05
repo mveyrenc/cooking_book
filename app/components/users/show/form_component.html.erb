@@ -1,0 +1,47 @@
+<div class="container-fluid box">
+  <div class="title is-size-1"><%= I18n.t('users.edit_page_title') %></div>
+  <%= form_for(object, layout: :horizontal, data: { turbo: false }) do |f| %>
+    <% if object.errors.any? %>
+      <div class="notification is-danger">
+        <button class="delete"></button>
+        <ul>
+          <% object.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= f.text_field(
+          :name,
+          { required: true }
+        ) %>
+    <%= f.email_field(
+          :email,
+          { required: true }
+        ) %>
+    <%= f.collection_select(
+          :role,
+          User::ROLES,
+          :to_s,
+          :humanize,
+          { required: true }
+        ) %>
+
+    <div class="help is-size-5"><%= t('devise.form.change_password_help') %></div>
+    <%= f.password_field(
+          :password,
+          autocomplete: "off"
+        ) %>
+    <%= f.password_field(
+          :password_confirmation,
+          autocomplete: "off"
+        ) %>
+
+    <hr/>
+    <div class="buttons is-centered">
+      <%= f.submit nil %>
+    </div>
+  <% end %>
+
+</div>
