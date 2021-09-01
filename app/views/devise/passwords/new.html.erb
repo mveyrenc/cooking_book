@@ -1,5 +1,5 @@
 <h2 class="is-size-2"><%= t('devise.label.forgot_your_password') %></h2>
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :post, class: "box"}) do |f| %>
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :post, class: "box"}, data: {turbo: false}) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'e.g. bobsmith@gmail.com', required: true, class: 'input' %>
 

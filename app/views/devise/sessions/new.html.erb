@@ -1,5 +1,5 @@
 <h2 class="is-size-2"><%= t('devise.label.log_in') %></h2>
-<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "box" }) do |f| %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "box" }, data: {turbo: false}) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'e.g. bobsmith@gmail.com', required: true, class: 'input' %>
   <%= f.password_field :password, autocomplete: "current-password", placeholder: '*******', class: 'input' %>
