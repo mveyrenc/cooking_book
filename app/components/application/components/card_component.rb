@@ -2,7 +2,10 @@ module Application
   module Components
     class CardComponent < ApplicationComponent
 
-      with_content_areas :header, :image, :body, :footer
+      renders_one :header
+      renders_one :image
+      renders_one :body
+      renders_one :footer
 
       private
 

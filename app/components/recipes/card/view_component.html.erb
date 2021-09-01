@@ -1,10 +1,10 @@
-<%= render(Application::Components::CardComponent.new) do |component| %>
+<%= render Application::Components::CardComponent.new do |component| %>
 
-  <% component.with(:header) do %>
+  <% component.header() do %>
     <p class="card-header-title"><%= link_to object, object, class: css_book_color %></p>
   <% end %>
 
-  <% component.with(:image) do %>
+  <% component.image() do %>
     <% unless object.picture.blank? %>
       <%= link_to object do %>
         <figure class="image">
