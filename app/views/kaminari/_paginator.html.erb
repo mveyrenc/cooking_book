@@ -12,9 +12,9 @@ The container tag
 =end
 %>
 
-<section class="section">
-  <div class="container">
-    <%= paginator.render do %>
+<%= paginator.render do %>
+  <section class="section">
+    <div class="container">
       <nav class="pagination is-rounded">
         <%= prev_page_tag unless current_page.first? %>
         <%= next_page_tag unless current_page.last? %>
@@ -30,6 +30,6 @@ The container tag
           <%= last_page_tag unless current_page.last? %>
         </ul>
       </nav>
-    <% end %>
-  </div>
-</section>
+    </div>
+  </section>
+<% end %>
