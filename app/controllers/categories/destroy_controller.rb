@@ -11,7 +11,7 @@ module Categories
 
       respond_to do |format|
         format.turbo_stream { render turbo_stream: turbo_stream.remove(helpers.dom_id(instance)) }
-        format.html         { redirect_to categories_url }
+        format.html { redirect_to categories_url }
       end
     end
   end

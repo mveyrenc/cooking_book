@@ -6,87 +6,69 @@ module Categories
     def call
       authorize! :read, model_class
       breadcrumb I18n.t('breadcrumb.categories'), :categories_path, match: :exclusive
-      search_params = permit_params
 
-      search_query = search_params[:query].blank? ? "*" : search_params[:query]
-      search_options = {
-        aggs: [
-          :book_id,
-          :categorization_id,
-          :related_tree_categories_ids,
-          :related_tree_by_categories_ids,
-          :related_categories_ids,
-          :related_by_categories_ids,
-          :suggested_categories_ids,
-          :suggested_by_categories_ids
-        ],
-        where: {},
-        page: params[:page],
-        per_page: 30,
-        order: {
-          _score: :desc,
-          name: :asc
-        }
+      s = {
+        query: "*",
+        where: {}
       }
 
-      unless search_params[:categorization_id].blank?
-        search_options[:where] = {categorization_id: search_params[:categorization_id]}
-      end
-      unless search_params[:book_id].blank?
-        search_options[:where][:book_id] = search_params[:book_id]
-      end
-      unless search_params[:related_tree_category_id].blank?
-        search_options[:where][:related_tree_categories_ids] = search_params[:related_tree_category_id]
-      end
-      unless search_params[:related_tree_by_category_id].blank?
-        search_options[:where][:related_tree_by_categories_ids] = search_params[:related_tree_by_category_id]
-      end
-      unless search_params[:related_category_id].blank?
-        search_options[:where][:related_categories_ids] = search_params[:related_category_id]
-      end
-      unless search_params[:related_by_category_id].blank?
-        search_options[:where][:related_by_categories_ids] = search_params[:related_by_category_id]
-      end
-      unless search_params[:suggested_category_id].blank?
-        search_options[:where][:suggested_categories_ids] = search_params[:suggested_category_id]
-      end
-      unless search_params[:suggested_by_category_id].blank?
-        search_options[:where][:suggested_by_categories_ids] = search_params[:suggested_by_category_id]
+      if permit_params[:search]
+        s[:query] = permit_params[:search][:query] unless permit_params[:search][:query].blank?
+        [
+          :book_name,
+          :categorization_name,
+          :related_tree_categories_names,
+          :related_tree_category_name,
+          :related_tree_by_category_name,
+          :related_category_name,
+          :related_by_category_name,
+          :suggested_category_name,
+          :suggested_by_category_name
+        ].each { |p| s[:where][p] = permit_params[:search][p] unless permit_params[:search][p].blank? }
       end
 
-      search_options.delete :where unless search_options[:where].any?
-
-      search_result = model_class.search search_query, search_options
-
-      search_result.aggs['book_id']['buckets'].map! { |b| b.merge!({'object' => Book.find_by_id(b['key'])}) }
-      search_result.aggs['categorization_id']['buckets'].map! { |b| b.merge!({'object' => Categorization.find_by_id(b['key'])}) }
-      search_result.aggs['related_tree_categories_ids']['buckets'].map! { |b| b.merge!({'object' => Category.find_by_id(b['key'])}) }
-      search_result.aggs['related_tree_by_categories_ids']['buckets'].map! { |b| b.merge!({'object' => Category.find_by_id(b['key'])}) }
-      search_result.aggs['related_categories_ids']['buckets'].map! { |b| b.merge!({'object' => Category.find_by_id(b['key'])}) }
-      search_result.aggs['related_by_categories_ids']['buckets'].map! { |b| b.merge!({'object' => Category.find_by_id(b['key'])}) }
-      search_result.aggs['suggested_categories_ids']['buckets'].map! { |b| b.merge!({'object' => Category.find_by_id(b['key'])}) }
-      search_result.aggs['suggested_by_categories_ids']['buckets'].map! { |b| b.merge!({'object' => Category.find_by_id(b['key'])}) }
+      result = model_class
+                 .search s[:query],
+                         aggs: [
+                           :book_name,
+                           :categorization_name,
+                           :related_tree_categories_names,
+                           :related_tree_by_categories_names,
+                           :related_categories_names,
+                           :related_by_categories_names,
+                           :suggested_categories_names,
+                           :suggested_by_categories_names
+                         ],
+                         includes: { categorization: [:book] },
+                         where: s[:where],
+                         page: params[:page],
+                         per_page: 30,
+                         order: {
+                           _score: :desc,
+                           name: :asc
+                         }
 
       render Categories::Search::ViewComponent.new(
-        query: search_params,
-        result: decorate_collection(search_result)
+        query: permit_params[:search] || {},
+        result: decorate_collection(result)
       )
     end
 
     private
 
     def permit_params
-      params.permit(
-        :query,
-        :book_id,
-        :categorization_id,
-        :related_tree_category_id,
-        :related_tree_by_category_id,
-        :related_category_id,
-        :related_by_category_id,
-        :suggested_category_id,
-        :suggested_by_category_id
-      )
+      params
+        .permit(search: [
+          :query,
+          :book_name,
+          :categorization_name,
+          :related_tree_categories_names,
+          :related_tree_by_categories_names,
+          :related_categories_names,
+          :related_by_categories_names,
+          :suggested_categories_names,
+          :suggested_by_categories_names
+        ])
     end
 
   end

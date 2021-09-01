@@ -59,15 +59,28 @@ class Category < ActiveRecord::Base
 
   def search_data
     attributes.merge(
-        categorization_name: categorization.to_s,
-        book_id: categorization.book.id,
-        book_name: categorization.book.to_s,
-        related_tree_categories_ids: related_tree_categories.map(&:id),
-        related_tree_by_categories_ids: related_tree_by_categories.map(&:id),
-        related_categories_ids: related_categories.map(&:id),
-        related_by_categories_ids: related_by_categories.map(&:id),
-        suggested_categories_ids: suggested_categories.map(&:id),
-        suggested_by_categories_ids: suggested_by_categories.map(&:id),
+      categorization_name: categorization.to_s,
+
+      book_id: categorization.book.id,
+      book_name: categorization.book.to_s,
+
+      related_tree_categories_names: related_tree_categories.map(&:name),
+      related_tree_categories_ids: related_tree_categories.map(&:id),
+
+      related_tree_by_categories_names: related_tree_by_categories.map(&:name),
+      related_tree_by_categories_ids: related_tree_by_categories.map(&:id),
+
+      related_categories_names: related_categories.map(&:name),
+      related_categories_ids: related_categories.map(&:id),
+
+      related_by_categories_names: related_by_categories.map(&:name),
+      related_by_categories_ids: related_by_categories.map(&:id),
+
+      suggested_categories_names: suggested_categories.map(&:name),
+      suggested_categories_ids: suggested_categories.map(&:id),
+
+      suggested_by_categories_names: suggested_by_categories.map(&:name),
+      suggested_by_categories_ids: suggested_by_categories.map(&:id),
     )
   end
 

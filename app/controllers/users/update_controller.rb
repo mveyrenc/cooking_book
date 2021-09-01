@@ -24,9 +24,23 @@ module Users
 
     def permit_params
       if params[:user][:password].blank?
-        params.require(:user).permit(:name, :email, :role)
+        params
+          .require(:user)
+          .permit(
+            :name,
+            :email,
+            :role
+          )
       else
-        params.require(:user).permit(:name, :email, :role, :password, :password_confirmation)
+        params
+          .require(:user)
+          .permit(
+            :name,
+            :email,
+            :role,
+            :password,
+            :password_confirmation
+          )
       end
     end
   end

@@ -20,12 +20,14 @@ module Recipes
     private
 
     def permit_params
-      params.require(:recipe).permit(
-        :name,
-        :book_id,
-        :description,
-        :wine,
-      )
+      params
+        .require(:recipe)
+        .permit(
+          :name,
+          :book_id,
+          :description,
+          :wine,
+        )
     end
   end
 end

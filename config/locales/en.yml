@@ -4,6 +4,7 @@ en:
     home: "Home"
     recipes: "Recipes"
     search: "Search"
+    reset: "Reset"
     new: "New"
     show: "Show"
     edit: "Edit"
@@ -85,7 +86,10 @@ en:
         directions: "Directions"
         import: "Import"
   categories:
-    index_page_title: "Listing categories"
+    index_page_title:
+      zero: "Categories"
+      one: "Categories (%{count})"
+      other: "Categories (%{count})"
     new_page_title: "New category"
     edit_page_title: "Edit category"
     new_button: "New category"

@@ -25,7 +25,7 @@ module Categories
 
     def permit_params
       params
-        .require(:search)
+        .permit(:search)
         .permit(
           :query
         )

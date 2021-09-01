@@ -15,8 +15,8 @@
           <select name="<%= search_param_name %>" <%= "disabled" unless buckets.any? %>>
             <option value=""><%= t('application.all') %></option>
             <% buckets.each do |b| %>
-              <option value="<%= b['key'] %>" <%= "selected" if b['key'].to_s == search_param_value %>>
-                <%= "%s (%d)" % [b['object'], b['doc_count']] %>
+              <option value="<%= b['key'] %>" <%= "selected" if b['key'] == search_param_value %>>
+                <%= "%s (%d)" % [b['key'], b['doc_count']] %>
               </option>
             <% end %>
           </select>

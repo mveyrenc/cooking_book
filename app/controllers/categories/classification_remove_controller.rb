@@ -29,10 +29,11 @@ module Categories
 
     def permit_params
       params
-        .require(:category).permit(
-        :related_id,
-        :relation_type
-      )
+        .require(:category)
+        .permit(
+          :related_id,
+          :relation_type
+        )
     end
   end
 end

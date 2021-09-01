@@ -29,10 +29,12 @@ module Categories
     private
 
     def permit_params
-      params.require(:category).permit(
-        :name,
-        :categorization_id
-      )
+      params
+        .require(:category)
+        .permit(
+          :name,
+          :categorization_id
+        )
     end
   end
 end

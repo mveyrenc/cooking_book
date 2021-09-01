@@ -34,17 +34,20 @@ module Recipes
     end
 
     def permit_params
-      params.permit(
-        :query,
-        :book_id,
-        :categorization_id,
-        :related_tree_category_id,
-        :related_tree_by_category_id,
-        :related_category_id,
-        :related_by_category_id,
-        :suggested_category_id,
-        :suggested_by_category_id
-      )
+
+      params
+        .permit(:search)
+        .permit(
+          :query,
+          :book_id,
+          :categorization_id,
+          :related_tree_category_id,
+          :related_tree_by_category_id,
+          :related_category_id,
+          :related_by_category_id,
+          :suggested_category_id,
+          :suggested_by_category_id
+        )
     end
 
   end

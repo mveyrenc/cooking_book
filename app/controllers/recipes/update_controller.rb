@@ -30,19 +30,21 @@ module Recipes
     private
 
     def permit_params
-      params.require(:recipe).permit(
-        :name,
-        { :category_ids => [] },
-        :description,
-        :picture,
-        :times,
-        :quantity,
-        :ingredients,
-        :directions,
-        :wine,
-        :difficulty,
-        :cost
-      )
+      params
+        .require(:recipe)
+        .permit(
+          :name,
+          { :category_ids => [] },
+          :description,
+          :picture,
+          :times,
+          :quantity,
+          :ingredients,
+          :directions,
+          :wine,
+          :difficulty,
+          :cost
+        )
     end
   end
 end

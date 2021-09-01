@@ -4,6 +4,7 @@ fr:
     home: "Accueil"
     recipes: "Recettes"
     search: "Rechercher"
+    reset: "Réinitialiser"
     new: "Ajouter"
     show: "Lire"
     edit: "Modifier"
@@ -85,7 +86,10 @@ fr:
         directions: "Mode opératoire"
         import: "Import"
   categories:
-    index_page_title: "Catégories"
+    index_page_title:
+      zero: "Catégories"
+      one: "Catégories (%{count})"
+      other: "Catégories (%{count})"
     new_page_title: "Nouvelle catégorie"
     edit_page_title: "Modification de la catégorie"
     new_button: "Nouvelle catégorie"
