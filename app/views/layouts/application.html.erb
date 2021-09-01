@@ -22,7 +22,6 @@
   <![endif]-->
   <%= javascript_pack_tag "application",
                           'data-turbo-track': 'reload' %>
-  <%= turbo_include_tags %>
 </head>
 <body>
 <%= render(MainMenu::NavbarComponent.new(request: request)) %>
