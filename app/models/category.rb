@@ -45,13 +45,11 @@ class Category < ActiveRecord::Base
   belongs_to :author, class_name: "User"
   belongs_to :modifier, class_name: "User"
 
-  validates :name, presence: true, uniqueness: { scope: :categorization }
+  validates :name, presence: true, uniqueness: { scope: :categorization, case_sensitive: false }
   validates :author, presence: true
   validates :modifier, presence: true
 
   scope :ordered, -> { order(name: :asc) }
-  scope :recipe_type, -> { where(is_course_type: true) }
-  scope :categories, -> { where(is_course_type: false) }
 
   searchkick
 

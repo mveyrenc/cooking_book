@@ -7,17 +7,28 @@ module Categories
       authorize! :update, instance
       breadcrumb instance.name, category_path(instance)
 
-      related = model_class.find_or_create_by(
-        categorization_id: permit_params[:categorization_id],
-        name: permit_params[:category_name]
-      ) do |c|
-        c.author = current_user
-        c.modifier = current_user
+      related = model_class
+                  .where(
+                    "categorization_id = ? AND lower(name) = ?",
+                    permit_params[:categorization_id],
+                    permit_params[:category_name].downcase
+                  )
+                  .first
+      unless related
+        related = model_class.create(
+          categorization_id: permit_params[:categorization_id],
+          name: permit_params[:category_name],
+          author: current_user,
+          modifier: current_user,
+        )
       end
 
       respond_to do |format|
         flash.now[:notice] = t('.success')
         if related and instance.send(permit_params[:relation_type]) << related
+          instance.send(permit_params[:relation_type]).replace(
+            instance.send(permit_params[:relation_type]).distinct
+          )
           format.turbo_stream {
             s = turbo_stream.replace "#{helpers.dom_id(instance)}_classification" do
               view_context.render(Categories::Classification::ManageComponent.new(object: decorate(instance)))
