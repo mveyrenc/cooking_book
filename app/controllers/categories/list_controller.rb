@@ -40,7 +40,6 @@ module Categories
                            :suggested_by_categories_names
                          ],
                          includes: { categorization: [:book] },
-                         fields: ["name^10"],
                          where: s[:where],
                          page: params[:page],
                          per_page: 30,

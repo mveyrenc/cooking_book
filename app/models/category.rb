@@ -51,7 +51,7 @@ class Category < ActiveRecord::Base
 
   scope :ordered, -> { order(name: :asc) }
 
-  searchkick
+  searchkick default_fields: ["name^10"]
 
   after_commit :reindex_recipes
 
