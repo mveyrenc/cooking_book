@@ -53,7 +53,7 @@ class ImportRecipeController < SecuredController
   private
 
   def set_book
-    @book = Book.friendly.find(params[:book_id])
+    @book = Book.friendly.find(params[:book])
     breadcrumb @book.name, book_path(@book), match: :exclusive
     breadcrumb I18n.t('breadcrumb.recipes'), book_path(@book), match: :exclusive
   end

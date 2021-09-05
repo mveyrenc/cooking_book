@@ -1,4 +1,4 @@
-class MigrateToActiveStorage < ActiveRecord::Migration[6.0]
+class MigrateToActiveStorage < ActiveRecord::Migration[6.1]
   require 'open-uri'
 
   def up
@@ -21,10 +21,9 @@ class MigrateToActiveStorage < ActiveRecord::Migration[6.0]
       ) VALUES ($1, $2, $3, #{get_blob_id}, $4)
     SQL
 
-    Rails.application.eager_load!
-    # models = ActiveRecord::Base.descendants.reject(&:abstract_class?)
-    # puts models.inspect
-    models = [Recipe]
+    # Rails.application.eager_load!
+    models = ActiveRecord::Base.descendants.reject(&:abstract_class?)
+
     transaction do
       models.each do |model|
         attachments = model.column_names.map do |c|
@@ -39,26 +38,26 @@ class MigrateToActiveStorage < ActiveRecord::Migration[6.0]
 
         model.find_each.each do |instance|
           attachments.each do |attachment|
-            if instance.send(attachment).path.blank? or !File.readable? instance.send(attachment).path
+            if instance.send(attachment).path.blank?
               next
             end
 
-            ActiveRecord::Base.connection.raw_connection.exec_prepared(
-                'active_storage_blob_statement', [
-                key(instance, attachment),
-                instance.send("#{attachment}_file_name"),
-                instance.send("#{attachment}_content_type"),
-                instance.send("#{attachment}_file_size"),
-                checksum(instance.send(attachment)),
-                instance.updated_at.iso8601
+            ActiveRecord::Base.connection.execute_prepared(
+              'active_storage_blob_statement', [
+              key(instance, attachment),
+              instance.send("#{attachment}_file_name"),
+              instance.send("#{attachment}_content_type"),
+              instance.send("#{attachment}_file_size"),
+              checksum(instance.send(attachment)),
+              instance.updated_at.iso8601
             ])
 
-            ActiveRecord::Base.connection.raw_connection.exec_prepared(
-                'active_storage_attachment_statement', [
-                attachment,
-                model.name,
-                instance.id,
-                instance.updated_at.iso8601,
+            ActiveRecord::Base.connection.execute_prepared(
+              'active_storage_attachment_statement', [
+              attachment,
+              model.name,
+              instance.id,
+              instance.updated_at.iso8601,
             ])
           end
         end

@@ -1,7 +1,7 @@
 class IngredientsToCategories < ActiveRecord::Migration[6.0]
   def up
-    Ingredient.roots.each do |ingredient|
-      create(ingredient: ingredient)
+    ActiveRecord::Base.connection.select_all("SELECT * FROM ingredients WHERE ancestry IS null").each do |ingredient|
+      create(ingredient, nil)
     end
   end
 
@@ -10,22 +10,25 @@ class IngredientsToCategories < ActiveRecord::Migration[6.0]
 
   private
 
-  def create(ingredient:, parent: nil)
-    categorization = Categorization::COOKING_MAIN_INGREDIENT
-    conditions = {name: ingredient.name, categorization_id: categorization.id}
-    category = Category.where(conditions).first || Category.create(conditions.merge({author_id: ingredient.author_id, modifier_id: ingredient.modifier_id}))
+  def create(ingredient, parent)
+    book = Book::COOKING
+    categorization = Categorization::MAIN_INGREDIENT
+    conditions = { name: ingredient['name'], book: book, categorization: categorization }
+    category = Category.where(conditions).first || Category.create(conditions.merge({ author_id: ingredient['author_id'], modifier_id: ingredient['modifier_id'] }))
     unless parent.nil?
       category.related_tree_categories << parent
     end
-    ingredient.recipes.each do |recipe|
-      recipe.categories << category
-      recipe.save
+
+    ActiveRecord::Base.connection.select_all("SELECT * FROM ingredients_recipes WHERE ingredient_id = #{ingredient['id']}").each do |recipe|
+      r = Recipe.find(recipe['recipe_id'])
+      r.categories << category
+      r.save
     end
 
-    if ingredient.has_children?
-      ingredient.children.each do |child|
-        create(ingredient: child, parent: category)
-      end
+    ancestry = "#{ingredient['ancestry']}/#{ingredient['id']}"
+    ancestry.strip!
+    ActiveRecord::Base.connection.select_all("SELECT * FROM ingredients WHERE ancestry = '#{ancestry}'").each do |child|
+      create(child, category)
     end
   end
 end

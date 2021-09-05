@@ -2,9 +2,9 @@
 <%= form.markdown :ingredients %>
 <%= form.collection_select(
   :category_ids,
-  Categorization::COOKING_MAIN_INGREDIENT.categories,
+  Category.cooking_main_ingredient,
   :id,
   :to_s,
   {},
   { multiple: true }
-) if object.book == Categorization::COOKING_MAIN_INGREDIENT.book %>
+) if object.book == Book.COOKING %>

@@ -4,17 +4,13 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  # post '/rate' => 'rater#create', :as => 'rate'
-
   get '/users' => 'users/list#call', as: :users
   get '/users/:id' => 'users/show#call', as: :user
   patch '/users/:id' => 'users/update#call'
   delete '/users/:id' => 'users/destroy#call'
   get '/users/:id/edit' => 'users/edit#call', as: :edit_user
 
-  # resources :users, :except => [:new, :create]
-
-  get '/book/:id' => 'recipes/list#call', as: :recipes
+  get '/recipes' => 'recipes/list#call', as: :recipes
   post '/recipes' => 'recipes/create#call', as: :create_recipe
   get '/recipes/new' => 'recipes/new#call', as: :new_recipe
   get '/recipes/import' => 'recipes/import#call', as: :import_recipe
@@ -23,11 +19,6 @@ Rails.application.routes.draw do
   patch '/recipes/:id' => 'recipes/update#call'
   delete '/recipes/:id' => 'recipes/destroy#call'
   get '/recipes/:id/edit' => 'recipes/edit#call', as: :edit_recipe
-
-  # resources :books, only: [:show], shallow: true do
-  #   resources :recipes
-  #   resources :import_recipe, :only => [:index, :create]
-  # end
 
   get '/categories' => 'categories/list#call', as: :categories
   post '/categories' => 'categories/create#call'
@@ -39,8 +30,6 @@ Rails.application.routes.draw do
   get '/categories/:id/classification/search' => 'categories/classification_search#call', as: :search_classification_category
   post '/categories/:id/classification' => 'categories/classification_add#call', as: :add_classification_category
   delete '/categories/:id/classification' => 'categories/classification_remove#call', as: :remove_classification_category
-
-  # resources :categories
 
   root :to => "welcome#index"
   # The priority is based upon order of creation: first created -> highest priority.

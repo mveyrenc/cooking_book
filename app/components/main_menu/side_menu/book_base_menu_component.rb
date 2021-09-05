@@ -15,7 +15,7 @@ module MainMenu::SideMenu
     end
 
     def link_to_recipes
-      render MainMenu::SideMenu::MenuItemComponent.new(title: t('menu.recipes'), path: recipes_path(book)) if can? :read, Recipe
+      render MainMenu::SideMenu::MenuItemComponent.new(title: t('menu.recipes'), path: recipes_path) if can? :read, Recipe
     end
   end
 end

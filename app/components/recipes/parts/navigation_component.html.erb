@@ -1,7 +1,7 @@
 <div class="menu">
   <ul class="menu-list">
     <li>
-      <%= link_to recipes_path(object.book) do %>
+      <%= link_to recipes_path do %>
         <span class="icon"><%= render Application::Elements::FontAwesomeIconComponent.new(icon: 'arrow-alt-circle-left') %></span>
         <span><%= t('recipes.return_to_search_list') %></span>
       <% end unless object.book.nil? %>

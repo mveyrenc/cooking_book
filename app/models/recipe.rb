@@ -1,15 +1,9 @@
-class Recipe < ActiveRecord::Base
-
-  #  DIFFICULTIES = %w[none very_easy easy intermediate experienced expert].freeze
-  #  COSTS = %w[none cheap affordable middle pretty_expensive expensive].freeze
-
-  enum difficulty_types: [:difficulty_none, :difficulty_very_easy, :difficulty_easy, :difficulty_intermediate, :difficulty_experienced, :difficulty_expert]
-  enum cost_types: [:cost_none, :cost_cheap, :cost_affordable, :cost_middle, :cost_pretty_expensive, :cost_expensive]
+class Recipe < ApplicationRecord
 
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-  belongs_to :book
+  enum book: Book.to_hash, _suffix: true
 
   has_and_belongs_to_many :categories
   belongs_to :author, class_name: "User"
@@ -21,17 +15,22 @@ class Recipe < ActiveRecord::Base
   validates :modifier, presence: true
 
   has_attached_file :picture,
-                    :styles => {:medium => "240", :thumb => "100", :slide => "170", :medium_gray => "240", :thumb_gray => "100"},
-                    :convert_options => {:thumb_gray => '-colorspace Gray', :medium_gray => '-colorspace Gray'},
+                    :styles => { :medium => "240", :thumb => "100", :slide => "170", :medium_gray => "240", :thumb_gray => "100" },
+                    :convert_options => { :thumb_gray => '-colorspace Gray', :medium_gray => '-colorspace Gray' },
                     :default_url => "/images/:style/missing.png"
 
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
 
   ratyrate_rateable "note", "difficulty", "cost"
 
-  searchkick
-  # language: "french",
-  #            fields: ["name^3", "tags^2"]
+  searchkick default_fields: ["title^10"]
+
+  def search_data
+    attributes.merge(
+      book_name: Category.human_enum_name(:book, book),
+      categories_names: categories.map { |c| c.name }
+    )
+  end
 
   # def search_data
   #   {

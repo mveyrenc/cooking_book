@@ -24,7 +24,7 @@ module Recipes
         .require(:recipe)
         .permit(
           :name,
-          :book_id,
+          :book,
           :description,
           :wine,
         )

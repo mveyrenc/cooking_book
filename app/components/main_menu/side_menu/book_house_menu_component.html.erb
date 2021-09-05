@@ -1,7 +1,7 @@
 <%= render(MainMenu::SideMenu::MenuLabelComponent.new(
-  title: book,
+  title: t("activerecord.attributes.recipe.books.#{book}"),
   icon: 'home',
-  color: book.color
+  color: book.sub('_', '-')
 )) %>
 <ul class="menu-list">
   <li><%= link_to_recipes %></li>

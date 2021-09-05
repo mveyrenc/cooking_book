@@ -2,22 +2,20 @@ module Recipes
   module Search
     class ViewComponent < ApplicationComponent
       include BookColorableConcern
+      include ButtonsConcern
 
       def initialize(
-          book:,
-          search_params:,
-          search_result:
+        query:,
+        result:
       )
-        @book = book
-        @search_params = search_params
-        @search_result = search_result
+        @query = query
+        @result = result
       end
 
       private
 
-      attr_reader :book
-      attr_reader :search_params
-      attr_reader :search_result
+      attr_reader :query
+      attr_reader :result
     end
   end
 end

@@ -77,7 +77,7 @@ en:
       edit:
         menu:
           title: "Editing the recipe"
-        main: "General information"
+        recipe: "General information"
         media: "Galerie de médias"
         classification: "Classification"
         composition: "Composition of the recipe"
@@ -93,6 +93,7 @@ en:
     new_page_title: "New category"
     edit_page_title: "Edit category"
     new_button: "New category"
+    add_related_button: "Add"
     create:
       success: "Category was successfully created."
     update:
@@ -115,76 +116,12 @@ en:
     item:
       cooking:
         name: "Cooking"
-      healthwellness:
+      health_wellness:
         name: "Health & wellness"
       house:
         name: "House"
   categorization:
     item:
-      cooking_serving:
-        name: "Serving"
-      cooking_thematic:
-        name: "Thematic"
-      cooking_season:
-        name: "Season"
-      cooking_occasion:
-        name: "Occasion"
-      cooking_special_menu:
-        name: "Special menu"
-      cooking_country:
-        name: "Country"
-      cooking_region:
-        name: "Region"
-      cooking_cooking_method:
-        name: "Cooking method"
-      cooking_dish_type:
-        name: "Dish type"
-      cooking_meal:
-        name: "Meal"
-      cooking_main_ingredient:
-        name: "Main ingredient"
-      cooking_source:
-        name: "Source"
-      cooking_chef:
-        name: "Chef"
-      cooking_difficulty:
-        name: "Difficulty"
-      cooking_cost:
-        name: "Cost"
-      cooking_todo:
-        name: "Todo"
-      healthwellness_problem_type:
-        name: "Problem type"
-      healthwellness_suitable_for:
-        name: "Suitable for"
-      healthwellness_benefit:
-        name: "Benefit"
-      healthwellness_source:
-        name: "Source"
-      healthwellness_product_type:
-        name: "Product type"
-      healthwellness_difficulty:
-        name: "Difficulty"
-      healthwellness_cost:
-        name: "Cost"
-      healthwellness_todo:
-        name: "Todo"
-      house_problem_type:
-        name: "Problem type"
-      house_occasion:
-        name: "Occasion"
-      house_room:
-        name: "Room"
-      house_source:
-        name: "Source"
-      house_product_type:
-        name: "Product type"
-      house_difficulty:
-        name: "Difficulty"
-      house_cost:
-        name: "Cost"
-      house_todo:
-        name: "Todo"
     difficulty:
       very_easy: "Very easy"
       easy: "Easy"
@@ -210,6 +147,7 @@ en:
     attributes:
       recipe:
         name: "Name"
+        book: "Book"
         description: "Description"
         recipe_type_ids: "Course type"
         recipe_types: "Course type"
@@ -235,10 +173,34 @@ en:
         similar_recipes: "Similar recipes"
       category:
         name: "Name"
-        book: "Recipe book"
-        book_id: "Recipe book"
-        categorization_id: "Categorization"
+        book: "Book"
+        books:
+          cooking: "cooking"
+          health_wellness: "Health & Wellness"
+          house: "house"
         categorization: "Categorization"
+        categorizations:
+          benefit: "Benefit"
+          chef: "Chef"
+          cooking_mode: "Cooking mode"
+          cost: "Coût"
+          country: "Country"
+          difficulty: "Difficulty"
+          dish_type: "Dish type"
+          main_ingredient: "Main ingredient"
+          meal: "Meal"
+          occasion: "Occasion"
+          problem_type: "Problem type"
+          product_type: "Product type"
+          region: "Region"
+          room: "Room"
+          season: "Season"
+          serving: "Serving"
+          source: "Source"
+          special_menu: "Special menu"
+          suitable_for: "Suitable for"
+          thematic: "Thematic"
+          todo: "Todo"
         related_tree_categories: "Related categories (recursively)"
         related_tree_category_ids: "Related categories (recursively)"
         related_tree_by_categories: "Linked by categories (recursively)"

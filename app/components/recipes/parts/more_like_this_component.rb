@@ -11,7 +11,7 @@ module Recipes
       def objects
         @objects ||= object.similar(
             fields: [:ingredients, :name, :tags],
-            where: {book_id: object.book.id},
+            where: {book: object.book},
             limit: 5)
       end
     end

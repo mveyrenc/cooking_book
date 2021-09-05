@@ -2,6 +2,7 @@ require_relative "boot"
 
 require "rails/all"
 require "view_component/engine"
+require "active_storage/engine"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -28,7 +29,7 @@ module CookingBook
       "<div class=\"has-error\">#{html_tag}</div>".html_safe
     }
 
-    config.autoload_paths += %W(#{config.root}/app/libs)
+    config.autoload_paths += %W(#{config.root}/app/libs/**/ #{config.root}/components/concerns/**/ #{config.root}/decorators/concerns/**/)
 
     config.view_component.preview_path = "#{Rails.root}/spec/components/previews"
   end

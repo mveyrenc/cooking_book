@@ -9,11 +9,16 @@
     <div class="field has-addons">
       <p class="control">
         <span class="select">
-          <%= select_tag 'category[categorization_id]', options_from_collection_for_select(categorizations, "id", "name", object.categorization.id) %>
+          <%= select_tag 'category[book]', options_for_select(Category::i18n_books.map { |k,v| [v, k] }, preselect_object.book) %>
         </span>
       </p>
       <p class="control">
-        <%= text_field_tag 'category[category_name]', nil, class: 'input' %>
+        <span class="select">
+          <%= select_tag 'category[categorization]', options_for_select(Category::i18n_categorizations.map { |k,v| [v, k] }, preselect_object.categorization) %>
+        </span>
+      </p>
+      <p class="control">
+        <%= text_field_tag 'category[name]', nil, class: 'input' %>
       </p>
       <p class="control">
         <%= button_tag(t('categories.add_related_button'), class: 'button') %>

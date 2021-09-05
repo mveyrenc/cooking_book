@@ -1,29 +1,24 @@
-class Book < ApplicationRecord
+class Book
 
-  COOKING = create_with(name: I18n.t('books.item.cooking.name')).find_or_create_by(slug: 'cooking').freeze
-  HEALTHWELLNESS = create_with(name: I18n.t('books.item.healthwellness.name')).find_or_create_by(slug: 'healthwellness').freeze
-  HOUSE = create_with(name: I18n.t('books.item.house.name')).find_or_create_by(slug: 'house').freeze
+  COOKING = 'cooking'
+  HEALTH_WELLNESS = 'health_wellness'
+  HOUSE = 'house'
 
-  extend FriendlyId
-  friendly_id :name, use: :slugged
+  BOOKS = [COOKING, HEALTH_WELLNESS, HOUSE]
 
-  has_many :categorizations
-  has_many :recipes
-
-  def categories
-    Category.joins(:categorization).where(categorizations: {book: self})
+  def initialize(book)
+    @book = book
   end
 
-  def color
-    slug.parameterize.underscore.to_sym
+  def eql?(other)
+    to_s.eql?(other.to_s)
   end
 
   def to_s
-    name
+    @book.to_s
   end
 
-  def to_i
-    id
+  def self.to_hash
+    Hash[BOOKS.map { |x| [x.to_sym, x] }]
   end
-
 end

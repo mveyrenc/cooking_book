@@ -41,9 +41,9 @@ fr:
     show_all_recipes: "Voir toutes les recettes"
   recipes:
     index_page_title:
-      zero: 'Aucune recette'
-      one: '%{count} recette'
-      other: '%{count} recettes'
+      zero: "Recettes"
+      one: "Recettes (%{count})"
+      other: "Recettes (%{count})"
     new_page_title: "Nouvelle recette"
     edit_page_title: "Modification de la recette"
     new_button: "Nouvelle recette"
@@ -116,76 +116,12 @@ fr:
     item:
       cooking:
         name: "Cuisine"
-      healthwellness:
+      health_wellness:
         name: "Santé & bien-être"
       house:
         name: "Maison"
   categorization:
     item:
-      cooking_serving:
-        name: "Service"
-      cooking_thematic:
-        name: "Thématique"
-      cooking_season:
-        name: "Saison"
-      cooking_occasion:
-        name: "Occasion"
-      cooking_special_menu:
-        name: "Menu spécial"
-      cooking_country:
-        name: "Pays"
-      cooking_region:
-        name: "Région"
-      cooking_cooking_method:
-        name: "Mode de cuisson"
-      cooking_dish_type:
-        name: "Type de plat"
-      cooking_meal:
-        name: "Repas"
-      cooking_main_ingredient:
-        name: "Ingrédient principal"
-      cooking_source:
-        name: "Source"
-      cooking_chef:
-        name: "Chef"
-      cooking_difficulty:
-        name: "Difficulté"
-      cooking_cost:
-        name: "Coût"
-      cooking_todo:
-        name: "Todo"
-      healthwellness_problem_type:
-        name: "Type de problème"
-      healthwellness_suitable_for:
-        name: "Adapté pour"
-      healthwellness_benefit:
-        name: "Bienfait"
-      healthwellness_source:
-        name: "Source"
-      healthwellness_product_type:
-        name: "Type de produit"
-      healthwellness_difficulty:
-        name: "Difficulté"
-      healthwellness_cost:
-        name: "Coût"
-      healthwellness_todo:
-        name: "Todo"
-      house_problem_type:
-        name: "Type de problème"
-      house_occasion:
-        name: "Occasion"
-      house_room:
-        name: "Pièce"
-      house_source:
-        name: "Source"
-      house_product_type:
-        name: "Type de produit"
-      house_difficulty:
-        name: "Difficulté"
-      house_cost:
-        name: "Coût"
-      house_todo:
-        name: "Todo"
     difficulty:
       very_easy: "Très facile"
       easy: "Facile"
@@ -212,7 +148,6 @@ fr:
       recipe:
         name: "Nom"
         book: "Livre"
-        book_id: "Livre"
         description: "Description"
         recipe_type_ids: "Types de recette"
         recipe_types: "Types de recette"
@@ -238,9 +173,34 @@ fr:
         similar_recipes: "Recettes similaires"
       category:
         name: "Nom"
-        book: "Livre de recette"
-        categorization_id: "Catégorisation"
+        book: "Livre"
+        books:
+          cooking: "Cuisine"
+          health_wellness: "Santé & bien-être"
+          house: "Maison"
         categorization: "Catégorisation"
+        categorizations:
+          benefit: "Bienfait"
+          chef: "Chef"
+          cooking_mode: "Mode de cuisson"
+          cost: "Coût"
+          country: "Pays"
+          difficulty: "Difficulté"
+          dish_type: "Type de plat"
+          main_ingredient: "Ingrédient principal"
+          meal: "Repas"
+          occasion: "Occasion"
+          problem_type: "Type de problème"
+          product_type: "Type de produit"
+          region: "Région"
+          room: "Pièce"
+          season: "Saison"
+          serving: "Service"
+          source: "Source"
+          special_menu: "Menu spécial"
+          suitable_for: "Adapté pour"
+          thematic: "Thématique"
+          todo: "Todo"
         related_tree_categories: "Inclus récursivement"
         related_tree_category_ids: "Inclus récursivement"
         related_tree_by_categories: "Est récursivement incluse par"

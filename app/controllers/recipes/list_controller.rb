@@ -5,49 +5,51 @@ module Recipes
 
     def call
       authorize! :read, model_class
-      breadcrumb instance.name, recipes_path(instance)
+      breadcrumb I18n.t('breadcrumb.recipes'), :recipes_path, match: :exclusive
 
-      search_params = permit_params
+      s = {
+        query: "*",
+        where: {}
+      }
 
-      search_query = search_params[:query].blank? ? '*' : search_params[:query]
-      search_result = model_class.search(
-        search_query,
-        where: { book_id: instance.id },
-        page: params[:page],
-        per_page: 10,
-        order: {
-          _score: :desc,
-          created_at: :desc
-        })
+      if permit_params[:search]
+        s[:query] = permit_params[:search][:query] unless permit_params[:search][:query].blank?
+        [
+          :book_name,
+          :categories_names,
+        ].each { |p| s[:where][p] = permit_params[:search][p] unless permit_params[:search][p].blank? }
+      end
+
+      result = model_class
+                 .search s[:query],
+                         aggs: [
+                           :book_name,
+                           :categories_names,
+                         ],
+                         includes: [:categories],
+                         where: s[:where],
+                         page: params[:page],
+                         per_page: 30,
+                         order: {
+                           _score: :desc,
+                           name: :asc
+                         }
 
       render Recipes::Search::ViewComponent.new(
-        book: instance,
-        search_params: search_params,
-        search_result: decorate_collection(search_result)
+        query: permit_params[:search] || {},
+        result: decorate_collection(result)
       )
     end
 
     private
 
-    def instance
-      Book.friendly.find(params[:id])
-    end
-
     def permit_params
-
       params
-        .permit(:search)
-        .permit(
+        .permit(search: [
           :query,
-          :book_id,
-          :categorization_id,
-          :related_tree_category_id,
-          :related_tree_by_category_id,
-          :related_category_id,
-          :related_by_category_id,
-          :suggested_category_id,
-          :suggested_by_category_id
-        )
+          :book_name,
+          :categories_names,
+        ])
     end
 
   end

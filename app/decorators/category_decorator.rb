@@ -1,4 +1,6 @@
 class CategoryDecorator < Draper::Decorator
+  include BookableConcern
+
   delegate_all
 
   decorates_association :related_tree_categories
@@ -8,12 +10,12 @@ class CategoryDecorator < Draper::Decorator
   decorates_association :extra_related_categories
   decorates_association :suggested_categories
 
-  def book
-    categorization.book unless categorization.nil?
+  def book_name
+    Category.human_enum_name(:book, book)
   end
 
-  def color
-    book.color unless book.nil?
+  def categorization_name
+    Category.human_enum_name(:categorization, categorization)
   end
 
   def self.collection_decorator_class

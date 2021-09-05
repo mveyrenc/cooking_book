@@ -1,4 +1,4 @@
-<% object.book.categorizations.each do |categorization| %>
+<% object.book_categorizations.each do |categorization| %>
   <% tag_list = Application::Elements::CategoryTagListComponent.new(
     categories: object.categories.select { |c| c.categorization == categorization },
     extra_categories: object.additional_categories.select { |c| c.categorization == categorization }

@@ -18,19 +18,19 @@ module RecipeImport
           case n["style"]
           when DIFFICULTY_LEVEL_1
             [Category.find_by(name: I18n.t("categorization.difficulty.very_easy"),
-                              categorization: Categorization::COOKING_DIFFICULTY)]
+                              categorization: Categorization::DIFFICULTY)]
           when DIFFICULTY_LEVEL_2
             [Category.find_by(name: I18n.t("categorization.difficulty.easy"),
-                              categorization: Categorization::COOKING_DIFFICULTY)]
+                              categorization: Categorization::DIFFICULTY)]
           when DIFFICULTY_LEVEL_3
             [Category.find_by(name: I18n.t("categorization.difficulty.intermediate"),
-                              categorization: Categorization::COOKING_DIFFICULTY)]
+                              categorization: Categorization::DIFFICULTY)]
           when DIFFICULTY_LEVEL_4
             [Category.find_by(name: I18n.t("categorization.difficulty.experienced"),
-                              categorization: Categorization::COOKING_DIFFICULTY)]
+                              categorization: Categorization::DIFFICULTY)]
           when DIFFICULTY_LEVEL_5
             [Category.find_by(name: I18n.t("categorization.difficulty.expert"),
-                              categorization: Categorization::COOKING_DIFFICULTY)]
+                              categorization: Categorization::DIFFICULTY)]
           else
             Array.new
           end
@@ -119,7 +119,7 @@ module RecipeImport
 
       def sources(document)
         r = super(document)
-        e = Categorization::COOKING_SOURCE.categories.where("lower(name) LIKE ?", 'meilleur du chef').ordered.first
+        e = Categorization::SOURCE.categories.where("lower(name) LIKE ?", 'meilleur du chef').ordered.first
         unless e.nil?
           r << e
         end

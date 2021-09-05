@@ -9,15 +9,17 @@ module Categories
 
       related = model_class
                   .where(
-                    "categorization_id = ? AND lower(name) = ?",
-                    permit_params[:categorization_id],
-                    permit_params[:category_name].downcase
+                    "book = ? AND categorization = ? AND lower(name) = ?",
+                    permit_params[:book],
+                    permit_params[:categorization],
+                    permit_params[:name].downcase
                   )
                   .first
       unless related
         related = model_class.create(
-          categorization_id: permit_params[:categorization_id],
-          name: permit_params[:category_name],
+          book: permit_params[:book],
+          categorization: permit_params[:categorization],
+          name: permit_params[:name],
           author: current_user,
           modifier: current_user,
         )
@@ -31,7 +33,7 @@ module Categories
           )
           format.turbo_stream {
             s = turbo_stream.replace "#{helpers.dom_id(instance)}_classification" do
-              view_context.render(Categories::Classification::ManageComponent.new(object: decorate(instance)))
+              view_context.render(Categories::Classification::ManageComponent.new(object: decorate(instance), last_add: decorate(related)))
             end
             render turbo_stream: s
           }
@@ -48,8 +50,9 @@ module Categories
       params
         .require(:category)
         .permit(
-          :categorization_id,
-          :category_name,
+          :book,
+          :categorization,
+          :name,
           :relation_type
         )
     end

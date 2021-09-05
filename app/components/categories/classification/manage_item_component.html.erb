@@ -1,5 +1,5 @@
 <span class="tag <%= css_book_color %>">
-  <%= link_to "#{related_object.categorization} / #{related_object}", related_object, class: "has-text-white", data: {'turbo-frame': '_top' } %>
+  <%= link_to "#{related_object.categorization_name} / #{related_object}", related_object, class: "has-text-white", data: {'turbo-frame': '_top' } %>
   <%= form_with(url: remove_classification_category_path(object), method: :delete) do |f| %>
       <%= hidden_field_tag "category[relation_type]", relation %>
       <%= hidden_field_tag "category[related_id]", related_object.friendly_id %>

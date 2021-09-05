@@ -1,5 +1,6 @@
-class Category < ActiveRecord::Base
+class Category < ApplicationRecord
   extend FriendlyId
+
   friendly_id :name, use: :slugged
 
   has_and_belongs_to_many :recipes
@@ -40,12 +41,15 @@ class Category < ActiveRecord::Base
                           :foreign_key => "suggested_category_id",
                           :association_foreign_key => "category_id")
 
-  belongs_to :categorization
+  enum book: Book.to_hash, _suffix: true
+  enum categorization: Categorization.to_hash, _suffix: true
 
   belongs_to :author, class_name: "User"
   belongs_to :modifier, class_name: "User"
 
-  validates :name, presence: true, uniqueness: { scope: :categorization, case_sensitive: false }
+  validates :name, presence: true, uniqueness: { scope: [:book, :categorization], case_sensitive: false }
+  validates :book, presence: true
+  validates :categorization, presence: true
   validates :author, presence: true
   validates :modifier, presence: true
 
@@ -57,10 +61,8 @@ class Category < ActiveRecord::Base
 
   def search_data
     attributes.merge(
-      categorization_name: categorization.to_s,
-
-      book_id: categorization.book.id,
-      book_name: categorization.book.to_s,
+      book_name: Category.human_enum_name(:book, book),
+      categorization_name: Category.human_enum_name(:categorization, categorization),
 
       related_tree_categories_names: related_tree_categories.map(&:name),
       related_tree_categories_ids: related_tree_categories.map(&:id),
@@ -89,37 +91,10 @@ class Category < ActiveRecord::Base
   end
 
   def extra_related_categories
-    categories = [self]
-    related_tree_categories.each do |category|
-      unless categories.include?(category)
-        categories |= category.related_categories_for_recipes
-      end
+    if @extra_related_categories.nil?
+      build_extra_related_categories(self)
     end
-    categories - related_tree_categories - [self]
-  end
-
-  def related_categories_for_recipes
-    related_tree_categories + related_categories + extra_related_categories - [self]
-  end
-
-  def suggested_categories_for_recipes
-    categories = []
-    parsed_categories = [self]
-    related_categories = related_categories_for_recipes
-    suggested_categories.each do |category|
-      if (!parsed_categories.include?(category))
-        categories |= [category]
-        categories |= category.categories
-        parsed_categories << category
-      end
-    end
-    categories.each do |category|
-      if (!parsed_categories.include?(category))
-        categories |= category.suggested_categories
-        parsed_categories << category
-      end
-    end
-    categories - related_categories - [self]
+    @extra_related_categories
   end
 
   def to_s
@@ -128,5 +103,43 @@ class Category < ActiveRecord::Base
 
   def to_i
     id
+  end
+
+  def self.i18n_books
+    self.books.transform_values { |v| self.human_enum_name :book, v }.sort_by {|k, v| v}
+  end
+
+  def self.i18n_categorizations
+    self.categorizations.transform_values { |v| self.human_enum_name :categorization, v }.sort_by {|k, v| v}
+  end
+
+  private
+
+  attr :parsed_c
+
+  def build_extra_related_categories(c)
+    @extra_related_categories = [] if @extra_related_categories.nil?
+    @parsed_c = [] if @parsed_c.nil?
+    unless @parsed_c.include?(c.id)
+      add_extra_related_categories(c)
+      if c == self
+        @parsed_c << c.id
+      end
+      c.related_tree_categories.each do |r|
+        add_extra_related_categories(r)
+        build_extra_related_categories(r)
+        @parsed_c << r.id
+      end
+      c.related_categories.each do |r|
+        add_extra_related_categories(r)
+      end
+    end
+    @extra_related_categories
+  end
+
+  def add_extra_related_categories(c)
+    unless c == self or @extra_related_categories.include?(c) or related_categories.include?(c) or related_tree_categories.include?(c)
+      @extra_related_categories << c
+    end
   end
 end

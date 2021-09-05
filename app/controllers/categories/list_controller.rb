@@ -39,7 +39,6 @@ module Categories
                            :suggested_categories_names,
                            :suggested_by_categories_names
                          ],
-                         includes: { categorization: [:book] },
                          where: s[:where],
                          page: params[:page],
                          per_page: 30,

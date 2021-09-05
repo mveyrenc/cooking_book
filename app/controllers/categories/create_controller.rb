@@ -33,7 +33,8 @@ module Categories
         .require(:category)
         .permit(
           :name,
-          :categorization_id
+          :book,
+          :categorization
         )
     end
   end

@@ -1,4 +1,4 @@
 <%= form.text_field :name, { required: true } %>
-<%= form.select :book_id, Book.all.collect { |p| [ p.name, p.id ] }, { required: true } if object.book.nil? %>
+<%= form.select :book, Book.BOOKS, { required: true } if object.book.nil? %>
 <%= form.markdown :description %>
 <%= form.text_field :wine %>

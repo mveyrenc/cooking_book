@@ -15,7 +15,7 @@ module Categories
       attr_reader :related_objects
 
       def related_objects?
-        related_objects.any?
+        related_objects.nil? ? false : related_objects.any?
       end
     end
   end

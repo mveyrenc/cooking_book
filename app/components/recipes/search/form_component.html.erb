@@ -1,20 +1,29 @@
-<form role="search" action="<%= recipes_path(book) %>" class="is-hidden-desktop">
-  <div class="field  has-addons">
-    <div class="control is-expanded">
-      <input type="text" class="input is-fullwidth" name="query" value="<%= search_params[:query] %>">
-    </div>
+<%= form_with url: recipes_path,
+              method: :get,
+              html: { role: "search" } do |f| %>
+  <div class="field ">
     <div class="control">
-      <button type="submit" class="button <%= css_book_color %>"><%= I18n.t('application.search') %></button>
+      <input type="text" class="input is-fullwidth" name="search[query]" value="<%= query[:query] %>">
     </div>
   </div>
-</form>
-<form role="search" action="<%= recipes_path(book) %>" class="is-hidden-touch">
-  <div class="field">
-    <div class="control">
-      <input type="text" class="input is-fullwidth" name="query" value="<%= search_params[:query] %>">
-    </div>
-  </div>
+  <%= render(Application::SearchFormEntry::AggregationSelectComponent.new(
+    form: f,
+    method: Recipe.human_attribute_name('book'),
+    buckets: result.aggs['book_name']['buckets'],
+    search_param_name: 'search[book_name]',
+    search_param_value: query[:book_name],
+    options: { "data-target": "recipes--search-form_entry.book" }
+  )) %>
+  <%= render(Application::SearchFormEntry::AggregationSelectComponent.new(
+    form: f,
+    method: Recipe.human_attribute_name('categories'),
+    buckets: result.aggs['categories_names']['buckets'],
+    search_param_name: 'search[categories_names]',
+    search_param_value: query[:categories_names],
+    options: { "data-target": "recipes--search-form_entry.categories_names" }
+  )) %>
   <div class="buttons is-centered">
-    <button type="submit" class="button <%= css_book_color %>"><%= I18n.t('application.search') %></button>
+    <button type="submit" class="button is-primary"><%= I18n.t('application.search') %></button>
+    <%= link_to I18n.t('application.reset'), recipes_path, class: "button is-secondary" %>
   </div>
-</form>
+<% end %>

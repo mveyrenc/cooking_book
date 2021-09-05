@@ -15,14 +15,6 @@ module Categories
       private
 
       attr_reader :object
-
-      def categorization_list_by_book
-        Book.all.decorate
-      end
-
-      def categorization_list
-        object.book.categorizations.ordered
-      end
     end
   end
 end

@@ -5,8 +5,8 @@ module Recipes
 
     def call
       authorize! :read, instance
-      breadcrumb instance.book.name, recipes_path(instance.book)
-      breadcrumb instance.name, recipe_path(instance)
+      breadcrumb I18n.t('breadcrumb.recipes'), :recipes_path, match: :exclusive
+      breadcrumb instance.name, recipe_path
 
       part = params[:part] || Recipes::Parts::DetailComponent::PART_RECIPE
 

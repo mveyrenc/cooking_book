@@ -1,9 +1,7 @@
 class RecipeDecorator < Draper::Decorator
-  delegate_all
+  include BookableConcern
 
-  def color
-    book.color unless book.nil?
-  end
+  delegate_all
 
   def self.collection_decorator_class
     PaginatingDecorator

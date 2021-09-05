@@ -38,7 +38,7 @@ module Categories
     def search_where_option
       {
         id: { not: exclude_categories },
-        book_id: instance.categorization.book.id
+        book: instance.book
       }
     end
 

@@ -4,7 +4,7 @@ module MainMenu::SideMenu
     private
 
     def book
-      Book::HEALTHWELLNESS
+      Book::HEALTH_WELLNESS
     end
   end
 end

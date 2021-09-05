@@ -34,23 +34,12 @@ module Categories
     private
 
     def permit_params
-      [:related_tree_category_ids, :related_tree_by_category_ids,
-       :related_category_ids, :related_by_category_ids,
-       :suggested_category_ids, :suggested_by_category_ids].each do |p|
-        params[:category][p].reject! { |c| c.empty? } if params[:category][p]
-      end
-
       params
         .require(:category)
         .permit(
           :name,
-          :categorization_id,
-          :related_tree_category_ids => [],
-          :related_tree_by_category_ids => [],
-          :related_category_ids => [],
-          :related_by_category_ids => [],
-          :suggested_category_ids => [],
-          :suggested_by_category_ids => []
+          :book,
+          :categorization
         )
     end
   end

@@ -10,7 +10,7 @@ module Recipes
       flash.now[:notice] = t('.success')
       respond_to do |format|
         format.turbo_stream { render turbo_stream: turbo_stream.remove(instance) }
-        format.html { redirect_to recipes_path(instance.book) }
+        format.html { redirect_to recipes_path }
       end
     end
   end

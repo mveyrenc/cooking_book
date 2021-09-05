@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "#{dom_id(object)}_classification" do %>
   <% %w"related_tree related_tree_by related related_by".map { |c| "#{c}_categories" }.each do |relation| %>
-    <%= render Categories::Classification::ManageListComponent.new(object: object, relation: relation, related_objects: object.send(relation)) %>
+    <%= render Categories::Classification::ManageListComponent.new(object: object, relation: relation, related_objects: object.send(relation), last_add: last_add) %>
   <% end %>
 
   <% %w"extra_related".map { |c| "#{c}_categories" }.each do |relation| %>
@@ -8,7 +8,7 @@
   <% end %>
 
   <% %w"suggested suggested_by".map { |c| "#{c}_categories" }.each do |relation| %>
-    <%= render Categories::Classification::ManageListComponent.new(object: object, relation: relation, related_objects: object.send(relation)) %>
+    <%= render Categories::Classification::ManageListComponent.new(object: object, relation: relation, related_objects: object.send(relation), last_add: last_add) %>
   <% end %>
 <% end %>
 </div>

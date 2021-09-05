@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_11_182753) do
+ActiveRecord::Schema.define(version: 2021_09_03_062916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 2021_02_11_182753) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.bigint "blob_id", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -52,14 +52,6 @@ ActiveRecord::Schema.define(version: 2021_02_11_182753) do
     t.datetime "updated_at"
   end
 
-  create_table "books", force: :cascade do |t|
-    t.string "name"
-    t.string "slug"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["slug"], name: "index_books_on_slug", unique: true
-  end
-
   create_table "categories", id: :serial, force: :cascade do |t|
     t.string "name", limit: 255
     t.datetime "created_at"
@@ -68,11 +60,13 @@ ActiveRecord::Schema.define(version: 2021_02_11_182753) do
     t.boolean "is_course_type", default: false, null: false
     t.integer "author_id"
     t.integer "modifier_id"
-    t.bigint "categorization_id"
+    t.string "book"
+    t.string "categorization"
     t.index ["author_id"], name: "fk__categories_author_id"
-    t.index ["categorization_id"], name: "index_categories_on_categorization_id"
+    t.index ["book"], name: "index_categories_on_book"
+    t.index ["categorization"], name: "index_categories_on_categorization"
     t.index ["modifier_id"], name: "fk__categories_modifier_id"
-    t.index ["name", "categorization_id"], name: "index_categories_on_name_and_categorization_id", unique: true
+    t.index ["name", "book", "categorization"], name: "index_categories_on_name_and_book_and_categorization", unique: true
     t.index ["slug"], name: "index_categories_on_slug", unique: true
   end
 
@@ -96,15 +90,28 @@ ActiveRecord::Schema.define(version: 2021_02_11_182753) do
     t.integer "suggested_category_id", null: false
   end
 
-  create_table "categorizations", force: :cascade do |t|
-    t.string "name"
-    t.string "slug"
-    t.bigint "book_id", null: false
+  create_table "content_blocks", force: :cascade do |t|
+    t.bigint "content_id"
+    t.string "ancestry"
+    t.integer "content_block_type"
+    t.integer "position"
+    t.text "original_text"
+    t.text "content_text"
+    t.jsonb "data_struct"
+    t.jsonb "metadataoriginal"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "multiple", default: true
-    t.index ["book_id"], name: "index_categorizations_on_book_id"
-    t.index ["slug", "book_id"], name: "index_categorizations_on_slug_and_book_id", unique: true
+    t.index ["ancestry"], name: "index_content_blocks_on_ancestry"
+    t.index ["content_id"], name: "index_content_blocks_on_content_id"
+  end
+
+  create_table "contents", force: :cascade do |t|
+    t.string "title"
+    t.bigint "book_id"
+    t.integer "content_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_contents_on_book_id"
   end
 
   create_table "delayed_jobs", id: :serial, force: :cascade do |t|
@@ -193,9 +200,9 @@ ActiveRecord::Schema.define(version: 2021_02_11_182753) do
     t.text "slug"
     t.integer "author_id"
     t.integer "modifier_id"
-    t.bigint "book_id", null: false
+    t.string "book", null: false
     t.index ["author_id"], name: "fk__recipes_author_id"
-    t.index ["book_id"], name: "index_recipes_on_book_id"
+    t.index ["book"], name: "index_recipes_on_book"
     t.index ["modifier_id"], name: "fk__recipes_modifier_id"
     t.index ["slug"], name: "index_recipes_on_slug", unique: true
   end
@@ -219,13 +226,9 @@ ActiveRecord::Schema.define(version: 2021_02_11_182753) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "categories", "categorizations"
   add_foreign_key "categories", "users", column: "author_id", name: "fk_categories_author_id"
   add_foreign_key "categories", "users", column: "modifier_id", name: "fk_categories_modifier_id"
-  add_foreign_key "categorizations", "books"
-  add_foreign_key "recipes", "books"
   add_foreign_key "recipes", "users", column: "author_id", name: "fk_recipes_author_id"
   add_foreign_key "recipes", "users", column: "modifier_id", name: "fk_recipes_modifier_id"
 end

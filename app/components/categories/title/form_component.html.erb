@@ -1,33 +1,54 @@
-  <%= form_with(model: object, layout: :horizontal, data: { controller: 'form', turbo: object.persisted? }) do |f| %>
-    <% if object.errors.any? %>
-      <div class="notification is-danger">
-        <button class="delete"></button>
-        <ul>
-          <% object.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-    <%= f.text_field :name, required: true %>
-    <%= f.grouped_collection_select(
-      :categorization_id,
-      categorization_list_by_book,
-      :categorizations,
-      :name,
-      :id,
-      :to_s,
-      { required: true }
-    ) if object.categorization.nil? %>
-    <%= f.collection_select(
-      :categorization_id,
-      categorization_list,
-      :id,
-      :to_s,
-      { required: true }
-    ) if object.categorization.present? and can? :manage, Category %>
-    <div class="buttons is-centered">
-      <%= f.submit nil, { class: css_book_color } %>
+<%= form_with(model: object, layout: :horizontal, data: { controller: 'form', turbo: object.persisted? }) do |f| %>
+  <% if object.errors.any? %>
+    <div class="notification is-danger">
+      <button class="delete"></button>
+      <ul>
+        <% object.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
     </div>
   <% end %>
+  <%= f.text_field :name, required: true %>
+
+  <% if object.book.nil? or (object.book.present? and can? :manage, Category) %>
+    <%= f.form_field :book, { required: true } do %>
+      <% Category.i18n_books.each do |key, label| %>
+        <%= f.label(
+          :book,
+          { class: "radio" }
+        ) do %>
+          <%= f.radio_button(
+                :book,
+                key
+              ) %>
+          <%= label %>
+        <% end %>
+        <br />
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <% if object.categorization.nil? or (object.categorization.present? and can? :manage, Category) %>
+    <%= f.form_field :categorization, { required: true } do %>
+      <% Category.i18n_categorizations.each do |key, label| %>
+        <%= f.label(
+          :categorization,
+          { class: "radio" }
+        ) do %>
+          <%= f.radio_button(
+                :categorization,
+                key
+              ) %>
+          <%= label %>
+        <% end %>
+        <br />
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <div class="buttons is-centered">
+    <%= f.submit nil, { class: css_book_color } %>
+  </div>
+<% end %>
 
